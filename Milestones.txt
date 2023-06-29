@@ -1,0 +1,24 @@
+//Just some ideas and test push. Remove this file from repo if you want.
+
+
+//Scripting part
+Enemy AI	 - Auto path finding, Shooting, Hiding, In-combat, Out-combat, 
+Player controller- Walk, Sprint, Jump, Crouch, Shoot, Switch gun,(Maybe PlayerController should be
+		   made as Singleton so that functions can be accessed globally).
+Player abilities - (Maybe)
+Enemy animation  - (Maybe)
+Player animation - (Maybe)
+UI manager	 - This should manage UI stuffs,
+Game manager	 - This should manage the game globally(Win/Lose check, Load levels,)
+Utility 	 - (Maybe, this should provide helper functions like )
+
+
+//Assets part
+Scene build	 - Level design, Lighting,
+Enemy model	 - On ground enemies, Flyable enemies,(Or maybe just use a capsule)
+Gun model	 - One or two diffent models,
+Sound effects	 - ,
+Sound tracks 	 - ,
+UIs		 - Bullet count, Heath, Crosshair, Abilities icons(Maybe), 
+VFXs		 - Shoot effect, Bleeding effect, 
+Shader		 - Enemy highlight(Maybe),
