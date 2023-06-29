@@ -10,7 +10,7 @@ Enemy animation  - (Maybe)
 Player animation - (Maybe)
 UI manager	 - This should manage UI stuffs,
 Game manager	 - This should manage the game globally(Win/Lose check, Load levels,)
-Utility 	 - (Maybe, this should provide helper functions like )
+Utility 	 - (Maybe, this should provide helper functions like function that returns a Gameobject)
 
 
 //Assets part
