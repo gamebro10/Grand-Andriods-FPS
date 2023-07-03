@@ -14,7 +14,6 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] protected float attackCD;
     [SerializeField] protected float stoppingDistance;
     [SerializeField] protected NavMeshAgent agent;
-    [SerializeField] protected GameObject Player;//will be deleted when a player instancee can be accessed globally. For now just assign player manually.
     [SerializeField] protected LayerMask layerMask;
 
     protected float angleToPlayer;
@@ -29,10 +28,12 @@ public class EnemyBase : MonoBehaviour, IDamage
     protected Transform targetTransform;
 
     protected GameObject currentTarget;
+    protected GameObject Player;
 
     protected virtual void Start()
     {
         startingPosition = transform.position;
+        Player = PlayerMovement.Instance.gameObject;
     }
 
     protected virtual void Update()

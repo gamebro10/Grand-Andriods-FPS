@@ -544,12 +544,11 @@ MonoBehaviour:
   attackCD: 1
   stoppingDistance: 10
   agent: {fileID: 1581549854851762085}
-  Player: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 887
+    m_Bits: 1527
   floatingSpeed: 7
-  shootRange: 10
+  shootRange: 18
   firePosLeft: {fileID: 1188415102229985836}
   firePosRight: {fileID: 5444844468317143971}
   bullet: {fileID: 3474836427932144899, guid: 018f4f8cffab4824b90df44e13ac504a, type: 3}
@@ -595,7 +594,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 15
   m_Center: {x: 0, y: 2.7, z: 0}
 --- !u!114 &4173474177364022227
 MonoBehaviour:

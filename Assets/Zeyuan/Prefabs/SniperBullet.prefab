@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a58702b193d4684e9a942d568b862c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 50
-  destroyTimer: 5
+  bulletSpeed: 70
+  destroyTimer: 4
   damage: 10
 --- !u!33 &8474704979489164929
 MeshFilter:
