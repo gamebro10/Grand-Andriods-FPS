@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3063897309559965698}
   - component: {fileID: 3624397202176996660}
   - component: {fileID: 7759654564074140759}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6969470379729336745}
   - component: {fileID: 526473099599787813}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 4429545797147576558}
   - component: {fileID: 4313331171452677627}
   - component: {fileID: 1104213394128357212}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5824540444973571491}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

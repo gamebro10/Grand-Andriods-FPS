@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 429579756689572091}
   - component: {fileID: 4866392372746290507}
   - component: {fileID: 3487440008639734043}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 8855386777216808477}
   - component: {fileID: 4718636281377641169}
   - component: {fileID: 5472608346352434414}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5444844468317143971}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FirePosRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1188415102229985836}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FirePosLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 3556598600985923740}
   - component: {fileID: 4314515967840015347}
   - component: {fileID: 2070980579056660924}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 7228614954525330115}
   - component: {fileID: 5406707048450856052}
   - component: {fileID: 8556151304046822360}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 1581549854851762085}
   - component: {fileID: 1553341717738837231}
   - component: {fileID: 4173474177364022227}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
