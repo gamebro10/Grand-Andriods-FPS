@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5578923821356029351}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2658784456887820064}
   - component: {fileID: 8112007490621129794}
   - component: {fileID: 5154133827796987933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 887
   shootRange: 15
   bullet: {fileID: 3474836427932144899, guid: 018f4f8cffab4824b90df44e13ac504a, type: 3}
   firePos: {fileID: 5578923821356029351}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 2765755688482007315}
   - component: {fileID: 1862976025937415183}
   - component: {fileID: 3891331775420273283}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
