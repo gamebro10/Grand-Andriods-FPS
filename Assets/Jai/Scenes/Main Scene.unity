@@ -1050,10 +1050,10 @@ MonoBehaviour:
   rb: {fileID: 1884958060}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   whatIsWallrunnable:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   sensitivity: 50
   moveSpeed: 4500
   walkSpeed: 30
