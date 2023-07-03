@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private float sensMultiplier = 1f;
     private float jumpCooldown = 0.25f;
     private float jumpForce = 550f;
+    private float verticalJumpBoost;
     private float x;
     private float y;
     private float vel;
@@ -218,7 +219,10 @@ public class PlayerMovement : MonoBehaviour
             MonoBehaviour.print("jumping");
             Vector3 velocity = rb.velocity;
             readyToJump = false;
-            rb.AddForce(Vector2.up * jumpForce * 1.5f);
+            if (!wallRunning)
+            {
+                rb.AddForce(Vector2.up * jumpForce * (verticalJumpBoost = 1.5f)); //vertical jump h when not wall running
+            }
             rb.AddForce(normalVector * jumpForce * 0.5f);
             if (rb.velocity.y < 0.5f)
             {
@@ -230,13 +234,12 @@ public class PlayerMovement : MonoBehaviour
             }
             if (wallRunning)
             {
-                rb.AddForce(wallNormalVector * jumpForce * 3f);
+                rb.AddForce(Vector2.up * jumpForce * (verticalJumpBoost = 0.5f)); //vertical jump h when wall running
+                rb.AddForce(wallNormalVector * jumpForce * 3.0f); //Horizontal dist when wall running
+                wallRunning = false;
+
             }
             Invoke("ResetJump", jumpCooldown);
-            if (wallRunning)
-            {
-                wallRunning = false;
-            }
         }
     }
 
