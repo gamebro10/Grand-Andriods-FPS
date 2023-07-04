@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDamage
 {
     public static GameManager Instance;
 
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     int enemiesRemaining;
     bool isPaused;
     float timescaleOrig;
+    int tempHP = 10;
 
     void Awake()
     {
@@ -38,5 +39,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnTakeDamage(int tempDamage)
+    {
+        tempHP -= tempDamage;
     }
 }
