@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public bool grounded;
     public bool onWall;
     [SerializeField] private TextMeshProUGUI currentSpeed;
+    public ParticleSystem airLines; // reference to the air lines GameObject
+
 
     //Private Floats
     private float wallRunGravity = 1f;
@@ -60,6 +62,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     private bool cancellingGrounded;
     private bool cancellingWall;
     private bool cancellingSurf;
+    private bool isAirLinesActive = false;
 
     //Private Vector3's
     private Vector3 grapplePoint;
@@ -86,7 +89,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         readyToJump = true;
-        wallNormalVector = Vector3.up;
+        wallNormalVector = Vector3.up; 
     }
 
     private void LateUpdate()
@@ -107,6 +110,8 @@ public class PlayerMovement : MonoBehaviour, IDamage
         MyInput();
         //Looking around
         Look();
+
+        ShowAirlines();
 
         currentSpeed.text = (rb.velocity.magnitude).ToString("0") + ("m/s");
     }
@@ -461,6 +466,22 @@ public class PlayerMovement : MonoBehaviour, IDamage
         {
             cancellingSurf = true;
             Invoke("StopSurf", Time.deltaTime * num);
+        }
+    }
+
+    private void ShowAirlines()
+    {
+        float playerSpeed = rb.velocity.magnitude;
+
+        if (playerSpeed > 25f && !isAirLinesActive)
+        {
+            airLines.Play();
+            isAirLinesActive = true;
+        }
+        else if (playerSpeed <= 25f && isAirLinesActive)
+        {
+            airLines.Stop();
+            isAirLinesActive = false;
         }
     }
 

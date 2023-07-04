@@ -100,7 +100,7 @@ Transform:
   - {fileID: 5809251733646675319}
   - {fileID: 7694377403718228749}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1793250254134868698
 MeshFilter:
@@ -137,6 +137,7 @@ MonoBehaviour:
   grounded: 0
   onWall: 0
   currentSpeed: {fileID: 9139736073029919380}
+  airLines: {fileID: 0}
 --- !u!23 &4187868438727022326
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -420,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7694377403718228749
 RectTransform:
   m_ObjectHideFlags: 0
