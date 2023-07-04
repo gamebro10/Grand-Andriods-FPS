@@ -1055,9 +1055,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   sensitivity: 50
-  moveSpeed: 4500
-  walkSpeed: 20
-  runSpeed: 10
+  moveSpeed: 5500
+  runSpeed: 20
   grounded: 0
   onWall: 0
 --- !u!33 &1884958064
@@ -1194,7 +1193,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2077017113
 PrefabInstance:
@@ -1279,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487505715025246703, guid: 957219b0c8cc59b41ae4d68f27311dcf, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3487505715025246703, guid: 957219b0c8cc59b41ae4d68f27311dcf, type: 3}
       propertyPath: m_LocalScale.x

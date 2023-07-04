@@ -19,10 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("MovementSettings")]
     //Movement Settings 
-    public float sensitivity = 50f;
-    public float moveSpeed = 4500f;
-    public float walkSpeed = 20f;
-    public float runSpeed = 10f;
+    [SerializeField] public float sensitivity;
+    [SerializeField] public float moveSpeed;
+    [SerializeField] public float runSpeed;
     public bool grounded;
     public bool onWall;
 
@@ -154,11 +153,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-        float num3 = walkSpeed;
-        if (sprinting)
-        {
-            num3 = runSpeed;
-        }
+        float num3 = runSpeed;
         if (crouching && grounded && readyToJump)
         {
             rb.AddForce(Vector3.down * Time.deltaTime * 3000f);
@@ -234,8 +229,8 @@ public class PlayerMovement : MonoBehaviour
             }
             if (wallRunning)
             {
-                rb.AddForce(Vector2.up * jumpForce * (verticalJumpBoost = 0.5f)); //vertical jump h when wall running
-                rb.AddForce(wallNormalVector * jumpForce * 3.0f); //Horizontal dist when wall running
+                rb.AddForce(Vector2.up * jumpForce * 0.1f); //vertical jump h when wall running
+                rb.AddForce(wallNormalVector * jumpForce * 2.0f); //Horizontal dist when wall running
                 wallRunning = false;
 
             }
@@ -279,10 +274,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveSpeed * orientation.transform.forward * Time.deltaTime * (0f - mag.y) * num);
         }
-        if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2f) + Mathf.Pow(rb.velocity.z, 2f)) > walkSpeed)
+        if (Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2f) + Mathf.Pow(rb.velocity.z, 2f)) > runSpeed)
         {
             float num3 = rb.velocity.y;
-            Vector3 vector = rb.velocity.normalized * walkSpeed;
+            Vector3 vector = rb.velocity.normalized * runSpeed;
             rb.velocity = new Vector3(vector.x, num3, vector.z);
         }
     }
