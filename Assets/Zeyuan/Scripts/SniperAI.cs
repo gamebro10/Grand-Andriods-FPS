@@ -63,7 +63,7 @@ public class SniperAI : EnemyBase
     void ShowLaser()
     {
         laser.SetPosition(0, firePos.transform.position);
-        laser.SetPosition(1, Player.transform.position);
+        laser.SetPosition(1, Player.transform.position + new Vector3(0, .05f, 0));
     }
 
     void InCombat()
