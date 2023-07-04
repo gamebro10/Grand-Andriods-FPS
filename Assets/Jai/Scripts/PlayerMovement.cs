@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDamage
 {
     [Header("Assignables")]
     //Assignables
@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float sensitivity; // camera senstivity
     [SerializeField] public float moveSpeed; // character walkspeed
     [SerializeField] public float runSpeed; //walkspeed multiplier
+    [SerializeField] public int playerHP;
     public bool grounded;
     public bool onWall;
     [SerializeField] private TextMeshProUGUI currentSpeed;
@@ -477,6 +478,11 @@ public class PlayerMovement : MonoBehaviour
     private void StopSurf()
     {
         surfing = false;
+    }
+
+    public void OnTakeDamage(int amount)
+    {
+        playerHP -= amount;
     }
 
     public Vector3 GetVelocity()

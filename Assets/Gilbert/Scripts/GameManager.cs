@@ -4,13 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour, IDamage
+public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     [Header("----- Player Stuff -----")]
     public GameObject player;
-   // public PlayerController playerScript;
+   public PlayerMovement playerScript;
     public GameObject playerSpawnPos;
 
     [Header("----- UI Stuff -----")]
@@ -39,10 +39,5 @@ public class GameManager : MonoBehaviour, IDamage
     void Update()
     {
         
-    }
-
-    public void OnTakeDamage(int tempDamage)
-    {
-        tempHP -= tempDamage;
     }
 }

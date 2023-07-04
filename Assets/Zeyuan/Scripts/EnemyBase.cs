@@ -56,7 +56,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         }
     }
 
-    public virtual void OnTakeDamage(int amount)
+    public void OnTakeDamage(int amount)
     {
         hp -= amount;
         currentTarget = Player;
