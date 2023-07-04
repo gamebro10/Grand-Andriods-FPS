@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,11 +21,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("MovementSettings")]
     //Movement Settings 
-    [SerializeField] public float sensitivity;
-    [SerializeField] public float moveSpeed;
-    [SerializeField] public float runSpeed;
+    [SerializeField] public float sensitivity; // camera senstivity
+    [SerializeField] public float moveSpeed; // character walkspeed
+    [SerializeField] public float runSpeed; //walkspeed multiplier
     public bool grounded;
     public bool onWall;
+    [SerializeField] private TextMeshProUGUI currentSpeed;
 
     //Private Floats
     private float wallRunGravity = 1f;
@@ -103,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         //Looking around
         Look();
+
+        currentSpeed.text = (rb.velocity.magnitude).ToString("0") + ("m/s");
     }
 
     //Player input
