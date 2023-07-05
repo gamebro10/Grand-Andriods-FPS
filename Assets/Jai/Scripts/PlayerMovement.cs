@@ -512,11 +512,11 @@ public class PlayerMovement : MonoBehaviour, IDamage
         playerHP -= amount;
         /*StartCoroutine(GameManager.Instance.playerFlashDamage());
          updatePlayerUI();
+        */
         if (playerHP <= 0)
         {
-        //Trigger lose function from GameManager
+            GameManager.Instance.youLose();
         }
-        */
     }
 
     public void updatePlayerUI()

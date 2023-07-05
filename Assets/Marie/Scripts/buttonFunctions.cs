@@ -7,22 +7,23 @@ public class buttonfunctions : MonoBehaviour
 {
     public void resumeGame()
     {
-
+        GameManager.Instance.stateUnpaused();
     }
 
     public void respawn()
     {
-
+        GameManager.Instance.stateUnpaused();
     }
 
     public void restartGane()
     {
-
+        GameManager.Instance.stateUnpaused();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void mainMenu()
     {
-
+        //load main menu scene
     }
 
     public void quitGame()
@@ -32,7 +33,7 @@ public class buttonfunctions : MonoBehaviour
 
     public void options()
     {
-
+        //load options menu
     }
 
     public void levelSelect(int levelNumber)

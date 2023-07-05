@@ -43,7 +43,37 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Cancel") && activeMenu == null)
+        {
+            statePaused();
+            activeMenu = pauseMenu;
+            activeMenu.SetActive(isPaused);
+        }
+    }
 
+    public void statePaused()
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        isPaused = !isPaused;
+    }
+
+    public void stateUnpaused()
+    {
+        Time.timeScale = timescaleOrig;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        isPaused = !isPaused;
+        activeMenu.SetActive(false);
+        activeMenu = null;
+    }
+
+    public void youLose()
+    {
+        statePaused();
+        activeMenu = loseMenu;
+        activeMenu.SetActive(true);
     }
 
     public void updateEnemyl(int amount)
