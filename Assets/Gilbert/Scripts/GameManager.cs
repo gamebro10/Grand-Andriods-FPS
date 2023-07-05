@@ -99,8 +99,8 @@ public class GameManager : MonoBehaviour
 
     public void updateEnemy(int amount)
     {
-        enemiesRemaining += amount;
-        enemiesRemainingText.text = enemiesRemaining.ToString();
+        //enemiesRemaining += amount;
+        //enemiesRemainingText.text = enemiesRemaining.ToString();
     }
 
 }

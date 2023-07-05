@@ -23,9 +23,12 @@ public class BulletBase : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         IDamage damagable = other.GetComponent<IDamage>();
-        if (damagable != null && !other.isTrigger)
+        if (!other.isTrigger)
         {
-            damagable.OnTakeDamage(damage);
+            if (damagable != null)
+            {
+                damagable.OnTakeDamage(damage);
+            }
             Destroy(gameObject);
         }
     }
