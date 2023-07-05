@@ -41,6 +41,8 @@ public class buttonfunctions : MonoBehaviour
     {
         switch (levelNumber)
         {
+            default: // default just in case
+                break;
             case 0: //tutorial
                 break;
             case 1: //level 1
