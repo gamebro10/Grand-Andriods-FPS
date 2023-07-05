@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class WeaponBehavior : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class WeaponBehavior : MonoBehaviour
     IEnumerator shoot()
     {
         isShooting = true;
+        particle.Play();
         Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
         RaycastHit hit;
 
@@ -42,7 +44,7 @@ public class WeaponBehavior : MonoBehaviour
         }
             
         
-
+        particle.Stop();
         yield return new WaitForSeconds(ShootRate);
         isShooting = false;
     }
