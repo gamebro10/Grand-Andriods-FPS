@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        updateEnemy(0);
         Instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerMovement>();
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString();
-        if (enemiesRemaining > 0)
+        if (enemiesRemaining <= 0)
         {
             enemyHeader.SetActive(false);
         }
@@ -110,6 +111,6 @@ public class GameManager : MonoBehaviour
 
     public void updateSpeedometer()
     {
-        speedometerText.text = PlayerMovement.Instance.playerSpeed.ToString();
+        speedometerText.text = PlayerMovement.Instance.currentSpeed.text;
     }
 }
