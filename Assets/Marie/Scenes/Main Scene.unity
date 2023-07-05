@@ -219,7 +219,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 347289798240240247, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 530093584453940959, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_text
@@ -341,9 +341,21 @@ PrefabInstance:
       propertyPath: m_text
       value: Respawn
       objectReference: {fileID: 0}
+    - target: {fileID: 2276092747087164072, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
+      objectReference: {fileID: 0}
     - target: {fileID: 3420135571004169926, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_text
       value: You Died!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1923521095}
+    - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restartGane
       objectReference: {fileID: 0}
     - target: {fileID: 4382961491582985668, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -422,7 +434,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8503898451639532091, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
@@ -628,6 +641,30 @@ PrefabInstance:
     - target: {fileID: 3420135571004169926, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_text
       value: You Win!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1923521095}
+    - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: restartGane
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: buttonfunctions, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4382961491582985668, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1402,10 +1439,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1923521095}
-    - target: {fileID: 2276092747087164072, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -80
-      objectReference: {fileID: 0}
     - target: {fileID: 3486738849541053890, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1417,10 +1450,6 @@ PrefabInstance:
     - target: {fileID: 4563233429640255290, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_Name
       value: Pause Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4743191253591457068, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 7613006162323171102, guid: e7a6ee303b1de354d8aad9f5124b470b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
