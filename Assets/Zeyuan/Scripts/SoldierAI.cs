@@ -13,6 +13,10 @@ public class SoldierAI : EnemyBase
     // Update is called once per frame
     protected override void Update()
     {
+        if (GameManager.Instance.isPaused)
+        {
+            return;
+        }
         base.Update();
         if (currentTarget == Player)
         {

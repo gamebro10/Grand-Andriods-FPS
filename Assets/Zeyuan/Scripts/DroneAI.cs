@@ -19,6 +19,10 @@ public class DroneAI : EnemyBase
     // Update is called once per frame
     protected override void Update()
     {
+        if (GameManager.Instance.isPaused)
+        {
+            return;
+        }
         base.Update();
         Float();
         if (currentTarget == Player)
