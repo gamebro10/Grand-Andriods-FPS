@@ -13,7 +13,7 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] GameObject Amo;
 
     bool isShooting;
-    RaycastHit hit;
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +32,17 @@ public class WeaponBehavior : MonoBehaviour
     {
         isShooting = true;
         Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
+        RaycastHit hit;
 
-        IDamage Damageable = hit.collider.GetComponent<IDamage>();
-        if (Damageable != null)
-        {
-            Damageable.OnTakeDamage(ShootDmg);
+        if (Physics.Raycast(UnityEngine.Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootDistance)) {
+            IDamage Damageable = hit.collider.GetComponent<IDamage>();
+            if (Damageable != null)
+            {
+                Damageable.OnTakeDamage(ShootDmg);
+            }
         }
+            
+        
 
         yield return new WaitForSeconds(ShootRate);
         isShooting = false;
