@@ -684,6 +684,96 @@ Transform:
   m_Father: {fileID: 5883676425406833205}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3356575308351513214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7916536970769023481}
+  - component: {fileID: 6983140094697830107}
+  - component: {fileID: 9050678194078290206}
+  - component: {fileID: 5075409933980347081}
+  m_Layer: 0
+  m_Name: Obstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7916536970769023481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356575308351513214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 15.79}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6297037102615644012}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6983140094697830107
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356575308351513214}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30, y: 50, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &9050678194078290206
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356575308351513214}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 30, y: 50, z: 1}
+  m_Center: {x: 0, y: 0, z: -0.95}
+--- !u!114 &5075409933980347081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356575308351513214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29aed4f73237fa4db78863fb9562403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushBackForce: {x: 0, y: 30, z: -40}
+  bossScript: {fileID: 8105260655814775152}
 --- !u!1 &4077109006346107460
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +985,7 @@ Transform:
   - {fileID: 2385913878895144341}
   - {fileID: 4658454780855498795}
   - {fileID: 4826619889825730634}
+  - {fileID: 7916536970769023481}
   m_Father: {fileID: 7700086124801053594}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1267,7 +1358,7 @@ Transform:
   - {fileID: 368332120938152809}
   - {fileID: 3521002693520858382}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &1725295441291269921
 Animator:
@@ -1314,9 +1405,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  cannonRotateSpeed: 5
-  cannonRotateRange: 0.4
-  cannonLastTime: 7.8
+  cannonRotateSpeed: 0.6
+  cannonRotateRange: 16
+  cannonLastTime: 10
   cannonDelay: 2
   head: {fileID: 6386202883180219247}
   cannon: {fileID: 2136978687213271533}
@@ -1719,7 +1810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4293000449661864541, guid: 70eaa08959bc60743a60e58e50e49926, type: 3}
       propertyPath: emitterVelocityMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4293000449661864541, guid: 70eaa08959bc60743a60e58e50e49926, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar

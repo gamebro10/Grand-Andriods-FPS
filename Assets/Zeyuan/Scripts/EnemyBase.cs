@@ -34,7 +34,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         GameManager.Instance.updateEnemy(1);
         startingPosition = transform.position;
-        Player = PlayerMovement.Instance.gameObject; 
+        Player = GameManager.Instance.player;
     }
 
     protected virtual void Update()

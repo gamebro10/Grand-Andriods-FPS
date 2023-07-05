@@ -23,10 +23,10 @@ public class BulletBase : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         IDamage damagable = other.GetComponent<IDamage>();
-        if (damagable != null)
+        if (damagable != null && !other.isTrigger)
         {
             damagable.OnTakeDamage(damage);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

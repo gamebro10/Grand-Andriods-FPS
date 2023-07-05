@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3063897309559965698}
   - component: {fileID: 3624397202176996660}
   - component: {fileID: 7759654564074140759}
+  - component: {fileID: 2690841232860819452}
   m_Layer: 9
   m_Name: Sniper
   m_TagString: Untagged
@@ -38,7 +39,7 @@ Transform:
   - {fileID: 2510230054837165136}
   - {fileID: 6969470379729336745}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3471801272518914001
 MonoBehaviour:
@@ -180,6 +181,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &2690841232860819452
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523635789059558183}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &2012424475584938736
 GameObject:
   m_ObjectHideFlags: 0

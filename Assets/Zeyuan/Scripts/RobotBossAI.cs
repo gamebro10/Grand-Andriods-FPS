@@ -99,9 +99,8 @@ public class RobotBossAI : EnemyBase
         if (isShooting)
         {
             EnableLaser();
-            cannonRotateParam = cannonRotateParam > 180 ? 0 : cannonRotateParam;
-            float y = Mathf.Cos(cannonRotateParam) * Mathf.PI / 180 * cannonRotateSpeed;
-            cannonRotateParam += Time.deltaTime * cannonRotateRange;
+            float y = Mathf.Sin(cannonRotateParam) * Mathf.PI / 180 * cannonRotateRange;
+            cannonRotateParam += Time.deltaTime * cannonRotateSpeed;
             Vector3 rot = new Vector3(0, y, 0);
             cannon.transform.Rotate(rot, Space.World);
         }

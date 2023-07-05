@@ -31,4 +31,9 @@ public class BossLaser : BulletBase
             isDamaging = false;
         }
     }
+
+    private void OnDisable()
+    {
+        isDamaging = false;
+    }
 }
