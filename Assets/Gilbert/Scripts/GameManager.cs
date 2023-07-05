@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         activeMenu.SetActive(true);
     }
 
-    public void updateEnemyl(int amount)
+    public void updateEnemy(int amount)
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString();
@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
 
     public void updateSpeedometer(int amount)
     {
-        //Rigidbody temp = playerScript.GetRb();
-        //speedometerText = (temp.velocity.magnitude).ToString("0") + ("m/s");
+        //speedometerText = (PlayerMovement.rb.velocity.magnitude).ToString("0") + ("m/s");
     }
 }

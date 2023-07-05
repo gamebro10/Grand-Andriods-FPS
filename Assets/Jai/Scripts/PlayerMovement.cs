@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     private int HPOrig;
 
     //Instance
-    public static PlayerMovement Instance { get; private set; }
+    public static PlayerMovement Instance;
 
     private void Awake()
     {
