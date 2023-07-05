@@ -33,7 +33,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     protected virtual void Start()
     {
         startingPosition = transform.position;
-        Player = PlayerMovement.Instance.gameObject;
+        Player = PlayerMovement.Instance.gameObject; 
     }
 
     protected virtual void Update()
