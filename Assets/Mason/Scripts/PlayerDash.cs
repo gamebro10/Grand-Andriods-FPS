@@ -59,6 +59,7 @@ public class PlayerDash : MonoBehaviour
         //Invoke(nameof(delayedDash), dashDistance);
 
        rb.velocity = Vector3.zero;
+       rb.transform.rotation = Quaternion.identity;
        rb.AddForce(Vector3.forward * dashSpeed, ForceMode.Impulse);
 
         isDashing = false;
