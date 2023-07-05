@@ -24,24 +24,30 @@ public class WeaponBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Shoot") && !isShooting)
-            StartCoroutine(shoot());
+        if (GameManager.Instance.activeMenu == null)
+        {
+            //to move player rotations
+            if (Input.GetButton("Shoot") && !isShooting)
+                StartCoroutine(shoot());
+        }
+       
     }
 
     IEnumerator shoot()
     {
         isShooting = true;
         particle.Play();
+        Debug.Log("Shoot");
         Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
         RaycastHit hit;
 
-        if (Physics.Raycast(UnityEngine.Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootDistance)) {
-            IDamage Damageable = hit.collider.GetComponent<IDamage>();
-            if (Damageable != null)
-            {
-                Damageable.OnTakeDamage(ShootDmg);
-            }
-        }
+        //if (Physics.Raycast(UnityEngine.Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootDistance)) {
+        //    IDamage Damageable = hit.collider.GetComponent<IDamage>();
+        //    if (Damageable != null)
+        //    {
+        //        Damageable.OnTakeDamage(ShootDmg);
+        //    }
+        //}
             
         
         particle.Stop();

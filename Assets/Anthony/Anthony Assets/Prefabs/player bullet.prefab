@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 11165170806745276}
   m_Layer: 8
   m_Name: player bullet
-  m_TagString: Player Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,6 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5281710045981298000}
-  destroytime: 0
-  ShootRate: 0
-  ShootDmg: 0
+  destroytime: 3
+  ShootRate: 70
+  ShootDmg: 2
