@@ -234,15 +234,18 @@ public class PlayerMovement : MonoBehaviour, IDamage
     //Looking around by using your mouse
     private void Look()
     {
-        float num = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
-        float num2 = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
-        desiredX = playerCam.transform.localRotation.eulerAngles.y + num;
-        xRotation -= num2;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        FindWallRunRotation();
-        actualWallRotation = Mathf.SmoothDamp(actualWallRotation, wallRunRotation, ref wallRotationVel, 0.2f);
-        playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, actualWallRotation);
-        orientation.transform.localRotation = Quaternion.Euler(0f, desiredX, 0f);
+        if (!GameManager.Instance.isPaused)
+        {
+            float num = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
+            float num2 = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
+            desiredX = playerCam.transform.localRotation.eulerAngles.y + num;
+            xRotation -= num2;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            FindWallRunRotation();
+            actualWallRotation = Mathf.SmoothDamp(actualWallRotation, wallRunRotation, ref wallRotationVel, 0.2f);
+            playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, actualWallRotation);
+            orientation.transform.localRotation = Quaternion.Euler(0f, desiredX, 0f);
+        }
     }
     //Make the player movement feel good 
     private void CounterMovement(float x, float y, Vector2 mag)
