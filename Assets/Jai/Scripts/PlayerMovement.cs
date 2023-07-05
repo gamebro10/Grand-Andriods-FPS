@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour, IDamage
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Assignables")]
     //Assignables
@@ -29,10 +29,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public bool onWall;
     [SerializeField] public TextMeshProUGUI currentSpeed;
     public ParticleSystem airLines; // reference to the air lines GameObject
-    public float playerSpeed;
-
-    [Header("Player Values")]
-    [SerializeField] int playerHP;
+    private float playerSpeed;
 
     //Private Floats
     private float wallRunGravity = 1f;
@@ -76,7 +73,6 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     //Private int
     private int nw;
-    private int HPOrig;
 
     //Instance
     public static PlayerMovement Instance;
@@ -89,7 +85,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     private void Start()
     {
-        spawnPlayer();
+
     }
 
     private void LateUpdate()
@@ -504,26 +500,6 @@ public class PlayerMovement : MonoBehaviour, IDamage
         surfing = false;
     }
 
-    public void OnTakeDamage(int amount)
-    {
-        playerHP -= amount;
-        /*StartCoroutine(GameManager.Instance.playerFlashDamage());
-         updatePlayerUI();
-        */
-        if (playerHP <= 0)
-        {
-            GameManager.Instance.youLose();
-        }
-    }
-
-    public void updatePlayerUI()
-    {
-        playerSpeed = rb.velocity.magnitude;
-        GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
-        GameManager.Instance.updateSpeedometer();
-        GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (moveSpeed * runSpeed);
-    }
-
     public Vector3 GetVelocity()
     {
         return rb.velocity;
@@ -552,18 +528,5 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public Rigidbody GetRb()
     {
         return rb;
-    }
-
-    public void spawnPlayer()
-    {
-
-        //transform.position = GameManager.Instance.playerSpawnPos.transform.position;
-
-        HPOrig = playerHP;
-        playerCollider = GetComponent<Collider>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        readyToJump = true;
-        wallNormalVector = Vector3.up;
     }
 }

@@ -13,10 +13,10 @@ public class buttonfunctions : MonoBehaviour
     public void respawn()
     {
         GameManager.Instance.stateUnpaused();
-        GameManager.Instance.playerScript.spawnPlayer();
+        PlayerScript.Instance.spawnPlayer();
     }
 
-    public void restartGane()
+    public void restartGame()
     {
         GameManager.Instance.stateUnpaused();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

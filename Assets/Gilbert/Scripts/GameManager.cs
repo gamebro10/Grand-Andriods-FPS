@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 
     [Header("----- Player Stuff -----")]
     public GameObject player;
-    public PlayerMovement playerScript;
+    public PlayerMovement playerMovement;
+    public PlayerScript playerScript;
     public GameObject playerSpawnPos;
 
     [Header("----- UI Stuff -----")]
@@ -38,7 +39,8 @@ public class GameManager : MonoBehaviour
         updateEnemy(0);
         Instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<PlayerMovement>();
+        playerMovement = player.GetComponent<PlayerMovement>();
+        playerScript = player.GetComponent<PlayerScript>();
         timescaleOrig = Time.timeScale;
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
     }
@@ -99,18 +101,6 @@ public class GameManager : MonoBehaviour
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString();
-        if (enemiesRemaining <= 0)
-        {
-            enemyHeader.SetActive(false);
-        }
-        else
-        {
-            enemyHeader.SetActive(true);
-        }
     }
 
-    public void updateSpeedometer()
-    {
-        speedometerText.text = PlayerMovement.Instance.currentSpeed.text;
-    }
 }
