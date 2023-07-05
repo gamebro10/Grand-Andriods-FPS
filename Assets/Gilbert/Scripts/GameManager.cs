@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("----- UI Stuff -----")]
     public GameObject activeMenu;
+    public GameObject prevMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
@@ -75,6 +76,18 @@ public class GameManager : MonoBehaviour
         statePaused();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
+    }
+
+    public void loadOptionsMenu()
+    {
+        prevMenu = activeMenu;
+        activeMenu = optionsMenu;
+    }
+
+    public void closeOptions()
+    {
+        activeMenu = prevMenu;
+        prevMenu = null;
     }
 
     public void updateEnemy(int amount)

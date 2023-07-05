@@ -34,12 +34,12 @@ public class buttonfunctions : MonoBehaviour
 
     public void options()
     {
-        //load options menu
+        GameManager.Instance.loadOptionsMenu();
     }
 
     public void closeOptions()
     {
-        //return to prev menu from options
+        GameManager.Instance.closeOptions();
     }
 
     public void levelSelect(int levelNumber)
