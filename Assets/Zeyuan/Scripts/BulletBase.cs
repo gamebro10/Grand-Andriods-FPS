@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class BulletBase : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed;
-    [SerializeField] float destroyTimer;
-    [SerializeField] int damage;
+    [SerializeField] protected float bulletSpeed;
+    [SerializeField] protected float destroyTimer;
+    [SerializeField] protected int damage;
 
     Rigidbody rb;
     // Start is called before the first frame update
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * bulletSpeed;
-        Destroy(gameObject, destroyTimer);
+        if (rb != null)
+        {
+            rb.velocity = transform.forward * bulletSpeed;
+            Destroy(gameObject, destroyTimer);
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         IDamage damagable = other.GetComponent<IDamage>();
         if (damagable != null)

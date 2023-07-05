@@ -32,8 +32,9 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     protected virtual void Start()
     {
+        GameManager.Instance.updateEnemy(1);
         startingPosition = transform.position;
-        Player = PlayerMovement.Instance.gameObject;
+        Player = PlayerMovement.Instance.gameObject; 
     }
 
     protected virtual void Update()
@@ -60,6 +61,11 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         hp -= amount;
         currentTarget = Player;
+        if (hp <= 0)
+        {
+            GameManager.Instance.updateEnemy(-1);
+            Destroy(gameObject);
+        }
     }
 
     protected void MoveToPlayer()

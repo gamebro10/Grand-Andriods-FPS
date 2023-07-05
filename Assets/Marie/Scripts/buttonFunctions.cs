@@ -7,22 +7,24 @@ public class buttonfunctions : MonoBehaviour
 {
     public void resumeGame()
     {
-
+        GameManager.Instance.stateUnpaused();
     }
 
     public void respawn()
     {
-
+        GameManager.Instance.stateUnpaused();
+        PlayerScript.Instance.spawnPlayer();
     }
 
-    public void restartGane()
+    public void restartGame()
     {
-
+        GameManager.Instance.stateUnpaused();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void mainMenu()
     {
-
+        //load main menu scene
     }
 
     public void quitGame()
@@ -32,13 +34,20 @@ public class buttonfunctions : MonoBehaviour
 
     public void options()
     {
+        GameManager.Instance.loadOptionsMenu();
+    }
 
+    public void closeOptions()
+    {
+        GameManager.Instance.closeOptions();
     }
 
     public void levelSelect(int levelNumber)
     {
         switch (levelNumber)
         {
+            default: // default just in case
+                break;
             case 0: //tutorial
                 break;
             case 1: //level 1
@@ -55,8 +64,7 @@ public class buttonfunctions : MonoBehaviour
     public void nextLevel()
     {
         int currentLevel = 0; // just 0 for now so VS doesnt get angry at me
-        //find a way to get current level from either game manager or somewhere else in the scene,
-        //and set currentLeve equal to that plus one.
-        levelSelect(currentLevel);
+        //find a way to get current level from either game manager or somewhere else in the scene.
+        levelSelect(currentLevel + 1);
     }
 }
