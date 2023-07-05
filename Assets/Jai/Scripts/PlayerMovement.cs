@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public Transform orientation;
     private Collider playerCollider;
     public Rigidbody rb;
-    [SerializeField] CharacterController characterController;
 
     [Space(10)]
 
@@ -517,8 +516,8 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public void updatePlayerUI()
     {
         playerSpeed = rb.velocity.magnitude;
-        GameManager.Instance.playerHPBar.fillAmount = (float)playerHP/HPOrig;
-        GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (moveSpeed*runSpeed);
+        GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
+        GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (moveSpeed * runSpeed);
     }
 
     public Vector3 GetVelocity()
@@ -553,9 +552,9 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     public void spawnPlayer()
     {
-        characterController.enabled = false;
-        transform.position = GameManager.Instance.playerSpawnPos.transform.position;
-        characterController.enabled = true;
+
+        //transform.position = GameManager.Instance.playerSpawnPos.transform.position;
+
         HPOrig = playerHP;
         playerCollider = GetComponent<Collider>();
         Cursor.lockState = CursorLockMode.Locked;
