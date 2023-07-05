@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject titleMenu;
     public GameObject optionsMenu;
     public GameObject levelSelect;
+    public GameObject enemyHeader;
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI speedometerText;
     public Image speedometerBar;
@@ -80,10 +81,18 @@ public class GameManager : MonoBehaviour
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString();
+        if (enemiesRemaining > 0)
+        {
+            enemyHeader.SetActive(false);
+        }
+        else
+        {
+            enemyHeader.SetActive(true);
+        }
     }
 
-    public void updateSpeedometer(int amount)
+    public void updateSpeedometer()
     {
-        //speedometerText = (PlayerMovement.rb.velocity.magnitude).ToString("0") + ("m/s");
+        speedometerText.text = PlayerMovement.Instance.playerSpeed.ToString();
     }
 }

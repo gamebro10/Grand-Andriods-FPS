@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     [SerializeField] public float runSpeed; //walkspeed multiplier
     public bool grounded;
     public bool onWall;
-    [SerializeField] private TextMeshProUGUI currentSpeed;
+    [SerializeField] public TextMeshProUGUI currentSpeed;
     public ParticleSystem airLines; // reference to the air lines GameObject
     public float playerSpeed;
 
@@ -520,6 +520,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     {
         playerSpeed = rb.velocity.magnitude;
         GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
+        GameManager.Instance.updateSpeedometer();
         GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (moveSpeed * runSpeed);
     }
 
