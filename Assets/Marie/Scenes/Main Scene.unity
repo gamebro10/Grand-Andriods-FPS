@@ -1254,6 +1254,7 @@ MonoBehaviour:
   speedometerBar: {fileID: 0}
   playerHPBar: {fileID: 0}
   playerFlashDamageScreen: {fileID: 0}
+  isPaused: 0
 --- !u!114 &1923521097
 MonoBehaviour:
   m_ObjectHideFlags: 0

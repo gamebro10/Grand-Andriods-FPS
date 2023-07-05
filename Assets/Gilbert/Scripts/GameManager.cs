@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerFlashDamageScreen;
 
     int enemiesRemaining;
-    bool isPaused;
+    public bool isPaused;
     float timescaleOrig;
 
     void Awake()
