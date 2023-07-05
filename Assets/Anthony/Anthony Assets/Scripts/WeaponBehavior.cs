@@ -11,14 +11,13 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] int ShootDistance;
     [SerializeField] Transform shotpos;
     [SerializeField] GameObject Amo;
-
+    [SerializeField] ParticleSystem particle;
     bool isShooting;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
