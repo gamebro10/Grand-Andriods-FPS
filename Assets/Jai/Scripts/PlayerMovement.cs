@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour, IDamage
@@ -89,12 +90,6 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     private void Start()
     {
-        HPOrig = playerHP;
-        playerCollider = GetComponent<Collider>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        readyToJump = true;
-        wallNormalVector = Vector3.up;
         spawnPlayer();
     }
 
@@ -558,7 +553,14 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     public void spawnPlayer()
     {
+        characterController.enabled = false;
         transform.position = GameManager.Instance.playerSpawnPos.transform.position;
-        //updatePlayerUI();
+        characterController.enabled = true;
+        HPOrig = playerHP;
+        playerCollider = GetComponent<Collider>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        readyToJump = true;
+        wallNormalVector = Vector3.up;
     }
 }
