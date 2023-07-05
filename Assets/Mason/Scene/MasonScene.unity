@@ -352,6 +352,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2225171869924090, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: c3b7e8c12b66f7240abefdb4d0efee0c, type: 2}
     - target: {fileID: 187252275689524743, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
       propertyPath: playerCam
       value: 
@@ -439,9 +443,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ec705f7e041544197edb5b65cace06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientation: {fileID: 1773424304}
+  playerCam: {fileID: 1994357047}
   dashSpeed: 50
+  dashUpForce: 5
   dashDistance: 25
-  dashCoolD: 0
+  durationD: 0.3
+  dashCd: 0.4
+  dashKey: 304
   dashEffect: {fileID: 0}
 --- !u!114 &946344634
 MonoBehaviour:
@@ -456,9 +465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stompSpeed: 500
-  stompDistance: 0
-  stompCoolD: 0
-  dashEffect: {fileID: 0}
+  stompDistance: 50
+  onGround: 0
 --- !u!1001 &1105989327
 PrefabInstance:
   m_ObjectHideFlags: 0
