@@ -37,6 +37,11 @@ public class buttonfunctions : MonoBehaviour
         //load options menu
     }
 
+    public void closeOptions()
+    {
+        //return to prev menu from options
+    }
+
     public void levelSelect(int levelNumber)
     {
         switch (levelNumber)
