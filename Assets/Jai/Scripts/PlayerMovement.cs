@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public Transform orientation;
     private Collider playerCollider;
     public Rigidbody rb;
+    [SerializeField] CharacterController characterController;
 
     [Space(10)]
 
@@ -24,12 +25,14 @@ public class PlayerMovement : MonoBehaviour, IDamage
     [SerializeField] public float sensitivity; // camera senstivity
     [SerializeField] public float moveSpeed; // character walkspeed
     [SerializeField] public float runSpeed; //walkspeed multiplier
-    [SerializeField] public int playerHP;
     public bool grounded;
     public bool onWall;
     [SerializeField] private TextMeshProUGUI currentSpeed;
     public ParticleSystem airLines; // reference to the air lines GameObject
+    public float playerSpeed;
 
+    [Header("Player Values")]
+    [SerializeField] int playerHP;
 
     //Private Floats
     private float wallRunGravity = 1f;
@@ -73,6 +76,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     //Private int
     private int nw;
+    private int HPOrig;
 
     //Instance
     public static PlayerMovement Instance { get; private set; }
@@ -85,11 +89,13 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     private void Start()
     {
+        HPOrig = playerHP;
         playerCollider = GetComponent<Collider>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         readyToJump = true;
-        wallNormalVector = Vector3.up; 
+        wallNormalVector = Vector3.up;
+        //spawnPlayer();
     }
 
     private void LateUpdate()
@@ -471,7 +477,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
     private void ShowAirlines()
     {
-        float playerSpeed = rb.velocity.magnitude;
+        playerSpeed = rb.velocity.magnitude;
 
         if (playerSpeed > 25f && !isAirLinesActive)
         {
@@ -504,6 +510,20 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public void OnTakeDamage(int amount)
     {
         playerHP -= amount;
+        /*StartCoroutine(GameManager.Instance.playerFlashDamage());
+         updatePlayerUI();
+        if (playerHP <= 0)
+        {
+        //Trigger lose function from GameManager
+        }
+        */
+    }
+
+    public void updatePlayerUI()
+    {
+        playerSpeed = rb.velocity.magnitude;
+        GameManager.Instance.playerHPBar.fillAmount = (float)playerHP/HPOrig;
+        GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (moveSpeed*runSpeed);
     }
 
     public Vector3 GetVelocity()
