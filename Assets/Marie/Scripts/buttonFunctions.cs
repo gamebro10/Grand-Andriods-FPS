@@ -57,8 +57,7 @@ public class buttonfunctions : MonoBehaviour
     public void nextLevel()
     {
         int currentLevel = 0; // just 0 for now so VS doesnt get angry at me
-        //find a way to get current level from either game manager or somewhere else in the scene,
-        //and set currentLeve equal to that plus one.
-        levelSelect(currentLevel);
+        //find a way to get current level from either game manager or somewhere else in the scene.
+        levelSelect(currentLevel + 1);
     }
 }
