@@ -15,10 +15,10 @@ public class PlayerStomp : MonoBehaviour
     bool canStomp;
     public bool onGround;
 
-    public PlayerMovement dashOrStomp;
-    public PlayerDash dashConfirm;
+    private PlayerMovement dashOrStomp;
+    private PlayerDash dashConfirm;
 
-    public GameObject dashEffect;
+    private GameObject dashEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +29,10 @@ public class PlayerStomp : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
- 
+
         if (Input.GetKeyDown(KeyCode.LeftControl))
             isStomp = true;
-        
+
     }
 
     private void FixedUpdate()
@@ -51,12 +51,10 @@ public class PlayerStomp : MonoBehaviour
             dashConfirm.Dash();
     }
 
-    void Stomp()
+    private void Stomp()
     {
-            rb.velocity = Vector3.zero;
-            rb.AddForce(Vector3.down * stompDistance, ForceMode.Impulse);
-            isStomp = false;
-      
-
+        rb.velocity = Vector3.zero;
+        rb.AddForce(Vector3.down * stompDistance, ForceMode.Impulse);
+        isStomp = false;
     }
 }

@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerDash : MonoBehaviour
 {
-    Rigidbody rb;
+    private Rigidbody rb;
+    public Transform orientation;
+    public Transform playerCam;
 
-    private float getX;
-    private float getY;
+
 
     public float dashSpeed;
+    public float dashUpForce;
     public float dashDistance;
+    public float durationD;
     bool isDashing;
-    bool canDash;
-    public float dashCoolD;
+
+    public float dashCd;
+    private float dashCdTimer;
+
+    public KeyCode dashKey = KeyCode.LeftShift;
 
     public GameObject dashEffect;
 
@@ -26,22 +33,42 @@ public class PlayerDash : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            isDashing = true;
+        if (Input.GetKeyDown(dashKey))
+            Dash();
+
+        if(dashCdTimer > 0)
+            dashCdTimer -= Time.deltaTime;
     }
 
-    private void FixedUpdate()
-    {
-        if (isDashing)
-            Dash();
-    }
 
     public void Dash()
     {
-        rb.velocity = Vector3.zero;
+        if (dashCdTimer > 0) return;
+        else dashCdTimer = dashCd;
 
-        rb.AddForce(Vector3.forward * dashSpeed, ForceMode.Impulse);
+        //isDashing = true;
+        
+        rb.velocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
+
+        Vector3 forceApply = orientation.forward * dashSpeed + orientation.up * dashUpForce;
+
+        //additionalForce = forceApply;
+
+        //Invoke(nameof(delayedDash), 0.025f);
+        //Invoke(nameof(delayedDash), dashDistance);
+
+       rb.velocity = Vector3.zero;
+       rb.AddForce(Vector3.forward * dashSpeed, ForceMode.Impulse);
+
         isDashing = false;
 
+    }
+
+    private Vector3 additionalForce;
+
+    private void delayedDash()
+    {
+        rb.AddForce(additionalForce, ForceMode.Impulse);
     }
 }
