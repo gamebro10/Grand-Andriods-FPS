@@ -81,12 +81,16 @@ public class GameManager : MonoBehaviour
     public void loadOptionsMenu()
     {
         prevMenu = activeMenu;
+        activeMenu.SetActive(false);
         activeMenu = optionsMenu;
+        activeMenu.SetActive(true);
     }
 
     public void closeOptions()
     {
+        activeMenu.SetActive(false);
         activeMenu = prevMenu;
+        activeMenu.SetActive(true);
         prevMenu = null;
     }
 
