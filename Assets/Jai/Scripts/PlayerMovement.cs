@@ -250,15 +250,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.Instance.isPaused)
         {
-        float num = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
-        float num2 = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
-        desiredX = playerCam.transform.localRotation.eulerAngles.y + num;
-        xRotation -= num2;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        FindWallRunRotation();
-        actualWallRotation = Mathf.SmoothDamp(actualWallRotation, wallRunRotation, ref wallRotationVel, 0.2f);
-        playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, actualWallRotation);
-        orientation.transform.localRotation = Quaternion.Euler(0f, desiredX, 0f);
+            float num = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
+            float num2 = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
+            desiredX = playerCam.transform.localRotation.eulerAngles.y + num;
+            xRotation -= num2;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            FindWallRunRotation();
+            actualWallRotation = Mathf.SmoothDamp(actualWallRotation, wallRunRotation, ref wallRotationVel, 0.2f);
+            playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, actualWallRotation);
+            orientation.transform.localRotation = Quaternion.Euler(0f, desiredX, 0f);
         }
     }
 
