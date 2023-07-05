@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
         Cursor.visible = false;
         readyToJump = true;
         wallNormalVector = Vector3.up;
-        //spawnPlayer();
+        spawnPlayer();
     }
 
     private void LateUpdate()
@@ -554,5 +554,11 @@ public class PlayerMovement : MonoBehaviour, IDamage
     public Rigidbody GetRb()
     {
         return rb;
+    }
+
+    public void spawnPlayer()
+    {
+        transform.position = GameManager.Instance.playerSpawnPos.transform.position;
+        //updatePlayerUI();
     }
 }

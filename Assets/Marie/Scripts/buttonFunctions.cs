@@ -13,6 +13,7 @@ public class buttonfunctions : MonoBehaviour
     public void respawn()
     {
         GameManager.Instance.stateUnpaused();
+        GameManager.Instance.playerScript.spawnPlayer();
     }
 
     public void restartGane()
