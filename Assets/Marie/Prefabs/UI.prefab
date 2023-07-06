@@ -35,16 +35,16 @@ RectTransform:
   m_Children:
   - {fileID: 8134216694262208585}
   - {fileID: 1876240546692716706}
+  - {fileID: 5685996718890335531}
   - {fileID: 570790826989692431}
   - {fileID: 7765712477502809395}
   - {fileID: 1725552939278011968}
   - {fileID: 8413113105175174234}
-  - {fileID: 5685996718890335531}
   - {fileID: 6376246969047111701}
   - {fileID: 708799371652711857}
   - {fileID: 5487876386858248467}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

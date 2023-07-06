@@ -16,12 +16,16 @@ public class PlayerScript : MonoBehaviour, IDamage
 
     [Header("-----Player Attributes-----")]
     public float playerSpeed;
-    public float moveSpeed = PlayerMovement.Instance.moveSpeed;
-    public float runSpeed =PlayerMovement.Instance.runSpeed;
+    public float moveSpeed;
+    public float runSpeed;
     public int HPOrig;
+
 
     void Start()
     {
+        Instance = this;
+        moveSpeed = PlayerMovement.Instance.moveSpeed;
+        runSpeed = PlayerMovement.Instance.runSpeed;
         HPOrig = playerHP;
         spawnPlayer();
     }
