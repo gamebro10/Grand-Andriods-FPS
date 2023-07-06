@@ -584,6 +584,10 @@ PrefabInstance:
       propertyPath: ShootRate
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6919984469976412976, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
+      propertyPath: shootparticle
+      value: 
+      objectReference: {fileID: 1660097913}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1388,6 +1392,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4315346226246462452, guid: 02cbdcd9ca1c35c4fb3e6229889b7079, type: 3}
   m_PrefabInstance: {fileID: 162890187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1660097913 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
+  m_PrefabInstance: {fileID: 360498649}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1682251846 stripped
 Transform:
