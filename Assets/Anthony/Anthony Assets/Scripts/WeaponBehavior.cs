@@ -50,7 +50,7 @@ public class WeaponBehavior : MonoBehaviour
         //}
             
         
-        particle.Stop();
+
         yield return new WaitForSeconds(ShootRate);
         isShooting = false;
     }
