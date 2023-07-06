@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyBase : MonoBehaviour, IDamage
 {
@@ -13,10 +14,13 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] protected float attackRate;
     [SerializeField] protected float attackCD;
     [SerializeField] protected float stoppingDistance;
+    [SerializeField] protected float healthLerpSpeed;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected LayerMask layerMask;
     [SerializeField] protected Renderer[] renderers;
     [SerializeField] protected Color flashColor;
+    [SerializeField] protected Image healthBar;
+    [SerializeField] protected Image lerpHealthBar;
 
     protected float angleToPlayer;
 
@@ -33,16 +37,27 @@ public class EnemyBase : MonoBehaviour, IDamage
     protected GameObject currentTarget;
     protected GameObject Player;
 
+    float maxHealth;
+    float lerpTimer;
+    float lerpValue;
+    float lerpHealthAmount;
+    float lerpGoal;
+
+    bool addingUpLerpAmount;
+    bool startLerping;
+
     protected virtual void Start()
     {
         GameManager.Instance.updateEnemy(1);
         startingPosition = transform.position;
         Player = GameManager.Instance.player;
+        maxHealth = hp;
     }
 
     protected virtual void Update()
     {
         playerDir = Player.transform.position - transform.position;
+        LerpHealthBar();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,6 +84,8 @@ public class EnemyBase : MonoBehaviour, IDamage
             GameManager.Instance.updateEnemy(-1);
             Destroy(gameObject);
         }
+        healthBar.fillAmount = hp / maxHealth;
+        StartCoroutine(ILerpHealthBar(amount));
         if (renderers.Length > 0 && canChangeColor)
         {
             StartCoroutine(IFlashMaterial());
@@ -188,6 +205,37 @@ public class EnemyBase : MonoBehaviour, IDamage
         foreach (Renderer renderer in renderers)
         {
             renderer.material.color = color;
+        }
+    }
+
+    IEnumerator ILerpHealthBar(float amount)
+    {
+        lerpTimer = .5f;
+        if (!addingUpLerpAmount)
+        {
+            lerpValue = 0f;
+            addingUpLerpAmount = true;
+            yield return new WaitForSeconds(lerpTimer);
+            lerpGoal = healthBar.fillAmount;
+            lerpHealthAmount = lerpHealthBar.fillAmount;
+            lerpTimer = 0f;
+            addingUpLerpAmount = false;
+            startLerping = true;
+        }
+        
+    }
+
+    void LerpHealthBar()
+    {
+        if (startLerping)
+        {
+            float lerpAmont = Mathf.Lerp(lerpHealthAmount, lerpGoal, lerpValue);
+            lerpHealthBar.fillAmount = lerpAmont;
+            lerpValue += Time.deltaTime * healthLerpSpeed;
+            if (lerpHealthBar.fillAmount <= lerpGoal)
+            {
+                startLerping = false;
+            }
         }
     }
 

@@ -564,6 +564,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.817
       objectReference: {fileID: 0}
+    - target: {fileID: 6919984469976412976, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
+      propertyPath: ShootRate
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1347,6 +1351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5547875940607187852, guid: afc55c8ccce01db4386f712410326312, type: 3}
+      propertyPath: hp
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5697745353528105999, guid: afc55c8ccce01db4386f712410326312, type: 3}
       propertyPath: m_Name
       value: Soldier
