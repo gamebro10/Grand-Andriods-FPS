@@ -17,6 +17,10 @@ public class PlayerDash : MonoBehaviour
     public float durationD;
     bool isDashing;
 
+    private PlayerMovement player;
+
+    public int dashNum;
+
     public float dashCd;
     private float dashCdTimer;
 
@@ -30,9 +34,18 @@ public class PlayerDash : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    public float horizontalSpeed = 2.0F;
+    public float verticalSpeed = 2.0F;
+
     // Update is called once per frame
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            float h = horizontalSpeed * Input.GetAxis("Mouse X");
+            float v = verticalSpeed * Input.GetAxis("Mouse Y");
+            transform.rotation = Quaternion.Euler(h, v, 0);
+        }
         if (Input.GetKeyDown(dashKey))
             Dash();
 
@@ -47,7 +60,14 @@ public class PlayerDash : MonoBehaviour
         else dashCdTimer = dashCd;
 
         //isDashing = true;
-        
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            float h = horizontalSpeed * Input.GetAxis("Mouse X");
+            float v = verticalSpeed * Input.GetAxis("Mouse Y");
+            transform.rotation = Quaternion.Euler(h, v, 0);
+        }
+
         rb.velocity = Vector3.zero;
         //rb.angularVelocity = Vector3.zero;
 
@@ -60,7 +80,7 @@ public class PlayerDash : MonoBehaviour
 
        rb.velocity = Vector3.zero;
        rb.transform.rotation = Quaternion.identity;
-       rb.AddForce(Vector3.forward * dashSpeed, ForceMode.Impulse);
+       rb.AddForce(orientation.forward * dashSpeed, ForceMode.Impulse);
 
         isDashing = false;
 
