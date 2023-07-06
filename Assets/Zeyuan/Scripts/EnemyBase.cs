@@ -15,12 +15,15 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] protected float stoppingDistance;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected LayerMask layerMask;
+    [SerializeField] protected Renderer[] renderers;
+    [SerializeField] protected Color flashColor;
 
     protected float angleToPlayer;
 
     protected bool isPlayerInRange;
     protected bool destinationChosen;
     protected bool isShooting;
+    protected bool canChangeColor = true;
 
     protected Vector3 playerDir;
     protected Vector3 startingPosition;
@@ -65,6 +68,10 @@ public class EnemyBase : MonoBehaviour, IDamage
         {
             GameManager.Instance.updateEnemy(-1);
             Destroy(gameObject);
+        }
+        if (renderers.Length > 0 && canChangeColor)
+        {
+            StartCoroutine(IFlashMaterial());
         }
     }
 
@@ -155,6 +162,32 @@ public class EnemyBase : MonoBehaviour, IDamage
             yield return new WaitUntil(() => { return agent.remainingDistance - agent.stoppingDistance <= 0.05; });
             agent.updateRotation = true;
             destinationChosen = false;
+        }
+    }
+
+    protected virtual IEnumerator IFlashMaterial()
+    {
+        canChangeColor = false;
+        ChangeRendererColor(flashColor);
+        yield return new WaitForSeconds(.1f);
+        ChangeRendererColor(Color.white);
+        yield return new WaitForSeconds(.1f);
+        ChangeRendererColor(flashColor);
+        yield return new WaitForSeconds(.1f);
+        ChangeRendererColor(Color.white);
+        yield return new WaitForSeconds(.1f);
+        ChangeRendererColor(flashColor);
+        yield return new WaitForSeconds(.1f);
+        ChangeRendererColor(Color.white);
+
+        canChangeColor = true;
+    }
+
+    void ChangeRendererColor(Color color)
+    {
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material.color = color;
         }
     }
 

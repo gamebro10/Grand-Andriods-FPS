@@ -478,7 +478,7 @@ Transform:
   m_Children:
   - {fileID: 6182402317643783902}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8676204986380237354
 MonoBehaviour:
@@ -504,6 +504,12 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1527
+  renderers:
+  - {fileID: 5406707048450856052}
+  - {fileID: 4718636281377641169}
+  - {fileID: 4866392372746290507}
+  - {fileID: 4314515967840015347}
+  flashColor: {r: 1, g: 0.34901962, b: 0.12941177, a: 1}
   floatingSpeed: 7
   shootRange: 18
   firePosLeft: {fileID: 1188415102229985836}

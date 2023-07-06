@@ -95,6 +95,10 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1527
+  renderers:
+  - {fileID: 5154133827796987933}
+  - {fileID: 3891331775420273283}
+  flashColor: {r: 1, g: 0.34816593, b: 0.1273585, a: 1}
   shootRange: 20
   bullet: {fileID: 3474836427932144899, guid: 018f4f8cffab4824b90df44e13ac504a, type: 3}
   firePos: {fileID: 5578923821356029351}
