@@ -1,0 +1,6 @@
+Build 1:
+Enemy AI(soldier, sniper, drone)
+Enemy health bar
+Speed line effect
+
+Build 2:
