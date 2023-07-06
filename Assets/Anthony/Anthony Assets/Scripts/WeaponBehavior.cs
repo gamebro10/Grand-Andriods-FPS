@@ -12,7 +12,7 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] int ShootDistance;
     [SerializeField] Transform shotpos;
     [SerializeField] GameObject Amo;
-    [SerializeField] ParticleSystem particle;
+    [SerializeField] ParticleSystem shootparticle;
     bool isShooting;
 
 
@@ -36,19 +36,14 @@ public class WeaponBehavior : MonoBehaviour
     IEnumerator shoot()
     {
         isShooting = true;
-        particle.Play();
+
+        if (!shootparticle.isPlaying)
+        { shootparticle.Play(); }
+
+
         Debug.Log("Shoot");
         Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
-        RaycastHit hit;
 
-        //if (Physics.Raycast(UnityEngine.Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootDistance)) {
-        //    IDamage Damageable = hit.collider.GetComponent<IDamage>();
-        //    if (Damageable != null)
-        //    {
-        //        Damageable.OnTakeDamage(ShootDmg);
-        //    }
-        //}
-            
         
 
         yield return new WaitForSeconds(ShootRate);

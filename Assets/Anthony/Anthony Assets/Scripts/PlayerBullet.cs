@@ -8,42 +8,48 @@ public class PlayerBullet : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] Rigidbody rb;
 
-    // no delta time because theres no update
-    //[Header("----- Stats -----")]
-    //[Range(1,10)][SerializeField] int damage;
-    //[Range(1, 100)][SerializeField] int speed;
+  
 
     [Header("----- Weapon Stats -----")]
     [Range(1,10)] [SerializeField] int destroytime;
-    [Range(1,100)] [SerializeField] int ShootRate;
+    [Range(1,100)] [SerializeField] int speed;
     [Range(1,10)] [SerializeField] int ShootDmg;
 
     private SphereCollider forcefield;
+    [SerializeField] ParticleSystem hitparticle;
+
 
     // Start is called before the first frame update
     void Start()
     {
         Destroy(gameObject, destroytime);
-        rb.velocity = transform.forward * ShootRate;
+        rb.velocity = transform.forward * speed;
     }
 
     // the bullets flys thru and if can break it it will destroy it 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.isTrigger) {
-            IDamage damageable = other.GetComponent<IDamage>();
+            hitparticle.Play();
 
+
+
+        if (!other.isTrigger) {
+
+            hitparticle.transform.parent = null;
+
+            IDamage damageable = other.GetComponent<IDamage>();
 
             if (damageable != null)
             {
                 damageable.OnTakeDamage(ShootDmg);
             }
 
-
+            
 
             Destroy(gameObject);
         }
         
+        hitparticle.Stop();
     }
  
 }
