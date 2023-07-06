@@ -22,44 +22,35 @@ public class PlayerScript : MonoBehaviour, IDamage
 
     void Start()
     {
-
+        HPOrig = playerHP;
+        spawnPlayer();
     }
 
     void Update()
     {
-        updatePlayerUI();
+        GameManager.Instance.speedometerBar.fillAmount = playerSpeed/(runSpeed*moveSpeed);
+        GameManager.Instance.speedometerText.text = playerSpeed.ToString();
     }
 
     public void OnTakeDamage(int amount)
     {
         playerHP -= amount;
-        /*StartCoroutine(GameManager.Instance.playerFlashDamage());
-         updatePlayerUI();
-        */
+        StartCoroutine(GameManager.Instance.playerFlashDamage());
+        GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
         if (playerHP <= 0)
         {
             GameManager.Instance.youLose();
         }
     }
 
-    public void updatePlayerUI()
-    {
-        playerSpeed = PlayerMovement.Instance.rb.velocity.magnitude;
-        GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
-        GameManager.Instance.speedometerText.text = playerSpeed.ToString();
-        GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (moveSpeed * runSpeed);
-    }
-
     public void spawnPlayer()
     {
-
-        //transform.position = GameManager.Instance.playerSpawnPos.transform.position;
-
-        HPOrig = playerHP;
-        //playerCollider = GetComponent<Collider>();
+       //GameManager.Instance.playerMovement.enabled = false;
+        GameManager.Instance.player.transform.position = GameManager.Instance.playerSpawnPos.transform.position;
+        //GameManager.Instance.playerMovement.enabled = true;
+        playerHP = HPOrig;
+        GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //readyToJump = true;
-        //wallNormalVector = Vector3.up;
     }
 }

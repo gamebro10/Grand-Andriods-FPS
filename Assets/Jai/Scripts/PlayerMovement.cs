@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class PlayerMovement : MonoBehaviour, IDamage
+public class PlayerMovement : MonoBehaviour
 {
     [Header("Assignables")]
     //Assignables
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour, IDamage
     [SerializeField] public float sensitivity; // camera senstivity
     [SerializeField] public float moveSpeed; // character walkspeed
     [SerializeField] public float runSpeed; //walkspeed multiplier
-    [SerializeField] public int playerHP;
+   // [SerializeField] public int playerHP;
     public bool grounded;
     public bool onWall;
     [SerializeField] private TextMeshProUGUI currentSpeed;
@@ -102,7 +102,9 @@ public class PlayerMovement : MonoBehaviour, IDamage
 
         ShowAirlines();
 
-        currentSpeed.text = (rb.velocity.magnitude).ToString("0") + ("m/s");
+        currentSpeed.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
+        GameManager.Instance.speedometerText.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
+        GameManager.Instance.speedometerBar.fillAmount = (System.MathF.Truncate(rb.velocity.magnitude))/40;
     }
 
     //Player input
@@ -470,10 +472,6 @@ public class PlayerMovement : MonoBehaviour, IDamage
     private void StopSurf()
     {
         surfing = false;
-    }
-    public void OnTakeDamage(int amount)
-    {
-        playerHP -= amount;
     }
     public Vector3 GetVelocity()
     {

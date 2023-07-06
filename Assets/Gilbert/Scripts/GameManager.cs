@@ -103,4 +103,10 @@ public class GameManager : MonoBehaviour
         enemiesRemainingText.text = enemiesRemaining.ToString();
     }
 
+    public IEnumerator playerFlashDamage()
+    {
+        playerFlashDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        playerFlashDamageScreen.SetActive(false);
+    }
 }
