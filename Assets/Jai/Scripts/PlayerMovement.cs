@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)]
     public LayerMask whatIsGround;
     public LayerMask whatIsWallrunnable;
+
     [Header("MovementSettings")]
     //Movement Settings 
     [SerializeField] public float sensitivity; // camera senstivity
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private float x;
     private float y;
     private float vel;
+
     //Private bools
     private bool readyToJump;
     private bool jumping;
@@ -59,14 +61,16 @@ public class PlayerMovement : MonoBehaviour
     private bool cancellingSurf;
     private bool isAirLinesActive = false;
 
-    //Private Vector3's
-    private Vector3 grapplePoint;
+    //Private int
+    private int nw;
+
+    //Private Vectors
+    //private Vector3 grapplePoint;
     private Vector3 normalVector;
     private Vector3 wallNormalVector;
     private Vector3 wallRunPos;
     private Vector3 previousLookdir;
-    //Private int
-    private int nw;
+
     //Instance
     public static PlayerMovement Instance { get; private set; }
     private void Awake()
@@ -88,18 +92,20 @@ public class PlayerMovement : MonoBehaviour
         //For wallrunning
         WallRunning();
     }
+
     private void FixedUpdate()
     {
         //For moving
         Movement();
     }
+
     private void Update()
     {
         //Input
         MyInput();
         //Looking around
         Look();
-
+        //To Show speedlines
         ShowAirlines();
 
         currentSpeed.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
@@ -123,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
             StopCrouch();
         }
     }
+
     //Scale player down
     private void StartCrouch()
     {
@@ -134,12 +141,14 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(orientation.transform.forward * num);
         }
     }
+
     //Scale player to original size
     private void StopCrouch()
     {
         base.transform.localScale = new Vector3(1f, 1.5f, 1f);
         base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.5f, base.transform.position.z);
     }
+
     //Moving around with WASD
     private void Movement()
     {
@@ -198,11 +207,13 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * num4 * num5);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * num4);
     }
+
     //Ready to jump again
     private void ResetJump()
     {
         readyToJump = true;
     }
+
     //Player go fly
     private void Jump()
     {
@@ -233,6 +244,7 @@ public class PlayerMovement : MonoBehaviour
             Invoke("ResetJump", jumpCooldown);
         }
     }
+
     //Looking around by using your mouse
     private void Look()
     {
@@ -249,6 +261,7 @@ public class PlayerMovement : MonoBehaviour
             orientation.transform.localRotation = Quaternion.Euler(0f, desiredX, 0f);
         }
     }
+
     //Make the player movement feel good 
     private void CounterMovement(float x, float y, Vector2 mag)
     {
@@ -278,6 +291,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(vector.x, num3, vector.z);
         }
     }
+
     public Vector2 FindVelRelativeToLook()
     {
         float current = orientation.transform.eulerAngles.y;
@@ -287,6 +301,7 @@ public class PlayerMovement : MonoBehaviour
         float magnitude = rb.velocity.magnitude;
         return new Vector2(y: magnitude * Mathf.Cos(num * ((float)Math.PI / 180f)), x: magnitude * Mathf.Cos(num2 * ((float)Math.PI / 180f)));
     }
+
     private void FindWallRunRotation()
     {
         if (!wallRunning)
@@ -336,6 +351,7 @@ public class PlayerMovement : MonoBehaviour
             CancelInvoke("CancelWallrun");
         }
     }
+
     private void CancelWallrun()
     {
         MonoBehaviour.print("cancelled");
@@ -343,10 +359,12 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(wallNormalVector * 600f);
         readyToWallrun = false;
     }
+
     private void GetReadyToWallrun()
     {
         readyToWallrun = true;
     }
+
     private void WallRunning()
     {
         if (wallRunning)
@@ -355,6 +373,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * Time.deltaTime * rb.mass * 100f * wallRunGravity);
         }
     }
+
     private bool IsFloor(Vector3 v)
     {
         return Vector3.Angle(Vector3.up, v) < maxSlopeAngle;
@@ -368,14 +387,17 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+
     private bool IsWall(Vector3 v)
     {
         return Math.Abs(90f - Vector3.Angle(Vector3.up, v)) < 0.1f;
     }
+
     private bool IsRoof(Vector3 v)
     {
         return v.y == -1f;
     }
+
     private void StartWallRun(Vector3 normal)
     {
         if (!grounded && readyToWallrun)
@@ -390,6 +412,7 @@ public class PlayerMovement : MonoBehaviour
             wallRunning = true;
         }
     }
+
     private void OnCollisionStay(Collision other)
     {
         int layer = other.gameObject.layer;
