@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        updateEnemy(0);
         Instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
@@ -101,6 +100,13 @@ public class GameManager : MonoBehaviour
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString();
+        if (enemiesRemaining <= 0) 
+        {
+            statePaused();
+            activeMenu = winMenu;
+            activeMenu.SetActive(true);
+        }
+
     }
 
     public IEnumerator playerFlashDamage()
