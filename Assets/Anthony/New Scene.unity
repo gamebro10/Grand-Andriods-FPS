@@ -1113,27 +1113,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 3a88293342ffdaf44aa769ae50036f4d, type: 2}
     - target: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
-      propertyPath: stopAction
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
       propertyPath: InitialModule.startColor.maxGradient.ctime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key0.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key0.g
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
@@ -1148,10 +1132,6 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 6919984469976412976, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
-      propertyPath: hitparticle
-      value: 
-      objectReference: {fileID: 817343440}
     - target: {fileID: 6919984469976412976, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
       propertyPath: shootparticle
       value: 
@@ -1175,10 +1155,6 @@ PrefabInstance:
     - target: {fileID: 8720255177937662675, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
       propertyPath: m_MaxParticleSize
       value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8720255177937662675, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
-      propertyPath: m_MinParticleSize
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
