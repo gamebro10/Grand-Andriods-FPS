@@ -587,7 +587,7 @@ PrefabInstance:
     - target: {fileID: 6919984469976412976, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
       propertyPath: shootparticle
       value: 
-      objectReference: {fileID: 861585224}
+      objectReference: {fileID: 1660097913}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -933,7 +933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723475670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9012468, y: 0.38, z: 27.84}
+  m_LocalPosition: {x: -24.3, y: 0.38, z: 38.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1018,6 +1018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8089148882010561440, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1026,11 +1030,6 @@ PrefabInstance:
       addedObject: {fileID: 1566241076}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
---- !u!198 &861585224 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
-  m_PrefabInstance: {fileID: 360498649}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &958458146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1393,6 +1392,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4315346226246462452, guid: 02cbdcd9ca1c35c4fb3e6229889b7079, type: 3}
   m_PrefabInstance: {fileID: 162890187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1660097913 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5391843362946048878, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
+  m_PrefabInstance: {fileID: 360498649}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1682251846 stripped
 Transform:

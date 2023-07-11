@@ -9,17 +9,33 @@ public class RobotBossAI : EnemyBase
     [SerializeField] float cannonRotateRange;
     [SerializeField] float cannonLastTime;
     [SerializeField] float cannonDelay;
+    [SerializeField] float cannonUVSpeed;
+    [SerializeField] float downTime;
+    [SerializeField] float missileLaunchCount;
+    [SerializeField] float missileLaunchRate;
+    [SerializeField] float missileLaunchCD;
 
     [SerializeField] GameObject head;
     [SerializeField] GameObject cannon;
     [SerializeField] GameObject laser;
+    [SerializeField] GameObject blockade;
+    [SerializeField] GameObject walkUp;
+    [SerializeField] GameObject missile;
 
     [SerializeField] Transform cannonFirePos;
-    [SerializeField] Transform cannonGroundSmokePos;
+    [SerializeField] Transform missileRightPos;
+    [SerializeField] Transform missileLeftPos;
 
     [SerializeField] ParticleSystem cannonGroundSmoke;
+    [SerializeField] ParticleSystem missileRightFX;
+    [SerializeField] ParticleSystem missileLeftFX;
 
     float cannonRotateParam;
+    float maxHp;
+
+    bool isDown;
+    bool isMissile;
+    bool shouldCannon;
 
     string prepCannonStr = "PrepCannon";
     string afterCannonStr = "AfterCannon";
@@ -28,26 +44,52 @@ public class RobotBossAI : EnemyBase
 
     Animator animator;
     AnimationClip animationClip;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         animator = GetComponent<Animator>();
-        //cannonGroundSmoke.Stop();
+
+        maxHp = hp;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
+        if (!GameManager.Instance.isPaused)
+        {
+            base.Update();
+            if (!isDown)
+            {
+                FaceToPlayer();
+            }
+            
+            InCombat();
+        }
+    }
 
-        InCombat();
-        
+    public void OnTakeDamage(int amount, Renderer[] renderers)
+    {
+        int tempHp = hp;
+        hp -= amount;
+        StartCoroutine(IFlashMaterial(renderers));
+
+        if (tempHp >= maxHp * 0.8 && hp < maxHp * 0.8)
+        {
+            shouldCannon = true;
+        }
+
+        if (hp <= 0)
+        {
+            GameManager.Instance.updateEnemy(-1);
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator DoPrepCannon()
     {
-        if (CanDoAction())
+        if (CanPrepCannon())
         {
             animator.SetBool(prepCannonStr, true);
             yield return new WaitForSeconds(3 + cannonDelay);
@@ -65,8 +107,9 @@ public class RobotBossAI : EnemyBase
 
     IEnumerator DoAfterCannon()
     {
+        isDown = true;
         animator.SetBool(afterCannonStr, true);
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(downTime);
         animator.SetBool(afterCannonStr, false);
         StartCoroutine(DoRecover());
     }
@@ -75,12 +118,14 @@ public class RobotBossAI : EnemyBase
     {
         animator.SetBool(recoverStr, true);
         yield return new WaitForSeconds(3);
+        isDown = false;
+        shouldCannon = false;
         animator.SetBool(recoverStr, false);
     }
     
     public IEnumerator DoBlock()
     {
-        if (CanDoAction())
+        if (CanPrepCannon())
         {
             animator.SetBool(blockStr, true);
             yield return new WaitForSeconds(1);
@@ -88,7 +133,7 @@ public class RobotBossAI : EnemyBase
         }
     }
 
-    bool CanDoAction()
+    bool CanPrepCannon()
     {
         return !animator.GetBool(prepCannonStr) && !animator.GetBool(afterCannonStr) && 
             !animator.GetBool(recoverStr) && !animator.GetBool(blockStr);
@@ -99,6 +144,8 @@ public class RobotBossAI : EnemyBase
         if (isShooting)
         {
             EnableLaser();
+            Material mt = laser.GetComponent<Renderer>().material;
+            mt.mainTextureOffset = new Vector2(mt.mainTextureOffset.x, mt.mainTextureOffset.y - Time.deltaTime * cannonUVSpeed);
             float y = Mathf.Sin(cannonRotateParam) * Mathf.PI / 180 * cannonRotateRange;
             cannonRotateParam += Time.deltaTime * cannonRotateSpeed;
             Vector3 rot = new Vector3(0, y, 0);
@@ -108,12 +155,16 @@ public class RobotBossAI : EnemyBase
 
     void EnableLaser()
     {
-        if (!cannonGroundSmoke.isPlaying)
+        if (!laser.gameObject.activeSelf)
         {
-            cannonGroundSmoke.Play();
+            if (!cannonGroundSmoke.isPlaying)
+            {
+                cannonGroundSmoke.Play();
+            }
+            Material mt = laser.GetComponent<Renderer>().material;
+            mt.mainTextureOffset = new Vector2(0, 0);
+            laser.gameObject.SetActive(true);
         }
-        laser.gameObject.SetActive(true);
-        cannonGroundSmoke.transform.position = cannonGroundSmokePos.position;
     }
 
     void DisableLaser()
@@ -128,7 +179,51 @@ public class RobotBossAI : EnemyBase
 
     void InCombat()
     {
-        StartCoroutine(DoPrepCannon());
+        if (GetAngleToPlayer() <= 20 && shouldCannon)
+        {
+            StartCoroutine(DoPrepCannon());
+        }
+        else if(!isMissile && !shouldCannon)
+        {
+            StartCoroutine(IFireMissile());
+        }
         ShootCannon();
+    }
+
+    public void EnableWalkUp()
+    {
+        blockade.SetActive(false);
+        walkUp.SetActive(true);
+    }
+
+    public void DisableWalkUp()
+    {
+        walkUp.SetActive(false);
+        blockade.SetActive(true);
+    }
+
+    IEnumerator IFireMissile()
+    {
+        if (!isMissile)
+        {
+            isMissile = true;
+            for (int i = 0; i < missileLaunchCount * 2; i++)
+            {
+                if (i < missileLaunchCount)
+                {
+                    Instantiate(missile, missileRightPos.position, missileRightPos.rotation);
+                    missileRightFX.Play();
+                }
+                else
+                {
+                    Instantiate(missile, missileLeftPos.position, missileLeftPos.rotation);
+                    missileLeftFX.Play();
+                }
+                yield return new WaitForSeconds(missileLaunchRate);
+            }
+            yield return new WaitForSeconds(missileLaunchCD);
+            isMissile = false;
+        }
+        
     }
 }
