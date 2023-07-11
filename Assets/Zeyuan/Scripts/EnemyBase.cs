@@ -75,7 +75,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         }
     }
 
-    public void OnTakeDamage(int amount)
+    public virtual void OnTakeDamage(int amount)
     {
         hp -= amount;
         currentTarget = Player;
@@ -88,7 +88,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         StartCoroutine(ILerpHealthBar(amount));
         if (renderers.Length > 0 && canChangeColor)
         {
-            StartCoroutine(IFlashMaterial());
+            StartCoroutine(IFlashMaterial(renderers));
         }
     }
 
@@ -115,7 +115,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         agent.stoppingDistance = stoppingDistance;
         playerDir = Player.transform.position - transform.position;
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+        angleToPlayer = GetAngleToPlayer();
 
         Debug.DrawRay(transform.position, playerDir, Color.red);
 
@@ -182,30 +182,47 @@ public class EnemyBase : MonoBehaviour, IDamage
         }
     }
 
-    protected virtual IEnumerator IFlashMaterial()
+    protected virtual IEnumerator IFlashMaterial(Renderer[] renderers)
     {
         canChangeColor = false;
-        ChangeRendererColor(flashColor);
+        Color[] colors = new Color[renderers.Length];
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            colors[i] = renderers[i].material.color;
+        }
+        ChangeRendererColor(flashColor, renderers);
         yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(Color.white);
+        ChangeRendererColor(Color.white, renderers, colors);
         yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(flashColor);
+        ChangeRendererColor(flashColor, renderers);
         yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(Color.white);
+        ChangeRendererColor(Color.white, renderers, colors);
         yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(flashColor);
+        ChangeRendererColor(flashColor, renderers);
         yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(Color.white);
+        ChangeRendererColor(Color.white, renderers, colors);
 
         canChangeColor = true;
     }
 
-    void ChangeRendererColor(Color color)
+    void ChangeRendererColor(Color color, Renderer[] renderers, Color[] colors = null)
     {
-        foreach (Renderer renderer in renderers)
+        if (colors == null)
         {
-            renderer.material.color = color;
+            foreach (Renderer renderer in renderers)
+            {
+                renderer.material.color = color;
+            }
         }
+        else
+        {
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material.color = colors[i];
+            }
+        }
+        
+        
     }
 
     IEnumerator ILerpHealthBar(float amount)
@@ -231,12 +248,17 @@ public class EnemyBase : MonoBehaviour, IDamage
         {
             float lerpAmont = Mathf.Lerp(lerpHealthAmount, lerpGoal, lerpValue);
             lerpHealthBar.fillAmount = lerpAmont;
-            lerpValue += Time.deltaTime * healthLerpSpeed;
+            lerpValue += Time.deltaTime * healthLerpSpeed; 
             if (lerpHealthBar.fillAmount <= lerpGoal)
             {
                 startLerping = false;
             }
         }
+    }
+
+    protected float GetAngleToPlayer()
+    {
+        return Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
     }
 
 }
