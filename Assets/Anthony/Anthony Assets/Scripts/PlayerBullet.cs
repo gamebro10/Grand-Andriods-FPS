@@ -16,7 +16,7 @@ public class PlayerBullet : MonoBehaviour
     [Range(1,10)] [SerializeField] int ShootDmg;
 
     private SphereCollider forcefield;
-    [SerializeField] ParticleSystem hitparticle;
+   // [SerializeField] ParticleSystem hitparticle;
 
 
     // Start is called before the first frame update
@@ -29,17 +29,17 @@ public class PlayerBullet : MonoBehaviour
     // the bullets flys thru and if can break it it will destroy it 
     private void OnTriggerEnter(Collider other)
     {
-            hitparticle.Play();
+            //hitparticle.Play();
 
 
 
         if (!other.isTrigger) {
 
-            hitparticle.transform.parent = null;
+          //  hitparticle.transform.parent = null;
 
             IDamage damageable = other.GetComponent<IDamage>();
 
-            if (damageable != null)
+            if (damageable != null && !other.CompareTag("Player"))
             {
                 damageable.OnTakeDamage(ShootDmg);
             }
@@ -49,7 +49,7 @@ public class PlayerBullet : MonoBehaviour
             Destroy(gameObject);
         }
         
-        hitparticle.Stop();
+       // hitparticle.Stop();
     }
  
 }

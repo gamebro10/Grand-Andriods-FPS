@@ -7,8 +7,8 @@ public class WeaponBehavior : MonoBehaviour
 {
 
     [Header("----- Weapon Stats -----")]
-    [SerializeField] float ShootRate;
-    [SerializeField] int ShootDmg;
+    [SerializeField] float BulletDelay;
+    //[SerializeField] int ShootDmg;
     [SerializeField] int ShootDistance;
     [SerializeField] Transform shotpos;
     [SerializeField] GameObject Amo;
@@ -46,7 +46,7 @@ public class WeaponBehavior : MonoBehaviour
 
         
 
-        yield return new WaitForSeconds(ShootRate);
+        yield return new WaitForSeconds(BulletDelay);
         isShooting = false;
     }
 }
