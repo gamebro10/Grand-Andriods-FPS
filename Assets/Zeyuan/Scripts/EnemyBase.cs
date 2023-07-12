@@ -34,7 +34,7 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     protected Transform targetTransform;
 
-    protected GameObject currentTarget;
+    public GameObject currentTarget;
     protected GameObject Player;
 
     float maxHealth;
@@ -78,7 +78,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     public virtual void OnTakeDamage(int amount)
     {
         hp -= amount;
-        currentTarget = Player;
+        TargetToPlayer();
         if (hp <= 0)
         {
             GameManager.Instance.updateEnemy(-1);
@@ -261,4 +261,8 @@ public class EnemyBase : MonoBehaviour, IDamage
         return Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
     }
 
+    public void TargetToPlayer()
+    {
+        currentTarget = GameManager.Instance.player;
+    }
 }

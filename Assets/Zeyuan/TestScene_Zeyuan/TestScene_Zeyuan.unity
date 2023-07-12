@@ -16146,7 +16146,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &5607967250139791889
@@ -18758,7 +18758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db883b01417bbfe40bcde145e2109387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP: 100
+  playerHP: 99999
   playerSpeed: 0
   moveSpeed: 5500
   runSpeed: 20

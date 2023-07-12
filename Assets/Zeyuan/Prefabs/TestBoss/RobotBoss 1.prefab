@@ -2221,9 +2221,10 @@ MonoBehaviour:
   flashColor: {r: 0, g: 0.3627696, b: 1, a: 0}
   healthBar: {fileID: 0}
   lerpHealthBar: {fileID: 0}
+  currentTarget: {fileID: 0}
   cannonRotateSpeed: 1.84
   cannonRotateRange: 21.9
-  cannonLastTime: 20
+  cannonLastTime: 10
   cannonDelay: 2
   cannonUVSpeed: 1.1
   downTime: 20
