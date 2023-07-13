@@ -80,6 +80,11 @@ public class RobotBossAI : EnemyBase
             shouldCannon = true;
         }
 
+        if (tempHp >= maxHp * 0.4 && hp < maxHp * 0.4)
+        {
+            shouldCannon = true;
+        }
+
         if (hp <= 0)
         {
             GameManager.Instance.updateEnemy(-1);
@@ -107,6 +112,7 @@ public class RobotBossAI : EnemyBase
 
     IEnumerator DoAfterCannon()
     {
+        StartCoroutine(BossScene.Instance.IPutDownPlatform());
         isDown = true;
         animator.SetBool(afterCannonStr, true);
         yield return new WaitForSeconds(downTime);

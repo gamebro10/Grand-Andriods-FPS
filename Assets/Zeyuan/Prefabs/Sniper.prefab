@@ -61,7 +61,7 @@ MonoBehaviour:
   hp: 5
   attackRate: 0
   attackCD: 4
-  stoppingDistance: 50
+  stoppingDistance: 210
   healthLerpSpeed: 10
   agent: {fileID: 4285091088991806736}
   layerMask:
@@ -73,7 +73,7 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.34901962, b: 0.12941177, a: 1}
   healthBar: {fileID: 6093303163920726826}
   lerpHealthBar: {fileID: 7027997139380724758}
-  shootRange: 70
+  shootRange: 210
   aimTime: 3
   bullet: {fileID: 3474836427932144899, guid: 050755e6add77cb48be66185b65a3c2a, type: 3}
   firePos: {fileID: 5824540444973571491}
@@ -119,7 +119,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 60
+  m_Radius: 200
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &3063897309559965698
 MonoBehaviour:
