@@ -17,6 +17,8 @@ public class BossScene : MonoBehaviour
     [SerializeField] Transform platformStopLowerY;
     [SerializeField] Transform[] sniperSpawnPoints;
 
+    int platformDirection;
+
     public static BossScene Instance;
 
     private void Awake()
@@ -44,7 +46,15 @@ public class BossScene : MonoBehaviour
             rope.transform.localScale -= new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
             yield return new WaitForEndOfFrame();
         }
-        StartCoroutine(IRotatePlatformLeft());
+        if (platformDirection == 0)
+        {
+            StartCoroutine(IRotatePlatformRight());
+        }
+        else
+        {
+            StartCoroutine(IRotatePlatformLeft());
+        }
+        
     }
 
     public IEnumerator IPutDownPlatform()
@@ -104,5 +114,10 @@ public class BossScene : MonoBehaviour
                 sniper.GetComponent<SniperAI>().TargetToPlayer();
             }
         }
+    }
+
+    public void ChangePlatformDirection()
+    {
+        platformDirection = 1;
     }
 }
