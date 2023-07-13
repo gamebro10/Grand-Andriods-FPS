@@ -7,12 +7,16 @@ public class WeaponBehavior : MonoBehaviour
 {
 
     [Header("----- Weapon Stats -----")]
+    //[SerializeField] GameObject WeaponModel;
     [SerializeField] float BulletDelay;
-    //[SerializeField] int ShootDmg;
+    [SerializeField] int ShootDmg;
+    [SerializeField] int ShootRate;
     [SerializeField] int ShootDistance;
     [SerializeField] Transform shotpos;
     [SerializeField] GameObject Amo;
     [SerializeField] ParticleSystem shootparticle;
+    //[SerializeField] List<Gunstats> gunList = new List<Gunstats>();
+   // int selectedGun;
     bool isShooting;
 
 
@@ -26,9 +30,15 @@ public class WeaponBehavior : MonoBehaviour
     {
         if (GameManager.Instance.activeMenu == null)
         {
-            //to move player rotations
-            if (Input.GetButton("Shoot") && !isShooting)
-                StartCoroutine(shoot());
+            //if (gunList.Count > 0)
+            //{
+            //    scrollGun();
+
+                //isshooting is after cuz order of op and it will almost always be false 
+
+                if (Input.GetButton("Shoot") && !isShooting)
+                    StartCoroutine(shoot());
+            //}
         }
        
     }
@@ -36,6 +46,8 @@ public class WeaponBehavior : MonoBehaviour
     IEnumerator shoot()
     {
         isShooting = true;
+
+       // Ray ray = Vector3
 
         if (!shootparticle.isPlaying)
         { shootparticle.Play(); }
@@ -49,4 +61,42 @@ public class WeaponBehavior : MonoBehaviour
         yield return new WaitForSeconds(BulletDelay);
         isShooting = false;
     }
+    //public void GunPickup(Gunstats weaponstats)
+    //{
+    //    gunList.Add(weaponstats);
+
+    //    ShootDmg = weaponstats.shootdmg;
+    //    ShootDistance = weaponstats.shootdistance;
+    //    ShootRate = (int)weaponstats.shotRate;
+
+    //    WeaponModel.GetComponent<MeshFilter>().mesh = weaponstats.model.GetComponent<MeshFilter>().sharedMesh;
+    //    WeaponModel.GetComponent<MeshRenderer>().material = weaponstats.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+    //    selectedGun = gunList.Count - 1;
+    //}
+
+    //void scrollGun()
+    //{
+    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+    //    {
+    //        selectedGun++;
+    //        changeGunstats();
+    //    }
+    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+    //    {
+    //        selectedGun--;
+    //        changeGunstats();
+    //    }
+
+    //}
+    //void changeGunstats()
+    //{
+    //    ShootDmg = gunList[selectedGun].shootdmg;
+    //    ShootDistance = gunList[selectedGun].shootdistance;
+    //    ShootRate = (int)gunList[selectedGun].shotRate;
+
+
+    //    WeaponModel.GetComponent<MeshFilter>().mesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
+    //    WeaponModel.GetComponent<MeshRenderer>().material = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
+    //}
 }

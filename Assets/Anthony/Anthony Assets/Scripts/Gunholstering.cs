@@ -23,7 +23,7 @@ public class Gunholstering : MonoBehaviour
     public void weaponholstering()
     {
         int lastWeapon = CurrentWeopon;
-        if(Input.GetKeyUp(KeyCode.Alpha1)) 
+        if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             CurrentWeopon = 0;
         }
@@ -35,23 +35,27 @@ public class Gunholstering : MonoBehaviour
         {
             CurrentWeopon = 2;
         }
-        if ( lastWeapon != CurrentWeopon )
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            CurrentWeopon = 3;
+        }
+        if (lastWeapon != CurrentWeopon)
         {
             IDweapon();
         }
-        
+
     }
 
     public void IDweapon()
     {
-            int t = 0;
+        int t = 0;
         //first weapon will be 0in code the rest goes up by one 
-        foreach(Transform gun in transform)
+        foreach (Transform gun in transform)
         {
-            if(t == CurrentWeopon) 
-            gun.gameObject.SetActive(true);
+            if (t == CurrentWeopon)
+                gun.gameObject.SetActive(true);
             else
-            gun.gameObject.SetActive(false);
+                gun.gameObject.SetActive(false);
 
             t++;
         }

@@ -8,6 +8,7 @@ public class swingsword : MonoBehaviour
     [SerializeField] GameObject hitbox;
     [SerializeField] Animator effects;
     [SerializeField] GameObject trail;
+    [Range(1, 10)][SerializeField] int swingdmg;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +51,7 @@ public class swingsword : MonoBehaviour
 
             if (damageable != null && !other.CompareTag("Player"))
             {
-                //damageable.OnTakeDamage();
+                damageable.OnTakeDamage(swingdmg);
             }
 
 
