@@ -1276,7 +1276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalPushBackForce: 60
-  verticlePushBackForce: 30
+  verticlePushBackForce: 15
   bossScript: {fileID: 8105260655814775152}
 --- !u!135 &2128944746545690488
 SphereCollider:
@@ -1448,7 +1448,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 12.59
+  m_Intensity: 18
   m_Range: 5.15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
