@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossScene : MonoBehaviour
 {
@@ -13,9 +15,12 @@ public class BossScene : MonoBehaviour
     [SerializeField] GameObject platform;
     [SerializeField] GameObject rope;
     [SerializeField] GameObject sniperPrefab;
+    [SerializeField] GameObject soldierPrefab;
+    [SerializeField] GameObject dronePrefab;
     [SerializeField] Transform platformStopY;
     [SerializeField] Transform platformStopLowerY;
     [SerializeField] Transform[] sniperSpawnPoints;
+    [SerializeField] NavMeshSurface navMesh;
 
     int platformDirection;
 
@@ -30,6 +35,7 @@ public class BossScene : MonoBehaviour
     void Start()
     {
         InstantiateSnipers();
+        StartCoroutine(ISpawnEnemies());
     }
 
     // Update is called once per frame
@@ -119,5 +125,28 @@ public class BossScene : MonoBehaviour
     public void ChangePlatformDirection()
     {
         platformDirection = 1;
+    }
+
+    IEnumerator ISpawnEnemies()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Vector3 randomPos = UnityEngine.Random.insideUnitSphere * 150;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomPos, out hit, 150, 1);
+
+            int j = Random.Range(0, 2);
+            if (j == 0)
+            {
+                Instantiate(soldierPrefab, hit.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(dronePrefab, hit.position, Quaternion.identity);
+            }
+            yield return new WaitForSeconds(.5f);
+        }
+        
     }
 }

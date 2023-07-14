@@ -26,7 +26,7 @@ public class StompButton : MonoBehaviour
     enum Stat
     {
         None,
-        InActive,
+        Inactive,
         Active,
         Pressed,
     }
@@ -37,7 +37,7 @@ public class StompButton : MonoBehaviour
         currStat = initialStat;
         switch (currStat)
         {
-            case Stat.InActive:
+            case Stat.Inactive:
                 mt.color = colorInactive;
                 break;
             case Stat.Active:
