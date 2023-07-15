@@ -10,7 +10,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] protected int roamTime;
     [SerializeField] protected int roamDistance;
     [SerializeField] protected int viewAngle;
-    [SerializeField] protected int hp;
+    [SerializeField] protected float hp;
     [SerializeField] protected float attackRate;
     [SerializeField] protected float attackCD;
     [SerializeField] protected float stoppingDistance;
@@ -189,27 +189,30 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     protected virtual IEnumerator IFlashMaterial(Renderer[] renderers)
     {
-        canChangeColor = false;
-        Color[,] colors = new Color[renderers.Length,10];
-        for (int i = 0; i < renderers.Length; i++)
+        if (canChangeColor)
         {
-            for (int j = 0; j < renderers[i].materials.Length; j++)
+            canChangeColor = false;
+            Color[,] colors = new Color[renderers.Length, 10];
+            for (int i = 0; i < renderers.Length; i++)
             {
-                if (renderers[i].materials[j].shader.name != "Custom/Outline Mask" && renderers[i].materials[j].shader.name != "Custom/Outline Fill")
+                for (int j = 0; j < renderers[i].materials.Length; j++)
                 {
-                    colors[i, j] = renderers[i].materials[j].color;
+                    if (renderers[i].materials[j].shader.name != "Custom/Outline Mask" && renderers[i].materials[j].shader.name != "Custom/Outline Fill")
+                    {
+                        colors[i, j] = renderers[i].materials[j].color;
+                    }
+
                 }
-                
             }
+            for (int k = 0; k < 3; k++)
+            {
+                ChangeRendererColor(flashColor, renderers);
+                yield return new WaitForSeconds(.1f);
+                ChangeRendererColor(Color.white, renderers, colors);
+                yield return new WaitForSeconds(.1f);
+            }
+            canChangeColor = true;
         }
-        for (int k = 0; k < 3; k++)
-        {
-            ChangeRendererColor(flashColor, renderers);
-            yield return new WaitForSeconds(.1f);
-            ChangeRendererColor(Color.white, renderers, colors);
-            yield return new WaitForSeconds(.1f);
-        }
-        canChangeColor = true;
     }
 
     void ChangeRendererColor(Color color, Renderer[] renderers, Color[,] colors = null)
@@ -297,5 +300,15 @@ public class EnemyBase : MonoBehaviour, IDamage
             yield return new WaitForEndOfFrame();
         }
         spawnEffect.gameObject.SetActive(false);
+    }
+
+    public float GetMaxHP()
+    {
+        return maxHealth;
+    }
+
+    public float GetCurHP()
+    {
+        return hp;
     }
 }

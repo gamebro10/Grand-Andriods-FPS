@@ -30,12 +30,15 @@ public class RobotBossAI : EnemyBase
     [SerializeField] ParticleSystem missileRightFX;
     [SerializeField] ParticleSystem missileLeftFX;
 
+    int phase = 0;
+
     float cannonRotateParam;
     float maxHp;
 
     bool isDown;
     bool isMissile;
     bool shouldCannon;
+    bool canTakeDamage = true;
 
     string prepCannonStr = "PrepCannon";
     string afterCannonStr = "AfterCannon";
@@ -45,11 +48,14 @@ public class RobotBossAI : EnemyBase
     Animator animator;
     AnimationClip animationClip;
 
+    BossHealthBar bossHealthBar;
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         animator = GetComponent<Animator>();
+        bossHealthBar = GameManager.Instance.bossHealthBar;
 
         maxHp = hp;
     }
@@ -64,31 +70,55 @@ public class RobotBossAI : EnemyBase
             {
                 FaceToPlayer();
             }
-            
             InCombat();
         }
     }
 
     public void OnTakeDamage(int amount, Renderer[] renderers)
     {
-        int tempHp = hp;
-        hp -= amount;
-        StartCoroutine(IFlashMaterial(renderers));
-
-        if (tempHp >= maxHp * 0.8 && hp < maxHp * 0.8)
+        if (canTakeDamage)
         {
-            shouldCannon = true;
-        }
+            float tempHp = hp;
+            bool loc = false;
+            hp -= amount;
+            StartCoroutine(IFlashMaterial(renderers));
+            
+            if (tempHp >= maxHp * 0.75 && hp < maxHp * 0.75)
+            {
+                shouldCannon = true;
+                loc = true;
+                hp = maxHp * 0.749f;
+                phase++;
+            }
 
-        if (tempHp >= maxHp * 0.4 && hp < maxHp * 0.4)
-        {
-            shouldCannon = true;
-        }
+            if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
+            {
+                shouldCannon = true;
+                loc = true;
+                hp = maxHp * 0.499f;
+                phase++;
+            }
 
-        if (hp <= 0)
-        {
-            GameManager.Instance.updateEnemy(-1);
-            Destroy(gameObject);
+            if (tempHp >= maxHp * 0.25 && hp < maxHp * 0.25)
+            {
+                shouldCannon = true;
+                loc = true;
+                hp = maxHp * 0.249f;
+                phase++;
+            }
+
+            bossHealthBar.FillHealthBar(hp / maxHp);
+            if (loc)
+            {
+                LockHealthBar(true);
+            }
+
+            if (hp <= 0)
+            {
+                GameManager.Instance.updateEnemy(-1);
+                Destroy(gameObject);
+            }
+            
         }
     }
 
@@ -126,6 +156,8 @@ public class RobotBossAI : EnemyBase
         yield return new WaitForSeconds(3);
         isDown = false;
         shouldCannon = false;
+        LockHealthBar(false);
+        GameManager.Instance.bossHealthBar.Phase(phase);
         animator.SetBool(recoverStr, false);
     }
     
@@ -231,5 +263,11 @@ public class RobotBossAI : EnemyBase
             isMissile = false;
         }
         
+    }
+
+    void LockHealthBar(bool shouldLock)
+    {
+        canTakeDamage = !shouldLock;
+        GameManager.Instance.bossHealthBar.LockHealthBar(shouldLock);
     }
 }

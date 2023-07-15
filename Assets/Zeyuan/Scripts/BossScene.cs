@@ -34,6 +34,9 @@ public class BossScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.Instance.bossHealthBar.gameObject.SetActive(true);
+
+
         InstantiateSnipers();
         StartCoroutine(ISpawnEnemies());
     }
