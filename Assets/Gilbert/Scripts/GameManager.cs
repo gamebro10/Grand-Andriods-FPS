@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public Image speedometerBar;
     public Image playerHPBar;
     public GameObject playerFlashDamageScreen;
+    public GameObject bossHealthBar;
 
     int enemiesRemaining;
     public bool isPaused;
