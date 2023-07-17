@@ -8,7 +8,7 @@ public class PlatformTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(BossScene.Instance.ILiftUpPlatform());
+            BossScene.Instance.ToDestination();
         }
     }
 
@@ -16,7 +16,7 @@ public class PlatformTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(BossScene.Instance.ResetPlatformPosition());
+            BossScene.Instance.SendDownPlatform();
         }
     }
 }

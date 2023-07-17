@@ -2207,7 +2207,7 @@ MonoBehaviour:
   roamTime: -1
   roamDistance: -1
   viewAngle: -1
-  hp: 2000
+  hp: 200
   attackRate: -1
   attackCD: -1
   stoppingDistance: -1
@@ -2228,7 +2228,7 @@ MonoBehaviour:
   cannonLastTime: 10
   cannonDelay: 2
   cannonUVSpeed: 1.1
-  downTime: 20
+  downTime: 99999
   missileLaunchCount: 3
   missileLaunchRate: 0.4
   missileLaunchCD: 10

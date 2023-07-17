@@ -118,6 +118,9 @@ public class StompButton : MonoBehaviour
     {
         currStat = Stat.Active;
         stompText.SetActive(true);
+        GetComponent<MeshCollider>().enabled = true;
+        mt.color = colorActive;
+        transform.localPosition = new Vector3(0, 1.64f, 0);
     }
 
     void PressedButton()

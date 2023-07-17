@@ -17,12 +17,15 @@ public class BossScene : MonoBehaviour
     [SerializeField] GameObject sniperPrefab;
     [SerializeField] GameObject soldierPrefab;
     [SerializeField] GameObject dronePrefab;
-    [SerializeField] Transform platformStopY;
+    [SerializeField] Transform platformStopTopY;
+    [SerializeField] Transform platformStopUpperY;
     [SerializeField] Transform platformStopLowerY;
     [SerializeField] Transform[] sniperSpawnPoints;
     [SerializeField] NavMeshSurface navMesh;
 
-    int platformDirection;
+    RobotBossAI robotBossAI;
+
+    public StompButton stompButton;
 
     public static BossScene Instance;
 
@@ -35,6 +38,7 @@ public class BossScene : MonoBehaviour
     void Start()
     {
         GameManager.Instance.bossHealthBar.gameObject.SetActive(true);
+        robotBossAI = FindObjectOfType<RobotBossAI>();
 
 
         InstantiateSnipers();
@@ -47,23 +51,14 @@ public class BossScene : MonoBehaviour
 
     }
 
-    public IEnumerator ILiftUpPlatform()
+    IEnumerator ILiftUpPlatform()
     {
-        while (!(platform.transform.position.y >= platformStopY.position.y))
+        while (!(platform.transform.position.y >= platformStopUpperY.position.y))
         {
             platform.transform.position += new Vector3(0, Time.deltaTime * platformMoveSpeed, 0);
             rope.transform.localScale -= new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
-        if (platformDirection == 0)
-        {
-            StartCoroutine(IRotatePlatformRight());
-        }
-        else
-        {
-            StartCoroutine(IRotatePlatformLeft());
-        }
-        
     }
 
     public IEnumerator IPutDownPlatform()
@@ -72,9 +67,8 @@ public class BossScene : MonoBehaviour
         {
             platform.transform.position -= new Vector3(0, Time.deltaTime * platformMoveSpeed, 0);
             rope.transform.localScale += new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
-
     }
 
     IEnumerator IRotatePlatformRight()
@@ -85,7 +79,7 @@ public class BossScene : MonoBehaviour
             craneHead.transform.rotation = Quaternion.RotateTowards(craneHead.transform.rotation, Quaternion.Euler(0, 48, 0), Time.deltaTime * headRotateSpeed);
             Vector3 displacement = platform.transform.position - prevPos;
             GameManager.Instance.playerMovement.GetRb().position += displacement;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
         
     }
@@ -98,19 +92,65 @@ public class BossScene : MonoBehaviour
             craneHead.transform.rotation = Quaternion.RotateTowards(craneHead.transform.rotation, Quaternion.Euler(0, -48, 0), Time.deltaTime * headRotateSpeed);
             Vector3 displacement = platform.transform.position - prevPos;
             GameManager.Instance.playerMovement.GetRb().position += displacement;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
     }
 
-    public IEnumerator ResetPlatformPosition()
+    IEnumerator ILiftPlatformToTop()
     {
-        yield return new WaitForSeconds(1);
+        while (!(platform.transform.position.y >= platformStopTopY.position.y))
+        {
+            platform.transform.position += new Vector3(0, Time.deltaTime * platformMoveSpeed, 0);
+            rope.transform.localScale -= new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    public IEnumerator IResetPlatformRotation()
+    {
         while (craneHead.transform.rotation.eulerAngles.y != 0)
         {
             craneHead.transform.rotation = Quaternion.RotateTowards(craneHead.transform.rotation, Quaternion.identity, Time.deltaTime * headRotateSpeed);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
     }
+
+    public void SendDownPlatform()
+    {
+        StopAllCoroutines();
+        StartCoroutine(IResetPlatformRotation());
+        StartCoroutine(IPutDownPlatform());
+    }
+
+    public void ResetPlatform()
+    {
+        StopAllCoroutines();
+        StartCoroutine(IResetPlatformRotation());
+        StartCoroutine(ILiftUpPlatform());
+    }
+
+    public void ToDestination()
+    {
+        StopAllCoroutines();
+        switch (robotBossAI.GetPhase())
+        {
+            case 1:
+                StartCoroutine(IRotatePlatformLeft());
+                StartCoroutine(ILiftUpPlatform());
+                break;
+            case 2:
+                StartCoroutine(IRotatePlatformRight());
+                StartCoroutine(ILiftUpPlatform());
+                break;
+            case 3:
+                StartCoroutine(ILiftPlatformToTop());
+                break;
+            default:
+                break;
+        }
+    }
+
+    
 
     void InstantiateSnipers()
     {
@@ -123,11 +163,6 @@ public class BossScene : MonoBehaviour
                 sniper.GetComponent<SniperAI>().TargetToPlayer();
             }
         }
-    }
-
-    public void ChangePlatformDirection()
-    {
-        platformDirection = 1;
     }
 
     IEnumerator ISpawnEnemies()

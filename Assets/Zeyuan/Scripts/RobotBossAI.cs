@@ -74,14 +74,17 @@ public class RobotBossAI : EnemyBase
         }
     }
 
-    public void OnTakeDamage(int amount, Renderer[] renderers)
+    public void OnTakeDamage(int amount, Renderer[] renderers = null)
     {
         if (canTakeDamage)
         {
             float tempHp = hp;
             bool loc = false;
             hp -= amount;
-            StartCoroutine(IFlashMaterial(renderers));
+            if (renderers != null)
+            {
+                StartCoroutine(IFlashMaterial(renderers));
+            }
             
             if (tempHp >= maxHp * 0.75 && hp < maxHp * 0.75)
             {
@@ -152,6 +155,7 @@ public class RobotBossAI : EnemyBase
 
     IEnumerator DoRecover()
     {
+        animator.SetBool(afterCannonStr, false);
         animator.SetBool(recoverStr, true);
         yield return new WaitForSeconds(3);
         isDown = false;
@@ -159,6 +163,12 @@ public class RobotBossAI : EnemyBase
         LockHealthBar(false);
         GameManager.Instance.bossHealthBar.Phase(phase);
         animator.SetBool(recoverStr, false);
+    }
+
+    public void Recover()
+    {
+        StopAllCoroutines();
+        StartCoroutine(DoRecover());
     }
     
     public IEnumerator DoBlock()
@@ -238,6 +248,11 @@ public class RobotBossAI : EnemyBase
     {
         walkUp.SetActive(false);
         blockade.SetActive(true);
+    }
+
+    public int GetPhase()
+    {
+        return phase;
     }
 
     IEnumerator IFireMissile()
