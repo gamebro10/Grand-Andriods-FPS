@@ -175,7 +175,7 @@ MonoBehaviour:
   hp: 15
   attackRate: 0.8
   attackCD: 1.5
-  stoppingDistance: 10
+  stoppingDistance: 15
   healthLerpSpeed: 10
   agent: {fileID: 172001166875409131}
   layerMask:
@@ -189,7 +189,7 @@ MonoBehaviour:
   lerpHealthBar: {fileID: 3384610016069303146}
   spawnEffect: {fileID: 7670672409294586298}
   currentTarget: {fileID: 0}
-  shootRange: 20
+  shootRange: 22
   bullet: {fileID: 3474836427932144899, guid: 018f4f8cffab4824b90df44e13ac504a, type: 3}
   firePos: {fileID: 5578923821356029351}
 --- !u!195 &172001166875409131
@@ -233,7 +233,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 15
+  m_Radius: 20
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &2658784456887820064
 MonoBehaviour:

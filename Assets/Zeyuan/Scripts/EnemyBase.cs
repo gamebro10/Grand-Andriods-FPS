@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class EnemyBase : MonoBehaviour, IDamage
 {
-    [SerializeField] protected int faceToPlayerSpeed;
     [SerializeField] protected int roamTime;
     [SerializeField] protected int roamDistance;
     [SerializeField] protected int viewAngle;
+    [SerializeField] protected float faceToPlayerSpeed;
     [SerializeField] protected float hp;
     [SerializeField] protected float attackRate;
     [SerializeField] protected float attackCD;

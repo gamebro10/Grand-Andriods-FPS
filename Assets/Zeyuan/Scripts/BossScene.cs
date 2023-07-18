@@ -11,12 +11,17 @@ public class BossScene : MonoBehaviour
     [SerializeField] float platformMoveSpeed;
     [SerializeField] float ropeScaleSpeed;
     [SerializeField] float headRotateSpeed;
+    [SerializeField] int roofLaserDamage;
     [SerializeField] GameObject craneHead;
     [SerializeField] GameObject platform;
     [SerializeField] GameObject rope;
     [SerializeField] GameObject sniperPrefab;
     [SerializeField] GameObject soldierPrefab;
     [SerializeField] GameObject dronePrefab;
+    [SerializeField] GameObject door1;
+    [SerializeField] GameObject door2;
+    [SerializeField] GameObject laser;
+    [SerializeField] GameObject laserEffect;
     [SerializeField] Transform platformStopTopY;
     [SerializeField] Transform platformStopUpperY;
     [SerializeField] Transform platformStopLowerY;
@@ -25,6 +30,7 @@ public class BossScene : MonoBehaviour
 
     RobotBossAI robotBossAI;
 
+    public bool playerOnPlatform;
     public StompButton stompButton;
 
     public static BossScene Instance;
@@ -48,14 +54,24 @@ public class BossScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //temp testing code
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            StartCoroutine(IEnableLaser());
+        }
     }
 
     IEnumerator ILiftUpPlatform()
     {
         while (!(platform.transform.position.y >= platformStopUpperY.position.y))
         {
+            Vector3 prevPos = platform.transform.position;
             platform.transform.position += new Vector3(0, Time.deltaTime * platformMoveSpeed, 0);
+            if (playerOnPlatform)
+            {
+                Vector3 displacement = platform.transform.position - prevPos;
+                GameManager.Instance.playerMovement.GetRb().position += displacement;
+            }
             rope.transform.localScale -= new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
             yield return new WaitForFixedUpdate();
         }
@@ -65,7 +81,13 @@ public class BossScene : MonoBehaviour
     {
         while (!(platform.transform.position.y <= platformStopLowerY.position.y))
         {
+            Vector3 prevPos = platform.transform.position;
             platform.transform.position -= new Vector3(0, Time.deltaTime * platformMoveSpeed, 0);
+            if (playerOnPlatform)
+            {
+                Vector3 displacement = platform.transform.position - prevPos;
+                GameManager.Instance.playerMovement.GetRb().position += displacement;
+            }
             rope.transform.localScale += new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
             yield return new WaitForFixedUpdate();
         }
@@ -100,7 +122,13 @@ public class BossScene : MonoBehaviour
     {
         while (!(platform.transform.position.y >= platformStopTopY.position.y))
         {
+            Vector3 prevPos = platform.transform.position;
             platform.transform.position += new Vector3(0, Time.deltaTime * platformMoveSpeed, 0);
+            if (playerOnPlatform)
+            {
+                Vector3 displacement = platform.transform.position - prevPos;
+                GameManager.Instance.playerMovement.GetRb().position += displacement;
+            }
             rope.transform.localScale -= new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
             yield return new WaitForFixedUpdate();
         }
@@ -186,5 +214,57 @@ public class BossScene : MonoBehaviour
             yield return new WaitForSeconds(.5f);
         }
         
+    }
+
+    public void OpenSecurity(int num)
+    {
+        switch (num)
+        {
+            case 1:
+                door1.transform.position += new Vector3(0, 22, 0);
+                break;
+            case 2:
+                door2.transform.position += new Vector3(0, 22, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void EnableLaser()
+    {
+        StartCoroutine(IEnableLaser());
+    }
+
+    IEnumerator IEnableLaser()
+    {
+        laserEffect.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        laserEffect.SetActive(false);
+        laser.SetActive(true);
+        StartCoroutine(IKillBossWithLaser());
+        Material mt = laser.GetComponent<Renderer>().material;
+        float timer = 5f;
+        while (laser.transform.localScale.x > 5f)
+        {
+            mt.mainTextureOffset = new Vector2(mt.mainTextureOffset.x, mt.mainTextureOffset.y - Time.deltaTime * .4f);
+            if (timer < 0)
+            {
+                laser.transform.localScale -= new Vector3(30f, 0f, 30f) * Time.deltaTime;
+            }
+            timer -= Time.deltaTime;
+
+            yield return new WaitForEndOfFrame();
+        }
+        laser.SetActive(false);
+    }
+
+    IEnumerator IKillBossWithLaser()
+    {
+        while (robotBossAI.GetCurHP() > 0)
+        {
+            robotBossAI.OnTakeDamage(roofLaserDamage);
+            yield return new WaitForSeconds(.2f);
+        }
     }
 }

@@ -29,10 +29,15 @@ public class Interactable : MonoBehaviour
                 canInteract = false;
             }
         }
+        else if (outLine.OutlineWidth != 0)
+        {
+            outLine.OutlineWidth = 0f;
+            canInteract = false;
+        }
     }
     protected virtual void OnInteract()
     {
         outLine.OutlineWidth = 0f;
-        Destroy(this);
+        this.enabled = false;
     }
 }

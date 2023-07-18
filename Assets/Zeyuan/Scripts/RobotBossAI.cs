@@ -46,7 +46,6 @@ public class RobotBossAI : EnemyBase
     string blockStr = "Block";
 
     Animator animator;
-    AnimationClip animationClip;
 
     BossHealthBar bossHealthBar;
 
@@ -92,6 +91,7 @@ public class RobotBossAI : EnemyBase
                 loc = true;
                 hp = maxHp * 0.749f;
                 phase++;
+                BossScene.Instance.OpenSecurity(1);
             }
 
             if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
@@ -100,6 +100,7 @@ public class RobotBossAI : EnemyBase
                 loc = true;
                 hp = maxHp * 0.499f;
                 phase++;
+                BossScene.Instance.OpenSecurity(2);
             }
 
             if (tempHp >= maxHp * 0.25 && hp < maxHp * 0.25)
@@ -280,7 +281,7 @@ public class RobotBossAI : EnemyBase
         
     }
 
-    void LockHealthBar(bool shouldLock)
+    public void LockHealthBar(bool shouldLock)
     {
         canTakeDamage = !shouldLock;
         GameManager.Instance.bossHealthBar.LockHealthBar(shouldLock);

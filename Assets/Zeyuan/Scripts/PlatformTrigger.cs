@@ -9,6 +9,7 @@ public class PlatformTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             BossScene.Instance.ToDestination();
+            BossScene.Instance.playerOnPlatform = true;
         }
     }
 
@@ -17,6 +18,7 @@ public class PlatformTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             BossScene.Instance.SendDownPlatform();
+            BossScene.Instance.playerOnPlatform = false;
         }
     }
 }
