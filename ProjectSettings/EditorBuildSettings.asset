@@ -11,10 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Finished Assets/Scenes/Level Scene.unity
     guid: 8a482f14283a1ef40b00806fb19acc39
-<<<<<<< Updated upstream
-=======
-  - enabled: 1
-    path: Assets/Finished Assets/Main Scene.unity
-    guid: 854ce72d71a12e649b55f590916d1481
->>>>>>> Stashed changes
   m_configObjects: {}
