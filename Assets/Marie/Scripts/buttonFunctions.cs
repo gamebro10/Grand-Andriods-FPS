@@ -67,4 +67,14 @@ public class buttonfunctions : MonoBehaviour
         //find a way to get current level from either game manager or somewhere else in the scene.
         levelSelect(currentLevel + 1);
     }
+
+    public void OptionsSave()
+    {
+        //GameManager.Instance.saveSetOptions();
+    }
+
+    public void OptionsDefault()
+    {
+        GameManager.Instance.setOptionsDefault();
+    }
 }
