@@ -7,12 +7,14 @@ public class BossHealthBar : MonoBehaviour
 {
     [SerializeField] Image fg;
     [SerializeField] Image fgLocked;
+    [SerializeField] Image fgDamaged;
     [SerializeField] GameObject phase1;
     [SerializeField] GameObject phase2;
     [SerializeField] GameObject phase3;
 
 
     bool canShakeHealthBar;
+    bool isDamaging;
     Vector3 originalPosition;
     RobotBossAI bossScript;
 
@@ -30,7 +32,7 @@ public class BossHealthBar : MonoBehaviour
         {
             if (canShakeHealthBar)
             {
-                transform.position = new Vector3(Random.Range(-6, 6), Random.Range(-2, 2), 0) + originalPosition;
+                transform.position = new Vector3(Random.Range(-6, 6), Random.Range(-3, 3), 0) + originalPosition;
             }
         }
     }
@@ -39,6 +41,26 @@ public class BossHealthBar : MonoBehaviour
     {
         fg.fillAmount = amount;
         StartCoroutine(HealthBarShake());
+        StartCoroutine(ILerpHealthBar());
+    }
+
+    IEnumerator ILerpHealthBar()
+    {
+        if (!isDamaging)
+        {
+            isDamaging = true;
+            yield return new WaitForSeconds(.5f);
+            float originalAmount = fgDamaged.fillAmount;
+            float val = 0;
+            float goal = fg.fillAmount;
+            while (fgDamaged.fillAmount > goal)
+            {
+                fgDamaged.fillAmount = Mathf.Lerp(originalAmount, goal, val);
+                val += Time.deltaTime * 5f;
+                yield return new WaitForEndOfFrame();
+            }
+            isDamaging = false;
+        }
     }
 
     public void Phase(int phase)
@@ -71,6 +93,9 @@ public class BossHealthBar : MonoBehaviour
     public void LockHealthBar(bool shouldLock)
     {
         fg.gameObject.SetActive(!shouldLock);
+        fgDamaged.gameObject.SetActive(!shouldLock);
+        StopCoroutine(ILerpHealthBar());
+        fgDamaged.fillAmount = fg.fillAmount;
         fgLocked.fillAmount = fg.fillAmount;
         fgLocked.gameObject.SetActive(shouldLock);
     }
