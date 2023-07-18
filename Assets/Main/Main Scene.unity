@@ -520,6 +520,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: karren_pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 809238226314319625, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2481919367812882058, guid: 92a1a988f1d57a34ea6936f0891038cb, type: 3}
       propertyPath: m_RootOrder
       value: -1

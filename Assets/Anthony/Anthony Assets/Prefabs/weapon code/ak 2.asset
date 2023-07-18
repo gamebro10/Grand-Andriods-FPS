@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dc24248206998498ffb0b1e55bb6f4, type: 3}
+  m_Name: ak 2
+  m_EditorClassIdentifier: 
+  shootdistance: 0
+  shotRate: 0
+  shootdmg: 0
+  model: {fileID: 8924727978184408715, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+  hiteffect: {fileID: 2983562346620086048, guid: a0e2aa23a00e90e458dead9d2aeb1bdd, type: 3}

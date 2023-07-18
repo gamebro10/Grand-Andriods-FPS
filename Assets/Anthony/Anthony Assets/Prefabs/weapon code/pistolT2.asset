@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dc24248206998498ffb0b1e55bb6f4, type: 3}
+  m_Name: pistolT2
+  m_EditorClassIdentifier: 
+  shootdistance: 10
+  shotRate: 1
+  shootdmg: 1
+  model: {fileID: 3630999367887235151, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
+  hiteffect: {fileID: 2983562346620086048, guid: a0e2aa23a00e90e458dead9d2aeb1bdd, type: 3}

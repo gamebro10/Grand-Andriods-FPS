@@ -249,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
     //Looking around by using your mouse
     private void Look()
     {
-        if (!GameManager.Instance.isPaused)     
+        if (!GameManager.Instance.isPaused)
         {
             float num = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
             float num2 = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;

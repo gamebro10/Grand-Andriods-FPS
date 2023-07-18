@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public Image speedometerBar;
     public Image playerHPBar;
     public GameObject playerFlashDamageScreen;
+    public BossHealthBar bossHealthBar;
 
     [Header("-----Options Stuff-----")]
     [SerializeField] public Slider FOVSlider;
