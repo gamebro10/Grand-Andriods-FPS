@@ -476,14 +476,14 @@ MonoBehaviour:
   colorInactive: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   colorActive: {r: 0, g: 1, b: 0, a: 1}
   colorPressed: {r: 0, g: 0.5804846, b: 1, a: 1}
-  initialStat: 2
+  initialStat: 1
   registeredEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+        m_TargetAssemblyTypeName: RobotBossAI, Assembly-CSharp
+        m_MethodName: Recover
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -494,6 +494,7 @@ MonoBehaviour:
         m_CallState: 2
   stompText: {fileID: 584589534759661632}
   button: {fileID: 2203948006352883361}
+  trigger: {fileID: 2695044581008468260}
 --- !u!64 &2695044581008468260
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -511,7 +512,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -622,8 +623,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6294265283771144819}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 59.1, y: 0.8137207, z: 16.3}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -63.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -632,5 +633,5 @@ Transform:
   - {fileID: 4305182433779846102}
   - {fileID: 5814046681517422484}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

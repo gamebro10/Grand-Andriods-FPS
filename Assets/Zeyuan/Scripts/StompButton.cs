@@ -15,6 +15,7 @@ public class StompButton : MonoBehaviour
     [Header("---------------------------------")]
     [SerializeField] GameObject stompText;
     [SerializeField] GameObject button;
+    [SerializeField] MeshCollider trigger;
     
 
 
@@ -43,6 +44,7 @@ public class StompButton : MonoBehaviour
             case Stat.Active:
                 mt.color = colorActive;
                 stompText.SetActive(true);
+                trigger.enabled = true;
                 break;
             case Stat.Pressed:
                 mt.color = colorPressed;
@@ -120,6 +122,7 @@ public class StompButton : MonoBehaviour
         stompText.SetActive(true);
         GetComponent<MeshCollider>().enabled = true;
         mt.color = colorActive;
+        trigger.enabled = true;
         transform.localPosition = new Vector3(0, 1.64f, 0);
     }
 
@@ -129,6 +132,7 @@ public class StompButton : MonoBehaviour
         mt.color = colorPressed;
         stompText.SetActive(false);
         GetComponent<MeshCollider>().enabled = false;
+        trigger.enabled = false;
         currStat = Stat.None;
     }
     

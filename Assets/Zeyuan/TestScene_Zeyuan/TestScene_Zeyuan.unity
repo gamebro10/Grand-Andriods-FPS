@@ -511,9 +511,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 927662920}
     m_Modifications:
+    - target: {fileID: 799375459759253295, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
+      propertyPath: registeredEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 449821483}
     - target: {fileID: 5065148422646577649, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
       propertyPath: m_Name
       value: TestScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7751655527294847817, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8591561077366828312, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
       propertyPath: registeredEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4828,10 +4836,6 @@ PrefabInstance:
     - target: {fileID: 7700086124801053594, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105260655814775152, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
-      propertyPath: faceToPlayerSpeed
-      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
