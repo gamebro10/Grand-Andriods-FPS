@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("MovementSettings")]
     //Movement Settings 
-    [SerializeField] public float sensitivity; // camera senstivity
     [SerializeField] public float moveSpeed; // character walkspeed
     [SerializeField] public float runSpeed; //walkspeed multiplier
    // [SerializeField] public int playerHP;
@@ -26,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public bool onWall;
     [SerializeField] private TextMeshProUGUI currentSpeed;
     public ParticleSystem airLines; // reference to the air lines GameObject
+    public float sensitivity; // camera senstivity
 
 
     //Private Floats
@@ -104,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         //Input
         MyInput();
         //Looking around
+        sensitivity = GameManager.Instance.MouseSensValue;
         Look();
         //To Show speedlines
         ShowAirlines();

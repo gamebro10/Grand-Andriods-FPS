@@ -34,6 +34,7 @@ public class buttonfunctions : MonoBehaviour
 
     public void options()
     {
+        GameManager.Instance.statePaused();
         GameManager.Instance.loadOptionsMenu();
     }
 
@@ -44,27 +45,21 @@ public class buttonfunctions : MonoBehaviour
 
     public void levelSelect(int levelNumber)
     {
-        switch (levelNumber)
-        {
-            default: // default just in case
-                break;
-            case 0: //tutorial
-                break;
-            case 1: //level 1
-                break;
-            case 2: //level 2
-                break;
-            case 3: //level 3
-                break;
-            case 4: // level 4
-                break;
-        }
+        SceneManager.LoadScene(levelNumber);
     }
 
     public void nextLevel()
     {
-        int currentLevel = 0; // just 0 for now so VS doesnt get angry at me
-        //find a way to get current level from either game manager or somewhere else in the scene.
-        levelSelect(currentLevel + 1);
+        levelSelect(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void OptionsSave()
+    {
+        //GameManager.Instance.saveSetOptions();
+    }
+
+    public void OptionsDefault()
+    {
+        GameManager.Instance.setOptionsDefault();
     }
 }

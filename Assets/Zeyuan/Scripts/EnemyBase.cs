@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class EnemyBase : MonoBehaviour, IDamage
 {
-    [SerializeField] protected int faceToPlayerSpeed;
     [SerializeField] protected int roamTime;
     [SerializeField] protected int roamDistance;
     [SerializeField] protected int viewAngle;
-    [SerializeField] protected int hp;
+    [SerializeField] protected float faceToPlayerSpeed;
+    [SerializeField] protected float hp;
     [SerializeField] protected float attackRate;
     [SerializeField] protected float attackCD;
     [SerializeField] protected float stoppingDistance;
@@ -21,6 +21,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] protected Color flashColor;
     [SerializeField] protected Image healthBar;
     [SerializeField] protected Image lerpHealthBar;
+    [SerializeField] protected Renderer spawnEffect;
 
     protected float angleToPlayer;
 
@@ -48,10 +49,14 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     protected virtual void Start()
     {
-        GameManager.Instance.updateEnemy(1);
+        GameManager.Instance.updateEnemy(1);flashColor = flashColor * Mathf.LinearToGammaSpace(50f);
         startingPosition = transform.position;
         Player = GameManager.Instance.player;
         maxHealth = hp;
+        if (spawnEffect != null)
+        {
+            StartCoroutine(IPlaySpawnEffect());
+        }
     }
 
     protected virtual void Update()
@@ -184,41 +189,59 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     protected virtual IEnumerator IFlashMaterial(Renderer[] renderers)
     {
-        canChangeColor = false;
-        Color[] colors = new Color[renderers.Length];
-        for (int i = 0; i < renderers.Length; i++)
+        if (canChangeColor)
         {
-            colors[i] = renderers[i].material.color;
-        }
-        ChangeRendererColor(flashColor, renderers);
-        yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(Color.white, renderers, colors);
-        yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(flashColor, renderers);
-        yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(Color.white, renderers, colors);
-        yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(flashColor, renderers);
-        yield return new WaitForSeconds(.1f);
-        ChangeRendererColor(Color.white, renderers, colors);
+            canChangeColor = false;
+            Color[,] colors = new Color[renderers.Length, 10];
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                for (int j = 0; j < renderers[i].materials.Length; j++)
+                {
+                    if (renderers[i].materials[j].shader.name != "Custom/Outline Mask" && renderers[i].materials[j].shader.name != "Custom/Outline Fill")
+                    {
+                        colors[i, j] = renderers[i].materials[j].color;
+                    }
 
-        canChangeColor = true;
+                }
+            }
+            for (int k = 0; k < 3; k++)
+            {
+                ChangeRendererColor(flashColor, renderers);
+                yield return new WaitForSeconds(.1f);
+                ChangeRendererColor(Color.white, renderers, colors);
+                yield return new WaitForSeconds(.1f);
+            }
+            canChangeColor = true;
+        }
     }
 
-    void ChangeRendererColor(Color color, Renderer[] renderers, Color[] colors = null)
+    void ChangeRendererColor(Color color, Renderer[] renderers, Color[,] colors = null)
     {
         if (colors == null)
         {
             foreach (Renderer renderer in renderers)
             {
-                renderer.material.color = color;
+                foreach (Material mt in renderer.materials)
+                {
+                    mt.color = color;
+                }
             }
         }
         else
         {
-            for (int i = 0; i < renderers.Length; i++)
+            for (int i = 0; i < colors.GetLength(0); i++)
             {
-                renderers[i].material.color = colors[i];
+                for (int j = 0; j < colors.GetLength(1); j++)
+                {
+                    if (renderers[i].materials.Length > j)
+                    {
+                        renderers[i].materials[j].color = colors[i, j];
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
             }
         }
         
@@ -264,5 +287,28 @@ public class EnemyBase : MonoBehaviour, IDamage
     public void TargetToPlayer()
     {
         currentTarget = GameManager.Instance.player;
+    }
+
+    IEnumerator IPlaySpawnEffect()
+    {
+        float timer = 1f;
+        spawnEffect.gameObject.SetActive(true);
+        while (timer >= 0)
+        {
+            spawnEffect.material.mainTextureOffset = new Vector2(spawnEffect.material.mainTextureOffset.x, spawnEffect.material.mainTextureOffset.y - Time.deltaTime * 0.8f);
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        spawnEffect.gameObject.SetActive(false);
+    }
+
+    public float GetMaxHP()
+    {
+        return maxHealth;
+    }
+
+    public float GetCurHP()
+    {
+        return hp;
     }
 }

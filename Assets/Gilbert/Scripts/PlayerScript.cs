@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class PlayerScript : MonoBehaviour, IDamage
 
     [Header("-----Player Values-----")]
     [SerializeField] int playerHP;
+    [SerializeField] public Camera playerCam;
 
     [Header("-----Player Attributes-----")]
     public float playerSpeed;
