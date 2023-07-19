@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         ShowAirlines();
 
         currentSpeed.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
-        GameManager.Instance.speedometerText.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
+      //  GameManager.Instance.speedometerText.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
         GameManager.Instance.speedometerBar.fillAmount = (System.MathF.Truncate(rb.velocity.magnitude))/40;
     }
 
