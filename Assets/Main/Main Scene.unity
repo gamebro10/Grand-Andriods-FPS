@@ -327,7 +327,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.06666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 6410cd643db1db9459a32c548532c5ab, type: 2}
   m_BuildHeightMesh: 0
@@ -970,6 +970,38 @@ PrefabInstance:
       propertyPath: playerCam
       value: 
       objectReference: {fileID: 1275633625}
+    - target: {fileID: 924886158008911965, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: dashCd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 924886158008911965, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: dashNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 924886158008911965, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: dashSpeed
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 924886158008911965, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: dashTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 924886158008911965, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: durationD
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 924886158008911965, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: isDashing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 924886158008911965, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: dashUpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 924886158008911965, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: dashDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2315865118312969908, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1013,6 +1045,14 @@ PrefabInstance:
     - target: {fileID: 2315865118312969908, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532950308527608665, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: stompSpeed
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532950308527608665, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
+      propertyPath: stompDistance
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5253825805834562885, guid: 65407f8fd33661648a2a9a3769a9a844, type: 3}
       propertyPath: m_LocalPosition.y
