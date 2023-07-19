@@ -18,13 +18,14 @@ public class buttonfunctions : MonoBehaviour
 
     public void restartGame()
     {
+        GameManager.Instance.loadOptions();
         GameManager.Instance.stateUnpaused();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void mainMenu()
     {
-        //load main menu scene
+        SceneManager.LoadScene(0);
     }
 
     public void quitGame()
@@ -34,7 +35,6 @@ public class buttonfunctions : MonoBehaviour
 
     public void options()
     {
-        GameManager.Instance.statePaused();
         GameManager.Instance.loadOptionsMenu();
     }
 

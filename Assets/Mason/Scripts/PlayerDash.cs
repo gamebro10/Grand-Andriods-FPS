@@ -13,16 +13,17 @@ public class PlayerDash : MonoBehaviour
 
     public float dashSpeed;
     public float dashDuration;
+    public float dashUpForce;
     public float durationD;
     public bool isDashing;
-    private Vector3 PlayerY;
+    //private Vector3 PlayerY;
 
     private PlayerMovement Movement;
 
-    public int dashNum;
+    //public int dashNum;
 
-    //public float dashCd;
-    public float dashTimer;
+    public float dashCd;
+    private float dashTimer;
 
     private KeyCode dashKey = KeyCode.LeftShift;
 
@@ -36,20 +37,27 @@ public class PlayerDash : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    //public float horizontalSpeed = 2.0F;
-    //public float verticalSpeed = 2.0F;
+    private float horizontalSpeed = 2.0F;
+    private float verticalSpeed = 2.0F;
 
     // Update is called once per frame
     private void Update()
     {
-        move = (orientation.right * Input.GetAxis("Horizontal")) +
-          (orientation.forward * Input.GetAxis("Vertical"));
+        //move = (orientation.right * Input.GetAxis("Horizontal")) +
+         // (orientation.forward * Input.GetAxis("Vertical"));
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            float h = horizontalSpeed * Input.GetAxis("Mouse X");
+            float v = verticalSpeed * Input.GetAxis("Mouse Y");
+            transform.rotation = Quaternion.Euler(h, v, 0);
+        }
 
         if (Input.GetKey(dashKey))
             Dash();
 
-        //if(dashCdTimer > 0)
-        //    dashCdTimer -= Time.deltaTime;
+        if(dashTimer > 0)
+            dashTimer -= Time.deltaTime;
     }
 
 
@@ -58,40 +66,47 @@ public class PlayerDash : MonoBehaviour
         //PlayerY = new Vector3(1.1f, transform.position.y);
         //rb.angularVelocity = Vector3.zero;
 
-        //if (dashTimer > 0) return;
-        //else dashTimer -= Time.deltaTime;
+        if (dashTimer > 0) return;
+        else dashTimer = dashCd;
 
-       
+        isDashing = true;
 
-        rb.AddForce(move * dashSpeed,ForceMode.Impulse);
+        //rb.AddForce(move * dashSpeed,ForceMode.Impulse);
 
         //float h = horizontalSpeed * Input.GetAxis("Mouse X");
         //float v = verticalSpeed * Input.GetAxis("Mouse Y");
         //transform.rotation = Quaternion.Euler(h, v, 0);
 
-        //rb.velocity = Vector3.zero;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            float h = horizontalSpeed * Input.GetAxis("Mouse X");
+            float v = verticalSpeed * Input.GetAxis("Mouse Y");
+            transform.rotation = Quaternion.Euler(h, v, 0);
+        }
+
+        rb.velocity = Vector3.zero;
         //rb.angularVelocity = Vector3.zero;
 
-        //Vector3 forceApply = orientation.forward * dashSpeed + orientation.up * dashUpForce;
+        Vector3 forceApply = orientation.forward * dashSpeed + orientation.up * dashUpForce;
 
         //additionalForce = forceApply;
 
-        //Invoke(nameof(delayedDash), 0.025f);
-        //Invoke(nameof(delayedDash), dashDistance);
+       // Invoke(nameof(delayedDash), 0.025f);
+       // Invoke(nameof(delayedDash), dashDuration);
 
-        //rb.velocity = Vector3.zero;
-        //rb.transform.rotation = Quaternion.identity;
-        //rb.AddForce(orientation.forward * dashSpeed, ForceMode.Impulse);
+        rb.velocity = Vector3.zero;
+        rb.transform.rotation = Quaternion.identity;
+        rb.AddForce(orientation.forward * dashSpeed, ForceMode.Impulse);
 
-        //if (dashTimer <= 0)
-        //    isDashing = false;
+        
+           isDashing = false;
 
     }
 
     //private Vector3 additionalForce;
 
-    //private void delayedDash()
-    //{
-    //    rb.AddForce(additionalForce, ForceMode.Impulse);
-    //}
+  //  private void delayedDash()
+   // {
+  //      rb.AddForce(additionalForce, ForceMode.Impulse);
+  //  }
 }

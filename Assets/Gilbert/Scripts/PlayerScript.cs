@@ -34,8 +34,8 @@ public class PlayerScript : MonoBehaviour, IDamage
 
     void Update()
     {
-        GameManager.Instance.speedometerBar.fillAmount = playerSpeed/(runSpeed*moveSpeed);
-        GameManager.Instance.speedometerText.text = playerSpeed.ToString();
+       GameManager.Instance.speedometerBar.fillAmount = playerSpeed/(runSpeed*moveSpeed);
+       //GameManager.Instance.speedometerText.text = playerSpeed.ToString();
     }
 
     public void OnTakeDamage(int amount)
@@ -53,7 +53,7 @@ public class PlayerScript : MonoBehaviour, IDamage
     {
        //GameManager.Instance.playerMovement.enabled = false;
         GameManager.Instance.player.transform.position = GameManager.Instance.playerSpawnPos.transform.position;
-        //GameManager.Instance.playerMovement.enabled = true;
+        GameManager.Instance.playerMovement.enabled = true;
         playerHP = HPOrig;
         GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
         Cursor.lockState = CursorLockMode.Locked;

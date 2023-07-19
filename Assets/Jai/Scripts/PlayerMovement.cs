@@ -104,13 +104,13 @@ public class PlayerMovement : MonoBehaviour
         //Input
         MyInput();
         //Looking around
-        sensitivity = GameManager.Instance.MouseSensValue;
+        sensitivity = GameManager.Instance.optionsvalues.MouseSensValue;
         Look();
         //To Show speedlines
         ShowAirlines();
 
         currentSpeed.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
-        GameManager.Instance.speedometerText.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
+      //  GameManager.Instance.speedometerText.text = (System.MathF.Truncate(rb.velocity.magnitude)).ToString("0") + ("m/s");
         GameManager.Instance.speedometerBar.fillAmount = (System.MathF.Truncate(rb.velocity.magnitude))/40;
     }
 
@@ -239,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
             if (wallRunning)
             {
                 rb.AddForce(Vector2.up * jumpForce * 0.1f); //vertical jump h when wall running
-                rb.AddForce(wallNormalVector * jumpForce * 2.0f); //Horizontal dist when wall running
+                rb.AddForce(wallNormalVector * jumpForce * 5.0f); //Horizontal dist when wall running
                 wallRunning = false;
             }
             Invoke("ResetJump", jumpCooldown);
