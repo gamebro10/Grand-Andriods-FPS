@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.XR;
 
-public class Weaponiteract : MonoBehaviour
+public class pistolInteract : MonoBehaviour
 {
     Gunholstering currWeapon;
     public WeaponBehavior behavior;
@@ -20,12 +18,12 @@ public class Weaponiteract : MonoBehaviour
     public static bool Maxedslots;
     swingsword sword;
 
-   // [SerializeField] GameObject Currgun;
+    // [SerializeField] GameObject Currgun;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(!equiped)
+        if (!equiped)
         {
             behavior.enabled = false;
             body.isKinematic = false;
@@ -57,15 +55,14 @@ public class Weaponiteract : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && equiped)
         {
             Sword.SetActive(true);
-           StartCoroutine(sword.quickslash());
-           // Sword.SetActive(false);
+            // StartCoroutine(sword.quickslash());
         }
 
     }
 
     public void Pickup()
     {
-       // holder.GetChild(1).gameObject.SetActive(false);
+        // holder.GetChild(1).gameObject.SetActive(false);
 
         if (holder.GetChild(0).gameObject.activeInHierarchy)
         {
@@ -75,12 +72,12 @@ public class Weaponiteract : MonoBehaviour
         {
             holder.GetChild(1).gameObject.SetActive(false);
         }
-        
-        
+
+
         equiped = true;
         Maxedslots = true;
 
-        if(Maxedslots == false)
+        if (Maxedslots == false)
         {
             Drop();
             Pickup();
@@ -90,12 +87,13 @@ public class Weaponiteract : MonoBehaviour
         coll.isTrigger = true;
 
         transform.SetParent(holder);
-        transform.localPosition = new Vector3(0, 0, 1);
-        transform.localRotation = Quaternion.Euler((float).527,-90,(float)-5.9);
+        transform.localPosition = new Vector3((float).12, (float).19, (float)-.21);
+        transform.localRotation = Quaternion.Euler((float).527, -90, (float)-5.9);
         transform.localScale = Vector3.one;
 
+        //.527  -90  -5.9
 
-       
+
 
         behavior.enabled = true;
 
