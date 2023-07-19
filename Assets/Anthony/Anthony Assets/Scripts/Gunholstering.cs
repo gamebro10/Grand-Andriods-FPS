@@ -28,7 +28,8 @@ public class Gunholstering : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        weaponholstering();
+        if(!GameManager.Instance.isPaused) { weaponholstering(); }
+        
     }
 
 

@@ -128,7 +128,6 @@ public class Weaponiteract : MonoBehaviour
         behavior.enabled = false;
         holder.GetComponent<Gunholstering>().CurrentWeopon = holder.childCount - 1;
         holder.GetComponent<Gunholstering>().IDweapon();
-        sword.canSlash = true;
     }
 
 }
