@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     [Header("-----Options Stuff-----")]
     [SerializeField] public SettingsStuff optionsvalues;
+    [SerializeField] public SettingsStuff optionsspare;
     [SerializeField] public Slider FOVSlider;
     [SerializeField] public TextMeshProUGUI FOVText;
     [SerializeField] public Slider MouseSensSlider;
@@ -43,10 +44,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Slider MusicSlider;
     [SerializeField] public TextMeshProUGUI MusicText;
 
-    public int prevFOV;
-    public int prevSens;
-    public int prevSFX;
-    public int prevMusic;
 
     //public int CameraFOV;
     int enemiesRemaining;
@@ -55,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        saveOptions();
+        loadOptions();
         Instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
@@ -142,19 +139,19 @@ public class GameManager : MonoBehaviour
 
     public void saveOptions()
     {
-        prevFOV = optionsvalues.FOVValue;
-        prevSens = optionsvalues.MouseSensValue;
-        prevSFX = optionsvalues.SFXValue;
-        prevMusic = optionsvalues.MusicValue;
+        optionsspare.FOVValue = optionsvalues.FOVValue;
+        optionsspare.MouseSensValue = optionsvalues.MouseSensValue;
+        optionsspare.SFXValue = optionsvalues.SFXValue;
+        optionsspare.MusicValue = optionsvalues.MusicValue;
     }
 
     public void loadOptions()
     {
         setOptionsSliders();
-        optionsvalues.FOVValue = prevFOV;
-        optionsvalues.MouseSensValue = prevSens;
-        optionsvalues.SFXValue = prevSFX;
-        optionsvalues.MusicValue = prevMusic;
+        optionsvalues.FOVValue = optionsspare.FOVValue;
+        optionsvalues.MouseSensValue = optionsspare.MouseSensValue;
+        optionsvalues.SFXValue = optionsspare.SFXValue;
+        optionsvalues.MusicValue = optionsspare.MusicValue;
        
      }
 
