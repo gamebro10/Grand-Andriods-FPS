@@ -34,7 +34,6 @@ public class buttonfunctions : MonoBehaviour
 
     public void options()
     {
-        GameManager.Instance.statePaused();
         GameManager.Instance.loadOptionsMenu();
     }
 

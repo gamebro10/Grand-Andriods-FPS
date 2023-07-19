@@ -159,18 +159,15 @@ MonoBehaviour:
   playerHPBar: {fileID: 0}
   playerFlashDamageScreen: {fileID: 0}
   bossHealthBar: {fileID: 0}
+  optionsvalues: {fileID: 0}
   FOVSlider: {fileID: 0}
   FOVText: {fileID: 0}
-  FOVValue: 0
   MouseSensSlider: {fileID: 0}
   MouseSensText: {fileID: 0}
-  MouseSensValue: 0
   SFXSlider: {fileID: 0}
   SFXText: {fileID: 0}
-  SFXValue: 0
   MusicSlider: {fileID: 0}
   MusicText: {fileID: 0}
-  MusicValue: 0
   CameraFOV: 0
   isPaused: 0
 --- !u!114 &402786244
@@ -812,18 +809,15 @@ MonoBehaviour:
   playerHPBar: {fileID: 0}
   playerFlashDamageScreen: {fileID: 0}
   bossHealthBar: {fileID: 0}
-  FOVSlider: {fileID: 0}
-  FOVText: {fileID: 0}
-  FOVValue: 0
-  MouseSensSlider: {fileID: 0}
-  MouseSensText: {fileID: 0}
-  MouseSensValue: 0
-  SFXSlider: {fileID: 0}
-  SFXText: {fileID: 0}
-  SFXValue: 0
-  MusicSlider: {fileID: 0}
-  MusicText: {fileID: 0}
-  MusicValue: 0
+  optionsvalues: {fileID: 11400000, guid: b5e0e4a91475b8f4ea42478c825c7d11, type: 2}
+  FOVSlider: {fileID: 935159836}
+  FOVText: {fileID: 935159834}
+  MouseSensSlider: {fileID: 935159833}
+  MouseSensText: {fileID: 935159831}
+  SFXSlider: {fileID: 935159830}
+  SFXText: {fileID: 935159828}
+  MusicSlider: {fileID: 935159827}
+  MusicText: {fileID: 935159825}
   CameraFOV: 0
   isPaused: 0
 --- !u!114 &1733889245

@@ -33,28 +33,29 @@ public class GameManager : MonoBehaviour
     public BossHealthBar bossHealthBar;
 
     [Header("-----Options Stuff-----")]
+    [SerializeField] public SettingsStuff optionsvalues;
     [SerializeField] public Slider FOVSlider;
     [SerializeField] public TextMeshProUGUI FOVText;
-    public int FOVValue;
     [SerializeField] public Slider MouseSensSlider;
     [SerializeField] public TextMeshProUGUI MouseSensText;
-    public int MouseSensValue;
     [SerializeField] public Slider SFXSlider;
     [SerializeField] public TextMeshProUGUI SFXText;
-    public int SFXValue;
     [SerializeField] public Slider MusicSlider;
     [SerializeField] public TextMeshProUGUI MusicText;
-    public int MusicValue;
 
-    public int CameraFOV;
+    public int prevFOV;
+    public int prevSens;
+    public int prevSFX;
+    public int prevMusic;
+
+    //public int CameraFOV;
     int enemiesRemaining;
     public bool isPaused;
     float timescaleOrig;
 
     void Awake()
     {
-        setOptionsSliders();
-        setOptionsDefault();
+        saveOptions();
         Instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void loadOptionsMenu()
     {
+        loadOptions();
         prevMenu = activeMenu;
         activeMenu.SetActive(false);
         activeMenu = optionsMenu;
@@ -108,35 +110,55 @@ public class GameManager : MonoBehaviour
 
     public void setOptionsDefault()
     {
-        FOVSlider.value = FOVValue = 60;
+        FOVSlider.value = optionsvalues.FOVValue = 60;
         //playerScript.playerCam.fieldOfView = FOVValue;
-        FOVText.text = FOVValue.ToString();
-        MouseSensSlider.value = MouseSensValue = 50;
-        MouseSensText.text = MouseSensValue.ToString(); 
-        SFXSlider.value = SFXValue = 100;
-        SFXText.text = SFXValue.ToString();
-        MusicSlider.value = MusicValue = 100;
-        MusicText.text = MusicValue.ToString();
+        FOVText.text = optionsvalues.FOVValue.ToString();
+        MouseSensSlider.value = optionsvalues.MouseSensValue = 50;
+        MouseSensText.text = optionsvalues.MouseSensValue.ToString(); 
+        SFXSlider.value = optionsvalues.SFXValue = 100;
+        SFXText.text = optionsvalues.SFXValue.ToString();
+        MusicSlider.value = optionsvalues.MusicValue = 100;
+        MusicText.text = optionsvalues.MusicValue.ToString();
     }
 
     public void setOptionsSliders()
     {
-        FOVSlider.onValueChanged.AddListener((v) => { FOVValue = (int)v; });
+        FOVSlider.onValueChanged.AddListener((v) => { optionsvalues.FOVValue = (int)v; });
         //playerScript.playerCam.fieldOfView = FOVValue;
-        MouseSensSlider.onValueChanged.AddListener((v) => { MouseSensValue = (int)v; });
-        SFXSlider.onValueChanged.AddListener((v) => { SFXValue = (int)v; });
-        MusicSlider.onValueChanged.AddListener((v) => {MusicValue = (int)v; });
+        MouseSensSlider.onValueChanged.AddListener((v) => { optionsvalues.MouseSensValue = (int)v; });
+        SFXSlider.onValueChanged.AddListener((v) => { optionsvalues.SFXValue = (int)v; });
+        MusicSlider.onValueChanged.AddListener((v) => { optionsvalues.MusicValue = (int)v; });
     }
 
     public void closeOptions()
     {
+       saveOptions();
         activeMenu.SetActive(false);
         activeMenu = prevMenu;
         activeMenu.SetActive(true);
         prevMenu = null;
+        loadOptions();
     }
 
-    public void updateEnemy(int amount)
+    public void saveOptions()
+    {
+        prevFOV = optionsvalues.FOVValue;
+        prevSens = optionsvalues.MouseSensValue;
+        prevSFX = optionsvalues.SFXValue;
+        prevMusic = optionsvalues.MusicValue;
+    }
+
+    public void loadOptions()
+    {
+        setOptionsSliders();
+        optionsvalues.FOVValue = prevFOV;
+        optionsvalues.MouseSensValue = prevSens;
+        optionsvalues.SFXValue = prevSFX;
+        optionsvalues.MusicValue = prevMusic;
+       
+     }
+
+        public void updateEnemy(int amount)
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString();

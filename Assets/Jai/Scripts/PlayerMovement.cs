@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         //Input
         MyInput();
         //Looking around
-        sensitivity = GameManager.Instance.MouseSensValue;
+        sensitivity = GameManager.Instance.optionsvalues.MouseSensValue;
         Look();
         //To Show speedlines
         ShowAirlines();
