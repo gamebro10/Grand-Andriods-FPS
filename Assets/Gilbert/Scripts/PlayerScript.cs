@@ -35,7 +35,7 @@ public class PlayerScript : MonoBehaviour, IDamage
     void Update()
     {
         GameManager.Instance.speedometerBar.fillAmount = playerSpeed/(runSpeed*moveSpeed);
-       // GameManager.Instance.speedometerText.text = playerSpeed.ToString();
+       GameManager.Instance.speedometerText.text = playerSpeed.ToString();
     }
 
     public void OnTakeDamage(int amount)
