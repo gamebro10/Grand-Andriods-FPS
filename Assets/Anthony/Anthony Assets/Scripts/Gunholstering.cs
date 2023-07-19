@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Gunholstering : MonoBehaviour
 {
-
-    int CurrentWeopon = 0;
+    Weaponiteract PickedupWeapon;
+   public int CurrentWeopon = 0;
+    Transform guns;
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +24,41 @@ public class Gunholstering : MonoBehaviour
     public void weaponholstering()
     {
         int lastWeapon = CurrentWeopon;
+
+
+        //this section is for scroll wheel inputs for weapon swaping and the && transform.childCount - 1
+        //is so that it switchs there only the weapons u have 
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) 
+        {
+            if ( CurrentWeopon >= transform.childCount - 1)
+                CurrentWeopon = 0;
+            else
+                CurrentWeopon++;
+        } 
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) 
+        {
+            if ( CurrentWeopon <= 0)
+                CurrentWeopon = transform.childCount - 1;
+            else
+                CurrentWeopon--;
+        }
+
+
+        //this section is for number key inputs for weapon swaping and the && transform.childCount >= 2,3,4
+        //is so that if theres no weapon there it wont switch there
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             CurrentWeopon = 0;
         }
-        if (Input.GetKeyUp(KeyCode.Alpha2))
+        if (Input.GetKeyUp(KeyCode.Alpha2) && transform.childCount >= 2)
         {
             CurrentWeopon = 1;
         }
-        if (Input.GetKeyUp(KeyCode.Alpha3))
+        if (Input.GetKeyUp(KeyCode.Alpha3) && transform.childCount >= 3)
         {
             CurrentWeopon = 2;
         }
-        if (Input.GetKeyUp(KeyCode.Alpha4))
+        if (Input.GetKeyUp(KeyCode.Alpha4) && transform.childCount >= 4)
         {
             CurrentWeopon = 3;
         }
@@ -43,6 +66,9 @@ public class Gunholstering : MonoBehaviour
         {
             IDweapon();
         }
+
+
+        //if theres no weapon at the current spot dont set unactive 
 
     }
 

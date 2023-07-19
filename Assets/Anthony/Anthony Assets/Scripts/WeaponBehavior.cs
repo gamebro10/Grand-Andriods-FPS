@@ -30,24 +30,26 @@ public class WeaponBehavior : MonoBehaviour
     {
         if (GameManager.Instance.activeMenu == null)
         {
-            //if (gunList.Count > 0)
-            //{
-            //    scrollGun();
-
                 //isshooting is after cuz order of op and it will almost always be false 
-
                 if (Input.GetButton("Shoot") && !isShooting)
                     StartCoroutine(shoot());
-            //}
         }
-       
     }
+
+    IEnumerator Quickslash() 
+    {
+        
+
+        yield return new WaitForSeconds(.1f);
+    }
+
+    
 
     IEnumerator shoot()
     {
         isShooting = true;
-
-       // Ray ray = Vector3
+        //RaycastHit hit;
+        //Ray ray = (Physics.Raycast(Camera, out hit, ShootDistance));
 
         if (!shootparticle.isPlaying)
         { shootparticle.Play(); }
