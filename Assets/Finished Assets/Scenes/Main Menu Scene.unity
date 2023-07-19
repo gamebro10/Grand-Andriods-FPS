@@ -160,6 +160,7 @@ MonoBehaviour:
   playerFlashDamageScreen: {fileID: 0}
   bossHealthBar: {fileID: 0}
   optionsvalues: {fileID: 0}
+  optionsspare: {fileID: 0}
   FOVSlider: {fileID: 0}
   FOVText: {fileID: 0}
   MouseSensSlider: {fileID: 0}
@@ -168,7 +169,6 @@ MonoBehaviour:
   SFXText: {fileID: 0}
   MusicSlider: {fileID: 0}
   MusicText: {fileID: 0}
-  CameraFOV: 0
   isPaused: 0
 --- !u!114 &402786244
 MonoBehaviour:
@@ -810,6 +810,7 @@ MonoBehaviour:
   playerFlashDamageScreen: {fileID: 0}
   bossHealthBar: {fileID: 0}
   optionsvalues: {fileID: 11400000, guid: b5e0e4a91475b8f4ea42478c825c7d11, type: 2}
+  optionsspare: {fileID: 11400000, guid: b4bbd44d4e95d614b8256acd47c29384, type: 2}
   FOVSlider: {fileID: 935159836}
   FOVText: {fileID: 935159834}
   MouseSensSlider: {fileID: 935159833}
@@ -818,7 +819,6 @@ MonoBehaviour:
   SFXText: {fileID: 935159828}
   MusicSlider: {fileID: 935159827}
   MusicText: {fileID: 935159825}
-  CameraFOV: 0
   isPaused: 0
 --- !u!114 &1733889245
 MonoBehaviour:
