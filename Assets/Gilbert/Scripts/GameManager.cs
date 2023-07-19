@@ -55,8 +55,11 @@ public class GameManager : MonoBehaviour
         loadOptions();
         Instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
-        playerMovement = player.GetComponent<PlayerMovement>();
-        playerScript = player.GetComponent<PlayerScript>();
+        if (player != null)
+        {
+            playerMovement = player.GetComponent<PlayerMovement>();
+            playerScript = player.GetComponent<PlayerScript>();
+        }
         timescaleOrig = Time.timeScale;
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
     }
