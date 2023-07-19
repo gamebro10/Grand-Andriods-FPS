@@ -25,7 +25,7 @@ public class buttonfunctions : MonoBehaviour
 
     public void mainMenu()
     {
-        //load main menu scene
+        SceneManager.LoadScene(0);
     }
 
     public void quitGame()
