@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerDash : MonoBehaviour
 {
@@ -10,23 +11,24 @@ public class PlayerDash : MonoBehaviour
     public Transform playerCam;
 
 
-
     public float dashSpeed;
-    public float dashUpForce;
-    public float dashDistance;
+    public float dashDuration;
     public float durationD;
-    bool isDashing;
+    public bool isDashing;
+    private Vector3 PlayerY;
 
-    private PlayerMovement player;
+    private PlayerMovement Movement;
 
     public int dashNum;
 
-    public float dashCd;
-    private float dashCdTimer;
+    //public float dashCd;
+    public float dashTimer;
 
-    public KeyCode dashKey = KeyCode.LeftShift;
+    private KeyCode dashKey = KeyCode.LeftShift;
 
-    public GameObject dashEffect;
+    Vector3 move;
+
+    //private GameObject dashEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -34,62 +36,62 @@ public class PlayerDash : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    public float horizontalSpeed = 2.0F;
-    public float verticalSpeed = 2.0F;
+    //public float horizontalSpeed = 2.0F;
+    //public float verticalSpeed = 2.0F;
 
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            float h = horizontalSpeed * Input.GetAxis("Mouse X");
-            float v = verticalSpeed * Input.GetAxis("Mouse Y");
-            transform.rotation = Quaternion.Euler(h, v, 0);
-        }
-        if (Input.GetKeyDown(dashKey))
+        move = (orientation.right * Input.GetAxis("Horizontal")) +
+          (orientation.forward * Input.GetAxis("Vertical"));
+
+        if (Input.GetKey(dashKey))
             Dash();
 
-        if(dashCdTimer > 0)
-            dashCdTimer -= Time.deltaTime;
+        //if(dashCdTimer > 0)
+        //    dashCdTimer -= Time.deltaTime;
     }
 
 
     public void Dash()
     {
-        if (dashCdTimer > 0) return;
-        else dashCdTimer = dashCd;
-
-        //isDashing = true;
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            float h = horizontalSpeed * Input.GetAxis("Mouse X");
-            float v = verticalSpeed * Input.GetAxis("Mouse Y");
-            transform.rotation = Quaternion.Euler(h, v, 0);
-        }
-
-        rb.velocity = Vector3.zero;
+        //PlayerY = new Vector3(1.1f, transform.position.y);
         //rb.angularVelocity = Vector3.zero;
 
-        Vector3 forceApply = orientation.forward * dashSpeed + orientation.up * dashUpForce;
+        //if (dashTimer > 0) return;
+        //else dashTimer -= Time.deltaTime;
+
+       
+
+        rb.AddForce(move * dashSpeed,ForceMode.Impulse);
+
+        //float h = horizontalSpeed * Input.GetAxis("Mouse X");
+        //float v = verticalSpeed * Input.GetAxis("Mouse Y");
+        //transform.rotation = Quaternion.Euler(h, v, 0);
+
+        //rb.velocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
+
+        //Vector3 forceApply = orientation.forward * dashSpeed + orientation.up * dashUpForce;
 
         //additionalForce = forceApply;
 
         //Invoke(nameof(delayedDash), 0.025f);
         //Invoke(nameof(delayedDash), dashDistance);
 
-       rb.velocity = Vector3.zero;
-       rb.transform.rotation = Quaternion.identity;
-       rb.AddForce(orientation.forward * dashSpeed, ForceMode.Impulse);
+        //rb.velocity = Vector3.zero;
+        //rb.transform.rotation = Quaternion.identity;
+        //rb.AddForce(orientation.forward * dashSpeed, ForceMode.Impulse);
 
-        isDashing = false;
+        //if (dashTimer <= 0)
+        //    isDashing = false;
 
     }
 
-    private Vector3 additionalForce;
+    //private Vector3 additionalForce;
 
-    private void delayedDash()
-    {
-        rb.AddForce(additionalForce, ForceMode.Impulse);
-    }
+    //private void delayedDash()
+    //{
+    //    rb.AddForce(additionalForce, ForceMode.Impulse);
+    //}
 }
