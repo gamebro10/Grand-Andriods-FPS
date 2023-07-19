@@ -43,7 +43,7 @@ public class pistolInteract : MonoBehaviour
     private void Update()
     {
         Vector3 distfromplayer = player.position - transform.position;
-        if (!equiped && distfromplayer.magnitude <= pickupdistance && Input.GetKeyDown(KeyCode.E) && !Maxedslots)
+        if (!equiped && distfromplayer.magnitude <= pickupdistance && Input.GetKeyDown(KeyCode.E) && !Maxedslots && WeaponBehavior.enablePickup)
             Pickup();
 
         if (equiped && Input.GetKeyDown(KeyCode.Q))
@@ -52,10 +52,14 @@ public class pistolInteract : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.F))
         //    StartCoroutine(Melee());
 
-        if (Input.GetKeyDown(KeyCode.F) && equiped)
+        if (Input.GetKeyDown(KeyCode.F) && equiped && !behavior.isShooting)
         {
+            swingsword sword = Sword.GetComponent<swingsword>();
+
             Sword.SetActive(true);
-            // StartCoroutine(sword.quickslash());
+            sword.slashswitch();
+            gameObject.SetActive(false);
+            // Sword.SetActive(false);
         }
 
     }
@@ -64,13 +68,17 @@ public class pistolInteract : MonoBehaviour
     {
         // holder.GetChild(1).gameObject.SetActive(false);
 
-        if (holder.GetChild(0).gameObject.activeInHierarchy)
+        if (holder.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
         {
             holder.GetChild(0).gameObject.SetActive(false);
         }
-        else if (holder.GetChild(1).gameObject.activeInHierarchy)
+        else if (holder.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
         {
             holder.GetChild(1).gameObject.SetActive(false);
+        }
+        else if (holder.GetChild(2).gameObject.activeInHierarchy && transform.childCount >= 3)
+        {
+            holder.GetChild(2).gameObject.SetActive(false);
         }
 
 
@@ -96,7 +104,7 @@ public class pistolInteract : MonoBehaviour
 
 
         behavior.enabled = true;
-
+        holder.GetComponent<Gunholstering>().CurrentWeopon = holder.childCount - 1;
     }
 
     private void Drop()
@@ -120,6 +128,8 @@ public class pistolInteract : MonoBehaviour
         body.AddTorque(new Vector3(spin, spin, spin) * 10);
 
         behavior.enabled = false;
+        holder.GetComponent<Gunholstering>().CurrentWeopon = holder.childCount - 1;
+        holder.GetComponent<Gunholstering>().IDweapon();
     }
 
     IEnumerator Melee()

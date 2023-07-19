@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6235235507548256759}
   - component: {fileID: 3781674179743531288}
-  m_Layer: 0
-  m_Name: GameObject (1)
+  m_Layer: 13
+  m_Name: hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,10 +49,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.028673667, y: 0.024067856, z: 0.010822087}
-  m_Center: {x: -0.004978694, y: -0.0115171205, z: 0.0029714825}
+  m_Size: {x: 0.6329015, y: 1.5779972, z: 1.2603838}
+  m_Center: {x: -0.018749574, y: -0.7884582, z: 0.21961904}
 --- !u!1 &5580679625662814613
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,13 +63,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3015075927952444983}
   - component: {fileID: 2427494424322698243}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3015075927952444983
 Transform:
   m_ObjectHideFlags: 0
@@ -93,7 +93,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5580679625662814613}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -106,7 +106,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3a88293342ffdaf44aa769ae50036f4d, type: 2}
+  - {fileID: 2100000, guid: f24d3699edb5e65428d2213412eb0f55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -211,13 +211,14 @@ GameObject:
   - component: {fileID: 1454082988866664122}
   - component: {fileID: 6083698558846046844}
   - component: {fileID: 8496914406832156405}
-  m_Layer: 0
+  - component: {fileID: 1086958234485617524}
+  m_Layer: 13
   m_Name: cybersword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2877841289599489593
 Transform:
   m_ObjectHideFlags: 0
@@ -227,8 +228,8 @@ Transform:
   m_GameObject: {fileID: 9191674335004531126}
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6235235507548256759}
   - {fileID: 3015075927952444983}
@@ -322,3 +323,23 @@ MonoBehaviour:
   hitbox: {fileID: 4953895618444527280}
   effects: {fileID: 6083698558846046844}
   trail: {fileID: 5580679625662814613}
+  Sword: {fileID: 9191674335004531126}
+  hand: {fileID: 0}
+  swingdmg: 7
+  scripts: {fileID: 0}
+  canSlash: 1
+--- !u!114 &1086958234485617524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9191674335004531126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c79abf52c169f4a84c1dddf7aa2d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slashdelay: 1
+  swingdmg: 7
+  swingspeed: 1

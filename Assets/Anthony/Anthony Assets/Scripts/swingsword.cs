@@ -13,6 +13,8 @@ public class swingsword : MonoBehaviour
     [SerializeField] Transform hand;
     [Range(1, 10)][SerializeField] int swingdmg;
 
+    [SerializeField] Gunholstering scripts;
+    public bool canSlash = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,28 +38,59 @@ public class swingsword : MonoBehaviour
 
     IEnumerator OnEffectPlay()
     {
-        hitbox.SetActive(true);
-        trail.SetActive(true);
-        effects.SetTrigger("attacking");
-        yield return new WaitForSeconds(1f);
-        trail.SetActive(false);
-        hitbox.SetActive(false);
-
-
+        if (canSlash)
+        {
+            scripts.canSwitchWeapons = false;
+            canSlash = false;
+            string[] animations = { "attacking", "quickslash" };
+            hitbox.SetActive(true);
+            trail.SetActive(true);
+            effects.SetTrigger(animations[Random.Range(0, 2)]);
+            yield return new WaitForSeconds(1f);
+            trail.SetActive(false);
+            hitbox.SetActive(false);
+            scripts.canSwitchWeapons = true;
+            canSlash = true;
+            WeaponBehavior.enablePickup = false;
+        }
     }
 
     public IEnumerator quickslash()
     {
-        hitbox.SetActive(true);
-        trail.SetActive(true);
-        //WeaponTurnOff();
+        if (canSlash)
+        {
+            scripts.canSwitchWeapons = false;
+            canSlash = false;
+            hitbox.SetActive(true);
+            trail.SetActive(true);
+            WeaponBehavior.enablePickup = false;
+            //WeaponTurnOff();
 
-        effects.SetTrigger("quickslash");
-        yield return new WaitForSeconds(1.5f);
-        trail.SetActive(false);
-        hitbox.SetActive(false);
+            effects.SetTrigger("attacking");
+            yield return new WaitForSeconds(1.5f);
+            trail.SetActive(false);
+            hitbox.SetActive(false);
+            canSlash = true;
+            WeaponBehavior.enablePickup = false;
+        }
 
         //WeaponTurnOn();
+    }
+
+    public void slashswitch()
+    {
+        StartCoroutine(quickslash());
+        StartCoroutine(SwitchBack());
+    }
+
+    IEnumerator SwitchBack()
+    {
+        yield return new WaitForSeconds(1.1f);
+        scripts.canSwitchWeapons = true;
+        canSlash = true;
+        hand.GetChild(scripts.CurrentWeopon).gameObject.SetActive(true);
+        WeaponBehavior.enablePickup = true;
+        gameObject.SetActive(false);
     }
 
     void WeaponTurnOff()
@@ -66,7 +99,7 @@ public class swingsword : MonoBehaviour
         {
             hand.GetChild(0).gameObject.SetActive(false);
         }
-        else if (hand.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 1)
+        else if (hand.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
         {
             hand.GetChild(1).gameObject.SetActive(false);
 

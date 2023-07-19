@@ -11,7 +11,7 @@ public class PlayerBullet : MonoBehaviour
   
 
     [Header("----- Weapon Stats -----")]
-    [Range(1,10)] [SerializeField] int destroytime;
+    [SerializeField] float destroytime;
     [Range(1,100)] [SerializeField] int speed;
     [Range(1,10)] [SerializeField] int ShootDmg;
 

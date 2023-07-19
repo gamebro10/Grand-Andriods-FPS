@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4055502170837937264}
   - component: {fileID: 3931239613618400679}
+  - component: {fileID: 5015055113718920621}
   - component: {fileID: 3461922851506771372}
   - component: {fileID: 5917234259099613084}
   m_Layer: 0
@@ -175,6 +176,30 @@ MonoBehaviour:
   shotpos: {fileID: 7076966541227434265}
   Amo: {fileID: 3913078690282433628, guid: 07540b5a70a6497458cab2be4301d645, type: 3}
   shootparticle: {fileID: 794095315279316131}
+  isShooting: 0
+--- !u!114 &5015055113718920621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3630999367887235151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becb5fd19cead8846be43c1e6acf2b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behavior: {fileID: 3931239613618400679}
+  body: {fileID: 5917234259099613084}
+  coll: {fileID: 3461922851506771372}
+  player: {fileID: 0}
+  holder: {fileID: 0}
+  cam: {fileID: 0}
+  pickupdistance: 5
+  dropforceforward: 10
+  dropforcebackward: 10
+  Sword: {fileID: 0}
+  equiped: 0
 --- !u!65 &3461922851506771372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -413,14 +438,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6884646710916636930}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.010280819, y: -0.9980367, z: 0.012160406, w: -0.06057406}
+  m_LocalPosition: {x: -0.0066, y: 0.0001, z: -0.0016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2958740775844581122}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.319, y: -186.961, z: -1.261}
 --- !u!1 &7829392850461051979
 GameObject:
   m_ObjectHideFlags: 0

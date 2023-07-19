@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class shootgunbehavior : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public class shootgunbehavior : MonoBehaviour
     [SerializeField] GameObject Amo;
     [SerializeField] ParticleSystem shootparticle;
     [SerializeField] Animator kickbackania;
-    swingsword sword;
+    [SerializeField] Gunholstering hand;
+    [SerializeField] float KnockBackForce;
+    public swingsword sword;
+
     //[SerializeField] List<Gunstats> gunList = new List<Gunstats>();
     // int selectedGun;
     bool isShooting;
@@ -40,9 +44,13 @@ public class shootgunbehavior : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !isShooting)
         {
-            StartCoroutine(Melee());
+            // swingsword sword = Sword.GetComponent<swingsword>();
+
+            sword.gameObject.SetActive(true);
+            sword.slashswitch();
+            gameObject.SetActive(false);
         }
     }
 
@@ -52,22 +60,18 @@ public class shootgunbehavior : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    IEnumerator Melee()
-    {
-        gameObject.SetActive(false);
-        //sword.quickslash();
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(true);
-    }
 
 
     IEnumerator shoot()
     {
+        hand.canSwitchWeapons = false;
         isShooting = true;
 
         //RaycastHit hit;
 
         //Physics.Raycast(, out hit)
+
+        GameManager.Instance.playerMovement.GetRb().AddForce(-UnityEngine.Camera.main.transform.forward * KnockBackForce, ForceMode.Impulse);
 
         if (!shootparticle.isPlaying)
         { shootparticle.Play(); }
@@ -84,5 +88,6 @@ public class shootgunbehavior : MonoBehaviour
 
         yield return new WaitForSeconds(BulletDelay);
         isShooting = false;
+        hand.canSwitchWeapons = true;
     }
 }
