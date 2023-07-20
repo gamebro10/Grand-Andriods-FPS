@@ -238,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if (wallRunning)
             {
-                rb.AddForce(Vector2.up * jumpForce * 0.1f); //vertical jump h when wall running
+                rb.AddForce(Vector2.up * jumpForce * 0.05f); //vertical jump h when wall running
                 rb.AddForce(wallNormalVector * jumpForce * 5.0f); //Horizontal dist when wall running
                 wallRunning = false;
             }
