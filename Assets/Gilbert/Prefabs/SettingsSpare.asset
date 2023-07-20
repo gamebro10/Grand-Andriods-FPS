@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628218441bdf805468b3a5ff2565fe17, type: 3}
   m_Name: SettingsSpare
   m_EditorClassIdentifier: 
-  FOVValue: 0
-  MouseSensValue: 0
-  SFXValue: 0
-  MusicValue: 0
+  FOVValue: 60
+  MouseSensValue: 50
+  SFXValue: 100
+  MusicValue: 100
