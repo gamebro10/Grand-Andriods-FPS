@@ -12,6 +12,8 @@ public class BossScene : MonoBehaviour
     [SerializeField] float ropeScaleSpeed;
     [SerializeField] float headRotateSpeed;
     [SerializeField] int roofLaserDamage;
+    [SerializeField] int maxSnipers;
+    [SerializeField] int maxSoldiers;
     [SerializeField] GameObject craneHead;
     [SerializeField] GameObject platform;
     [SerializeField] GameObject rope;
@@ -22,11 +24,11 @@ public class BossScene : MonoBehaviour
     [SerializeField] GameObject door2;
     [SerializeField] GameObject laser;
     [SerializeField] GameObject laserEffect;
+    [SerializeField] Transform enemyParent;
     [SerializeField] Transform platformStopTopY;
     [SerializeField] Transform platformStopUpperY;
     [SerializeField] Transform platformStopLowerY;
     [SerializeField] Transform[] sniperSpawnPoints;
-    [SerializeField] NavMeshSurface navMesh;
 
     RobotBossAI robotBossAI;
 
@@ -46,9 +48,7 @@ public class BossScene : MonoBehaviour
         GameManager.Instance.bossHealthBar.gameObject.SetActive(true);
         robotBossAI = FindObjectOfType<RobotBossAI>();
 
-
-        InstantiateSnipers();
-        StartCoroutine(ISpawnEnemies());
+        SpawnWave();
     }
 
     // Update is called once per frame
@@ -95,10 +95,10 @@ public class BossScene : MonoBehaviour
 
     IEnumerator IRotatePlatformRight()
     {
-        while (!(craneHead.transform.rotation.eulerAngles.y >= 48))
+        while (!(craneHead.transform.rotation.eulerAngles.y >= 55))
         {
             Vector3 prevPos = platform.transform.position;
-            craneHead.transform.rotation = Quaternion.RotateTowards(craneHead.transform.rotation, Quaternion.Euler(0, 48, 0), Time.deltaTime * headRotateSpeed);
+            craneHead.transform.rotation = Quaternion.RotateTowards(craneHead.transform.rotation, Quaternion.Euler(0, 55, 0), Time.deltaTime * headRotateSpeed);
             Vector3 displacement = platform.transform.position - prevPos;
             GameManager.Instance.playerMovement.GetRb().position += displacement;
             yield return new WaitForFixedUpdate();
@@ -108,10 +108,10 @@ public class BossScene : MonoBehaviour
 
     IEnumerator IRotatePlatformLeft()
     {
-        while (!(craneHead.transform.rotation.eulerAngles.y - 360 <= -48) || craneHead.transform.rotation.y == 0)
+        while (!(craneHead.transform.rotation.eulerAngles.y - 360 <= -55) || craneHead.transform.rotation.y == 0)
         {
             Vector3 prevPos = platform.transform.position;
-            craneHead.transform.rotation = Quaternion.RotateTowards(craneHead.transform.rotation, Quaternion.Euler(0, -48, 0), Time.deltaTime * headRotateSpeed);
+            craneHead.transform.rotation = Quaternion.RotateTowards(craneHead.transform.rotation, Quaternion.Euler(0, -55, 0), Time.deltaTime * headRotateSpeed);
             Vector3 displacement = platform.transform.position - prevPos;
             GameManager.Instance.playerMovement.GetRb().position += displacement;
             yield return new WaitForFixedUpdate();
@@ -180,24 +180,31 @@ public class BossScene : MonoBehaviour
 
     
 
-    void InstantiateSnipers()
+    IEnumerator ISpawnSnipers()
     {
+        Transform sniperParent = enemyParent.Find("Snipers");
         foreach (Transform transform in sniperSpawnPoints)
         {
+            if (sniperParent.childCount >= maxSnipers)
+            {
+                break;
+            }
             int rad = Random.Range(0, 2);
             if (rad == 0)
             {
-                GameObject sniper = Instantiate(sniperPrefab, transform.position, Quaternion.identity);
+                GameObject sniper = Instantiate(sniperPrefab, transform.position, Quaternion.identity, sniperParent);
                 sniper.GetComponent<SniperAI>().TargetToPlayer();
             }
+            yield return new WaitForSeconds(.5f);
         }
     }
 
     IEnumerator ISpawnEnemies()
     {
-        for (int i = 0; i < 10; i++)
+        Transform soldierParent = enemyParent.Find("Soldiers");
+        for (int i = soldierParent.childCount; i < maxSoldiers; i++)
         {
-            Vector3 randomPos = UnityEngine.Random.insideUnitSphere * 150;
+            Vector3 randomPos = UnityEngine.Random.insideUnitSphere * 120;
 
             NavMeshHit hit;
             NavMesh.SamplePosition(randomPos, out hit, 150, 1);
@@ -205,15 +212,23 @@ public class BossScene : MonoBehaviour
             int j = Random.Range(0, 2);
             if (j == 0)
             {
-                Instantiate(soldierPrefab, hit.position, Quaternion.identity);
+                GameObject go = Instantiate(soldierPrefab, hit.position, Quaternion.identity, soldierParent);
+                go.GetComponent<EnemyBase>().TargetToPlayer();
             }
             else
             {
-                Instantiate(dronePrefab, hit.position, Quaternion.identity);
+                GameObject go = Instantiate(dronePrefab, hit.position, Quaternion.identity, soldierParent);
+                go.GetComponent<EnemyBase>().TargetToPlayer();
             }
             yield return new WaitForSeconds(.5f);
         }
         
+    }
+
+    public void SpawnWave()
+    {
+        StartCoroutine(ISpawnSnipers());
+        StartCoroutine(ISpawnEnemies());
     }
 
     public void OpenSecurity(int num)

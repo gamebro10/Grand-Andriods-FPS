@@ -8,6 +8,7 @@ public class SoldierAI : EnemyBase
     [SerializeField] float shootRange;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform firePos;
+    [SerializeField] Animator anime;
 
 
     // Update is called once per frame
@@ -18,6 +19,7 @@ public class SoldierAI : EnemyBase
             return;
         }
         base.Update();
+        anime.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
         if (currentTarget == Player)
         {
             InCombat();

@@ -694,10 +694,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18506bc32811a974f86fa650d3b5b572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceToPlayerSpeed: 10
   roamTime: 2
   roamDistance: 20
   viewAngle: 90
+  faceToPlayerSpeed: 10
   hp: 10
   attackRate: 0.2
   attackCD: 1
@@ -815,6 +815,10 @@ PrefabInstance:
     - target: {fileID: 4001829913946637986, guid: be22df890ccf0ac4c91f2ada91094dfd, type: 3}
       propertyPath: m_Name
       value: EnemyHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 4001829913946637986, guid: be22df890ccf0ac4c91f2ada91094dfd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4818602350149017555, guid: be22df890ccf0ac4c91f2ada91094dfd, type: 3}
       propertyPath: m_Pivot.x
