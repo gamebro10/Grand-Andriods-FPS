@@ -42,14 +42,6 @@ public class WeaponBehavior : MonoBehaviour
         }
     }
 
-    IEnumerator Quickslash() 
-    {
-        
-
-        yield return new WaitForSeconds(.1f);
-    }
-
-    
 
     IEnumerator shoot()
     {

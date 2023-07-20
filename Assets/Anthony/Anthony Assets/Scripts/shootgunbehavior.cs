@@ -25,7 +25,9 @@ public class shootgunbehavior : MonoBehaviour
 
     //[SerializeField] List<Gunstats> gunList = new List<Gunstats>();
     // int selectedGun;
-    bool isShooting;
+    public bool isShooting;
+    public static bool enablePickup = true;
+
 
 
     // Start is called before the first frame update
