@@ -40,6 +40,7 @@ public class swingsword : MonoBehaviour
     {
         if (canSlash)
         {
+            WeaponBehavior.enablePickup = false;
             scripts.canSwitchWeapons = false;
             canSlash = false;
             string[] animations = { "attacking", "quickslash" };
@@ -51,7 +52,7 @@ public class swingsword : MonoBehaviour
             hitbox.SetActive(false);
             scripts.canSwitchWeapons = true;
             canSlash = true;
-            WeaponBehavior.enablePickup = false;
+            WeaponBehavior.enablePickup = true;
         }
     }
 
@@ -71,7 +72,7 @@ public class swingsword : MonoBehaviour
             trail.SetActive(false);
             hitbox.SetActive(false);
             canSlash = true;
-            WeaponBehavior.enablePickup = false;
+            WeaponBehavior.enablePickup = true;
         }
 
         //WeaponTurnOn();
@@ -139,7 +140,7 @@ public class swingsword : MonoBehaviour
      
              IDamage damageable = other.GetComponent<IDamage>();
      
-             if (damageable != null && !other.CompareTag("Player"))
+             if (damageable != null/* && other.CompareTag("Enemy")*/)
              {
                  damageable.OnTakeDamage(swingdmg);
              }
