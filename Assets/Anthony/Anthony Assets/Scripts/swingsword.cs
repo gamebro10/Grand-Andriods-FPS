@@ -43,10 +43,10 @@ public class swingsword : MonoBehaviour
             scripts.canSwitchWeapons = false;
             canSlash = false;
             WeaponBehavior.enablePickup = false;
-            string[] animations = { "attacking", "quickslash" };
+            string[] animations = { "attacking", "quickslash", "forwardslash"};
             hitbox.SetActive(true);
             trail.SetActive(true);
-            effects.SetTrigger(animations[Random.Range(0, 2)]);
+            effects.SetTrigger(animations[Random.Range(0, 3)]);
             yield return new WaitForSeconds(1f);
             trail.SetActive(false);
             hitbox.SetActive(false);
@@ -66,9 +66,9 @@ public class swingsword : MonoBehaviour
             trail.SetActive(true);
             WeaponBehavior.enablePickup = false;
             //WeaponTurnOff();
-
-            effects.SetTrigger("attacking");
-            yield return new WaitForSeconds(1.5f);
+            string[] animations = { "attacking", "forwardslash" };
+            effects.SetTrigger(animations[Random.Range(0, 2)]);
+            yield return new WaitForSeconds(1.3f);
             trail.SetActive(false);
             hitbox.SetActive(false);
             canSlash = true;
