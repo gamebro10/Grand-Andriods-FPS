@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Mason/Scene/LevelTwo.unity
     guid: 0e6fc3eda19b47f4f9a298d425e052d7
+  - enabled: 1
+    path: Assets/Zeyuan/TestScene_Zeyuan/TestScene_Zeyuan.unity
+    guid: 29e25475bee27d040a6ea6047fe76591
   m_configObjects: {}
