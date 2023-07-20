@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -29,6 +31,7 @@ public class BossScene : MonoBehaviour
     [SerializeField] GameObject damageArea;
     [SerializeField] GameObject camBlackBar;
     [SerializeField] GameObject thumbsUp;
+    [SerializeField] GameObject memberList;
     [SerializeField] Transform enemyParent;
     [SerializeField] Transform platformStopTopY;
     [SerializeField] Transform platformStopUpperY;
@@ -258,6 +261,13 @@ public class BossScene : MonoBehaviour
 
     IEnumerator IEnableLaser()
     {
+        foreach (Transform tran in enemyParent)
+        {
+            foreach (Transform enemy in tran)
+            {
+                enemy.GetComponent<EnemyBase>().enabled = false;
+            }
+        }
         laserEffect.SetActive(true);
         StartCoroutine(DoCameraAnimation());
         yield return new WaitForSeconds(4f);
@@ -268,6 +278,7 @@ public class BossScene : MonoBehaviour
         Material mt = laser.GetComponent<Renderer>().material;
         float timer = 5f;
         damageArea.transform.position += new Vector3(0, 0.75f, 0);
+        
         while (laser.transform.localScale.x > 5f)
         {
             mt.mainTextureOffset = new Vector2(mt.mainTextureOffset.x, mt.mainTextureOffset.y - Time.deltaTime * .4f);
@@ -299,6 +310,20 @@ public class BossScene : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        TextMeshProUGUI text = Instantiate(memberList, GameManager.Instance.transform).transform.Find("List").GetComponent<TextMeshProUGUI>();
+        while (text.color.a <= 1)
+        {
+            text.color += new Color(0, 0, 0, Time.deltaTime) * 10f;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(2f);
+        while (text.color.a >= 0)
+        {
+            text.color -= new Color(0, 0, 0, Time.deltaTime) * 40f;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(0);
 
     }
 

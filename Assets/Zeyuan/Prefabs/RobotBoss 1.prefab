@@ -280,8 +280,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9409355, y: 23.680212, z: 1.4162453}
-  m_Center: {x: -0.47046715, y: -9.550103, z: 0.2081224}
+  m_Size: {x: 1.9409355, y: 24.271093, z: 1.7720778}
+  m_Center: {x: -0.47046718, y: -9.2546625, z: 0.030206203}
 --- !u!1 &1928165537060204304
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +450,7 @@ MonoBehaviour:
   - {fileID: 6121497579199104534}
   - {fileID: 1676200976334663920}
   - {fileID: 181993702468358999}
+  damageMultiplier: 1
 --- !u!136 &3677998705207368978
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -465,7 +466,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -692,7 +693,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -713,6 +714,7 @@ MonoBehaviour:
   bossAI: {fileID: 8105260655814775152}
   renderers:
   - {fileID: 5270685920947425855}
+  damageMultiplier: 2
 --- !u!1 &2192594407409804016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1071,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1093,6 +1095,7 @@ MonoBehaviour:
   renderers:
   - {fileID: 5398069421154730560}
   - {fileID: 4508010869194385765}
+  damageMultiplier: 1
 --- !u!1 &3174434192662341800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,8 +1231,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 14.481649, z: 1}
+  m_Center: {x: 0, y: -6.740773, z: 0.0000000011731882}
 --- !u!1 &3356575308351513214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,7 +1304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3691286763645009735
 Transform:
   m_ObjectHideFlags: 0
@@ -1310,7 +1313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3460338946746178102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.82, y: 23.38, z: 7.15}
+  m_LocalPosition: {x: 9.82, y: 16.36, z: -0.39}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1386,8 +1389,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 18.955639, z: 1}
+  m_Center: {x: 0, y: -8.977819, z: 0}
 --- !u!1 &4077109006346107460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,6 +1535,7 @@ MonoBehaviour:
   - {fileID: 3724847223647276722}
   - {fileID: 24718115980980412}
   - {fileID: 6127097623916841016}
+  damageMultiplier: 0.5
 --- !u!136 &8190772433721083932
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1547,7 +1551,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2009,7 +2013,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2030,6 +2034,7 @@ MonoBehaviour:
   bossAI: {fileID: 8105260655814775152}
   renderers:
   - {fileID: 850465975996337095}
+  damageMultiplier: 1
 --- !u!1 &6386202883180219247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,7 +2196,7 @@ MonoBehaviour:
   roamDistance: -1
   viewAngle: -1
   faceToPlayerSpeed: 1.2
-  hp: 200
+  hp: 1000
   attackRate: -1
   attackCD: -1
   stoppingDistance: -1
@@ -2306,6 +2311,7 @@ MonoBehaviour:
   bossAI: {fileID: 8105260655814775152}
   renderers:
   - {fileID: 2956562068436326251}
+  damageMultiplier: 1
 --- !u!136 &5545942856152651441
 CapsuleCollider:
   m_ObjectHideFlags: 0

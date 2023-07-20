@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battery : Interactable
+public class Battery : MonoBehaviour
 {
     float floatAmount;
     // Start is called before the first frame update
@@ -20,16 +20,10 @@ public class Battery : Interactable
             floatAmount += Time.deltaTime * 4;
             transform.position += new Vector3(0, pos, 0);
             transform.Rotate(new Vector3(0, Time.deltaTime, 0) * 40, Space.World);
-
-            CheckInteraction();
-            if (Input.GetKeyDown(KeyCode.E) && canInteract)
-            {
-                OnInteract();
-            }
         }
     }
 
-    protected override void OnInteract()
+    private void OnTriggerEnter(Collider other)
     {
         GameManager.Instance.statePaused();
         GameManager.Instance.activeMenu = GameManager.Instance.winMenu;

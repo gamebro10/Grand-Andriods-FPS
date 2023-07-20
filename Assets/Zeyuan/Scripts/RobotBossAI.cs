@@ -80,7 +80,7 @@ public class RobotBossAI : EnemyBase
         }
     }
 
-    public void OnTakeDamage(int amount, Renderer[] renderers = null)
+    public void OnTakeDamage(float amount, Renderer[] renderers = null)
     {
         if (canTakeDamage)
         {
@@ -92,38 +92,30 @@ public class RobotBossAI : EnemyBase
                 StartCoroutine(IFlashMaterial(renderers));
             }
 
-            //if (tempHp >= maxHp * 0.75 && hp < maxHp * 0.75)
-            //{
-            //    shouldCannon = true;
-            //    loc = true;
-            //    hp = maxHp * 0.749f;
-            //    phase++;
-            //    BossScene.Instance.OpenSecurity(1);
-            //}
-
-            //if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
-            //{
-            //    shouldCannon = true;
-            //    loc = true;
-            //    hp = maxHp * 0.499f;
-            //    phase++;
-            //    BossScene.Instance.OpenSecurity(2);
-            //}
-
-            //if (tempHp >= maxHp * 0.25 && hp < maxHp * 0.25)
-            //{
-            //    shouldCannon = true;
-            //    loc = true;
-            //    hp = maxHp * 0.249f;
-            //    phase++;
-            //}
-
-            if (tempHp >= maxHp * 0.75 && hp < maxHp * 0.75)
+            if (tempHp >= maxHp * 0.83 && hp < maxHp * 0.83)
             {
                 shouldCannon = true;
                 loc = true;
-                hp = maxHp * 0.749f;
-                phase = 3;
+                hp = maxHp * 0.829f;
+                phase++;
+                BossScene.Instance.OpenSecurity(1);
+            }
+
+            if (tempHp >= maxHp * 0.67 && hp < maxHp * 0.67)
+            {
+                shouldCannon = true;
+                loc = true;
+                hp = maxHp * 0.669f;
+                phase++;
+                BossScene.Instance.OpenSecurity(2);
+            }
+
+            if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
+            {
+                shouldCannon = true;
+                loc = true;
+                hp = maxHp * 0.499f;
+                phase++;
             }
 
             bossHealthBar.FillHealthBar(hp / maxHp);
