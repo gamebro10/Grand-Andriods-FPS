@@ -53,6 +53,7 @@ public class PlayerScript : MonoBehaviour, IDamage
     {
        //GameManager.Instance.playerMovement.enabled = false;
         GameManager.Instance.playerMovement.GetRb().MovePosition(GameManager.Instance.playerSpawnPos.transform.position);
+        GameManager.Instance.playerMovement.GetRb().MoveRotation(GameManager.Instance.playerSpawnPos.transform.rotation);
         GameManager.Instance.playerMovement.enabled = true;
         playerHP = HPOrig;
         GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;

@@ -2551,7 +2551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: -1
   destroyTimer: -1
-  damage: 10
+  damage: 1
   laserDotRate: 0.2
 --- !u!136 &9151601228846221338
 CapsuleCollider:

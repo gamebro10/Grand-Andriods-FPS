@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdaf5478d723ee4db2c293c52f577b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
   flySpeed: 40
   rotateSpeed: 4
   lifeTime: 10
