@@ -25,6 +25,10 @@ public class WeaponBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (hand == null)
+        {
+            hand = FindObjectOfType<Gunholstering>();
+        }
     }
 
     // Update is called once per frame

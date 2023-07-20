@@ -6802,7 +6802,7 @@ Transform:
   - {fileID: 5531304173279382044}
   - {fileID: 4081902094162106016}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: -98.136, z: -4.647}
 --- !u!114 &9205554496011867855
 MonoBehaviour:
@@ -6823,6 +6823,7 @@ MonoBehaviour:
   shotpos: {fileID: 4081902094162106016}
   Amo: {fileID: 33029834446647523, guid: d92d82fff4f88534196da0d089325387, type: 3}
   shootparticle: {fileID: 896380932622591203}
+  hand: {fileID: 0}
   isShooting: 0
 --- !u!65 &7394468400428858375
 BoxCollider:

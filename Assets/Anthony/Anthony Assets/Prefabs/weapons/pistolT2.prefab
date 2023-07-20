@@ -155,7 +155,7 @@ Transform:
   - {fileID: 7958188789672947788}
   - {fileID: 7106236251628788939}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -3.223}
 --- !u!114 &3931239613618400679
 MonoBehaviour:
@@ -176,6 +176,7 @@ MonoBehaviour:
   shotpos: {fileID: 7076966541227434265}
   Amo: {fileID: 3913078690282433628, guid: 07540b5a70a6497458cab2be4301d645, type: 3}
   shootparticle: {fileID: 794095315279316131}
+  hand: {fileID: 0}
   isShooting: 0
 --- !u!114 &5015055113718920621
 MonoBehaviour:
