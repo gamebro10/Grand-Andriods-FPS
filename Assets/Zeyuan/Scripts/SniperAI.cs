@@ -10,6 +10,7 @@ public class SniperAI : EnemyBase
     [SerializeField] GameObject bullet;
     [SerializeField] Transform firePos;
     [SerializeField] LineRenderer laser;
+    [SerializeField] Animator anime;
 
     bool showLaser;
 
@@ -21,6 +22,7 @@ public class SniperAI : EnemyBase
             return;
         }
         base.Update();
+        anime.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
         if (currentTarget == Player)
         {
             InCombat();

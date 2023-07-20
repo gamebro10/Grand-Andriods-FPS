@@ -19,8 +19,8 @@ public class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] protected LayerMask layerMask;
     [SerializeField] protected Renderer[] renderers;
     [SerializeField] protected Color flashColor;
-    [SerializeField] protected Image healthBar;
-    [SerializeField] protected Image lerpHealthBar;
+    //[SerializeField] protected Image healthBar;
+    //[SerializeField] protected Image lerpHealthBar;
     [SerializeField] protected Renderer spawnEffect;
 
     protected float angleToPlayer;
@@ -39,10 +39,10 @@ public class EnemyBase : MonoBehaviour, IDamage
     protected GameObject Player;
 
     float maxHealth;
-    float lerpTimer;
-    float lerpValue;
-    float lerpHealthAmount;
-    float lerpGoal;
+    //float lerpTimer;
+    //float lerpValue;
+    //float lerpHealthAmount;
+    //float lerpGoal;
 
     bool addingUpLerpAmount;
     bool startLerping;
@@ -62,7 +62,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     protected virtual void Update()
     {
         playerDir = Player.transform.position - transform.position;
-        LerpHealthBar();
+        //LerpHealthBar();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -89,8 +89,8 @@ public class EnemyBase : MonoBehaviour, IDamage
             GameManager.Instance.updateEnemy(-1);
             Destroy(gameObject);
         }
-        healthBar.fillAmount = hp / maxHealth;
-        StartCoroutine(ILerpHealthBar(amount));
+        //healthBar.fillAmount = hp / maxHealth;
+        //StartCoroutine(ILerpHealthBar(amount));
         if (renderers.Length > 0 && canChangeColor)
         {
             StartCoroutine(IFlashMaterial(renderers));
@@ -248,36 +248,36 @@ public class EnemyBase : MonoBehaviour, IDamage
         
     }
 
-    IEnumerator ILerpHealthBar(float amount)
-    {
-        lerpTimer = .5f;
-        if (!addingUpLerpAmount)
-        {
-            lerpValue = 0f;
-            addingUpLerpAmount = true;
-            yield return new WaitForSeconds(lerpTimer);
-            lerpGoal = healthBar.fillAmount;
-            lerpHealthAmount = lerpHealthBar.fillAmount;
-            lerpTimer = 0f;
-            addingUpLerpAmount = false;
-            startLerping = true;
-        }
+    //IEnumerator ILerpHealthBar(float amount)
+    //{
+    //    lerpTimer = .5f;
+    //    if (!addingUpLerpAmount)
+    //    {
+    //        lerpValue = 0f;
+    //        addingUpLerpAmount = true;
+    //        yield return new WaitForSeconds(lerpTimer);
+    //        lerpGoal = healthBar.fillAmount;
+    //        lerpHealthAmount = lerpHealthBar.fillAmount;
+    //        lerpTimer = 0f;
+    //        addingUpLerpAmount = false;
+    //        startLerping = true;
+    //    }
         
-    }
+    //}
 
-    void LerpHealthBar()
-    {
-        if (startLerping)
-        {
-            float lerpAmont = Mathf.Lerp(lerpHealthAmount, lerpGoal, lerpValue);
-            lerpHealthBar.fillAmount = lerpAmont;
-            lerpValue += Time.deltaTime * healthLerpSpeed; 
-            if (lerpHealthBar.fillAmount <= lerpGoal)
-            {
-                startLerping = false;
-            }
-        }
-    }
+    //void LerpHealthBar()
+    //{
+    //    if (startLerping)
+    //    {
+    //        float lerpAmont = Mathf.Lerp(lerpHealthAmount, lerpGoal, lerpValue);
+    //        lerpHealthBar.fillAmount = lerpAmont;
+    //        lerpValue += Time.deltaTime * healthLerpSpeed; 
+    //        if (lerpHealthBar.fillAmount <= lerpGoal)
+    //        {
+    //            startLerping = false;
+    //        }
+    //    }
+    //}
 
     protected float GetAngleToPlayer()
     {

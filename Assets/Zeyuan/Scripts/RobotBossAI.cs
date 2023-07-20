@@ -70,6 +70,13 @@ public class RobotBossAI : EnemyBase
                 FaceToPlayer();
             }
             InCombat();
+
+            //temp codes
+            if (Input.GetKeyDown(KeyCode.Backslash))
+            {
+                OnTakeDamage(10);
+            }
+            //----
         }
     }
 
