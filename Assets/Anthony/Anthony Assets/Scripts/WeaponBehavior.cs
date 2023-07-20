@@ -15,6 +15,7 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] Transform shotpos;
     [SerializeField] GameObject Amo;
     [SerializeField] ParticleSystem shootparticle;
+    [SerializeField] Gunholstering hand;
     //[SerializeField] List<Gunstats> gunList = new List<Gunstats>();
    // int selectedGun;
     public bool isShooting;
@@ -49,6 +50,8 @@ public class WeaponBehavior : MonoBehaviour
     IEnumerator shoot()
     {
         isShooting = true;
+        hand.canSwitchWeapons = false;
+        WeaponBehavior.enablePickup = false;
         //RaycastHit hit;
         //Ray ray = (Physics.Raycast(Camera, out hit, ShootDistance));
 
@@ -63,6 +66,8 @@ public class WeaponBehavior : MonoBehaviour
 
         yield return new WaitForSeconds(BulletDelay);
         isShooting = false;
+        hand.canSwitchWeapons = true;
+        WeaponBehavior.enablePickup = true;
     }
     //public void GunPickup(Gunstats weaponstats)
     //{

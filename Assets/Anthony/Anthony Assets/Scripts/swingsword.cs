@@ -42,6 +42,7 @@ public class swingsword : MonoBehaviour
         {
             scripts.canSwitchWeapons = false;
             canSlash = false;
+            WeaponBehavior.enablePickup = false;
             string[] animations = { "attacking", "quickslash" };
             hitbox.SetActive(true);
             trail.SetActive(true);
@@ -51,7 +52,7 @@ public class swingsword : MonoBehaviour
             hitbox.SetActive(false);
             scripts.canSwitchWeapons = true;
             canSlash = true;
-            WeaponBehavior.enablePickup = false;
+            WeaponBehavior.enablePickup = true;
         }
     }
 
@@ -71,7 +72,7 @@ public class swingsword : MonoBehaviour
             trail.SetActive(false);
             hitbox.SetActive(false);
             canSlash = true;
-            WeaponBehavior.enablePickup = false;
+            WeaponBehavior.enablePickup = true;
         }
 
         //WeaponTurnOn();

@@ -65,6 +65,7 @@ public class shootgunbehavior : MonoBehaviour
     IEnumerator shoot()
     {
         hand.canSwitchWeapons = false;
+        WeaponBehavior.enablePickup = false;
         isShooting = true;
 
         //RaycastHit hit;
@@ -89,5 +90,6 @@ public class shootgunbehavior : MonoBehaviour
         yield return new WaitForSeconds(BulletDelay);
         isShooting = false;
         hand.canSwitchWeapons = true;
+        WeaponBehavior.enablePickup = true;
     }
 }
