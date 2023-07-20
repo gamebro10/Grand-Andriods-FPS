@@ -22,7 +22,6 @@ public class HeadbobSystem : MonoBehaviour
     {
         if (!GameManager.Instance.playerMovement.crouching && GameManager.Instance.playerMovement.grounded)
         {
-            Debug.Log("bobbing");
             CheckForHeadbobTrigger();
             StopHeadbob();
         }
