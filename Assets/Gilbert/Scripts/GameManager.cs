@@ -162,12 +162,12 @@ public class GameManager : MonoBehaviour
     {
         enemiesRemaining += amount;
         enemiesRemainingText.text = enemiesRemaining.ToString();
-        if (enemiesRemaining <= 0) 
-        {
-            statePaused();
-            activeMenu = winMenu;
-            activeMenu.SetActive(true);
-        }
+        //if (enemiesRemaining <= 0) 
+        //{
+        //    statePaused();
+        //    activeMenu = winMenu;
+        //    activeMenu.SetActive(true);
+        //}
 
     }
 
