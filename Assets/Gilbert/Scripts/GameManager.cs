@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     //public int CameraFOV;
     int enemiesRemaining;
+    int batteriesRemaining;
     public bool isPaused;
     float timescaleOrig;
 
@@ -158,10 +159,10 @@ public class GameManager : MonoBehaviour
        
      }
 
-        public void updateEnemy(int amount)
+    public void updateEnemy(int amount)
     {
-        enemiesRemaining += amount;
-        enemiesRemainingText.text = enemiesRemaining.ToString();
+        batteriesRemaining += amount;
+        enemiesRemainingText.text = batteriesRemaining.ToString();
         //if (enemiesRemaining <= 0) 
         //{
         //    statePaused();
