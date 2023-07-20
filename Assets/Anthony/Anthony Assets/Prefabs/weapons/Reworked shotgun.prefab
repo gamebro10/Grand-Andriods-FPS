@@ -116,7 +116,7 @@ MonoBehaviour:
   kickbackania: {fileID: 6256508492353320031}
   hand: {fileID: 0}
   KnockBackForce: 40
-  sword: {fileID: 0}
+  sword: {fileID: 8496914406832156405, guid: ed2c9288cefc9994bbb8d8fb9dce07da, type: 3}
 --- !u!1 &4258726250528542214
 GameObject:
   m_ObjectHideFlags: 0
