@@ -631,17 +631,13 @@ PrefabInstance:
       propertyPath: registeredEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 449821483}
-    - target: {fileID: 1381027463739465878, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2290127562564201709, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5065148422646577649, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
       propertyPath: m_Name
       value: TestScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420576254363518737, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
+      propertyPath: battery
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9024452611861946528, guid: 6dbab88ce765bc9439dd820738aa37a1, type: 3}
       propertyPath: m_RootOrder
@@ -768,7 +764,6 @@ MonoBehaviour:
   runSpeed: 20
   grounded: 0
   onWall: 0
-  crouching: 0
   currentSpeed: {fileID: 9139736072584830316}
   airLines: {fileID: 3816718640350279888}
   sensitivity: 50
@@ -18250,7 +18245,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2990443760899567512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.5, y: 242.2, z: -131}
+  m_LocalPosition: {x: 0, y: 1, z: 95.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

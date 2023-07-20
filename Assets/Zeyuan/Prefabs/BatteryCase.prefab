@@ -844,7 +844,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4096
-  battery: {fileID: 2283917623252704773}
+  battery: {fileID: 0}
   handle: {fileID: 6511300477063545386}
   wire: {fileID: 0}
   batteryLight: {fileID: 1928865871207912591}

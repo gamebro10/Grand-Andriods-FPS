@@ -5,8 +5,6 @@ using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class BossScene : MonoBehaviour
 {
@@ -26,9 +24,6 @@ public class BossScene : MonoBehaviour
     [SerializeField] GameObject door2;
     [SerializeField] GameObject laser;
     [SerializeField] GameObject laserEffect;
-    [SerializeField] GameObject damageArea;
-    [SerializeField] GameObject camBlackBar;
-    [SerializeField] GameObject thumbsUp;
     [SerializeField] Transform enemyParent;
     [SerializeField] Transform platformStopTopY;
     [SerializeField] Transform platformStopUpperY;
@@ -259,15 +254,12 @@ public class BossScene : MonoBehaviour
     IEnumerator IEnableLaser()
     {
         laserEffect.SetActive(true);
-        StartCoroutine(DoCameraAnimation());
         yield return new WaitForSeconds(4f);
         laserEffect.SetActive(false);
         laser.SetActive(true);
-        thumbsUp.SetActive(true);
         StartCoroutine(IKillBossWithLaser());
         Material mt = laser.GetComponent<Renderer>().material;
         float timer = 5f;
-        damageArea.transform.position += new Vector3(0, 0.75f, 0);
         while (laser.transform.localScale.x > 5f)
         {
             mt.mainTextureOffset = new Vector2(mt.mainTextureOffset.x, mt.mainTextureOffset.y - Time.deltaTime * .4f);
@@ -280,75 +272,6 @@ public class BossScene : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         laser.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        Transform go = GameManager.Instance.transform.GetChild(0);
-        Transform up = go.transform.GetChild(0);
-        Transform down = go.transform.GetChild(1);
-        timer = 1.5f;
-        float timer2 = 2f;
-        while (timer2 >= 0)
-        {
-            thumbsUp.transform.position -= new Vector3(0, Time.deltaTime, 0) * 10;
-            timer -= Time.deltaTime;
-            timer2 -= Time.deltaTime;
-            if (timer <= 0)
-            {
-                up.localScale += new Vector3(0, Time.deltaTime, 0) * 15;
-                down.localScale += new Vector3(0, Time.deltaTime, 0) * 15;
-            }
-            yield return new WaitForEndOfFrame();
-        }
-
-
-    }
-
-    IEnumerator DoCameraAnimation()
-    {
-        GameManager.Instance.playerScript.enabled = false;
-        GameManager.Instance.playerMovement.enabled = false;
-        
-        UnityEngine.Camera cam = UnityEngine.Camera.main;
-        foreach (Transform child in cam.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        foreach (Transform child in GameManager.Instance.transform)
-        {
-            if (child.name != "BossHealthBar" && child.name != "EventSystem")
-            {
-                child.gameObject.SetActive(false);
-            }
-        }
-        GameObject go = Instantiate(camBlackBar, GameManager.Instance.transform);
-        go.transform.SetSiblingIndex(0);
-        RectTransform up = go.transform.GetChild(0).GetComponent<RectTransform>();
-        RectTransform down = go.transform.GetChild(1).GetComponent<RectTransform>();
-
-        Vector3 destinationPos = new Vector3(0, 120, -60);
-        Quaternion destinationRot = Quaternion.Euler(new Vector3(-75, 0, 0));
-        StartCoroutine(CamLookDown());
-        while (cam.transform.rotation != destinationRot || cam.transform.position != destinationPos)
-        {
-            up.anchoredPosition = Vector2.MoveTowards(up.anchoredPosition, new Vector2(0, 550), Time.deltaTime * 200);
-            down.anchoredPosition = Vector2.MoveTowards(down.anchoredPosition, new Vector2(0, -550), Time.deltaTime * 200);
-            cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, destinationRot, Time.deltaTime * 100);
-            cam.transform.position = Vector3.MoveTowards(cam.transform.position, destinationPos, Time.deltaTime * 100);
-            yield return new WaitForEndOfFrame();
-        }
-        
-    }
-
-    IEnumerator CamLookDown()
-    {
-        yield return new WaitForSeconds(3.7f);
-        StopCoroutine(DoCameraAnimation());
-        UnityEngine.Camera cam = UnityEngine.Camera.main;
-        Quaternion destinationRot2 = Quaternion.Euler(new Vector3(60, 0, 0));
-        while (cam.transform.rotation != destinationRot2)
-        {
-            cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, destinationRot2, Time.deltaTime * 300);
-            yield return new WaitForEndOfFrame();
-        }
     }
 
     IEnumerator IKillBossWithLaser()
