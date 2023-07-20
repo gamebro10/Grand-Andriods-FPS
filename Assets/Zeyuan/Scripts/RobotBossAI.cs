@@ -91,31 +91,39 @@ public class RobotBossAI : EnemyBase
             {
                 StartCoroutine(IFlashMaterial(renderers));
             }
-            
+
+            //if (tempHp >= maxHp * 0.75 && hp < maxHp * 0.75)
+            //{
+            //    shouldCannon = true;
+            //    loc = true;
+            //    hp = maxHp * 0.749f;
+            //    phase++;
+            //    BossScene.Instance.OpenSecurity(1);
+            //}
+
+            //if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
+            //{
+            //    shouldCannon = true;
+            //    loc = true;
+            //    hp = maxHp * 0.499f;
+            //    phase++;
+            //    BossScene.Instance.OpenSecurity(2);
+            //}
+
+            //if (tempHp >= maxHp * 0.25 && hp < maxHp * 0.25)
+            //{
+            //    shouldCannon = true;
+            //    loc = true;
+            //    hp = maxHp * 0.249f;
+            //    phase++;
+            //}
+
             if (tempHp >= maxHp * 0.75 && hp < maxHp * 0.75)
             {
                 shouldCannon = true;
                 loc = true;
                 hp = maxHp * 0.749f;
-                phase++;
-                BossScene.Instance.OpenSecurity(1);
-            }
-
-            if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
-            {
-                shouldCannon = true;
-                loc = true;
-                hp = maxHp * 0.499f;
-                phase++;
-                BossScene.Instance.OpenSecurity(2);
-            }
-
-            if (tempHp >= maxHp * 0.25 && hp < maxHp * 0.25)
-            {
-                shouldCannon = true;
-                loc = true;
-                hp = maxHp * 0.249f;
-                phase++;
+                phase = 3;
             }
 
             bossHealthBar.FillHealthBar(hp / maxHp);
@@ -127,6 +135,7 @@ public class RobotBossAI : EnemyBase
             if (hp <= 0)
             {
                 GameManager.Instance.updateEnemy(-1);
+                GameManager.Instance.bossHealthBar.gameObject.SetActive(false);
                 Destroy(gameObject);
             }
             
