@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
    // [SerializeField] public int playerHP;
     public bool grounded;
     public bool onWall;
+    public bool crouching;
     [SerializeField] private TextMeshProUGUI currentSpeed;
     public ParticleSystem airLines; // reference to the air lines GameObject
     public float sensitivity; // camera senstivity
@@ -49,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
     private bool readyToJump;
     private bool jumping;
     private bool sprinting;
-    private bool crouching;
     private bool wallRunning;
     private bool cancelling;
     private bool readyToWallrun = true;

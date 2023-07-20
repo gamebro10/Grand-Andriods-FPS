@@ -20,10 +20,12 @@ public class HeadbobSystem : MonoBehaviour
 
     void Update()
     {
-
-        CheckForHeadbobTrigger();
-        StopHeadbob();
-
+        if (!GameManager.Instance.playerMovement.crouching && GameManager.Instance.playerMovement.grounded)
+        {
+            Debug.Log("bobbing");
+            CheckForHeadbobTrigger();
+            StopHeadbob();
+        }
     }
 
     private void CheckForHeadbobTrigger()
