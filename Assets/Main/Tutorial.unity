@@ -750,6 +750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hand
       objectReference: {fileID: 0}
+    - target: {fileID: 5899649100453686875, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7705488897315942749, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -805,7 +809,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5899649100453686875, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1324183413}
   m_SourcePrefab: {fileID: 100100000, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
 --- !u!1001 &445739620
 PrefabInstance:
@@ -2488,6 +2495,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 279192124cc8b28439e24826730c7259, type: 3}
+--- !u!1 &1324183410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5899649100453686875, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  m_PrefabInstance: {fileID: 414450414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1324183413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324183410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2970c6dc319d224f9bac0f496d31dc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swingdmg: 7
 --- !u!1 &1395097895
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,9 +2952,6 @@ PrefabInstance:
     - target: {fileID: 793308278608803597, guid: 8d647d75e9fcf644c8e213cfdea5abcb, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-      propertyPath: m_Color.g
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6970135488644393265, guid: 8d647d75e9fcf644c8e213cfdea5abcb, type: 3}
       propertyPath: m_Color.r

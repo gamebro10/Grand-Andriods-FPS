@@ -710,8 +710,6 @@ MonoBehaviour:
   renderers:
   - {fileID: 537952322334080591}
   flashColor: {r: 1, g: 0.4667279, b: 0, a: 1}
-  healthBar: {fileID: 811157722194956452}
-  lerpHealthBar: {fileID: 4487409862992662424}
   spawnEffect: {fileID: 3173801170630053425}
   currentTarget: {fileID: 0}
   floatingSpeed: 8
@@ -909,30 +907,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be22df890ccf0ac4c91f2ada91094dfd, type: 3}
---- !u!114 &811157722194956452 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7358423947260025883, guid: be22df890ccf0ac4c91f2ada91094dfd, type: 3}
-  m_PrefabInstance: {fileID: 7881176415114595519}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &3422891296781046636 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4818602350149017555, guid: be22df890ccf0ac4c91f2ada91094dfd, type: 3}
   m_PrefabInstance: {fileID: 7881176415114595519}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4487409862992662424 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5988075907428156199, guid: be22df890ccf0ac4c91f2ada91094dfd, type: 3}
-  m_PrefabInstance: {fileID: 7881176415114595519}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
