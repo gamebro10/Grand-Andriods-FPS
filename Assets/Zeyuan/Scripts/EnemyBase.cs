@@ -49,7 +49,7 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     protected virtual void Start()
     {
-        GameManager.Instance.updateEnemy(1);flashColor = flashColor * Mathf.LinearToGammaSpace(50f);
+       flashColor = flashColor * Mathf.LinearToGammaSpace(50f);
         startingPosition = transform.position;
         Player = GameManager.Instance.player;
         maxHealth = hp;

@@ -45,7 +45,7 @@ RectTransform:
   - {fileID: 708799371652711857}
   - {fileID: 5487876386858248467}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7339374, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -397,6 +397,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7233992920923836}
     m_Modifications:
+    - target: {fileID: 939321900359492237, guid: 3c57388571a41e740b5cf5a9dbe1a9e5, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763980348204457969, guid: 3c57388571a41e740b5cf5a9dbe1a9e5, type: 3}
+      propertyPath: m_text
+      value: Batteries Remaining
+      objectReference: {fileID: 0}
     - target: {fileID: 5262426821785934501, guid: 3c57388571a41e740b5cf5a9dbe1a9e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
