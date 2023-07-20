@@ -155,7 +155,7 @@ Transform:
   - {fileID: 7958188789672947788}
   - {fileID: 7106236251628788939}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -3.223}
 --- !u!114 &3931239613618400679
 MonoBehaviour:
@@ -192,13 +192,13 @@ MonoBehaviour:
   behavior: {fileID: 3931239613618400679}
   body: {fileID: 5917234259099613084}
   coll: {fileID: 3461922851506771372}
-  player: {fileID: 0}
-  holder: {fileID: 0}
+  player: {fileID: 2315865118312969908, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
+  holder: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
   cam: {fileID: 0}
   pickupdistance: 5
   dropforceforward: 10
   dropforcebackward: 10
-  Sword: {fileID: 0}
+  Sword: {fileID: 9191674335004531126, guid: ed2c9288cefc9994bbb8d8fb9dce07da, type: 3}
   equiped: 0
 --- !u!65 &3461922851506771372
 BoxCollider:
@@ -438,7 +438,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6884646710916636930}
-  m_LocalRotation: {x: 0.010280819, y: -0.9980367, z: 0.012160406, w: -0.06057406}
+  m_LocalRotation: {x: 0.010790273, y: -0.99555963, z: 0.010371667, w: -0.09293586}
   m_LocalPosition: {x: -0.0066, y: 0.0001, z: -0.0016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
