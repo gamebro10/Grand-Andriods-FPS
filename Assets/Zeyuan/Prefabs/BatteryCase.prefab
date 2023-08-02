@@ -863,6 +863,7 @@ MonoBehaviour:
   outlineMode: 0
   outlineColor: {r: 0, g: 0.5188298, b: 1, a: 1}
   outlineWidth: 0
+  outlineChildren: 1
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

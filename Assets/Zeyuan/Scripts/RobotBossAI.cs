@@ -21,6 +21,7 @@ public class RobotBossAI : EnemyBase
     [SerializeField] GameObject blockade;
     [SerializeField] GameObject walkUp;
     [SerializeField] GameObject missile;
+    [SerializeField] GameObject boostEffects;
 
     [SerializeField] Transform cannonFirePos;
     [SerializeField] Transform missileRightPos;
@@ -29,6 +30,9 @@ public class RobotBossAI : EnemyBase
     [SerializeField] ParticleSystem cannonGroundSmoke;
     [SerializeField] ParticleSystem missileRightFX;
     [SerializeField] ParticleSystem missileLeftFX;
+    [SerializeField] ParticleSystem lavaEffect;
+
+    [SerializeField] Renderer[] boostArm;
 
     int phase = 0;
 
@@ -157,6 +161,13 @@ public class RobotBossAI : EnemyBase
         StartCoroutine(BossScene.Instance.IPutDownPlatform());
         isDown = true;
         animator.SetBool(afterCannonStr, true);
+
+        foreach (Renderer renderer in boostArm)
+        {
+            renderer.material.DisableKeyword("_EMISSION");
+            boostEffects.SetActive(false);
+        }
+
         yield return new WaitForSeconds(downTime);
         animator.SetBool(afterCannonStr, false);
         StartCoroutine(DoRecover());
@@ -167,11 +178,34 @@ public class RobotBossAI : EnemyBase
         animator.SetBool(afterCannonStr, false);
         animator.SetBool(recoverStr, true);
         yield return new WaitForSeconds(3);
+
+        if (phase == 2)
+        {
+            animator.Play("RobotBoss_BoostArm");
+            yield return new WaitForSeconds(6f);
+            isDown = false;
+            shouldCannon = false;
+        }
         isDown = false;
         shouldCannon = false;
         LockHealthBar(false);
         GameManager.Instance.bossHealthBar.Phase(phase);
         animator.SetBool(recoverStr, false);
+    }
+
+    public void BoostArm()
+    {
+        foreach (Renderer renderer in boostArm)
+        {
+            //renderer.material.color = Color.red;
+            renderer.material.EnableKeyword("_EMISSION");
+            boostEffects.SetActive(true);
+        }
+    }
+
+    public void PlayLavaEffect()
+    {
+        lavaEffect.Play();
     }
 
     public void Recover()
