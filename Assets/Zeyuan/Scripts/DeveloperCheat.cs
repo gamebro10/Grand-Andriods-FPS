@@ -20,11 +20,17 @@ public class DeveloperCheat : MonoBehaviour
     string textColorNotification = "<color=#00ff00ff>";
     string textColorWarning = "<color=#ff0000ff>";
     string textColorNormal = "<color=#ffffffff>";
-    string helpString = 
+    string helpString =
+        "<color=#00ff00ff>" +
         "-----------------Command List------------------\n" +
+        "? (Show command lists)\n" + 
         "clear (Clear the console window)\n" +
         "superspeed [speed multiplier] (Modify the run speed of player)\n" +
-        "-----------------------------------------------\n";
+        "fly [true / false] (Enable fly mode)\n" + 
+        "------------------------------------------------------\n" + 
+        "</color>";
+
+    bool flyMode;
 
     float originalPlayerSpeed;
 
@@ -59,6 +65,20 @@ public class DeveloperCheat : MonoBehaviour
             input.text = string.Empty;
             GameManager.Instance.stateUnpaused();
         }
+
+        if (flyMode)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Vector3 velocity = GameManager.Instance.playerMovement.GetRb().velocity;
+                GameManager.Instance.playerMovement.GetRb().velocity = new Vector3(velocity.x, 30, velocity.z);
+            }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Vector3 velocity = GameManager.Instance.playerMovement.GetRb().velocity;
+                GameManager.Instance.playerMovement.GetRb().velocity = new Vector3(velocity.x, 0, velocity.z);
+            }
+        }
     }
 
     public void SuperSpeed(float multiplier)
@@ -72,6 +92,21 @@ public class DeveloperCheat : MonoBehaviour
         {
             AddContent(commandErrorString, textColorWarning);
         }
+    }
+
+    public void Fly(bool bVal)
+    {
+        if (bVal)
+        {
+            AddContent("Fly mode on\n", textColorNotification);
+            flyMode = true;
+        }
+        else
+        {
+            AddContent("Fly mode off\n", textColorNotification);
+            flyMode = false;
+        }
+        
     }
 
     public void ComputeInput()
@@ -100,6 +135,20 @@ public class DeveloperCheat : MonoBehaviour
                             if (float.TryParse(tokens[1], out multiplier))
                             {
                                 SuperSpeed(multiplier);   
+                            }
+                            else
+                            {
+                                AddContent(paramErrorString, textColorWarning);
+                            }
+                        }
+                        break;
+                    case "fly":
+                        if (tokens.Length >= 1)
+                        {
+                            bool bVal;
+                            if (bool.TryParse(tokens[1], out bVal))
+                            {
+                                Fly(bVal);
                             }
                             else
                             {
