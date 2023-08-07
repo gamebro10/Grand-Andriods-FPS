@@ -241,7 +241,7 @@ public class RobotBossAI : EnemyBase
             Material mt = laser.GetComponent<Renderer>().material;
             mt.mainTextureOffset = new Vector2(mt.mainTextureOffset.x, mt.mainTextureOffset.y - Time.deltaTime * cannonUVSpeed);
             float y = Mathf.Sin(cannonRotateParam) * Mathf.PI / 180 * cannonRotateRange;
-            cannonRotateParam += Time.deltaTime * cannonRotateSpeed;
+            cannonRotateParam += (Time.deltaTime * cannonRotateSpeed);
             Vector3 rot = new Vector3(0, y, 0);
             cannon.transform.Rotate(rot, Space.World);
         }
@@ -282,7 +282,7 @@ public class RobotBossAI : EnemyBase
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("RobotBoss_Slam"))
             {
                 animator.Play("RobotBoss_Slam");
-                shouldSlam = false;
+                //shouldSlam = false;
             }
         }
         else if(!isMissile && !shouldCannon)
@@ -317,6 +317,27 @@ public class RobotBossAI : EnemyBase
     public void ShouldSlam()
     {
         shouldSlam = true;
+    }
+
+    //this should be in cameramanager, but it should be fine for now.
+    public void CameraShake()
+    {
+        StartCoroutine(ICameraShake());
+    }
+
+    IEnumerator ICameraShake()
+    {
+        UnityEngine.Camera cam = UnityEngine.Camera.main;
+        float timer = .25f;
+        while (timer > 0)
+        {
+            cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, 0, cam.transform.rotation.z + UnityEngine.Random.Range(-3f, 3f));
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, 0, 0);
+
+
     }
 
     IEnumerator IFireMissile()

@@ -307,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172428497928056872, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
       propertyPath: playerHP
-      value: 100
+      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -670,10 +670,6 @@ PrefabInstance:
     - target: {fileID: 7700086124801053594, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105260655814775152, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
-      propertyPath: hp
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
