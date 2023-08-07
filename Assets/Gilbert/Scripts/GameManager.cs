@@ -65,7 +65,10 @@ public class GameManager : MonoBehaviour
         timescaleOrig = Time.timeScale;
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
 #if true
-        Instantiate(cheatMenu, transform);
+        if (cheatMenu != null)
+        {
+            Instantiate(cheatMenu, transform);
+        }
 #endif
     }
 
