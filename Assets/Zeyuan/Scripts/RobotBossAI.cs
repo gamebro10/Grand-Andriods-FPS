@@ -22,10 +22,12 @@ public class RobotBossAI : EnemyBase
     [SerializeField] GameObject walkUp;
     [SerializeField] GameObject missile;
     [SerializeField] GameObject boostEffects;
+    [SerializeField] GameObject lavaWave;
 
     [SerializeField] Transform cannonFirePos;
     [SerializeField] Transform missileRightPos;
     [SerializeField] Transform missileLeftPos;
+    [SerializeField] Transform slamPoint;
 
     [SerializeField] ParticleSystem cannonGroundSmoke;
     [SerializeField] ParticleSystem missileRightFX;
@@ -42,6 +44,7 @@ public class RobotBossAI : EnemyBase
     bool isDown;
     bool isMissile;
     bool shouldCannon;
+    bool shouldSlam;
     bool canTakeDamage = true;
 
     string prepCannonStr = "PrepCannon";
@@ -274,6 +277,14 @@ public class RobotBossAI : EnemyBase
         {
             StartCoroutine(DoPrepCannon());
         }
+        else if (shouldSlam)
+        {
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("RobotBoss_Slam"))
+            {
+                animator.Play("RobotBoss_Slam");
+                shouldSlam = false;
+            }
+        }
         else if(!isMissile && !shouldCannon)
         {
             StartCoroutine(IFireMissile());
@@ -296,6 +307,16 @@ public class RobotBossAI : EnemyBase
     public int GetPhase()
     {
         return phase;
+    }
+
+    public void InstantiateLavaWave()
+    {
+        Instantiate(lavaWave, slamPoint.transform.position, slamPoint.transform.rotation);
+    }
+
+    public void ShouldSlam()
+    {
+        shouldSlam = true;
     }
 
     IEnumerator IFireMissile()
