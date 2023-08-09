@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject levelSelect;
     public GameObject enemyHeader;
+    public GameObject cheatMenu;
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI speedometerText;
     public Image speedometerBar;
@@ -63,6 +64,12 @@ public class GameManager : MonoBehaviour
         }
         timescaleOrig = Time.timeScale;
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+#if true
+        if (cheatMenu != null)
+        {
+            Instantiate(cheatMenu, transform);
+        }
+#endif
     }
 
     void Update()

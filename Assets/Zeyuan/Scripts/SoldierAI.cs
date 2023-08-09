@@ -8,7 +8,6 @@ public class SoldierAI : EnemyBase
     [SerializeField] float shootRange;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform firePos;
-    [SerializeField] Animator anime;
 
 
     // Update is called once per frame
@@ -70,7 +69,7 @@ public class SoldierAI : EnemyBase
             destinationChosen = true;
             agent.stoppingDistance = 0;
 
-            float randomAmount = Random.Range(3f, 5f);
+            float randomAmount = Random.Range(4f, 8f);
             Vector3 moveDirection = Random.Range(0, 2) == 0 ? -transform.right * randomAmount : transform.right * randomAmount;
             Vector3 randomPos = transform.position + moveDirection;
 

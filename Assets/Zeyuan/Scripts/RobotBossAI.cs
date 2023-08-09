@@ -21,14 +21,20 @@ public class RobotBossAI : EnemyBase
     [SerializeField] GameObject blockade;
     [SerializeField] GameObject walkUp;
     [SerializeField] GameObject missile;
+    [SerializeField] GameObject boostEffects;
+    [SerializeField] GameObject lavaWave;
 
     [SerializeField] Transform cannonFirePos;
     [SerializeField] Transform missileRightPos;
     [SerializeField] Transform missileLeftPos;
+    [SerializeField] Transform slamPoint;
 
     [SerializeField] ParticleSystem cannonGroundSmoke;
     [SerializeField] ParticleSystem missileRightFX;
     [SerializeField] ParticleSystem missileLeftFX;
+    [SerializeField] ParticleSystem lavaEffect;
+
+    [SerializeField] Renderer[] boostArm;
 
     int phase = 0;
 
@@ -38,6 +44,7 @@ public class RobotBossAI : EnemyBase
     bool isDown;
     bool isMissile;
     bool shouldCannon;
+    bool shouldSlam;
     bool canTakeDamage = true;
 
     string prepCannonStr = "PrepCannon";
@@ -157,6 +164,13 @@ public class RobotBossAI : EnemyBase
         StartCoroutine(BossScene.Instance.IPutDownPlatform());
         isDown = true;
         animator.SetBool(afterCannonStr, true);
+
+        foreach (Renderer renderer in boostArm)
+        {
+            renderer.material.DisableKeyword("_EMISSION");
+            boostEffects.SetActive(false);
+        }
+
         yield return new WaitForSeconds(downTime);
         animator.SetBool(afterCannonStr, false);
         StartCoroutine(DoRecover());
@@ -167,11 +181,34 @@ public class RobotBossAI : EnemyBase
         animator.SetBool(afterCannonStr, false);
         animator.SetBool(recoverStr, true);
         yield return new WaitForSeconds(3);
+
+        if (phase == 2)
+        {
+            animator.Play("RobotBoss_BoostArm");
+            yield return new WaitForSeconds(6f);
+            isDown = false;
+            shouldCannon = false;
+        }
         isDown = false;
         shouldCannon = false;
         LockHealthBar(false);
         GameManager.Instance.bossHealthBar.Phase(phase);
         animator.SetBool(recoverStr, false);
+    }
+
+    public void BoostArm()
+    {
+        foreach (Renderer renderer in boostArm)
+        {
+            //renderer.material.color = Color.red;
+            renderer.material.EnableKeyword("_EMISSION");
+            boostEffects.SetActive(true);
+        }
+    }
+
+    public void PlayLavaEffect()
+    {
+        lavaEffect.Play();
     }
 
     public void Recover()
@@ -204,7 +241,7 @@ public class RobotBossAI : EnemyBase
             Material mt = laser.GetComponent<Renderer>().material;
             mt.mainTextureOffset = new Vector2(mt.mainTextureOffset.x, mt.mainTextureOffset.y - Time.deltaTime * cannonUVSpeed);
             float y = Mathf.Sin(cannonRotateParam) * Mathf.PI / 180 * cannonRotateRange;
-            cannonRotateParam += Time.deltaTime * cannonRotateSpeed;
+            cannonRotateParam += (Time.deltaTime * cannonRotateSpeed);
             Vector3 rot = new Vector3(0, y, 0);
             cannon.transform.Rotate(rot, Space.World);
         }
@@ -240,6 +277,14 @@ public class RobotBossAI : EnemyBase
         {
             StartCoroutine(DoPrepCannon());
         }
+        else if (shouldSlam)
+        {
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("RobotBoss_Slam"))
+            {
+                animator.Play("RobotBoss_Slam");
+                //shouldSlam = false;
+            }
+        }
         else if(!isMissile && !shouldCannon)
         {
             StartCoroutine(IFireMissile());
@@ -262,6 +307,37 @@ public class RobotBossAI : EnemyBase
     public int GetPhase()
     {
         return phase;
+    }
+
+    public void InstantiateLavaWave()
+    {
+        Instantiate(lavaWave, slamPoint.transform.position, slamPoint.transform.rotation);
+    }
+
+    public void ShouldSlam()
+    {
+        shouldSlam = true;
+    }
+
+    //this should be in cameramanager, but it should be fine for now.
+    public void CameraShake()
+    {
+        StartCoroutine(ICameraShake());
+    }
+
+    IEnumerator ICameraShake()
+    {
+        UnityEngine.Camera cam = UnityEngine.Camera.main;
+        float timer = .25f;
+        while (timer > 0)
+        {
+            cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, 0, cam.transform.rotation.z + UnityEngine.Random.Range(-3f, 3f));
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, 0, 0);
+
+
     }
 
     IEnumerator IFireMissile()

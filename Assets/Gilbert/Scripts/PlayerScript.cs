@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 
@@ -34,24 +35,31 @@ public class PlayerScript : MonoBehaviour, IDamage
 
     void Update()
     {
-       GameManager.Instance.speedometerBar.fillAmount = playerSpeed/(runSpeed*moveSpeed);
-       //GameManager.Instance.speedometerText.text = playerSpeed.ToString();
+        GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (runSpeed * moveSpeed);
+        //GameManager.Instance.speedometerText.text = playerSpeed.ToString();
     }
 
     public void OnTakeDamage(int amount)
     {
         playerHP -= amount;
-        StartCoroutine(GameManager.Instance.playerFlashDamage());
+        if (amount > 0)
+        {
+            StartCoroutine(GameManager.Instance.playerFlashDamage());
+        }
         GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
         if (playerHP <= 0)
         {
             GameManager.Instance.youLose();
         }
+        if (playerHP >= HPOrig)
+        {
+            playerHP = HPOrig;
+        }
     }
 
     public void spawnPlayer()
     {
-       //GameManager.Instance.playerMovement.enabled = false;
+        //GameManager.Instance.playerMovement.enabled = false;
         GameManager.Instance.playerMovement.GetRb().MovePosition(GameManager.Instance.playerSpawnPos.transform.position);
         GameManager.Instance.playerMovement.enabled = true;
         playerHP = HPOrig;

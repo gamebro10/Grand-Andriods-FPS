@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1882545319399694914}
   - component: {fileID: 2862227164775084722}
+  - component: {fileID: -3875585547182104493}
   - component: {fileID: 2733428739494946305}
   - component: {fileID: 4174556847110228102}
   - component: {fileID: 2376187872225131049}
@@ -53,6 +54,25 @@ MonoBehaviour:
   flySpeed: 40
   rotateSpeed: 4
   lifeTime: 10
+--- !u!114 &-3875585547182104493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628678206567835508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 2
+  outlineChildren: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!33 &2733428739494946305
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -159,22 +179,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1882545319399694914}
     m_Modifications:
-    - target: {fileID: 2213116530923948121, guid: 53623c3a30d385f4bae4e2864039698c, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.36078432
-      objectReference: {fileID: 0}
-    - target: {fileID: 2213116530923948121, guid: 53623c3a30d385f4bae4e2864039698c, type: 3}
-      propertyPath: InitialModule.startColor.minColor.a
-      value: 0.13333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 2213116530923948121, guid: 53623c3a30d385f4bae4e2864039698c, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2213116530923948121, guid: 53623c3a30d385f4bae4e2864039698c, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5134786494750713996, guid: 53623c3a30d385f4bae4e2864039698c, type: 3}
       propertyPath: m_RootOrder
       value: -1

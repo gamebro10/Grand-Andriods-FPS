@@ -62,6 +62,8 @@ public class Outline : MonoBehaviour {
   [SerializeField, Range(0f, 10f)]
   private float outlineWidth = 2f;
 
+    [SerializeField] bool outlineChildren = true;
+
   [Header("Optional")]
 
   [SerializeField, Tooltip("Precompute enabled: Per-vertex calculations are performed in the editor and serialized with the object. "
@@ -82,8 +84,16 @@ public class Outline : MonoBehaviour {
 
   void Awake() {
 
-    // Cache renderers
-    renderers = GetComponentsInChildren<Renderer>();
+        // Cache renderers
+        if (outlineChildren)
+        {
+            renderers = GetComponentsInChildren<Renderer>();
+        }
+        else
+        {
+            renderers = GetComponents<Renderer>();
+        }
+    
 
     // Instantiate outline materials
     outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
