@@ -7,7 +7,7 @@ public class PlayerBullet : MonoBehaviour
     // to make sure no collison and give velocity
     [Header("----- Components -----")]
     [SerializeField] Rigidbody rb;
-
+    [SerializeField] GameObject particle;
   
 
     [Header("----- Weapon Stats -----")]
@@ -32,7 +32,6 @@ public class PlayerBullet : MonoBehaviour
             //hitparticle.Play();
 
 
-
         if (!other.isTrigger) {
 
           //  hitparticle.transform.parent = null;
@@ -45,7 +44,7 @@ public class PlayerBullet : MonoBehaviour
             }
 
             
-
+            Instantiate(particle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         

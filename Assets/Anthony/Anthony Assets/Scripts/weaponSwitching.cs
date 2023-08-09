@@ -33,7 +33,7 @@ public class weaponSwitching : MonoBehaviour
         }
 
     }
-
+    //Vector3(357.804993,91.2942963,356.745026);
     // Update is called once per frame
     private void Update()
     {

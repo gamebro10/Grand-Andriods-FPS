@@ -5128,6 +5128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5281710045981298000}
+  particle: {fileID: 8712120484021724220, guid: 340830dd289aab441b8bfe11048ed665, type: 3}
   destroytime: 2
   speed: 70
   ShootDmg: 5

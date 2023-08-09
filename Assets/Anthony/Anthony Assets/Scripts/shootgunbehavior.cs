@@ -89,6 +89,8 @@ public class shootgunbehavior : MonoBehaviour
 
         StartCoroutine(KickbackAnimation());
 
+        
+
         yield return new WaitForSeconds(BulletDelay);
         isShooting = false;
         hand.canSwitchWeapons = true;

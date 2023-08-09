@@ -10,7 +10,8 @@ public class Weaponiteract : MonoBehaviour
     public WeaponBehavior behavior;
     public Rigidbody body;
     public BoxCollider coll;
-    public Transform player, holder, cam;
+    public Transform player, holder;
+    Transform cam;
 
     public float pickupdistance;
     public float dropforceforward, dropforcebackward;
@@ -18,11 +19,17 @@ public class Weaponiteract : MonoBehaviour
 
     public bool equiped;
     public static bool Maxedslots;
-    swingsword sword;
+    //swingsword sword;
 
-   // [SerializeField] GameObject Currgun;
+    // [SerializeField] GameObject Currgun;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Maxedslots = false;
+        cam = UnityEngine.Camera.main.transform;
+    }
+
     void Start()
     {
         if(!equiped)
@@ -68,28 +75,27 @@ public class Weaponiteract : MonoBehaviour
 
     public void Pickup()
     {
-        if (holder.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
+        if (holder.GetChild(0).gameObject.activeInHierarchy && holder.transform.childCount >= 1)
         {
             holder.GetChild(0).gameObject.SetActive(false);
         }
-        else if (holder.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
+        else if (holder.GetChild(1).gameObject.activeInHierarchy && holder.transform.childCount >= 2)
         {
             holder.GetChild(1).gameObject.SetActive(false);
         }
-        else if (holder.GetChild(2).gameObject.activeInHierarchy && transform.childCount >= 3)
+        else if (holder.GetChild(2).gameObject.activeInHierarchy && holder.transform.childCount >= 3)
         {
             holder.GetChild(2).gameObject.SetActive(false);
         }
+        else if (holder.GetChild(3).gameObject.activeInHierarchy && holder.transform.childCount >= 4)
+        {
+            holder.GetChild(3).gameObject.SetActive(false);
+        }
+      
         
         
         equiped = true;
         Maxedslots = true;
-
-        //if(Maxedslots == false)
-        //{
-        //    Drop();
-        //    Pickup();
-        //}
 
         body.isKinematic = true;
         coll.isTrigger = true;
@@ -97,9 +103,6 @@ public class Weaponiteract : MonoBehaviour
         transform.SetParent(holder);
         transform.SetLocalPositionAndRotation(new Vector3(0, 0, 1), Quaternion.Euler((float).527,-90,(float).005));
         transform.localScale = Vector3.one;
-
-
-       
 
         behavior.enabled = true;
         holder.GetComponent<Gunholstering>().CurrentWeopon = holder.childCount - 1;

@@ -6340,14 +6340,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8100270469910058017}
-  m_LocalRotation: {x: -0.0056531075, y: 0.7078847, z: 0.039800547, w: 0.70518315}
+  m_LocalRotation: {x: -0.043220215, y: 0.7119313, z: -0.0057936036, w: 0.70089394}
   m_LocalPosition: {x: 1.382, y: 0.105, z: 0.019}
   m_LocalScale: {x: 9.703135, y: 9.627977, z: 4.9589415}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3858078435526219064}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: -3.688, y: 90.13, z: 2.764}
+  m_LocalEulerAnglesHint: {x: 357, y: 91, z: 356}
 --- !u!1 &8338594608858488073
 GameObject:
   m_ObjectHideFlags: 0
@@ -6802,7 +6802,7 @@ Transform:
   - {fileID: 5531304173279382044}
   - {fileID: 4081902094162106016}
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -98.136, z: -4.647}
 --- !u!114 &9205554496011867855
 MonoBehaviour:
@@ -6891,7 +6891,7 @@ MonoBehaviour:
   player: {fileID: 0}
   holder: {fileID: 0}
   cam: {fileID: 0}
-  pickupdistance: 7
+  pickupdistance: 3
   dropforceforward: 15
   dropforcebackward: 15
   Sword: {fileID: 0}

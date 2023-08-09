@@ -8,7 +8,9 @@ public class pistolInteract : MonoBehaviour
     public WeaponBehavior behavior;
     public Rigidbody body;
     public BoxCollider coll;
-    public Transform player, holder, cam;
+    public Transform player, holder;
+    Transform cam;
+
 
     public float pickupdistance;
     public float dropforceforward, dropforcebackward;
@@ -21,6 +23,12 @@ public class pistolInteract : MonoBehaviour
     // [SerializeField] GameObject Currgun;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Maxedslots = false;
+        cam = UnityEngine.Camera.main.transform;
+    }
+
     void Start()
     {
         if (!equiped)
@@ -68,17 +76,21 @@ public class pistolInteract : MonoBehaviour
     {
         // holder.GetChild(1).gameObject.SetActive(false);
 
-        if (holder.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
+        if (holder.GetChild(0).gameObject.activeInHierarchy && holder.transform.childCount >= 1)
         {
             holder.GetChild(0).gameObject.SetActive(false);
         }
-        else if (holder.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
+        else if (holder.GetChild(1).gameObject.activeInHierarchy && holder.transform.childCount >= 2)
         {
             holder.GetChild(1).gameObject.SetActive(false);
         }
-        else if (holder.GetChild(2).gameObject.activeInHierarchy && transform.childCount >= 3)
+        else if (holder.GetChild(2).gameObject.activeInHierarchy && holder.transform.childCount >= 3)
         {
             holder.GetChild(2).gameObject.SetActive(false);
+        }
+        else if (holder.GetChild(3).gameObject.activeInHierarchy && holder.transform.childCount >= 4)
+        {
+            holder.GetChild(3).gameObject.SetActive(false);
         }
 
 
@@ -132,10 +144,10 @@ public class pistolInteract : MonoBehaviour
         holder.GetComponent<Gunholstering>().IDweapon();
     }
 
-    IEnumerator Melee()
-    {
-        gameObject.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        gameObject.SetActive(true);
-    }
+    //IEnumerator Melee()
+    //{
+    //    gameObject.SetActive(false);
+    //    yield return new WaitForSeconds(1f);
+    //    gameObject.SetActive(true);
+    //}
 }

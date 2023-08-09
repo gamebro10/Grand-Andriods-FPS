@@ -8,7 +8,8 @@ public class shootgunpickup : MonoBehaviour
     public shootgunbehavior shootbehavior;
     public Rigidbody body;
     public BoxCollider coll;
-    public Transform player, holder, cam;
+    public Transform player, holder;
+    Transform cam;
 
     public float pickupdistance;
     public float dropforceforward, dropforcebackward;
@@ -16,11 +17,17 @@ public class shootgunpickup : MonoBehaviour
 
     public bool equiped;
     public static bool Maxedslots;
-    swingsword sword;
+    //swingsword sword;
 
     // [SerializeField] GameObject Currgun;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        Maxedslots = false;
+        cam = UnityEngine.Camera.main.transform;
+    }
+
     void Start()
     {
         if (!equiped)
@@ -68,28 +75,27 @@ public class shootgunpickup : MonoBehaviour
     {
         // holder.GetChild(1).gameObject.SetActive(false);
 
-        if (holder.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
+        if (holder.GetChild(0).gameObject.activeInHierarchy && holder.transform.childCount >= 1)
         {
             holder.GetChild(0).gameObject.SetActive(false);
         }
-        else if (holder.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
+        else if (holder.GetChild(1).gameObject.activeInHierarchy && holder.transform.childCount >= 2)
         {
             holder.GetChild(1).gameObject.SetActive(false);
         }
-        else if (holder.GetChild(2).gameObject.activeInHierarchy && transform.childCount >= 3)
+        else if (holder.GetChild(2).gameObject.activeInHierarchy && holder.transform.childCount >= 3)
         {
             holder.GetChild(2).gameObject.SetActive(false);
+        } 
+        else if (holder.GetChild(3).gameObject.activeInHierarchy && holder.transform.childCount >= 4)
+        {
+            holder.GetChild(3).gameObject.SetActive(false);
         }
 
 
         equiped = true;
         Maxedslots = true;
 
-        //if (Maxedslots == false)
-        //{
-        //    Drop();
-        //    Pickup();
-        //}
 
         body.isKinematic = true;
         coll.isTrigger = true;
@@ -98,10 +104,6 @@ public class shootgunpickup : MonoBehaviour
         transform.localPosition = new Vector3((float).417, (float).85, (float)2.2);
         transform.localRotation = Quaternion.Euler((float)-.18, -93, (float)-1.33);
         transform.localScale = Vector3.one;
-
-        //.527  -90  -5.9
-
-
 
         shootbehavior.enabled = true;
         holder.GetComponent<Gunholstering>().CurrentWeopon = holder.childCount - 1;

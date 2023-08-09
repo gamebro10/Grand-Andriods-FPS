@@ -47,7 +47,7 @@ public class swingsword : MonoBehaviour
             hitbox.SetActive(true);
             trail.SetActive(true);
             effects.SetTrigger(animations[Random.Range(0, 3)]);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.5f);
             trail.SetActive(false);
             hitbox.SetActive(false);
             scripts.canSwitchWeapons = true;
@@ -68,7 +68,7 @@ public class swingsword : MonoBehaviour
             //WeaponTurnOff();
             string[] animations = { "attacking", "forwardslash" };
             effects.SetTrigger(animations[Random.Range(0, 2)]);
-            yield return new WaitForSeconds(1.3f);
+            yield return new WaitForSeconds(.5f);
             trail.SetActive(false);
             hitbox.SetActive(false);
             canSlash = true;
@@ -86,7 +86,7 @@ public class swingsword : MonoBehaviour
 
     IEnumerator SwitchBack()
     {
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(.5f);
         scripts.canSwitchWeapons = true;
         canSlash = true;
         hand.GetChild(scripts.CurrentWeopon).gameObject.SetActive(true);
@@ -94,38 +94,38 @@ public class swingsword : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void WeaponTurnOff()
-    {
-        if (hand.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
-        {
-            hand.GetChild(0).gameObject.SetActive(false);
-        }
-        else if (hand.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
-        {
-            hand.GetChild(1).gameObject.SetActive(false);
+    //void WeaponTurnOff()
+    //{
+    //    if (hand.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
+    //    {
+    //        hand.GetChild(0).gameObject.SetActive(false);
+    //    }
+    //    else if (hand.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
+    //    {
+    //        hand.GetChild(1).gameObject.SetActive(false);
 
-        }
-        else if (hand.GetChild(2).gameObject.activeInHierarchy && transform.childCount >= 3)
-        {
-            hand.GetChild(2).gameObject.SetActive(false);
-        }
-    }
+    //    }
+    //    else if (hand.GetChild(2).gameObject.activeInHierarchy && transform.childCount >= 3)
+    //    {
+    //        hand.GetChild(2).gameObject.SetActive(false);
+    //    }
+    //}
     
-    void WeaponTurnOn()
-    {
-        if (!hand.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
-        {
-            hand.GetChild(0).gameObject.SetActive(true);
-        }
-        else if (!hand.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
-        {
-            hand.GetChild(1).gameObject.SetActive(true);
-        }
-        else if (!hand.GetChild(2).gameObject.activeInHierarchy && transform.childCount >= 3)
-        {
-            hand.GetChild(2).gameObject.SetActive(true);
-        }
-    }
+    //void WeaponTurnOn()
+    //{
+    //    if (!hand.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
+    //    {
+    //        hand.GetChild(0).gameObject.SetActive(true);
+    //    }
+    //    else if (!hand.GetChild(1).gameObject.activeInHierarchy && transform.childCount >= 2)
+    //    {
+    //        hand.GetChild(1).gameObject.SetActive(true);
+    //    }
+    //    else if (!hand.GetChild(2).gameObject.activeInHierarchy && transform.childCount >= 3)
+    //    {
+    //        hand.GetChild(2).gameObject.SetActive(true);
+    //    }
+    //}
 
      private void OnTriggerEnter(Collider other)
      {

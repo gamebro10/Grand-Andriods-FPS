@@ -55,7 +55,7 @@ public class WeaponBehavior : MonoBehaviour
         { shootparticle.Play(); }
 
 
-        Debug.Log("Shoot");
+        //Debug.Log("Shoot");
         Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
 
         
@@ -65,6 +65,7 @@ public class WeaponBehavior : MonoBehaviour
         hand.canSwitchWeapons = true;
         WeaponBehavior.enablePickup = true;
     }
+
     //public void GunPickup(Gunstats weaponstats)
     //{
     //    gunList.Add(weaponstats);
