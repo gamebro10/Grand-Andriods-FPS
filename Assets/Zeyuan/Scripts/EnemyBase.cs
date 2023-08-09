@@ -22,6 +22,8 @@ public class EnemyBase : MonoBehaviour, IDamage
     //[SerializeField] protected Image healthBar;
     //[SerializeField] protected Image lerpHealthBar;
     [SerializeField] protected Renderer spawnEffect;
+    [SerializeField] protected Animator anime;
+    [SerializeField] private GameObject deathParticle;
 
     protected float angleToPlayer;
 
@@ -44,8 +46,10 @@ public class EnemyBase : MonoBehaviour, IDamage
     //float lerpHealthAmount;
     //float lerpGoal;
 
-    bool addingUpLerpAmount;
-    bool startLerping;
+    //bool addingUpLerpAmount;
+    //bool startLerping;
+
+    Color[,] colors;
 
     protected virtual void Start()
     {
@@ -56,6 +60,21 @@ public class EnemyBase : MonoBehaviour, IDamage
         if (spawnEffect != null)
         {
             StartCoroutine(IPlaySpawnEffect());
+        }
+        if (renderers.Length > 0)
+        {
+            colors = new Color[renderers.Length, 10];
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                for (int j = 0; j < renderers[i].materials.Length; j++)
+                {
+                    if (renderers[i].materials[j].shader.name != "Custom/Outline Mask" && renderers[i].materials[j].shader.name != "Custom/Outline Fill")
+                    {
+                        colors[i, j] = renderers[i].materials[j].color;
+                    }
+
+                }
+            }
         }
     }
 
@@ -84,17 +103,48 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         hp -= amount;
         TargetToPlayer();
+        
         if (hp <= 0)
         {
-            GameManager.Instance.updateEnemy(-1);
-            Destroy(gameObject);
+            OnDeath();
+            return;
         }
-        //healthBar.fillAmount = hp / maxHealth;
-        //StartCoroutine(ILerpHealthBar(amount));
         if (renderers.Length > 0 && canChangeColor)
         {
             StartCoroutine(IFlashMaterial(renderers));
         }
+        //healthBar.fillAmount = hp / maxHealth;
+        //StartCoroutine(ILerpHealthBar(amount));
+        if (anime != null && !anime.GetCurrentAnimatorStateInfo(1).IsTag("GettingHit"))
+        {
+            anime.SetTrigger("Damaged");
+        }
+    }
+
+    protected virtual void OnDeath()
+    {
+        StopAllCoroutines();
+        ChangeRendererColor(Color.white, renderers, colors);
+        GameManager.Instance.updateEnemy(-1);
+        agent.enabled = false;
+        if (GetComponent<CapsuleCollider>() != null)
+        {
+            GetComponent<CapsuleCollider>().enabled = false;
+        }
+        if (anime != null)
+        {
+            anime.SetTrigger("Died");
+            Destroy(gameObject, 3f);
+        }
+        if (deathParticle != null)
+        {
+            deathParticle.SetActive(true);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        this.enabled = false;
     }
 
     protected void MoveToPlayer()
@@ -179,7 +229,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         if (!destinationChosen)
         {
             agent.updateRotation = false;
-            MoveToRandomPosition(Random.Range(1f, 2f));
+            MoveToRandomPosition(Random.Range(4f, 8f));
 
             yield return new WaitUntil(() => { return agent.remainingDistance - agent.stoppingDistance <= 0.05; });
             agent.updateRotation = true;
@@ -192,18 +242,8 @@ public class EnemyBase : MonoBehaviour, IDamage
         if (canChangeColor)
         {
             canChangeColor = false;
-            Color[,] colors = new Color[renderers.Length, 10];
-            for (int i = 0; i < renderers.Length; i++)
-            {
-                for (int j = 0; j < renderers[i].materials.Length; j++)
-                {
-                    if (renderers[i].materials[j].shader.name != "Custom/Outline Mask" && renderers[i].materials[j].shader.name != "Custom/Outline Fill")
-                    {
-                        colors[i, j] = renderers[i].materials[j].color;
-                    }
+            
 
-                }
-            }
             for (int k = 0; k < 3; k++)
             {
                 ChangeRendererColor(flashColor, renderers);

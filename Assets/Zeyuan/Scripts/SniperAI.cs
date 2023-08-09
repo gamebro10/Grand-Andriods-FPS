@@ -10,7 +10,6 @@ public class SniperAI : EnemyBase
     [SerializeField] GameObject bullet;
     [SerializeField] Transform firePos;
     [SerializeField] LineRenderer laser;
-    [SerializeField] Animator anime;
 
     bool showLaser;
 
@@ -95,5 +94,11 @@ public class SniperAI : EnemyBase
         {
             StartCoroutine(Iroam());
         }
+    }
+
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        laser.enabled = false;
     }
 }

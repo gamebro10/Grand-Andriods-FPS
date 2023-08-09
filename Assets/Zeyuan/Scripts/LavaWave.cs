@@ -54,7 +54,7 @@ public class LavaWave : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !damaged)
         {
             damaged = true;
             IDamage damageable = other.GetComponent<IDamage>();
