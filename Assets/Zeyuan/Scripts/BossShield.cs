@@ -7,6 +7,7 @@ public class BossShield : MonoBehaviour
 {
     [SerializeField] GameObject charge;
     [SerializeField] GameObject damageArea;
+    [SerializeField] GameObject shockWave;
     [SerializeField] Transform endPoint;
     [SerializeField] Transform midPoint;
     [SerializeField] Renderer render;
@@ -38,9 +39,9 @@ public class BossShield : MonoBehaviour
 
     IEnumerator ILiftUp()
     {
-        while (damageArea.transform.localPosition.y < 1.4f)
+        while (damageArea.transform.localPosition.y < 1.3f)
         {
-            damageArea.transform.localPosition = new Vector3(0, damageArea.transform.localPosition.y + Time.deltaTime * .4f, 0);
+            damageArea.transform.localPosition = new Vector3(0, damageArea.transform.localPosition.y + Time.deltaTime * .25f, 0);
             yield return new WaitForEndOfFrame();
         }
         canShootCharge = true;
@@ -50,14 +51,13 @@ public class BossShield : MonoBehaviour
     IEnumerator IMoveToRandomPos()
     {
         isMovingToRandomPos = true;
-        Vector3 randomPos = new Vector3(0, 1.4f, 0) + UnityEngine.Random.onUnitSphere * .5f;
+        Vector3 randomPos = new Vector3(0, 1.3f, 0) + UnityEngine.Random.onUnitSphere * .5f;
         while ((damageArea.transform.localPosition - randomPos).magnitude > 0.1f)
         {
-            damageArea.transform.localPosition = Vector3.MoveTowards(damageArea.transform.localPosition, randomPos, Time.deltaTime * .2f);
+            damageArea.transform.localPosition = Vector3.MoveTowards(damageArea.transform.localPosition, randomPos, Time.deltaTime * .1f);
             yield return new WaitForEndOfFrame();
         }
         isMovingToRandomPos = false;
-        Debug.Log("On position");
     }
 
     IEnumerator IShootCharge()
@@ -98,4 +98,11 @@ public class BossShield : MonoBehaviour
         render.materials[1].mainTextureOffset = new Vector2(0, -0.08f);
         render.materials[1].color = new Color(0, 0, 0, 50f/250f);
     }
+
+    public void OnDisabled()
+    {
+        shockWave.SetActive(true);
+        shockWave.transform.SetParent(null);
+    }
+
 }
