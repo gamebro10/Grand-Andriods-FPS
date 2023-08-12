@@ -7,6 +7,9 @@ public class respawnTrigger : MonoBehaviour
     public GameObject spawnPos;
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.playerSpawnPos = spawnPos;
+        if (other.gameObject.tag == "Player")
+        {
+            GameManager.Instance.playerSpawnPos = spawnPos;
+        }
     }
 }

@@ -9,7 +9,7 @@ public class enemySpawner : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
 
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

@@ -14,7 +14,10 @@ public class healthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.playerScript.OnTakeDamage(healedHP);
-        Destroy(gameObject);
+        if (other.gameObject.tag == "Player")
+        {
+            GameManager.Instance.playerScript.OnTakeDamage(healedHP);
+            Destroy(gameObject);
+        }
     }
 }

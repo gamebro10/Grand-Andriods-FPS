@@ -6,6 +6,9 @@ public class Killbox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.playerScript.OnTakeDamage(GameManager.Instance.playerScript.HPOrig);
+        if (other.gameObject.tag == "Player")
+        {
+            GameManager.Instance.playerScript.OnTakeDamage(GameManager.Instance.playerScript.HPOrig);
+        }
     }
 }
