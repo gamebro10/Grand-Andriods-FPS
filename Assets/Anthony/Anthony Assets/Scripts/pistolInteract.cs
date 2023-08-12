@@ -5,7 +5,7 @@ using UnityEngine;
 public class pistolInteract : MonoBehaviour
 {
     Gunholstering currWeapon;
-    public WeaponBehavior behavior;
+    public WeaponBehavior behaviorPT2;
     public Rigidbody body;
     public BoxCollider coll;
     public Transform player, holder;
@@ -33,13 +33,13 @@ public class pistolInteract : MonoBehaviour
     {
         if (!equiped)
         {
-            behavior.enabled = false;
+            behaviorPT2.enabled = false;
             body.isKinematic = false;
             coll.isTrigger = false;
         }
         if (equiped)
         {
-            behavior.enabled = true;
+            behaviorPT2.enabled = true;
             body.isKinematic = true;
             coll.isTrigger = true;
             Maxedslots = true;
@@ -60,7 +60,7 @@ public class pistolInteract : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.F))
         //    StartCoroutine(Melee());
 
-        if (Input.GetKeyDown(KeyCode.F) && equiped && !behavior.isShooting)
+        if (Input.GetKeyDown(KeyCode.F) && equiped && !behaviorPT2.isShooting)
         {
             swingsword sword = Sword.GetComponent<swingsword>();
 
@@ -107,15 +107,15 @@ public class pistolInteract : MonoBehaviour
         coll.isTrigger = true;
 
         transform.SetParent(holder);
-        transform.localPosition = new Vector3((float).12, (float).19, (float)-.21);
-        transform.localRotation = Quaternion.Euler((float).527, -90, (float)-5.9);
+        transform.localPosition = new Vector3((float).12, (float).19, (float)-.2);
+        transform.localRotation = Quaternion.Euler((float).527, -90, (float).317);
         transform.localScale = Vector3.one;
 
         //.527  -90  -5.9
 
 
 
-        behavior.enabled = true;
+        behaviorPT2.enabled = true;
         holder.GetComponent<Gunholstering>().CurrentWeopon = holder.childCount - 1;
     }
 
@@ -139,7 +139,7 @@ public class pistolInteract : MonoBehaviour
         float spin = Random.Range(-1f, 1f);
         body.AddTorque(new Vector3(spin, spin, spin) * 10);
 
-        behavior.enabled = false;
+        behaviorPT2.enabled = false;
         holder.GetComponent<Gunholstering>().CurrentWeopon = holder.childCount - 1;
         holder.GetComponent<Gunholstering>().IDweapon();
     }

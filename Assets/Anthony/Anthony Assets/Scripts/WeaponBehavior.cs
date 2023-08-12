@@ -10,7 +10,6 @@ public class WeaponBehavior : MonoBehaviour
     //[SerializeField] GameObject WeaponModel;
     [SerializeField] float BulletDelay;
     [SerializeField] int ShootDmg;
-    [SerializeField] int ShootRate;
     [SerializeField] int ShootDistance;
     [SerializeField] Transform shotpos;
     [SerializeField] GameObject Amo;
@@ -47,7 +46,7 @@ public class WeaponBehavior : MonoBehaviour
     {
         isShooting = true;
         hand.canSwitchWeapons = false;
-        WeaponBehavior.enablePickup = false;
+        enablePickup = false;
         //RaycastHit hit;
         //Ray ray = (Physics.Raycast(Camera, out hit, ShootDistance));
 

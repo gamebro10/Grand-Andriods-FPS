@@ -43,8 +43,10 @@ public class PlayerBullet : MonoBehaviour
                 damageable.OnTakeDamage(ShootDmg);
             }
 
-            
+            if(particle != null) 
             Instantiate(particle, transform.position, Quaternion.identity);
+
+
             Destroy(gameObject);
         }
         

@@ -11,10 +11,13 @@ public class swingsword : MonoBehaviour
     [SerializeField] GameObject trail;
     [SerializeField] GameObject Sword;
     [SerializeField] Transform hand;
+    [SerializeField] Transform shootPos;
     [Range(1, 10)][SerializeField] int swingdmg;
+    [SerializeField] GameObject Perjectile;
 
     [SerializeField] Gunholstering scripts;
     public bool canSlash = true;
+    public bool allowSlash = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,11 @@ public class swingsword : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(quickslash());
+        }
+
+        if (Input.GetButtonDown("Alt Fire") && allowSlash == true)
+        {
+            StartCoroutine(rangeattack());
         }
 
     }
@@ -94,6 +102,16 @@ public class swingsword : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    IEnumerator rangeattack()
+    {
+      Instantiate(Perjectile, shootPos.position, shootPos.rotation);
+      allowSlash = false;
+        
+
+        yield return new WaitForSeconds(1f);
+        allowSlash = true;
+    }
+
     //void WeaponTurnOff()
     //{
     //    if (hand.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
@@ -110,7 +128,7 @@ public class swingsword : MonoBehaviour
     //        hand.GetChild(2).gameObject.SetActive(false);
     //    }
     //}
-    
+
     //void WeaponTurnOn()
     //{
     //    if (!hand.GetChild(0).gameObject.activeInHierarchy && transform.childCount >= 1)
@@ -127,7 +145,7 @@ public class swingsword : MonoBehaviour
     //    }
     //}
 
-     private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
      {
          //hitparticle.Play();
      

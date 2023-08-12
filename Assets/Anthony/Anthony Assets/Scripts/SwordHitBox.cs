@@ -5,6 +5,7 @@ using UnityEngine;
 public class SwordHitBox : MonoBehaviour
 {
     [SerializeField] int swingdmg;
+    [SerializeField] int wallKnockBack;
     private void OnTriggerEnter(Collider other)
     {
         if (!other.isTrigger)
@@ -19,7 +20,10 @@ public class SwordHitBox : MonoBehaviour
                 damageable.OnTakeDamage(swingdmg);
             }
 
-
+            //if ()
+            //{
+            //    GameManager.Instance.playerMovement.GetRb().AddForce(-UnityEngine.Camera.main.transform.forward * wallKnockBack, ForceMode.Impulse);
+            //}
 
             //Destroy(gameObject);
         }
