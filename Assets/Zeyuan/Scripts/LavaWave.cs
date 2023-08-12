@@ -39,6 +39,7 @@ public class LavaWave : MonoBehaviour
         }
         damageArea.SetActive(true);
         damageArea.transform.SetParent(null);
+        Destroy(damageArea, 20f);
         for (int j = 0; j < wavesParent.childCount; j++)
         {
             wavesParent.GetChild(j).gameObject.SetActive(false);

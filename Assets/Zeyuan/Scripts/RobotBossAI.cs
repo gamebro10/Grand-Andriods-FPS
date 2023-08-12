@@ -23,6 +23,8 @@ public class RobotBossAI : EnemyBase
     [SerializeField] GameObject missile;
     [SerializeField] GameObject boostEffects;
     [SerializeField] GameObject lavaWave;
+    [SerializeField] GameObject shield;
+    [SerializeField] GameObject handDamageArea;
 
     [SerializeField] Transform cannonFirePos;
     [SerializeField] Transform missileRightPos;
@@ -45,6 +47,7 @@ public class RobotBossAI : EnemyBase
     bool isMissile;
     bool shouldCannon;
     bool shouldSlam;
+    bool isSlamFinished = true;
     bool canTakeDamage = true;
 
     string prepCannonStr = "PrepCannon";
@@ -119,6 +122,11 @@ public class RobotBossAI : EnemyBase
 
             if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
             {
+                if (shield.activeSelf)
+                {
+                    shield.GetComponent<BossShield>().OnDisabled();
+                    shield.SetActive(false);
+                }
                 shouldCannon = true;
                 loc = true;
                 hp = maxHp * 0.499f;
@@ -180,8 +188,11 @@ public class RobotBossAI : EnemyBase
     {
         animator.SetBool(afterCannonStr, false);
         animator.SetBool(recoverStr, true);
+        if (phase == 2)
+        {
+            shield.SetActive(true);
+        }
         yield return new WaitForSeconds(3);
-
         if (phase == 2)
         {
             animator.Play("RobotBoss_BoostArm");
@@ -196,8 +207,29 @@ public class RobotBossAI : EnemyBase
         animator.SetBool(recoverStr, false);
     }
 
+    IEnumerator DoSlam()
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("RobotBoss_Slam"))
+        {
+            shouldSlam = false;
+            isSlamFinished = false;
+            animator.Play("RobotBoss_Slam");
+            yield return new WaitForSeconds(10f);
+            isSlamFinished = true;
+            if (!shouldCannon)
+            {
+                shouldSlam = true;
+            }
+            else
+            {
+                handDamageArea.SetActive(true);
+            }
+        }
+    }
+
     public void BoostArm()
     {
+        handDamageArea.SetActive(false);
         foreach (Renderer renderer in boostArm)
         {
             //renderer.material.color = Color.red;
@@ -273,17 +305,13 @@ public class RobotBossAI : EnemyBase
 
     void InCombat()
     {
-        if (GetAngleToPlayer() <= 20 && shouldCannon)
+        if (GetAngleToPlayer() <= 20 && shouldCannon && !shouldSlam && isSlamFinished)
         {
             StartCoroutine(DoPrepCannon());
         }
         else if (shouldSlam)
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("RobotBoss_Slam"))
-            {
-                animator.Play("RobotBoss_Slam");
-                //shouldSlam = false;
-            }
+            StartCoroutine(DoSlam());
         }
         else if(!isMissile && !shouldCannon)
         {

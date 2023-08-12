@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossDamageArea : MonoBehaviour, IDamage
 {
-    [SerializeField] RobotBossAI bossAI;
+    [SerializeField] protected RobotBossAI bossAI;
     [SerializeField] Renderer[] renderers;
     [SerializeField] float damageMultiplier = 1;
 
@@ -29,7 +29,7 @@ public class BossDamageArea : MonoBehaviour, IDamage
         bossAI.OnTakeDamage(amount * damageMultiplier, renderers);
     }
 
-    public void OnTakeDamage(int amount)
+    public virtual void OnTakeDamage(int amount)
     {
         OnTakeDamage(amount, renderers);
     }

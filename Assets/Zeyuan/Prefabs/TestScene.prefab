@@ -5164,7 +5164,7 @@ MonoBehaviour:
   platformMoveSpeed: 14
   ropeScaleSpeed: 0.1015
   headRotateSpeed: 10
-  roofLaserDamage: 18
+  roofLaserDamage: 20
   maxSnipers: 6
   maxSoldiers: 10
   craneHead: {fileID: 950265159788579894}
