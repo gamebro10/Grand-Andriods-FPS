@@ -104,7 +104,7 @@ Transform:
   - {fileID: 5809251733646675319}
   - {fileID: 7694377403718228749}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1793250254134868698
 MeshFilter:
@@ -126,18 +126,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ec705f7e041544197edb5b65cace06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientation: {fileID: 5699837058423979760}
+  orientation: {fileID: 2949130953562281267}
   playerCam: {fileID: 5253825805834562885}
   dashSpeed: 50
+  dashDuration: 0
   dashUpForce: 5
-  dashDistance: 25
   durationD: 0.3
-  dashNum: 0
+  isDashing: 0
   dashCd: 0.4
-  dashKey: 304
-  dashEffect: {fileID: 0}
-  horizontalSpeed: 2
-  verticalSpeed: 2
 --- !u!114 &4532950308527608665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,13 +170,14 @@ MonoBehaviour:
   whatIsWallrunnable:
     serializedVersion: 2
     m_Bits: 64
-  sensitivity: 50
   moveSpeed: 5500
   runSpeed: 20
   grounded: 0
   onWall: 0
+  crouching: 0
   currentSpeed: {fileID: 9139736073029919380}
   airLines: {fileID: 3816718639638972200}
+  sensitivity: 50
 --- !u!114 &8172428497928056872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHP: 20
+  playerCam: {fileID: 0}
   playerSpeed: 0
   moveSpeed: 5500
   runSpeed: 20
@@ -808,6 +806,11 @@ MonoBehaviour:
   Amount: 0.0115
   Frequency: 15.5
   Smooth: 79.2
+--- !u!4 &2949130953562281267 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7744104262757707509, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
+  m_PrefabInstance: {fileID: 4870079180109429702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5253825805834562885 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 827722842286986883, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
