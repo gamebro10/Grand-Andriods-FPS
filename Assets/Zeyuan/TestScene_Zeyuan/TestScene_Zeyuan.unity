@@ -502,7 +502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8172428497928056872, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
       propertyPath: playerHP
-      value: 10000
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

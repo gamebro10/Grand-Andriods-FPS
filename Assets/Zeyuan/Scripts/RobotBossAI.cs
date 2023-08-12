@@ -124,6 +124,7 @@ public class RobotBossAI : EnemyBase
             {
                 if (shield.activeSelf)
                 {
+                    shield.GetComponent<BossShield>().OnDisabled();
                     shield.SetActive(false);
                 }
                 shouldCannon = true;
@@ -187,11 +188,13 @@ public class RobotBossAI : EnemyBase
     {
         animator.SetBool(afterCannonStr, false);
         animator.SetBool(recoverStr, true);
-        yield return new WaitForSeconds(3);
-
         if (phase == 2)
         {
             shield.SetActive(true);
+        }
+        yield return new WaitForSeconds(3);
+        if (phase == 2)
+        {
             animator.Play("RobotBoss_BoostArm");
             yield return new WaitForSeconds(6f);
             isDown = false;
