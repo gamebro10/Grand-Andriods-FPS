@@ -45,7 +45,7 @@ RectTransform:
   - {fileID: 708799371652711857}
   - {fileID: 5487876386858248467}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -89,6 +89,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 4622095764128216259}
   levelSelect: {fileID: 0}
   enemyHeader: {fileID: 7340336057955127807}
+  cheatMenu: {fileID: 0}
   enemiesRemainingText: {fileID: 2049766542120525885}
   speedometerText: {fileID: 0}
   speedometerBar: {fileID: 541069617436894022}
@@ -403,7 +404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1763980348204457969, guid: 3c57388571a41e740b5cf5a9dbe1a9e5, type: 3}
       propertyPath: m_text
-      value: Batteries Remaining
+      value: Enemies Remaining
       objectReference: {fileID: 0}
     - target: {fileID: 5262426821785934501, guid: 3c57388571a41e740b5cf5a9dbe1a9e5, type: 3}
       propertyPath: m_Pivot.x

@@ -221,12 +221,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db883b01417bbfe40bcde145e2109387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
   playerHP: 20
   playerCam: {fileID: 0}
   playerSpeed: 0
   moveSpeed: 5500
   runSpeed: 20
   HPOrig: 0
+  InvinMax: 200
+  InvinTimer: 0
 --- !u!23 &4187868438727022326
 MeshRenderer:
   m_ObjectHideFlags: 0
