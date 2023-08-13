@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject optionsMenu;
     public GameObject levelSelect;
     public GameObject enemyHeader;
+    public GameObject controlsMenu;
     public GameObject cheatMenu;
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI speedometerText;
