@@ -14,10 +14,9 @@ public class pistolT2AltFire : MonoBehaviour
     [SerializeField] ParticleSystem shootparticle;
     [SerializeField] Gunholstering hand;
     [SerializeField] Animator AltFireKick;
-    //[SerializeField] List<Gunstats> gunList = new List<Gunstats>();
-    // int selectedGun;
     public bool isShooting;
     public static bool enablePickup = true;
+    pistolInteract pistol;
 
 
     // Start is called before the first frame update
@@ -35,8 +34,8 @@ public class pistolT2AltFire : MonoBehaviour
         if (GameManager.Instance.activeMenu == null)
         {
             //isshooting is after cuz order of op and it will almost always be false 
-            //if (Input.GetButtonDown("Alt Fire") && !isShooting)
-            //    StartCoroutine(ALTshoot());
+            if (Input.GetButtonDown("Alt Fire") && !isShooting)
+                StartCoroutine(ALTshoot());
         }
     }
 

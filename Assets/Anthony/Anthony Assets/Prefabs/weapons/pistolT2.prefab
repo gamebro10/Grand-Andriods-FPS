@@ -283,13 +283,25 @@ MonoBehaviour:
   behaviorPT2: {fileID: 3931239613618400679}
   body: {fileID: 5917234259099613084}
   coll: {fileID: 3461922851506771372}
-  player: {fileID: 2315865118312969908, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
-  holder: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  player: {fileID: 0}
+  holder: {fileID: 0}
   pickupdistance: 3
   dropforceforward: 10
   dropforcebackward: 10
   Sword: {fileID: 9191674335004531126, guid: ed2c9288cefc9994bbb8d8fb9dce07da, type: 3}
   equiped: 0
+  inter: 0
+  BulletDelay: 2
+  ShootDmg: 7
+  ShootDistance: 10
+  shotposLeft: {fileID: 4442603987400528819}
+  shotposRight: {fileID: 3056868183460646943}
+  shotposUPMid: {fileID: 909159885580814589}
+  Amo: {fileID: 3913078690282433628, guid: 07540b5a70a6497458cab2be4301d645, type: 3}
+  shootparticle: {fileID: 794095315279316131}
+  hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  AltFireKick: {fileID: 9190352388257268195}
+  isShooting: 0
 --- !u!65 &3461922851506771372
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -345,7 +357,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3630999367887235151}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03c7752f62cd9c548ac22c534086fe12, type: 3}
   m_Name: 

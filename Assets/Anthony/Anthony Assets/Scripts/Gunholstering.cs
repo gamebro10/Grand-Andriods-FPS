@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Gunholstering : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class Gunholstering : MonoBehaviour
     void Update()
     {
         if(!GameManager.Instance.isPaused) { weaponholstering(); }
-        
+
     }
 
 

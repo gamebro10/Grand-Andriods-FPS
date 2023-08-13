@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class pistolInteract : MonoBehaviour
 {
@@ -18,7 +19,23 @@ public class pistolInteract : MonoBehaviour
 
     public bool equiped;
     public static bool Maxedslots;
+    public bool inter = false;
     swingsword sword;
+
+
+    [Header("----- Weapon Stats -----")]
+    [SerializeField] float BulletDelay;
+    [SerializeField] int ShootDmg;
+    [SerializeField] int ShootDistance;
+    [SerializeField] Transform shotposLeft, shotposRight, shotposUPMid;
+    [SerializeField] GameObject Amo;
+    [SerializeField] ParticleSystem shootparticle;
+    [SerializeField] Gunholstering hand;
+    [SerializeField] Animator AltFireKick;
+    public bool isShooting;
+    public static bool enablePickup = true;
+    pistolInteract pistol;
+
 
     // [SerializeField] GameObject Currgun;
 
@@ -27,6 +44,7 @@ public class pistolInteract : MonoBehaviour
     {
         Maxedslots = false;
         cam = UnityEngine.Camera.main.transform;
+        inter = false;
     }
 
     void Start()
@@ -36,6 +54,7 @@ public class pistolInteract : MonoBehaviour
             behaviorPT2.enabled = false;
             body.isKinematic = false;
             coll.isTrigger = false;
+            inter = false;
         }
         if (equiped)
         {
@@ -43,6 +62,7 @@ public class pistolInteract : MonoBehaviour
             body.isKinematic = true;
             coll.isTrigger = true;
             Maxedslots = true;
+            inter = true;
         }
 
     }
@@ -57,9 +77,6 @@ public class pistolInteract : MonoBehaviour
         if (equiped && Input.GetKeyDown(KeyCode.Q))
             Drop();
 
-        //if (Input.GetKeyDown(KeyCode.F))
-        //    StartCoroutine(Melee());
-
         if (Input.GetKeyDown(KeyCode.F) && equiped && !behaviorPT2.isShooting)
         {
             swingsword sword = Sword.GetComponent<swingsword>();
@@ -68,6 +85,13 @@ public class pistolInteract : MonoBehaviour
             sword.slashswitch();
             gameObject.SetActive(false);
             // Sword.SetActive(false);
+        }
+
+        if (GameManager.Instance.activeMenu == null)
+        {
+            //isshooting is after cuz order of op and it will almost always be false 
+            if (Input.GetButtonDown("Alt Fire") && !isShooting && equiped == true)
+                StartCoroutine(ALTshoot());
         }
 
     }
@@ -142,6 +166,40 @@ public class pistolInteract : MonoBehaviour
         behaviorPT2.enabled = false;
         holder.GetComponent<Gunholstering>().CurrentWeopon = holder.childCount - 1;
         holder.GetComponent<Gunholstering>().IDweapon();
+    }
+
+    IEnumerator AltFire()
+    {
+        inter = false;
+        AltFireKick.SetTrigger("Alt firing");
+        yield return new WaitForSeconds(1f);
+        inter = true;
+    }
+
+    IEnumerator ALTshoot()
+    {
+        isShooting = true;
+        hand.canSwitchWeapons = false;
+        enablePickup = false;
+        //RaycastHit hit;
+        //Ray ray = (Physics.Raycast(Camera, out hit, ShootDistance));
+
+        if (!shootparticle.isPlaying)
+        { shootparticle.Play(); }
+
+
+        //Debug.Log("Shoot");
+        Instantiate(Amo, shotposLeft.position, shotposLeft.transform.rotation);
+        Instantiate(Amo, shotposRight.position, shotposRight.transform.rotation);
+        Instantiate(Amo, shotposUPMid.position, shotposUPMid.transform.rotation);
+
+        StartCoroutine(AltFire());
+
+
+        yield return new WaitForSeconds(BulletDelay);
+        isShooting = false;
+        hand.canSwitchWeapons = true;
+        WeaponBehavior.enablePickup = true;
     }
 
     //IEnumerator Melee()

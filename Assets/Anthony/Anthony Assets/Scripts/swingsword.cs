@@ -73,7 +73,6 @@ public class swingsword : MonoBehaviour
             hitbox.SetActive(true);
             trail.SetActive(true);
             WeaponBehavior.enablePickup = false;
-            //WeaponTurnOff();
             string[] animations = { "attacking", "forwardslash" };
             effects.SetTrigger(animations[Random.Range(0, 2)]);
             yield return new WaitForSeconds(.5f);
@@ -104,12 +103,28 @@ public class swingsword : MonoBehaviour
 
     IEnumerator rangeattack()
     {
-      Instantiate(Perjectile, shootPos.position, shootPos.rotation);
-      allowSlash = false;
+        scripts.canSwitchWeapons = false;
+        canSlash = false;
+        WeaponBehavior.enablePickup = false;
+        effects.SetTrigger("launch");
+        StartCoroutine(launchswing());
+       // Instantiate(Perjectile, shootPos.position, shootPos.rotation);
+        allowSlash = false;
         
 
         yield return new WaitForSeconds(1f);
+        scripts.canSwitchWeapons = true;
+        canSlash = true;
+        WeaponBehavior.enablePickup = true;
         allowSlash = true;
+    }
+
+    IEnumerator launchswing()
+    {
+
+        yield return new WaitForSeconds(.2f);
+        Instantiate(Perjectile, shootPos.position, shootPos.rotation);
+
     }
 
     //void WeaponTurnOff()

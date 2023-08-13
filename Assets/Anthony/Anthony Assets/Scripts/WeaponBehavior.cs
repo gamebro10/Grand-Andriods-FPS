@@ -38,7 +38,13 @@ public class WeaponBehavior : MonoBehaviour
                 //isshooting is after cuz order of op and it will almost always be false 
                 if (Input.GetButton("Shoot") && !isShooting)
                     StartCoroutine(shoot());
+
+            if (hand.canSwitchWeapons == true && isShooting == true)
+            {
+                isShooting = false;
+            }
         }
+
     }
 
 
