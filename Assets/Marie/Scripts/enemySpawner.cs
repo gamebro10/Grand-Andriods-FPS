@@ -12,7 +12,7 @@ public class enemySpawner : MonoBehaviour
         {
             for (int i = 0; i < enemies.Length; i++)
             {
-                
+
             }
             Destroy(gameObject);
         }
