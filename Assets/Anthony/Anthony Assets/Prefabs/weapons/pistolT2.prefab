@@ -267,6 +267,9 @@ MonoBehaviour:
   Amo: {fileID: 3913078690282433628, guid: 07540b5a70a6497458cab2be4301d645, type: 3}
   shootparticle: {fileID: 794095315279316131}
   hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 576
   isShooting: 0
 --- !u!114 &5015055113718920621
 MonoBehaviour:
