@@ -36,6 +36,11 @@ public class pistolT2AltFire : MonoBehaviour
             //isshooting is after cuz order of op and it will almost always be false 
             if (Input.GetButtonDown("Alt Fire") && !isShooting)
                 StartCoroutine(ALTshoot());
+
+            if (hand.canSwitchWeapons == true && isShooting == true)
+            {
+                isShooting = false;
+            }
         }
     }
 
