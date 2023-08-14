@@ -12,6 +12,7 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour, IDamage
 {
     public static PlayerScript Instance;
+    public GameManager GameManager;
 
     [Header("-----Player Values-----")]
     [SerializeField] int playerHP;
@@ -22,7 +23,13 @@ public class PlayerScript : MonoBehaviour, IDamage
     public float moveSpeed;
     public float runSpeed;
     public int HPOrig;
+    public  int InvinMax;
+    public int InvinTimer;
 
+    void Awake()
+    {
+        GameManager = GetComponent<GameManager>();
+    }
 
     void Start()
     {
@@ -36,15 +43,30 @@ public class PlayerScript : MonoBehaviour, IDamage
     void Update()
     {
         GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (runSpeed * moveSpeed);
+        if (GameManager.Instance.isPaused == false)
+        {
+            if (InvinTimer < InvinMax)
+            {
+                InvinTimer += 1;
+            }
+        }
         //GameManager.Instance.speedometerText.text = playerSpeed.ToString();
     }
 
     public void OnTakeDamage(int amount)
     {
-        playerHP -= amount;
         if (amount > 0)
         {
-            StartCoroutine(GameManager.Instance.playerFlashDamage());
+            if (InvinTimer == InvinMax)
+            {
+                playerHP -= amount;
+                StartCoroutine(GameManager.Instance.playerFlashDamage());
+                InvinTimer = 0;
+            }
+        }
+        else
+        {
+            playerHP -= amount;
         }
         GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
         if (playerHP <= 0)
@@ -67,4 +89,5 @@ public class PlayerScript : MonoBehaviour, IDamage
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
 }
