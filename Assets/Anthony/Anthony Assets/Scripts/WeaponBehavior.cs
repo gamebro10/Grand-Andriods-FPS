@@ -21,7 +21,10 @@ public class WeaponBehavior : MonoBehaviour
     public bool isShooting;
     public static bool enablePickup = true;
 
-
+    private void Awake()
+    {
+        enablePickup = true;
+    }
     // Start is called before the first frame update
     void Start()
     {

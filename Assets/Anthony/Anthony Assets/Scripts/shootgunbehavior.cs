@@ -33,6 +33,7 @@ public class shootgunbehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enablePickup = true;
     }
 
     // Update is called once per frame

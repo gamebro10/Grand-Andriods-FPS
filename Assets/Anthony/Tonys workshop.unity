@@ -2951,6 +2951,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1780542920}
+    - target: {fileID: 4335756064899011572, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: pickupdistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8924727978184408715, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
       propertyPath: m_Name
       value: Reworked AT482
@@ -3032,6 +3036,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1780542920}
+    - target: {fileID: 5382873726111014585, guid: d943b0633fc7e5c488a4e699e4bf1a18, type: 3}
+      propertyPath: pickupdistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9110462396024984535, guid: d943b0633fc7e5c488a4e699e4bf1a18, type: 3}
       propertyPath: m_Name
       value: Escopeta prototonica
@@ -3254,6 +3262,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1780542920}
+    - target: {fileID: 5015055113718920621, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
+      propertyPath: pickupdistance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
