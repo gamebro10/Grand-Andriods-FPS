@@ -283,8 +283,8 @@ MonoBehaviour:
   behaviorPT2: {fileID: 3931239613618400679}
   body: {fileID: 5917234259099613084}
   coll: {fileID: 3461922851506771372}
-  player: {fileID: 0}
-  holder: {fileID: 0}
+  player: {fileID: 2315865118312969908, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
+  holder: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
   pickupdistance: 3
   dropforceforward: 10
   dropforcebackward: 10
