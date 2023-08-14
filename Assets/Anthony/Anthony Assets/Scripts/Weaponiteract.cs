@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements;
 using UnityEngine.XR;
 
 public class Weaponiteract : MonoBehaviour
@@ -12,7 +13,8 @@ public class Weaponiteract : MonoBehaviour
     public BoxCollider coll;
     public Transform player, holder;
     Transform cam;
-
+    //[SerializeField] Transform Weapon;
+    
     public float pickupdistance;
     public float dropforceforward, dropforcebackward;
     public GameObject Sword;
@@ -101,7 +103,8 @@ public class Weaponiteract : MonoBehaviour
         coll.isTrigger = true;
 
         transform.SetParent(holder);
-        transform.SetLocalPositionAndRotation(new Vector3(0, 0, 1), Quaternion.Euler((float).527,-90,(float).005));
+        transform.SetLocalPositionAndRotation(new Vector3(0, 0, 1), Quaternion.Euler((float).527, -90, (float).005));
+        //transform.SetPositionAndRotation(pickup.position, pickup.rotation);
         transform.localScale = Vector3.one;
 
         behavior.enabled = true;

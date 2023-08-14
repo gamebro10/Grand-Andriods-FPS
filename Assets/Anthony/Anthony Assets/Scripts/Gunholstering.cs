@@ -78,6 +78,17 @@ public class Gunholstering : MonoBehaviour
             }
             if (lastWeapon != CurrentWeopon)
             {
+                WeaponBehavior wb = transform.GetChild(lastWeapon).GetComponent<WeaponBehavior>();
+                pistolInteract pistolAltFire = transform.GetChild(lastWeapon).GetComponent<pistolInteract>();
+                if(wb != null)
+                {
+                    wb.isShooting = false;
+                }
+                if(pistolAltFire != null)
+                {
+                    pistolAltFire.isShooting = false;
+                }
+
                 IDweapon();
             }
 

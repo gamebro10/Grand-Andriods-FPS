@@ -15,6 +15,7 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] GameObject Amo;
     [SerializeField] ParticleSystem shootparticle;
     [SerializeField] Gunholstering hand;
+    [SerializeField] LayerMask Mask;
     //[SerializeField] List<Gunstats> gunList = new List<Gunstats>();
    // int selectedGun;
     public bool isShooting;
@@ -53,16 +54,25 @@ public class WeaponBehavior : MonoBehaviour
         isShooting = true;
         hand.canSwitchWeapons = false;
         enablePickup = false;
-        //RaycastHit hit;
-        //Ray ray = (Physics.Raycast(Camera, out hit, ShootDistance));
+        RaycastHit hit;
 
-        if (!shootparticle.isPlaying)
+        if(Physics.Raycast(UnityEngine.Camera.main.transform.position, UnityEngine.Camera.main.transform.forward, out hit, 1000f, Mask))
+        {
+            GameObject Bullet = Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
+            Bullet.transform.LookAt(hit.point);
+        }
+        else
+        {
+            Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
+        }
+        
+            if (!shootparticle.isPlaying)
         { shootparticle.Play(); }
 
 
         //Debug.Log("Shoot");
-        Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
-
+      //  Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
+      
         
 
         yield return new WaitForSeconds(BulletDelay);
