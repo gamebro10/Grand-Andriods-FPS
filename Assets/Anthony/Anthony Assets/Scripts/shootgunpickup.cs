@@ -59,15 +59,15 @@ public class shootgunpickup : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.F))
         //    StartCoroutine(Melee());
 
-        if (Input.GetKeyDown(KeyCode.F) && equiped && !shootbehavior.isShooting)
-        {
-            swingsword sword = Sword.GetComponent<swingsword>();
+        //if (Input.GetKeyDown(KeyCode.F) && equiped && !shootbehavior.isShooting)
+        //{
+        //    swingsword sword = Sword.GetComponent<swingsword>();
 
-            Sword.SetActive(true);
-            sword.slashswitch();
-            gameObject.SetActive(false);
-            // Sword.SetActive(false);
-        }
+        //    Sword.SetActive(true);
+        //    sword.slashswitch();
+        //    gameObject.SetActive(false);
+        //    // Sword.SetActive(false);
+        //}
 
     }
 
@@ -101,7 +101,7 @@ public class shootgunpickup : MonoBehaviour
         coll.isTrigger = true;
 
         transform.SetParent(holder);
-        transform.localPosition = new Vector3((float)0.19, (float)-0.57, (float)1.89);
+        transform.localPosition = new Vector3((float)0.6, (float)-0.6, (float)1.9);
         transform.localRotation = Quaternion.Euler((float)-.02, -95, (float)3.3);
         transform.localScale = Vector3.one;
 

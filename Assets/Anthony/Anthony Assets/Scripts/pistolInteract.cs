@@ -77,15 +77,15 @@ public class pistolInteract : MonoBehaviour
         if (equiped && Input.GetKeyDown(KeyCode.Q))
             Drop();
 
-        if (Input.GetKeyDown(KeyCode.F) && equiped && !behaviorPT2.isShooting)
-        {
-            swingsword sword = Sword.GetComponent<swingsword>();
+        //if (Input.GetKeyDown(KeyCode.F) && equiped && !behaviorPT2.isShooting)
+        //{
+        //    swingsword sword = Sword.GetComponent<swingsword>();
 
-            Sword.SetActive(true);
-            sword.slashswitch();
-            gameObject.SetActive(false);
-            // Sword.SetActive(false);
-        }
+        //    Sword.SetActive(true);
+        //    sword.slashswitch();
+        //    gameObject.SetActive(false);
+        //    // Sword.SetActive(false);
+        //}
 
         if (GameManager.Instance.activeMenu == null)
         {

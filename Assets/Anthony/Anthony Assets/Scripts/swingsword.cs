@@ -32,10 +32,10 @@ public class swingsword : MonoBehaviour
             StartCoroutine(OnEffectPlay());
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            StartCoroutine(quickslash());
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    StartCoroutine(quickslash());
+        //}
 
         if (Input.GetButtonDown("Alt Fire") && allowSlash == true)
         {
@@ -64,31 +64,31 @@ public class swingsword : MonoBehaviour
         }
     }
 
-    public IEnumerator quickslash()
-    {
-        if (canSlash)
-        {
-            scripts.canSwitchWeapons = false;
-            canSlash = false;
-            hitbox.SetActive(true);
-            trail.SetActive(true);
-            WeaponBehavior.enablePickup = false;
-            string[] animations = { "attacking", "forwardslash" };
-            effects.SetTrigger(animations[Random.Range(0, 2)]);
-            yield return new WaitForSeconds(.5f);
-            trail.SetActive(false);
-            hitbox.SetActive(false);
-            canSlash = true;
-            WeaponBehavior.enablePickup = true;
-        }
+    //public IEnumerator quickslash()
+    //{
+    //    if (canSlash)
+    //    {
+    //        scripts.canSwitchWeapons = false;
+    //        canSlash = false;
+    //        hitbox.SetActive(true);
+    //        trail.SetActive(true);
+    //        WeaponBehavior.enablePickup = false;
+    //        string[] animations = { "attacking", "forwardslash" };
+    //        effects.SetTrigger(animations[Random.Range(0, 2)]);
+    //        yield return new WaitForSeconds(.5f);
+    //        trail.SetActive(false);
+    //        hitbox.SetActive(false);
+    //        canSlash = true;
+    //        WeaponBehavior.enablePickup = true;
+    //    }
 
-        //WeaponTurnOn();
-    }
+    //    //WeaponTurnOn();
+    //}
 
     public void slashswitch()
     {
-        StartCoroutine(quickslash());
-        StartCoroutine(SwitchBack());
+        //StartCoroutine(quickslash());
+        //StartCoroutine(SwitchBack());
     }
 
     IEnumerator SwitchBack()

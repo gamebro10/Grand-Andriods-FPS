@@ -46,14 +46,14 @@ public class shootgunbehavior : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && !isShooting)
-        {
-            // swingsword sword = Sword.GetComponent<swingsword>();
+        //if (Input.GetKeyDown(KeyCode.F) && !isShooting)
+        //{
+        //    // swingsword sword = Sword.GetComponent<swingsword>();
 
-            sword.gameObject.SetActive(true);
-            sword.slashswitch();
-            gameObject.SetActive(false);
-        }
+        //    sword.gameObject.SetActive(true);
+        //    sword.slashswitch();
+        //    gameObject.SetActive(false);
+        //}
     }
 
     IEnumerator KickbackAnimation()

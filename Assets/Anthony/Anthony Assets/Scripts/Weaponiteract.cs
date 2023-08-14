@@ -60,18 +60,16 @@ public class Weaponiteract : MonoBehaviour
         if (equiped && Input.GetKeyDown(KeyCode.Q))
             Drop();
 
-        //if (Input.GetKeyDown(KeyCode.F))
-        //    StartCoroutine(Melee());
+      
+        //if (Input.GetKeyDown(KeyCode.F) && equiped && !behavior.isShooting)
+        //{
+        //   swingsword sword = Sword.GetComponent<swingsword>();
 
-        if (Input.GetKeyDown(KeyCode.F) && equiped && !behavior.isShooting)
-        {
-           swingsword sword = Sword.GetComponent<swingsword>();
-
-            Sword.SetActive(true);
-            sword.slashswitch();
-            gameObject.SetActive(false);
-           // Sword.SetActive(false);
-        }
+        //    Sword.SetActive(true);
+        //    sword.slashswitch();
+        //    gameObject.SetActive(false);
+        //   // Sword.SetActive(false);
+        //}
 
     }
 
