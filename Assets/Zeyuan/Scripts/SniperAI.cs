@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SniperAI : EnemyBase
+public class SniperAI : NormalEnemyBase
 {
     [SerializeField] float shootRange;
     [SerializeField] float aimTime;
@@ -59,6 +59,7 @@ public class SniperAI : EnemyBase
         laser.gameObject.SetActive(true);
         yield return new WaitForSeconds(aimTime);
         Instantiate(bullet, firePos.transform.position, Quaternion.LookRotation(Player.transform.position - firePos.position));
+        audioSource.PlayOneShot(shootSound, 3f);
         showLaser = false;
         laser.gameObject.SetActive(false);
         yield return new WaitForSeconds(attackCD);

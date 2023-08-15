@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SoldierAI : EnemyBase
+public class SoldierAI : NormalEnemyBase
 {
     [SerializeField] float shootRange;
     [SerializeField] GameObject bullet;
@@ -53,6 +53,7 @@ public class SoldierAI : EnemyBase
         for (int i = 0; i < randomAttackCount; i++)
         {
             Instantiate(bullet, firePos.transform.position, Quaternion.LookRotation(Player.transform.position - firePos.position));
+            audioSource.PlayOneShot(shootSound, 2f);
             yield return new WaitForSeconds(attackRate);
         }
         yield return new WaitForSeconds(attackCD);

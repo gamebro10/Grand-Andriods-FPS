@@ -23,6 +23,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     //[SerializeField] protected Image lerpHealthBar;
     [SerializeField] protected Renderer spawnEffect;
     [SerializeField] protected Animator anime;
+    [SerializeField] protected AudioSource audioSource;
     [SerializeField] private GameObject deathParticle;
 
     protected float angleToPlayer;

@@ -25,6 +25,7 @@ public class RobotBossAI : EnemyBase
     [SerializeField] GameObject lavaWave;
     [SerializeField] GameObject shield;
     [SerializeField] GameObject handDamageArea;
+    [SerializeField] GameObject laserEffect;
 
     [SerializeField] Transform cannonFirePos;
     [SerializeField] Transform missileRightPos;
@@ -37,6 +38,8 @@ public class RobotBossAI : EnemyBase
     [SerializeField] ParticleSystem lavaEffect;
 
     [SerializeField] Renderer[] boostArm;
+
+    [SerializeField] AudioSource laserAudioSource;
 
     int phase = 0;
 
@@ -154,7 +157,11 @@ public class RobotBossAI : EnemyBase
         if (CanPrepCannon())
         {
             animator.SetBool(prepCannonStr, true);
-            yield return new WaitForSeconds(3 + cannonDelay);
+
+            yield return new WaitForSeconds(3f);
+            laserAudioSource.Play();
+            laserEffect.SetActive(true);
+            yield return new WaitForSeconds(cannonDelay);
             animator.enabled = false;
             isShooting = true;
             yield return new WaitForSeconds(cannonLastTime);
@@ -272,10 +279,14 @@ public class RobotBossAI : EnemyBase
             EnableLaser();
             Material mt = laser.GetComponent<Renderer>().material;
             mt.mainTextureOffset = new Vector2(mt.mainTextureOffset.x, mt.mainTextureOffset.y - Time.deltaTime * cannonUVSpeed);
-            float y = Mathf.Sin(cannonRotateParam) * Mathf.PI / 180 * cannonRotateRange;
-            cannonRotateParam += (Time.deltaTime * cannonRotateSpeed);
+            //float y = Mathf.Sin(cannonRotateParam) * Mathf.PI / 180 * cannonRotateRange;
+            //cannonRotateParam += (Time.deltaTime * cannonRotateSpeed);
+            //Vector3 rot = new Vector3(0, y, 0);
+            //cannon.transform.Rotate(rot, Space.World);
+            cannonRotateParam += Time.deltaTime * cannonRotateSpeed;
+            float y = Mathf.Sin(cannonRotateParam) * Time.deltaTime * cannonRotateRange;
             Vector3 rot = new Vector3(0, y, 0);
-            cannon.transform.Rotate(rot, Space.World);
+            cannon.transform.rotation = Quaternion.Euler(cannon.transform.rotation.eulerAngles + rot);
         }
     }
 
@@ -300,6 +311,7 @@ public class RobotBossAI : EnemyBase
             cannonGroundSmoke.Stop();
         }
         cannonRotateParam = 0;
+        laserEffect.SetActive(false);
         laser.SetActive(false);
     }
 

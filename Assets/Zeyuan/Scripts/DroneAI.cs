@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DroneAI : EnemyBase
+public class DroneAI : NormalEnemyBase
 {
     [SerializeField] float floatingSpeed;
     [SerializeField] float shootRange;
@@ -11,12 +11,19 @@ public class DroneAI : EnemyBase
     [SerializeField] Transform firePosRight;
     [SerializeField] GameObject bullet;
 
+
     float floatParam = 0;
     float floatDivisor = 4;
 
     public GameObject Body;//used only for floating animation
 
     // Update is called once per frame
+
+    protected override void Start()
+    {
+        base.Start();
+        dyingSound.LoadAudioData();
+    }
     protected override void Update()
     {
         if (GameManager.Instance.isPaused)
@@ -77,6 +84,7 @@ public class DroneAI : EnemyBase
             {
                 Instantiate(bullet, firePosRight.transform.position, Quaternion.LookRotation(Player.transform.position - firePosRight.position));
             }
+            audioSource.PlayOneShot(shootSound, 2f);
             yield return new WaitForSeconds(attackRate);
         }
         yield return new WaitForSeconds(attackCD);

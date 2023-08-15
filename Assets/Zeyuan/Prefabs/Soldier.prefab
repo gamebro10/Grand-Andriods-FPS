@@ -99,6 +99,134 @@ Transform:
   m_Father: {fileID: 8632248869308936228}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &367681014353402875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5151426050099078044}
+  - component: {fileID: 3245760608277883658}
+  m_Layer: 9
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5151426050099078044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367681014353402875}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.81, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8632248869308936228}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &3245760608277883658
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367681014353402875}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5526879a9f360d54a9fbbc4a376356d1, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 64
+  DopplerLevel: 1
+  MinDistance: 5
+  MaxDistance: 100
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -3.0724897
+      outSlope: -3.0724897
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.06097561
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.09656742
+      outSlope: -0.09656742
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18597561
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &507861244293523402
 GameObject:
   m_ObjectHideFlags: 0
@@ -6172,8 +6300,9 @@ Transform:
   - {fileID: 4557214983944939422}
   - {fileID: 5578923821356029351}
   - {fileID: 84630807527498460}
+  - {fileID: 5151426050099078044}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5547875940607187852
 MonoBehaviour:
@@ -6205,8 +6334,13 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.46666667, b: 0, a: 1}
   spawnEffect: {fileID: 7670672409294586298}
   anime: {fileID: 8190442244276956803}
+  audioSource: {fileID: 3245760608277883658}
   deathParticle: {fileID: 282533264306053266}
   currentTarget: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 6ebb1bba8409de54985c85b9238a133e, type: 3}
+  dyingSound: {fileID: 8300000, guid: 679c217dabd048d49b5e32096fe22854, type: 3}
+  hit1Sound: {fileID: 8300000, guid: 19f159e4abf5bca4da6ab150486fbfe9, type: 3}
+  hit2Sound: {fileID: 8300000, guid: 365acb135c235ba4db4c57c2bc467d31, type: 3}
   shootRange: 22
   bullet: {fileID: 3474836427932144899, guid: 018f4f8cffab4824b90df44e13ac504a, type: 3}
   firePos: {fileID: 5578923821356029351}
