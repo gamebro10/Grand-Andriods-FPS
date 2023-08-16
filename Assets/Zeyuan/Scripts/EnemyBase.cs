@@ -79,7 +79,7 @@ public class EnemyBase : MonoBehaviour, IDamage
             }
         }
 
-        AudioManager.Instance.RegisterSFX(audioSource);
+        //AudioManager.Instance.RegisterSFX(audioSource);
     }
 
     protected virtual void Update()
@@ -356,11 +356,11 @@ public class EnemyBase : MonoBehaviour, IDamage
         return hp;
     }
 
-    protected virtual void OnDestroy()
-    {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.UnregisterSFX(audioSource);
-        }
-    }
+    //protected virtual void OnDestroy()
+    //{
+    //    if (AudioManager.Instance != null)
+    //    {
+    //        AudioManager.Instance.UnregisterSFX(audioSource);
+    //    }
+    //}
 }

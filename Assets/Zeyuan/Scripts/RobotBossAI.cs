@@ -72,7 +72,7 @@ public class RobotBossAI : EnemyBase
 
         maxHp = hp;
 
-        AudioManager.Instance.RegisterSFX(laserAudioSource);
+        //AudioManager.Instance.RegisterSFX(laserAudioSource);
     }
 
     // Update is called once per frame
@@ -454,12 +454,12 @@ public class RobotBossAI : EnemyBase
         GameManager.Instance.bossHealthBar.LockHealthBar(shouldLock);
     }
 
-    protected override void OnDestroy()
-    {
-        if (AudioManager.Instance != null)
-        {
-            base.OnDestroy();
-            AudioManager.Instance.UnregisterSFX(laserAudioSource);
-        }
-    }
+    //protected override void OnDestroy()
+    //{
+    //    if (AudioManager.Instance != null)
+    //    {
+    //        base.OnDestroy();
+    //        AudioManager.Instance.UnregisterSFX(laserAudioSource);
+    //    }
+    //}
 }
