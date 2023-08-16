@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject playerFlashDamageScreen;
     public GameObject playerFlashHealScreen;
+    public GameObject IFrameScreen;
     public BossHealthBar bossHealthBar;
 
     [Header("-----Options Stuff-----")]
@@ -188,6 +189,9 @@ public class GameManager : MonoBehaviour
             playerFlashDamageScreen.SetActive(true);
             yield return new WaitForSeconds(0.1f);
             playerFlashDamageScreen.SetActive(false);
+            IFrameScreen.SetActive(true);
+            yield return new WaitForSeconds(1);
+            IFrameScreen.SetActive(false);
         }
         else
         {
