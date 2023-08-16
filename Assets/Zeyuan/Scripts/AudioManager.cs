@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     Dictionary<AudioSource, float> SFXAudios;
     Dictionary<AudioSource, float> MusicAudios;
 
-    float checkNullTime = 10f;
+    int level;
+    float checkNullTime = 30f;
 
     static bool isQuitting;
     static AudioManager mInstance;
@@ -35,11 +37,8 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnSFXChanged(); });
-        GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnMusicChanged(); });
-        SFXAudios = new Dictionary<AudioSource, float>();
-        MusicAudios = new Dictionary<AudioSource, float>();
-        isQuitting = false;
+        InitVars();
+        SceneManager.sceneLoaded += delegate { InitVars(); };
 
         InvokeRepeating("CheckNullAudios", checkNullTime, checkNullTime);
     }
@@ -87,7 +86,7 @@ public class AudioManager : MonoBehaviour
 
     void OnSFXChanged()
     {
-        foreach(KeyValuePair<AudioSource, float> audio in SFXAudios)
+        foreach (KeyValuePair<AudioSource, float> audio in SFXAudios)
         {
             if (audio.Key != null)
             {
@@ -113,6 +112,16 @@ public class AudioManager : MonoBehaviour
                 UnregisterMusic(audio.Key);
             }
         }
+    }
+
+    void InitVars()
+    {
+        GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnSFXChanged(); });
+        GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnMusicChanged(); });
+        SFXAudios = new Dictionary<AudioSource, float>();
+        MusicAudios = new Dictionary<AudioSource, float>();
+        isQuitting = false;
+        level = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void OnDestroy()
