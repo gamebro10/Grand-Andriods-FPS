@@ -51,6 +51,7 @@ public class buttonfunctions : MonoBehaviour
 
     public void nextLevel()
     {
+        GameManager.Instance.stateUnpaused();
         levelSelect(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
