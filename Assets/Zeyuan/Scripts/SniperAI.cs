@@ -10,8 +10,11 @@ public class SniperAI : NormalEnemyBase
     [SerializeField] GameObject bullet;
     [SerializeField] Transform firePos;
     [SerializeField] LineRenderer laser;
+    [SerializeField] AudioClip footStep1Sound;
+    [SerializeField] AudioClip footStep2Sound;
 
     bool showLaser;
+    bool canFootStep = true;
 
     // Update is called once per frame
     protected override void Update()
@@ -22,6 +25,10 @@ public class SniperAI : NormalEnemyBase
         }
         base.Update();
         anime.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
+        if (canFootStep && agent.velocity.magnitude > 0.1f)
+        {
+            StartCoroutine(IFootStep());
+        }
         if (currentTarget == Player)
         {
             InCombat();
@@ -34,6 +41,22 @@ public class SniperAI : NormalEnemyBase
         {
             OutCombat();
         }
+    }
+
+    IEnumerator IFootStep()
+    {
+        canFootStep = false;
+        int rand = Random.Range(1, 3);
+        if (rand == 1)
+        {
+            audioSource.PlayOneShot(footStep1Sound, 1f);
+        }
+        else
+        {
+            audioSource.PlayOneShot(footStep2Sound, 1f);
+        }
+        yield return new WaitForSeconds(.5f);
+        canFootStep = true;
     }
 
     void Attack()

@@ -165,7 +165,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 020bd7da28dc346478d086625b954703, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c71dec90b372cea4eb5553a3f4a8d4e5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
@@ -173,7 +173,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 64
+  Priority: 200
   DopplerLevel: 1
   MinDistance: 5
   MaxDistance: 100
@@ -10607,7 +10607,7 @@ MonoBehaviour:
   dyingSound: {fileID: 8300000, guid: 020bd7da28dc346478d086625b954703, type: 3}
   hit1Sound: {fileID: 8300000, guid: 19f159e4abf5bca4da6ab150486fbfe9, type: 3}
   hit2Sound: {fileID: 8300000, guid: 365acb135c235ba4db4c57c2bc467d31, type: 3}
-  floatingSpeed: 8
+  floatingSpeed: 6
   shootRange: 22
   firePosLeft: {fileID: 1188415102229985836}
   firePosRight: {fileID: 5444844468317143971}

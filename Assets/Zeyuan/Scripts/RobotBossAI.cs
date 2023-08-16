@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class RobotBossAI : EnemyBase
 {
@@ -70,6 +71,8 @@ public class RobotBossAI : EnemyBase
         bossHealthBar = GameManager.Instance.bossHealthBar;
 
         maxHp = hp;
+
+        AudioManager.Instance.RegisterSFX(laserAudioSource);
     }
 
     // Update is called once per frame
@@ -164,6 +167,12 @@ public class RobotBossAI : EnemyBase
             yield return new WaitForSeconds(cannonDelay);
             animator.enabled = false;
             isShooting = true;
+            CameraShake();
+            StartCoroutine(IBrightScreen());
+            StartCoroutine(ILensDistortion());
+            
+            yield return new WaitForSeconds(.25f);
+            StartCoroutine(ICameraShake(10f, .5f));
             yield return new WaitForSeconds(cannonLastTime);
             animator.enabled = true;
             animator.SetBool(prepCannonStr, false);
@@ -171,6 +180,41 @@ public class RobotBossAI : EnemyBase
             DisableLaser();
 
             StartCoroutine(DoAfterCannon());
+        }
+    }
+
+    IEnumerator IBrightScreen()
+    {
+        PostProcessVolume postProcess = FindObjectOfType<PostProcessVolume>();
+        AutoExposure exposure = postProcess.profile.GetSetting<AutoExposure>();
+        float val = -20f;
+        exposure.maxLuminance.value = val;
+        while (val < 0f)
+        {
+            exposure.maxLuminance.value = val;
+            val += Time.deltaTime * 20f;
+            if (val > 0)
+            {
+                val = 0;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator ILensDistortion()
+    {
+        PostProcessVolume postProcess = FindObjectOfType<PostProcessVolume>();
+        LensDistortion len = postProcess.profile.GetSetting<LensDistortion>();
+        float val = 70f;
+        while (val > 0f)
+        {
+            len.intensity.value = val;
+            val -= Time.deltaTime * 40f;
+            if (val < 0)
+            {
+                val = 0;
+            }
+            yield return new WaitForEndOfFrame();
         }
     }
 
@@ -365,13 +409,12 @@ public class RobotBossAI : EnemyBase
         StartCoroutine(ICameraShake());
     }
 
-    IEnumerator ICameraShake()
+    IEnumerator ICameraShake(float timer = 0.25f, float amount = 3f)
     {
         UnityEngine.Camera cam = UnityEngine.Camera.main;
-        float timer = .25f;
         while (timer > 0)
         {
-            cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, 0, cam.transform.rotation.z + UnityEngine.Random.Range(-3f, 3f));
+            cam.transform.localRotation = Quaternion.Euler(cam.transform.rotation.x, 0, cam.transform.rotation.z + UnityEngine.Random.Range(-amount, amount));
             timer -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -409,5 +452,14 @@ public class RobotBossAI : EnemyBase
     {
         canTakeDamage = !shouldLock;
         GameManager.Instance.bossHealthBar.LockHealthBar(shouldLock);
+    }
+
+    protected override void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            base.OnDestroy();
+            AudioManager.Instance.UnregisterSFX(laserAudioSource);
+        }
     }
 }

@@ -549,7 +549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2315865118312969908, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.7
+      value: 58.1
       objectReference: {fileID: 0}
     - target: {fileID: 2315865118312969908, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -908,14 +908,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1861955921564186919, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5948524510732315727, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
-      propertyPath: m_LengthScale
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6448306316188453243, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
       propertyPath: m_Name
       value: RobotBoss
@@ -963,18 +955,6 @@ PrefabInstance:
     - target: {fileID: 7700086124801053594, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105260655814775152, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
-      propertyPath: hp
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105260655814775152, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
-      propertyPath: cannonRotateRange
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8105260655814775152, guid: 1c339821464743d4d88f1d1c6e478ef4, type: 3}
-      propertyPath: cannonRotateSpeed
-      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

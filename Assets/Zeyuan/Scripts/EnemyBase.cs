@@ -54,10 +54,11 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     protected virtual void Start()
     {
-       flashColor = flashColor * Mathf.LinearToGammaSpace(50f);
+        flashColor = flashColor * Mathf.LinearToGammaSpace(50f);
         startingPosition = transform.position;
         Player = GameManager.Instance.player;
         maxHealth = hp;
+
         if (spawnEffect != null)
         {
             StartCoroutine(IPlaySpawnEffect());
@@ -77,6 +78,8 @@ public class EnemyBase : MonoBehaviour, IDamage
                 }
             }
         }
+
+        AudioManager.Instance.RegisterSFX(audioSource);
     }
 
     protected virtual void Update()
@@ -351,5 +354,13 @@ public class EnemyBase : MonoBehaviour, IDamage
     public float GetCurHP()
     {
         return hp;
+    }
+
+    protected virtual void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(audioSource);
+        }
     }
 }

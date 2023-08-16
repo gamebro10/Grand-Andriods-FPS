@@ -13,7 +13,7 @@ public class DroneAI : NormalEnemyBase
 
 
     float floatParam = 0;
-    float floatDivisor = 4;
+    float floatDivisor = 1.2f;
 
     public GameObject Body;//used only for floating animation
 

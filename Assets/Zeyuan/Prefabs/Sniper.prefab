@@ -5140,6 +5140,8 @@ MonoBehaviour:
   bullet: {fileID: 3474836427932144899, guid: 050755e6add77cb48be66185b65a3c2a, type: 3}
   firePos: {fileID: 5824540444973571491}
   laser: {fileID: 526473099599787813}
+  footStep1Sound: {fileID: 8300000, guid: ddc4be3a61d2e9f4c95390436871a7b4, type: 3}
+  footStep2Sound: {fileID: 8300000, guid: 166dac90b48d3c24a9a4ca2ff2355ecf, type: 3}
 --- !u!195 &4285091088991806736
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6206,10 +6208,10 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 64
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 5
-  MaxDistance: 100
+  MaxDistance: 150
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0

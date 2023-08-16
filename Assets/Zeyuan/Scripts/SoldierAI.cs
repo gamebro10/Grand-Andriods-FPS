@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Assertions.Must;
 
 public class SoldierAI : NormalEnemyBase
 {
     [SerializeField] float shootRange;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform firePos;
+    [SerializeField] AudioClip footStep1Sound;
+    [SerializeField] AudioClip footStep2Sound;
 
+    bool canFootStep = true;
 
     // Update is called once per frame
     protected override void Update()
@@ -19,6 +23,11 @@ public class SoldierAI : NormalEnemyBase
         }
         base.Update();
         anime.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
+        if (canFootStep && agent.velocity.magnitude > 0.1f)
+        {
+            StartCoroutine(IFootStep());
+        }
+
         if (currentTarget == Player)
         {
             InCombat();
@@ -27,6 +36,22 @@ public class SoldierAI : NormalEnemyBase
         {
             OutCombat();
         }
+    }
+
+    IEnumerator IFootStep()
+    {
+        canFootStep = false;
+        int rand = Random.Range(1, 3);
+        if (rand == 1)
+        {
+            audioSource.PlayOneShot(footStep1Sound, 1f);
+        }
+        else
+        {
+            audioSource.PlayOneShot(footStep2Sound, 1f);
+        }
+        yield return new WaitForSeconds(.5f);
+        canFootStep = true;
     }
 
     void Attack()
@@ -53,7 +78,7 @@ public class SoldierAI : NormalEnemyBase
         for (int i = 0; i < randomAttackCount; i++)
         {
             Instantiate(bullet, firePos.transform.position, Quaternion.LookRotation(Player.transform.position - firePos.position));
-            audioSource.PlayOneShot(shootSound, 2f);
+            audioSource.PlayOneShot(shootSound, 1.5f);
             yield return new WaitForSeconds(attackRate);
         }
         yield return new WaitForSeconds(attackCD);

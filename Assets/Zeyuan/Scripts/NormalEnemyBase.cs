@@ -36,15 +36,18 @@ public class NormalEnemyBase : EnemyBase
     protected override void OnDeath()
     {
         base.OnDeath();
-        audioSource.PlayOneShot(dyingSound, 7f);
+        audioSource.PlayOneShot(dyingSound, 5f);
         StartCoroutine(ISmoothTurnOffSound());
     }
 
     IEnumerator ISmoothTurnOffSound()
     {
+        float original = audioSource.volume;
+        float val = 1f;
         while (true)
         {
-            audioSource.volume -= Time.deltaTime * .1f;
+            audioSource.volume = Mathf.Lerp(0, original, val);
+            val -= Time.deltaTime * .5f;
             yield return new WaitForEndOfFrame();
         }
     }
