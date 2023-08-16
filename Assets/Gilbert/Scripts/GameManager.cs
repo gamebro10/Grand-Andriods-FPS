@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public Image speedometerBar;
     public Image playerHPBar;
     public GameObject playerFlashDamageScreen;
+    public GameObject playerFlashHealScreen;
     public BossHealthBar bossHealthBar;
 
     [Header("-----Options Stuff-----")]
@@ -123,7 +124,7 @@ public class GameManager : MonoBehaviour
         //playerScript.playerCam.fieldOfView = FOVValue;
         FOVText.text = optionsvalues.FOVValue.ToString();
         MouseSensSlider.value = optionsvalues.MouseSensValue = 50;
-        MouseSensText.text = optionsvalues.MouseSensValue.ToString(); 
+        MouseSensText.text = optionsvalues.MouseSensValue.ToString();
         SFXSlider.value = optionsvalues.SFXValue = 100;
         SFXText.text = optionsvalues.SFXValue.ToString();
         MusicSlider.value = optionsvalues.MusicValue = 100;
@@ -141,7 +142,7 @@ public class GameManager : MonoBehaviour
 
     public void closeOptions()
     {
-       saveOptions();
+        saveOptions();
         activeMenu.SetActive(false);
         activeMenu = prevMenu;
         activeMenu.SetActive(true);
@@ -164,8 +165,8 @@ public class GameManager : MonoBehaviour
         optionsvalues.MouseSensValue = optionsspare.MouseSensValue;
         optionsvalues.SFXValue = optionsspare.SFXValue;
         optionsvalues.MusicValue = optionsspare.MusicValue;
-       
-     }
+
+    }
 
     public void updateEnemy(int amount)
     {
@@ -180,10 +181,19 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public IEnumerator playerFlashDamage()
+    public IEnumerator playerFlashDamage(bool damage)
     {
-        playerFlashDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        playerFlashDamageScreen.SetActive(false);
+        if (damage)
+        {
+            playerFlashDamageScreen.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            playerFlashDamageScreen.SetActive(false);
+        }
+        else
+        {
+            playerFlashHealScreen.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            playerFlashHealScreen.SetActive(false);
+        }
     }
 }

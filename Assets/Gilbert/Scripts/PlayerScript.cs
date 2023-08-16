@@ -60,13 +60,14 @@ public class PlayerScript : MonoBehaviour, IDamage
             if (InvinTimer == InvinMax)
             {
                 playerHP -= amount;
-                StartCoroutine(GameManager.Instance.playerFlashDamage());
+                StartCoroutine(GameManager.Instance.playerFlashDamage(true));
                 InvinTimer = 0;
             }
         }
         else
         {
             playerHP -= amount;
+            StartCoroutine(GameManager.Instance.playerFlashDamage(false));
         }
         GameManager.Instance.playerHPBar.fillAmount = (float)playerHP / HPOrig;
         if (playerHP <= 0)
