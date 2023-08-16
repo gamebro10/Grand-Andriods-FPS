@@ -53,6 +53,8 @@ public class RobotBossAI : EnemyBase
     bool shouldSlam;
     bool isSlamFinished = true;
     bool canTakeDamage = true;
+    public bool isEasyBoss;
+    bool easyBossDown;
 
     string prepCannonStr = "PrepCannon";
     string afterCannonStr = "AfterCannon";
@@ -100,56 +102,83 @@ public class RobotBossAI : EnemyBase
     {
         if (canTakeDamage)
         {
-            float tempHp = hp;
-            bool loc = false;
-            hp -= amount;
-            if (renderers != null)
+            if (!isEasyBoss)
             {
-                StartCoroutine(IFlashMaterial(renderers));
-            }
-
-            if (tempHp >= maxHp * 0.83 && hp < maxHp * 0.83)
-            {
-                shouldCannon = true;
-                loc = true;
-                hp = maxHp * 0.829f;
-                phase++;
-                BossScene.Instance.OpenSecurity(1);
-            }
-
-            if (tempHp >= maxHp * 0.67 && hp < maxHp * 0.67)
-            {
-                shouldCannon = true;
-                loc = true;
-                hp = maxHp * 0.669f;
-                phase++;
-                BossScene.Instance.OpenSecurity(2);
-            }
-
-            if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
-            {
-                if (shield.activeSelf)
+                float tempHp = hp;
+                bool loc = false;
+                hp -= amount;
+                if (renderers != null)
                 {
-                    shield.GetComponent<BossShield>().OnDisabled();
-                    shield.SetActive(false);
+                    StartCoroutine(IFlashMaterial(renderers));
                 }
-                shouldCannon = true;
-                loc = true;
-                hp = maxHp * 0.499f;
-                phase++;
-            }
 
-            bossHealthBar.FillHealthBar(hp / maxHp);
-            if (loc)
-            {
-                LockHealthBar(true);
-            }
+                if (tempHp >= maxHp * 0.83 && hp < maxHp * 0.83)
+                {
+                    shouldCannon = true;
+                    loc = true;
+                    hp = maxHp * 0.829f;
+                    phase++;
+                    BossScene.Instance.OpenSecurity(1);
+                }
 
-            if (hp <= 0)
+                if (tempHp >= maxHp * 0.67 && hp < maxHp * 0.67)
+                {
+                    shouldCannon = true;
+                    loc = true;
+                    hp = maxHp * 0.669f;
+                    phase++;
+                    BossScene.Instance.OpenSecurity(2);
+                }
+
+                if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
+                {
+                    if (shield.activeSelf)
+                    {
+                        shield.GetComponent<BossShield>().OnDisabled();
+                        shield.SetActive(false);
+                    }
+                    shouldCannon = true;
+                    loc = true;
+                    hp = maxHp * 0.499f;
+                    phase++;
+                }
+
+                bossHealthBar.FillHealthBar(hp / maxHp);
+                if (loc)
+                {
+                    LockHealthBar(true);
+                }
+
+                if (hp <= 0)
+                {
+                    GameManager.Instance.bossHealthBar.gameObject.SetActive(false);
+                    Destroy(gameObject);
+                }
+            }
+            else
             {
-                GameManager.Instance.updateEnemy(-1);
-                GameManager.Instance.bossHealthBar.gameObject.SetActive(false);
-                Destroy(gameObject);
+                if (!easyBossDown)
+                {
+                    StopAllCoroutines();
+                    animator.SetTrigger("EasyBoss");
+                    StartCoroutine(DoAfterCannon());
+                    hp = maxHp * 0.499f;
+                    bossHealthBar.FillHealthBar(hp / maxHp);
+                    LockHealthBar(true);
+                    phase = 3;
+                    easyBossDown = true;
+                }
+                else
+                {
+                    hp -= amount;
+                    bossHealthBar.FillHealthBar(hp / maxHp);
+                    if (hp <= 0)
+                    {
+                        GameManager.Instance.bossHealthBar.gameObject.SetActive(false);
+                        Destroy(gameObject);
+                    }
+                }
+                
             }
             
         }

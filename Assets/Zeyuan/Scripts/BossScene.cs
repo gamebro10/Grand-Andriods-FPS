@@ -32,6 +32,7 @@ public class BossScene : MonoBehaviour
     [SerializeField] GameObject camBlackBar;
     [SerializeField] GameObject thumbsUp;
     [SerializeField] GameObject memberList;
+    [SerializeField] GameObject credits;
     [SerializeField] Transform enemyParent;
     [SerializeField] Transform platformStopTopY;
     [SerializeField] Transform platformStopUpperY;
@@ -310,20 +311,11 @@ public class BossScene : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        TextMeshProUGUI text = Instantiate(memberList, GameManager.Instance.transform).transform.Find("List").GetComponent<TextMeshProUGUI>();
-        while (text.color.a <= 1)
+        foreach (Transform item in GameManager.Instance.transform)
         {
-            text.color += new Color(0, 0, 0, Time.deltaTime) * 10f;
-            yield return new WaitForEndOfFrame();
+            item.gameObject.SetActive(false);
         }
-        yield return new WaitForSeconds(2f);
-        while (text.color.a >= 0)
-        {
-            text.color -= new Color(0, 0, 0, Time.deltaTime) * 40f;
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
+        Instantiate(credits, GameManager.Instance.transform);
 
     }
 

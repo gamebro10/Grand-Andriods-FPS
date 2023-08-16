@@ -14,6 +14,7 @@ public class DeveloperCheat : MonoBehaviour
     [SerializeField] ScrollRect scroll;
     [SerializeField] TMP_InputField input;
     [SerializeField] TextMeshProUGUI content;
+    [SerializeField] Button closeButton;
 
     string commandErrorString = "Invalid command\n";
     string paramErrorString = "Invalid param\n";
@@ -79,6 +80,12 @@ public class DeveloperCheat : MonoBehaviour
                 GameManager.Instance.playerMovement.GetRb().velocity = new Vector3(velocity.x, 0, velocity.z);
             }
         }
+    }
+
+    public void OnPressClose()
+    {
+        input.text = string.Empty;
+        GameManager.Instance.stateUnpaused();
     }
 
     public void SuperSpeed(float multiplier)
