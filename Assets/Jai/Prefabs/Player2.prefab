@@ -82,7 +82,7 @@ MonoBehaviour:
   jumpKey: 32
   sprintKey: 304
   crouching: 99
-  moveSpeed: 13
+  moveSpeed: 15
   airMultiplier: 1
   cam: {fileID: 0}
   walkFov: 80
