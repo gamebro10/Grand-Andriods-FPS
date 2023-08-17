@@ -81,14 +81,14 @@ MonoBehaviour:
   orientation: {fileID: 6941400609533312473}
   jumpKey: 32
   sprintKey: 304
-  crouchKey: 99
-  moveSpeed: 7
-  airMultiplier: 0.5
-  slideForce: 400
-  walkSpeed: 12
-  sprintSpeed: 20
-  acceleration: 10
-  jumpForce: 15
+  crouching: 99
+  moveSpeed: 13
+  airMultiplier: 1
+  cam: {fileID: 0}
+  walkFov: 80
+  sprintFov: 100
+  sprintFovTime: 20
+  jumpForce: 20
   groundCheck: {fileID: 1940481399391696211}
   groundMask:
     serializedVersion: 2
@@ -96,7 +96,7 @@ MonoBehaviour:
   groundDistance: 0.1
   isGrounded: 0
   groundDrag: 6
-  airDrag: 2
+  airDrag: 0
 --- !u!114 &8970543890108640963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,10 +130,10 @@ MonoBehaviour:
   wallDistance: 0.6
   minimumJumpHeight: 1.5
   wallRunGravity: 1
-  wallRunJumpForce: 7
+  wallRunJumpForce: 9
   cam: {fileID: 0}
   fov: 80
-  wallRunfov: 100
+  wallRunfov: 105
   wallRunfovTime: 20
   camTilt: 17
   camTiltTime: 17

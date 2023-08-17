@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement2 : MonoBehaviour
@@ -11,22 +12,23 @@ public class PlayerMovement2 : MonoBehaviour
     [Header("Keybinds")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
-    [SerializeField] KeyCode crouchKey = KeyCode.C;
+    [SerializeField] KeyCode crouching = KeyCode.C;
 
     [Header("Movement")]
     [SerializeField] float moveSpeed = 7f; //speed of the player
     [SerializeField] float airMultiplier = 0.5f;
     float movementMultiplier = 10f;
 
-    [Header("Crouch/Slide")]
-    private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
-    private Vector3 playerScale;
-    public float slideForce = 400;
+    //[Header("Sprinting")]
+    //[SerializeField] float walkSpeed = 7f;
+    //[SerializeField] float sprintSpeed = 13f;
+    //[SerializeField] float acceleration = 10f;
 
-    [Header("Sprinting")]
-    [SerializeField] float walkSpeed = 7f;
-    [SerializeField] float sprintSpeed = 13f;
-    [SerializeField] float acceleration = 10f;
+    [Header("Camera")]
+    [SerializeField] private UnityEngine.Camera cam;
+    [SerializeField] private float walkFov;
+    [SerializeField] private float sprintFov;
+    [SerializeField] private float sprintFovTime;
 
     [Header("Jumping")]
     public float jumpForce = 15f;
@@ -71,8 +73,6 @@ public class PlayerMovement2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-
-        playerScale = transform.localScale;
     }
 
     private void Update()
@@ -81,19 +81,21 @@ public class PlayerMovement2 : MonoBehaviour
 
         MyInput();
         ControlDrag();
-        ControlSpeed();
+        //ControlSpeed();
+        //SprintFov();
 
         if (Input.GetKeyDown(jumpKey) && isGrounded) //to jump
         {
             Jump();
         }
 
-        if (Input.GetKeyDown(crouchKey))
-            StartCrouch();
-        if (Input.GetKeyUp(crouchKey))
-            StopCrouch();
-
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+    }
+
+    private void FixedUpdate() // frequency of physics system bcuz we using rb && smooth movement
+    {
+        MovePlayer();
+
     }
 
     void MyInput()
@@ -103,31 +105,33 @@ public class PlayerMovement2 : MonoBehaviour
 
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement; //moving in the direction relative to where player is looking
 
-        if (Input.GetKey(crouchKey) && isGrounded) //If sliding down a ramp, add force down so player stays grounded and also builds speed
+        if (Input.GetKeyDown(crouching))
         {
-            rb.AddForce(Vector3.down * Time.deltaTime * 3000);
-            return;
+            StartCrouch();
+        }
+        if (Input.GetKeyUp(crouching))
+        {
+            StopCrouch();
         }
     }
 
-    private void StartCrouch()
+    private void StartCrouch() //Scaling player down
     {
-        transform.localScale = crouchScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-        if (rb.velocity.magnitude > 0.5f)
+
+        base.transform.localScale = new Vector3(1f, 0.5f, 1f);
+        base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y - 0.5f, base.transform.position.z);
+        if (rb.velocity.magnitude > 0.1f && isGrounded)
         {
-            if (isGrounded)
-            {
-                rb.AddForce(orientation.transform.forward * slideForce);
-            }
+            rb.AddForce(orientation.transform.forward * 400f);
         }
     }
 
-    private void StopCrouch()
+    private void StopCrouch() //Scale player to original size
     {
-        transform.localScale = playerScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        base.transform.localScale = new Vector3(1f, 1f, 1f);
+        base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.5f, base.transform.position.z);
     }
+
 
     void Jump()
     {
@@ -138,17 +142,30 @@ public class PlayerMovement2 : MonoBehaviour
         }
     }
 
-    void ControlSpeed()
-    {
-        if (Input.GetKey(sprintKey) && isGrounded)
-        {
-            moveSpeed = Mathf.Lerp(moveSpeed, sprintSpeed, acceleration * Time.deltaTime);
-        }
-        else
-        {
-            moveSpeed = Mathf.Lerp(moveSpeed, walkSpeed, acceleration * Time.deltaTime);
-        }
-    }
+    //void ControlSpeed()
+    //{
+    //    if (Input.GetKey(sprintKey) && isGrounded)
+    //    {
+
+    //        moveSpeed = Mathf.Lerp(moveSpeed, sprintSpeed, acceleration * Time.deltaTime);
+    //    }
+    //    else
+    //    {
+    //        moveSpeed = Mathf.Lerp(moveSpeed, walkSpeed, acceleration * Time.deltaTime);
+    //    }
+    //}
+
+    //void SprintFov()
+    //{
+    //    if (isGrounded && Input.GetKey(sprintKey))
+    //    {
+    //        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, sprintFov, sprintFovTime * Time.deltaTime);
+    //    }
+    //    else
+    //    {
+    //        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, walkFov, sprintFovTime * Time.deltaTime);
+    //    }
+    //}
 
     void ControlDrag() // to make the rb not slippery
     {
@@ -162,13 +179,36 @@ public class PlayerMovement2 : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() // frequency of physics system bcuz we using rb && smooth movement
-    {
-        MovePlayer();
-    }
+
 
     void MovePlayer()
     {
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y - 9.81f * Time.deltaTime, rb.velocity.z);
+        float current = orientation.transform.eulerAngles.y;
+        float target = Mathf.Atan2(rb.velocity.x, rb.velocity.z) * 57.29578f;
+        float num = Mathf.DeltaAngle(current, target);
+        float num2 = 90f - num;
+        float magnitude = rb.velocity.magnitude;
+        Vector2 mag = new Vector2(y: magnitude * Mathf.Cos(num * ((float)Mathf.PI / 180f)), x: magnitude * Mathf.Cos(num2 * ((float)Mathf.PI / 180f)));
+        float num3 = mag.x;
+        float num4 = mag.y;
+        float num5 = movementMultiplier;
+        if (horizontalMovement > 0f && num3 > num5)
+        {
+            horizontalMovement = 0f;
+        }
+        if (horizontalMovement < 0f && num3 < 0f - num5)
+        {
+            horizontalMovement = 0f;
+        }
+        if (verticalMovement > 0f && num4 > num5)
+        {
+            verticalMovement = 0f;
+        }
+        if (verticalMovement < 0f && num4 < 0f - num5)
+        {
+            verticalMovement = 0f;
+        }
         if (isGrounded && !OnSlope())
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
@@ -179,8 +219,14 @@ public class PlayerMovement2 : MonoBehaviour
         }
         else if (!isGrounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
+            //rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
+            rb.AddForce(orientation.transform.forward * moveSpeed * verticalMovement * movementMultiplier * airMultiplier * Time.deltaTime, ForceMode.Acceleration);
+            rb.AddForce(orientation.transform.right * moveSpeed * horizontalMovement * movementMultiplier * airMultiplier * Time.deltaTime, ForceMode.Acceleration);
         }
+    }
 
+    public Rigidbody GetRb()
+    {
+        return rb;
     }
 }
