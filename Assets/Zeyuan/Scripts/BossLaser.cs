@@ -7,7 +7,7 @@ public class BossLaser : BulletBase
     [SerializeField] float laserDotRate;
 
     bool isDamaging;
-    protected override void OnTriggerEnter(Collider other)
+    protected override void FixedUpdate()
     {
         
     }
