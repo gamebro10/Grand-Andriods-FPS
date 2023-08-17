@@ -22915,6 +22915,7 @@ MonoBehaviour:
   - {fileID: 6127097623916841016}
   - {fileID: 3724847223647276722}
   laserAudioSource: {fileID: 6408348668084587416}
+  isEasyBoss: 1
 --- !u!1 &6548775765608867888
 GameObject:
   m_ObjectHideFlags: 0

@@ -311,11 +311,12 @@ public class BossScene : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        foreach (Transform item in GameManager.Instance.transform)
-        {
-            item.gameObject.SetActive(false);
-        }
-        Instantiate(credits, GameManager.Instance.transform);
+        //foreach (Transform item in GameManager.Instance.transform)
+        //{
+        //    item.gameObject.SetActive(false);
+        //}
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(8);
 
     }
 
