@@ -135,7 +135,7 @@ Transform:
   - {fileID: 5809251733646675319}
   - {fileID: 7694377403718228749}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1793250254134868698
 MeshFilter:
@@ -750,8 +750,16 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.763
+      value: 0.7629998
       objectReference: {fileID: 0}
     - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalPosition.y
@@ -759,7 +767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalRotation.w
@@ -767,15 +775,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -953,6 +961,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1749897523145472286, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
+      propertyPath: m_Name
+      value: WeaponRecoiler
+      objectReference: {fileID: 0}
     - target: {fileID: 3943549139891964251, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
       propertyPath: player
       value: 
@@ -977,6 +989,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5152402730045222234, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8664066172425059405}
+    - targetCorrespondingSourceObject: {fileID: 1749897523145472286, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 141967933346207300}
     - targetCorrespondingSourceObject: {fileID: 7875840686686795802, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5230227182109425018}
@@ -1076,3 +1091,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 827722842286986883, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
   m_PrefabInstance: {fileID: 4870079180109429702}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6619479671238640344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1749897523145472286, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
+  m_PrefabInstance: {fileID: 4870079180109429702}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &141967933346207300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619479671238640344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da70f49a7721e18469f54c8670697939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x_WeaponRecoil: -2
+  y_WeaponRecoil: 2
+  z_WeaponRecoil: 0.35
+  flickspeed: 6
+  resetposSpeed: 2

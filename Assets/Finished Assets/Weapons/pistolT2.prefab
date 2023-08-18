@@ -224,7 +224,6 @@ GameObject:
   - component: {fileID: 5015055113718920621}
   - component: {fileID: 3461922851506771372}
   - component: {fileID: 5917234259099613084}
-  - component: {fileID: 111851598032482108}
   - component: {fileID: 7642410848909213495}
   m_Layer: 0
   m_Name: pistolT2
@@ -275,6 +274,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 97f533c5132db4f4a92f818bdedec865, type: 3}
   Volume: 0.91
   shootSoundSource: {fileID: 7642410848909213495}
+  Recoil: {fileID: 0}
 --- !u!114 &5015055113718920621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,29 +357,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &111851598032482108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3630999367887235151}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03c7752f62cd9c548ac22c534086fe12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletDelay: 2
-  ShootDmg: 7
-  ShootDistance: 10
-  shotposLeft: {fileID: 4442603987400528819}
-  shotposRight: {fileID: 3056868183460646943}
-  shotposUPMid: {fileID: 909159885580814589}
-  Amo: {fileID: 3913078690282433628, guid: 07540b5a70a6497458cab2be4301d645, type: 3}
-  shootparticle: {fileID: 794095315279316131}
-  hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
-  AltFireKick: {fileID: 9190352388257268195}
-  isShooting: 0
 --- !u!82 &7642410848909213495
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1052,6 +1029,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5833792907328807187}
   - component: {fileID: 9190352388257268195}
+  - component: {fileID: 4234228027009926253}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1102,6 +1080,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4234228027009926253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8711320881879369824}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da70f49a7721e18469f54c8670697939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x_WeaponRecoil: -2
+  y_WeaponRecoil: 2
+  z_WeaponRecoil: 0.35
+  flickspeed: 6
+  resetposSpeed: 2
 --- !u!1 &9203572467063687066
 GameObject:
   m_ObjectHideFlags: 0

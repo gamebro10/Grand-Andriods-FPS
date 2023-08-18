@@ -23,8 +23,8 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] AudioClip shootSound;
     [Range(0, 5)]public float Volume = 2f;
     public AudioSource shootSoundSource;
-   
-    
+
+    public WeaponRecoil Recoil;
 
     private void Awake()
     {
@@ -66,6 +66,8 @@ public class WeaponBehavior : MonoBehaviour
         RaycastHit hit;
 
         ShotAudio(shootSoundSource);
+
+        Recoil.playRecoil();
 
         if (Physics.Raycast(UnityEngine.Camera.main.transform.position, UnityEngine.Camera.main.transform.forward, out hit, 1000f, Mask))
         {
