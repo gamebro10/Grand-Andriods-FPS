@@ -44,8 +44,10 @@ public class RobotBossAI : EnemyBase
     [SerializeField] AudioSource laserAudioSource;
     [SerializeField] AudioSource missileAudioSource;
 
-    [SerializeField] AudioClip missileLaunching;
-    [SerializeField] AudioClip alarm;
+    [SerializeField] AudioClip missileLaunchingSound;
+    [SerializeField] AudioClip alarmSound;
+    [SerializeField] AudioClip hit1Sound;
+    [SerializeField] AudioClip hit2Sound;
 
     int phase = 0;
 
@@ -135,7 +137,7 @@ public class RobotBossAI : EnemyBase
                     hp = maxHp * 0.829f;
                     phase++;
                     BossScene.Instance.OpenSecurity(1);
-                    audioSource.PlayOneShot(alarm, .4f);
+                    audioSource.PlayOneShot(alarmSound, .4f);
                 }
 
                 if (tempHp >= maxHp * 0.67 && hp < maxHp * 0.67)
@@ -145,7 +147,7 @@ public class RobotBossAI : EnemyBase
                     hp = maxHp * 0.669f;
                     phase++;
                     BossScene.Instance.OpenSecurity(2);
-                    audioSource.PlayOneShot(alarm, .4f);
+                    audioSource.PlayOneShot(alarmSound, .4f);
                 }
 
                 if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
@@ -159,7 +161,7 @@ public class RobotBossAI : EnemyBase
                     loc = true;
                     hp = maxHp * 0.499f;
                     phase++;
-                    audioSource.PlayOneShot(alarm, .4f);
+                    audioSource.PlayOneShot(alarmSound, .4f);
                 }
 
                 bossHealthBar.FillHealthBar(hp / maxHp);
@@ -199,7 +201,11 @@ public class RobotBossAI : EnemyBase
                 }
                 
             }
-            
+            audioSource.PlayOneShot(hit1Sound, .7f);
+        }
+        else
+        {
+            audioSource.PlayOneShot(hit2Sound, .7f);
         }
     }
 
@@ -488,7 +494,7 @@ public class RobotBossAI : EnemyBase
                     Instantiate(missile, missileLeftPos.position, missileLeftPos.rotation);
                     missileLeftFX.Play();
                 }
-                audioSource.PlayOneShot(missileLaunching);
+                audioSource.PlayOneShot(missileLaunchingSound);
                 yield return new WaitForSeconds(missileLaunchRate);
             }
             yield return new WaitForSeconds(missileLaunchCD);

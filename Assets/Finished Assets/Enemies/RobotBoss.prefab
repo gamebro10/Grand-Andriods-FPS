@@ -22996,7 +22996,7 @@ MonoBehaviour:
   roamDistance: -1
   viewAngle: -1
   faceToPlayerSpeed: 1.3
-  hp: 1
+  hp: 1000
   attackRate: -1
   attackCD: -1
   stoppingDistance: -1
@@ -23045,8 +23045,10 @@ MonoBehaviour:
   - {fileID: 3724847223647276722}
   laserAudioSource: {fileID: 6408348668084587416}
   missileAudioSource: {fileID: 3352253743077573913}
-  missileLaunching: {fileID: 8300000, guid: 9e431bef87a93e8448c3e64dc371a3f5, type: 3}
-  alarm: {fileID: 8300000, guid: 8f325ff1009ddc043bf81bf6ff026c3a, type: 3}
+  missileLaunchingSound: {fileID: 8300000, guid: 3cc4dabf05804054a8a08f8f933aedbb, type: 3}
+  alarmSound: {fileID: 8300000, guid: 8f325ff1009ddc043bf81bf6ff026c3a, type: 3}
+  hit1Sound: {fileID: 8300000, guid: be49c5e0974317045b7d0268a5e2ca25, type: 3}
+  hit2Sound: {fileID: 8300000, guid: ec786b510603be14eb7d92aa23d974b4, type: 3}
   isEasyBoss: 0
 --- !u!1 &6548775765608867888
 GameObject:

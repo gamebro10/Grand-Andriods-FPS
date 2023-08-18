@@ -7304,95 +7304,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5126543925521757484}
     m_Modifications:
-    - target: {fileID: 2191906887022221581, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2191906887022221581, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2191906887022221581, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 612
-      objectReference: {fileID: 0}
     - target: {fileID: 4437094027376394727, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
       propertyPath: m_Name
       value: MemberList
-      objectReference: {fileID: 0}
-    - target: {fileID: 6522975506292672651, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
-      propertyPath: m_text
-      value: 'Jai Bhatia
-
-        Marie Halper
-
-        Mason Miller
-
-        Gilbert
-        Pemberton Jr
-
-        Anthony Perez
-
-        Zeyuan Song
-
-
-        Jai Bhatia
-
-        Marie
-        Halper
-
-        Mason Miller
-
-        Gilbert Pemberton Jr
-
-        Anthony
-        Perez
-
-        Zeyuan Song
-
-
-        Jai Bhatia
-
-        Marie Halper
-
-        Mason
-        Miller
-
-        Gilbert Pemberton Jr
-
-        Anthony Perez
-
-        Zeyuan
-        Song
-
-
-        Jai Bhatia
-
-        Marie Halper
-
-        Mason Miller
-
-        Gilbert
-        Pemberton Jr
-
-        Anthony Perez
-
-        Zeyuan Song
-
-
-        Jai Bhatia
-
-        Marie
-        Halper
-
-        Mason Miller
-
-        Gilbert Pemberton Jr
-
-        Anthony
-        Perez
-
-        Zeyuan Song'
       objectReference: {fileID: 0}
     - target: {fileID: 8663934893784680513, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
       propertyPath: m_Pivot.x
@@ -7481,36 +7395,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1840205725863871788, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9129851056782629483}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
---- !u!1 &1485628189893157728 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1840205725863871788, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
-  m_PrefabInstance: {fileID: 943428995257656908}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &9129851056782629483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485628189893157728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!114 &6310097255932423879 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6522975506292672651, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
   m_PrefabInstance: {fileID: 943428995257656908}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485628189893157728}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
