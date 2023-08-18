@@ -16,6 +16,8 @@ public class StompButton : MonoBehaviour
     [SerializeField] GameObject stompText;
     [SerializeField] GameObject button;
     [SerializeField] MeshCollider trigger;
+
+    [SerializeField] AudioSource audioSource;
     
 
 
@@ -52,6 +54,8 @@ public class StompButton : MonoBehaviour
                 PressedButton();
                 break;
         };
+
+        AudioManager.Instance.RegisterSFX(audioSource);
     }
 
     private void Update()
@@ -81,6 +85,7 @@ public class StompButton : MonoBehaviour
 
     IEnumerator IPressed()
     {
+        audioSource.Play();
         currStat = Stat.Pressed;
         registeredEvent.Invoke();
         while (transform.localPosition.y > 0.92)
@@ -135,5 +140,13 @@ public class StompButton : MonoBehaviour
         trigger.enabled = false;
         currStat = Stat.None;
     }
-    
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(audioSource);
+        }
+    }
+
 }
