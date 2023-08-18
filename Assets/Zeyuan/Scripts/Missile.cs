@@ -9,11 +9,13 @@ public class Missile : MonoBehaviour
     [SerializeField] float rotateSpeed;
     [SerializeField] float lifeTime;
 
-
+    public static int count;
     GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
+        count++;
         player = GameManager.Instance.player;
         Destroy(gameObject, lifeTime);
     }
@@ -43,5 +45,9 @@ public class Missile : MonoBehaviour
             }
             Destroy(gameObject);
         }
+    }
+    private void OnDestroy()
+    {
+        count--;
     }
 }

@@ -7,6 +7,7 @@ public class BulletBase : MonoBehaviour
     [SerializeField] protected float bulletSpeed;
     [SerializeField] protected float destroyTimer;
     [SerializeField] protected int damage;
+    [SerializeField] protected LayerMask mask;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -20,16 +21,33 @@ public class BulletBase : MonoBehaviour
         }
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+    protected virtual void Update()
     {
-        IDamage damagable = other.GetComponent<IDamage>();
-        if (!other.isTrigger)
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f, mask))
         {
-            if (damagable != null)
+            if (hit.collider != null)
             {
-                damagable.OnTakeDamage(damage);
+                if (hit.collider.CompareTag("Player"))
+                {
+                    hit.collider.gameObject.GetComponent<IDamage>().OnTakeDamage(damage);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
+            
         }
     }
+
+    //protected virtual void OnTriggerEnter(Collider other)
+    //{
+    //    IDamage damagable = other.GetComponent<IDamage>();
+    //    if (!other.isTrigger)
+    //    {
+    //        if (damagable != null)
+    //        {
+    //            damagable.OnTakeDamage(damage);
+    //        }
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

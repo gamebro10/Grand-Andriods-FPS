@@ -1398,6 +1398,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2041019703}
+    - target: {fileID: 1389931128233690161, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: wallRunfov
+      value: 105
+      objectReference: {fileID: 0}
     - target: {fileID: 1636949870909864487, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1441,6 +1445,34 @@ PrefabInstance:
     - target: {fileID: 1636949870909864487, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2041019703}
+    - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: airDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: walkFov
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: jumpForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: moveSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: sprintFov
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: sprintFovTime
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8970543890108640963, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
       propertyPath: cam

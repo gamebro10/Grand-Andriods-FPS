@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -41,6 +42,15 @@ public class RobotBossAI : EnemyBase
     [SerializeField] Renderer[] boostArm;
 
     [SerializeField] AudioSource laserAudioSource;
+    [SerializeField] AudioSource missileAudioSource;
+
+    [SerializeField] AudioClip missileLaunchingSound;
+    [SerializeField] AudioClip alarmSound;
+    [SerializeField] AudioClip hit1Sound;
+    [SerializeField] AudioClip hit2Sound;
+    [SerializeField] AudioClip prepCannonSound;
+    [SerializeField] AudioClip getDownSound;
+    [SerializeField] AudioClip bossRecover;
 
     int phase = 0;
 
@@ -48,11 +58,13 @@ public class RobotBossAI : EnemyBase
     float maxHp;
 
     bool isDown;
-    bool isMissile;
+    bool isMissile = true;
     bool shouldCannon;
     bool shouldSlam;
     bool isSlamFinished = true;
     bool canTakeDamage = true;
+    public bool isEasyBoss;
+    bool easyBossDown;
 
     string prepCannonStr = "PrepCannon";
     string afterCannonStr = "AfterCannon";
@@ -72,7 +84,10 @@ public class RobotBossAI : EnemyBase
 
         maxHp = hp;
 
+        StartCoroutine(IStartMissileDelay());
+
         AudioManager.Instance.RegisterSFX(laserAudioSource);
+        AudioManager.Instance.RegisterSFX(missileAudioSource);
     }
 
     // Update is called once per frame
@@ -92,7 +107,15 @@ public class RobotBossAI : EnemyBase
             {
                 OnTakeDamage(10);
             }
-            //----
+
+            if (Missile.count > 0 && !missileAudioSource.isPlaying)
+            {
+                missileAudioSource.Play();
+            }
+            else if (Missile.count == 0 && missileAudioSource.isPlaying)
+            {
+                missileAudioSource.Stop();
+            }
         }
     }
 
@@ -100,58 +123,92 @@ public class RobotBossAI : EnemyBase
     {
         if (canTakeDamage)
         {
-            float tempHp = hp;
-            bool loc = false;
-            hp -= amount;
-            if (renderers != null)
+            if (!isEasyBoss)
             {
-                StartCoroutine(IFlashMaterial(renderers));
-            }
-
-            if (tempHp >= maxHp * 0.83 && hp < maxHp * 0.83)
-            {
-                shouldCannon = true;
-                loc = true;
-                hp = maxHp * 0.829f;
-                phase++;
-                BossScene.Instance.OpenSecurity(1);
-            }
-
-            if (tempHp >= maxHp * 0.67 && hp < maxHp * 0.67)
-            {
-                shouldCannon = true;
-                loc = true;
-                hp = maxHp * 0.669f;
-                phase++;
-                BossScene.Instance.OpenSecurity(2);
-            }
-
-            if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
-            {
-                if (shield.activeSelf)
+                float tempHp = hp;
+                bool loc = false;
+                hp -= amount;
+                if (renderers != null)
                 {
-                    shield.GetComponent<BossShield>().OnDisabled();
-                    shield.SetActive(false);
+                    StartCoroutine(IFlashMaterial(renderers));
                 }
-                shouldCannon = true;
-                loc = true;
-                hp = maxHp * 0.499f;
-                phase++;
-            }
 
-            bossHealthBar.FillHealthBar(hp / maxHp);
-            if (loc)
-            {
-                LockHealthBar(true);
-            }
+                if (tempHp >= maxHp * 0.83 && hp < maxHp * 0.83)
+                {
+                    shouldCannon = true;
+                    loc = true;
+                    hp = maxHp * 0.829f;
+                    phase++;
+                    BossScene.Instance.OpenSecurity(1);
+                    audioSource.PlayOneShot(alarmSound, .4f);
+                }
 
-            if (hp <= 0)
-            {
-                GameManager.Instance.updateEnemy(-1);
-                GameManager.Instance.bossHealthBar.gameObject.SetActive(false);
-                Destroy(gameObject);
+                if (tempHp >= maxHp * 0.67 && hp < maxHp * 0.67)
+                {
+                    shouldCannon = true;
+                    loc = true;
+                    hp = maxHp * 0.669f;
+                    phase++;
+                    BossScene.Instance.OpenSecurity(2);
+                    audioSource.PlayOneShot(alarmSound, .4f);
+                }
+
+                if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
+                {
+                    if (shield.activeSelf)
+                    {
+                        shield.GetComponent<BossShield>().OnDisabled();
+                        shield.SetActive(false);
+                    }
+                    shouldCannon = true;
+                    loc = true;
+                    hp = maxHp * 0.499f;
+                    phase++;
+                    audioSource.PlayOneShot(alarmSound, .4f);
+                }
+
+                bossHealthBar.FillHealthBar(hp / maxHp);
+                if (loc)
+                {
+                    LockHealthBar(true);
+                }
+
+                if (hp <= 0)
+                {
+                    GameManager.Instance.bossHealthBar.gameObject.SetActive(false);
+                    Destroy(gameObject);
+                }
             }
-            
+            else
+            {
+                if (!easyBossDown)
+                {
+                    StopAllCoroutines();
+                    animator.SetTrigger("EasyBoss");
+                    StartCoroutine(DoAfterCannon());
+                    hp = maxHp * 0.499f;
+                    bossHealthBar.FillHealthBar(hp / maxHp);
+                    LockHealthBar(true);
+                    phase = 3;
+                    easyBossDown = true;
+                }
+                else
+                {
+                    hp -= amount;
+                    bossHealthBar.FillHealthBar(hp / maxHp);
+                    if (hp <= 0)
+                    {
+                        GameManager.Instance.bossHealthBar.gameObject.SetActive(false);
+                        Destroy(gameObject);
+                    }
+                }
+                
+            }
+            audioSource.PlayOneShot(hit1Sound, .7f);
+        }
+        else
+        {
+            audioSource.PlayOneShot(hit2Sound, .7f);
         }
     }
 
@@ -160,6 +217,7 @@ public class RobotBossAI : EnemyBase
         if (CanPrepCannon())
         {
             animator.SetBool(prepCannonStr, true);
+            audioSource.PlayOneShot(prepCannonSound, .8f);
 
             yield return new WaitForSeconds(3f);
             laserAudioSource.Play();
@@ -223,6 +281,7 @@ public class RobotBossAI : EnemyBase
         StartCoroutine(BossScene.Instance.IPutDownPlatform());
         isDown = true;
         animator.SetBool(afterCannonStr, true);
+        audioSource.PlayOneShot(getDownSound, .8f);
 
         foreach (Renderer renderer in boostArm)
         {
@@ -239,6 +298,7 @@ public class RobotBossAI : EnemyBase
     {
         animator.SetBool(afterCannonStr, false);
         animator.SetBool(recoverStr, true);
+        audioSource.PlayOneShot(bossRecover, .8f);
         if (phase == 2)
         {
             shield.SetActive(true);
@@ -440,12 +500,20 @@ public class RobotBossAI : EnemyBase
                     Instantiate(missile, missileLeftPos.position, missileLeftPos.rotation);
                     missileLeftFX.Play();
                 }
+                audioSource.PlayOneShot(missileLaunchingSound, .7f);
                 yield return new WaitForSeconds(missileLaunchRate);
             }
             yield return new WaitForSeconds(missileLaunchCD);
             isMissile = false;
         }
         
+    }
+
+    IEnumerator IStartMissileDelay()
+    {
+        float timer = UnityEngine.Random.Range(3f, 5f);
+        yield return new WaitForSeconds(timer);
+        isMissile = false;
     }
 
     public void LockHealthBar(bool shouldLock)
@@ -460,6 +528,7 @@ public class RobotBossAI : EnemyBase
         {
             base.OnDestroy();
             AudioManager.Instance.UnregisterSFX(laserAudioSource);
+            AudioManager.Instance.UnregisterSFX(missileAudioSource);
         }
     }
 }

@@ -8,6 +8,12 @@ public class BatteryCase : Interactable
     [SerializeField] GameObject handle;
     [SerializeField] GameObject wire;
     [SerializeField] GameObject batteryLight;
+    [SerializeField] AudioSource audioSource;
+    private void Start()
+    {
+        AudioManager.Instance.RegisterSFX(audioSource);
+    }
+
     private void Update()
     {
         CheckInteraction();
@@ -31,7 +37,16 @@ public class BatteryCase : Interactable
                 FindObjectOfType<RobotBossAI>().LockHealthBar(false);
                 GameManager.Instance.bossHealthBar.Phase(3);
             }
+            audioSource.Play();
             base.OnInteract();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(audioSource);
         }
     }
 }

@@ -15,6 +15,8 @@ public class DroneAI : NormalEnemyBase
     float floatParam = 0;
     float floatDivisor = 1.2f;
 
+    CapsuleCollider coll;
+
     public GameObject Body;//used only for floating animation
 
     // Update is called once per frame
@@ -23,6 +25,7 @@ public class DroneAI : NormalEnemyBase
     {
         base.Start();
         dyingSound.LoadAudioData();
+        coll = GetComponent<CapsuleCollider>();
     }
     protected override void Update()
     {
@@ -49,6 +52,7 @@ public class DroneAI : NormalEnemyBase
         float y = Mathf.Sin(floatParam) * Mathf.PI / 180 / floatDivisor;
         floatParam += Time.deltaTime * floatingSpeed;
         Body.transform.position = new Vector3(Body.transform.position.x, Body.transform.position.y + y, Body.transform.position.z);
+        coll.center = new Vector3(0, Body.transform.position.y - .2f, 0);
     }
 
     void Attack()

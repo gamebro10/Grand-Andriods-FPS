@@ -221,16 +221,16 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  Priority: 0
+  DopplerLevel: 0
+  MinDistance: 80
+  MaxDistance: 250
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -265,7 +265,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 1497974677338438668}
   - component: {fileID: 622340918969013080}
   - component: {fileID: 7441333594308318274}
+  - component: {fileID: 3940229315198162416}
   - component: {fileID: 8695918323573623738}
   m_Layer: 6
   m_Name: Cube (1)
@@ -538,6 +539,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3940229315198162416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426177107317032357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f5b85588d7336478f1b4ef0f83ea2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossAI: {fileID: 8105260655814775152}
+  renderers: []
+  damageMultiplier: 1
 --- !u!65 &8695918323573623738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11861,6 +11877,7 @@ GameObject:
   - component: {fileID: 7827174009402539606}
   - component: {fileID: 6715356823714453049}
   - component: {fileID: 3520146646484087802}
+  - component: {fileID: 6048726530068946747}
   - component: {fileID: 2665429709816678282}
   m_Layer: 6
   m_Name: Cube
@@ -11934,6 +11951,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6048726530068946747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286851922365655871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f5b85588d7336478f1b4ef0f83ea2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossAI: {fileID: 8105260655814775152}
+  renderers: []
+  damageMultiplier: 1
 --- !u!65 &2665429709816678282
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12019,6 +12051,7 @@ GameObject:
   - component: {fileID: 3691286763645009735}
   - component: {fileID: 833113451834289128}
   - component: {fileID: 6438218311809804890}
+  - component: {fileID: 4718627583352862106}
   - component: {fileID: 8119514442260073291}
   m_Layer: 6
   m_Name: Cube (2)
@@ -12092,6 +12125,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4718627583352862106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460338946746178102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f5b85588d7336478f1b4ef0f83ea2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossAI: {fileID: 8105260655814775152}
+  renderers: []
+  damageMultiplier: 1
 --- !u!65 &8119514442260073291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12762,6 +12810,134 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5086063485150748418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4890769996548053377}
+  - component: {fileID: 3352253743077573913}
+  m_Layer: 9
+  m_Name: MissileAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4890769996548053377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086063485150748418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 9.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7700086124801053594}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &3352253743077573913
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5086063485150748418}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b9a2be65922d48b41aed3b15e6522006, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 0
+  DopplerLevel: 1
+  MinDistance: 80
+  MaxDistance: 250
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5255613157220465964
 GameObject:
   m_ObjectHideFlags: 0
@@ -22827,6 +23003,7 @@ Transform:
   - {fileID: 5479438847047876795}
   - {fileID: 6241676854023718154}
   - {fileID: 2652771356366086898}
+  - {fileID: 4890769996548053377}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -22867,7 +23044,7 @@ MonoBehaviour:
   roamDistance: -1
   viewAngle: -1
   faceToPlayerSpeed: 1.3
-  hp: 1
+  hp: 1000
   attackRate: -1
   attackCD: -1
   stoppingDistance: -1
@@ -22915,6 +23092,15 @@ MonoBehaviour:
   - {fileID: 6127097623916841016}
   - {fileID: 3724847223647276722}
   laserAudioSource: {fileID: 6408348668084587416}
+  missileAudioSource: {fileID: 3352253743077573913}
+  missileLaunchingSound: {fileID: 8300000, guid: 3cc4dabf05804054a8a08f8f933aedbb, type: 3}
+  alarmSound: {fileID: 8300000, guid: 8f325ff1009ddc043bf81bf6ff026c3a, type: 3}
+  hit1Sound: {fileID: 8300000, guid: be49c5e0974317045b7d0268a5e2ca25, type: 3}
+  hit2Sound: {fileID: 8300000, guid: ec786b510603be14eb7d92aa23d974b4, type: 3}
+  prepCannonSound: {fileID: 8300000, guid: 6fb57b0255ee7854182cdef52a652aca, type: 3}
+  getDownSound: {fileID: 8300000, guid: dc363ef31810f0144a24d46406d3cd49, type: 3}
+  bossRecover: {fileID: 8300000, guid: 543460f9cb68ac64eba68367760b6ebd, type: 3}
+  isEasyBoss: 0
 --- !u!1 &6548775765608867888
 GameObject:
   m_ObjectHideFlags: 0
@@ -23524,6 +23710,9 @@ MonoBehaviour:
   bulletSpeed: -1
   destroyTimer: -1
   damage: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
   laserDotRate: 0.2
 --- !u!136 &9151601228846221338
 CapsuleCollider:

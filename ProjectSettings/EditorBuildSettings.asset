@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Finished Assets/Scenes/BossScene.unity
     guid: 29e25475bee27d040a6ea6047fe76591
+  - enabled: 1
+    path: Assets/Finished Assets/Scenes/CreditScene.unity
+    guid: 8981cd0d431ba114782d13f8fd148e65
   m_configObjects: {}
