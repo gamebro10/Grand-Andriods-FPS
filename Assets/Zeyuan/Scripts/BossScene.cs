@@ -38,8 +38,12 @@ public class BossScene : MonoBehaviour
     [SerializeField] Transform platformStopUpperY;
     [SerializeField] Transform platformStopLowerY;
     [SerializeField] Transform[] sniperSpawnPoints;
+    [SerializeField] AudioSource platformStartAudioSource;
+    [SerializeField] AudioSource platformStopAudioSource;
+    [SerializeField] AudioSource platformAudioSource2;
 
     RobotBossAI robotBossAI;
+    Vector3 platformLastPos;
 
     public bool playerOnPlatform;
     public StompButton stompButton;
@@ -56,22 +60,32 @@ public class BossScene : MonoBehaviour
     {
         GameManager.Instance.bossHealthBar.gameObject.SetActive(true);
         robotBossAI = FindObjectOfType<RobotBossAI>();
+        platformLastPos = platform.transform.position;
+
+        AudioManager.Instance.RegisterSFX(platformStartAudioSource);
+        AudioManager.Instance.RegisterSFX(platformStopAudioSource);
+        AudioManager.Instance.RegisterSFX(platformAudioSource2);
 
         SpawnWave();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        //temp testing code
-        if (Input.GetKeyDown(KeyCode.V))
+
+        if (!platform.transform.position.Equals(platformLastPos) && !platformAudioSource2.isPlaying)
         {
-            StartCoroutine(IEnableLaser());
+            platformAudioSource2.Play();
         }
+        else if (platform.transform.position.Equals(platformLastPos) && platformAudioSource2.isPlaying)
+        {
+            platformAudioSource2.Stop();
+        }
+        platformLastPos = platform.transform.position;
     }
 
     IEnumerator ILiftUpPlatform()
     {
+        TryPlayStartSound();
         while (!(platform.transform.position.y >= platformStopUpperY.position.y))
         {
             Vector3 prevPos = platform.transform.position;
@@ -84,10 +98,12 @@ public class BossScene : MonoBehaviour
             rope.transform.localScale -= new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
             yield return new WaitForFixedUpdate();
         }
+        TryPlayStopSound();
     }
 
     public IEnumerator IPutDownPlatform()
     {
+        TryPlayStartSound();
         while (!(platform.transform.position.y <= platformStopLowerY.position.y))
         {
             Vector3 prevPos = platform.transform.position;
@@ -100,10 +116,12 @@ public class BossScene : MonoBehaviour
             rope.transform.localScale += new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
             yield return new WaitForFixedUpdate();
         }
+        TryPlayStopSound();
     }
 
     IEnumerator IRotatePlatformRight()
     {
+        TryPlayStartSound();
         while (!(craneHead.transform.rotation.eulerAngles.y >= 55))
         {
             Vector3 prevPos = platform.transform.position;
@@ -112,11 +130,12 @@ public class BossScene : MonoBehaviour
             GameManager.Instance.playerMovement.GetRb().position += displacement;
             yield return new WaitForFixedUpdate();
         }
-        
+        TryPlayStopSound();
     }
 
     IEnumerator IRotatePlatformLeft()
     {
+        TryPlayStartSound();
         while (!(craneHead.transform.rotation.eulerAngles.y - 360 <= -55) || craneHead.transform.rotation.y == 0)
         {
             Vector3 prevPos = platform.transform.position;
@@ -125,10 +144,12 @@ public class BossScene : MonoBehaviour
             GameManager.Instance.playerMovement.GetRb().position += displacement;
             yield return new WaitForFixedUpdate();
         }
+        TryPlayStopSound();
     }
 
     IEnumerator ILiftPlatformToTop()
     {
+        TryPlayStartSound();
         while (!(platform.transform.position.y >= platformStopTopY.position.y))
         {
             Vector3 prevPos = platform.transform.position;
@@ -141,14 +162,33 @@ public class BossScene : MonoBehaviour
             rope.transform.localScale -= new Vector3(0, Time.deltaTime * ropeScaleSpeed, 0);
             yield return new WaitForFixedUpdate();
         }
+        TryPlayStopSound();
     }
 
     public IEnumerator IResetPlatformRotation()
     {
+        TryPlayStartSound();
         while (craneHead.transform.rotation.eulerAngles.y != 0)
         {
             craneHead.transform.rotation = Quaternion.RotateTowards(craneHead.transform.rotation, Quaternion.identity, Time.deltaTime * headRotateSpeed);
             yield return new WaitForFixedUpdate();
+        }
+        TryPlayStopSound();
+    }
+
+    void TryPlayStopSound()
+    {
+        if (!platformStopAudioSource.isPlaying)
+        {
+            platformStopAudioSource.Play();
+        }
+    }
+
+    void TryPlayStartSound()
+    {
+        if (!platformStartAudioSource.isPlaying)
+        {
+            platformStartAudioSource.Play();
         }
     }
 
@@ -375,6 +415,16 @@ public class BossScene : MonoBehaviour
         {
             robotBossAI.OnTakeDamage(roofLaserDamage);
             yield return new WaitForSeconds(.2f);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(platformStartAudioSource);
+            AudioManager.Instance.UnregisterSFX(platformStopAudioSource);
+            AudioManager.Instance.UnregisterSFX(platformAudioSource2);
         }
     }
 }

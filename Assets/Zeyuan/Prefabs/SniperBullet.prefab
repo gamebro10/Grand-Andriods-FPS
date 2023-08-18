@@ -52,6 +52,9 @@ MonoBehaviour:
   bulletSpeed: 200
   destroyTimer: 4
   damage: 10
+  mask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!33 &8474704979489164929
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -126,7 +129,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!96 &-7469311773500880154

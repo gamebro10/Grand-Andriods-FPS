@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -41,6 +42,10 @@ public class RobotBossAI : EnemyBase
     [SerializeField] Renderer[] boostArm;
 
     [SerializeField] AudioSource laserAudioSource;
+    [SerializeField] AudioSource missileAudioSource;
+
+    [SerializeField] AudioClip missileLaunching;
+    [SerializeField] AudioClip alarm;
 
     int phase = 0;
 
@@ -48,7 +53,7 @@ public class RobotBossAI : EnemyBase
     float maxHp;
 
     bool isDown;
-    bool isMissile;
+    bool isMissile = true;
     bool shouldCannon;
     bool shouldSlam;
     bool isSlamFinished = true;
@@ -74,7 +79,10 @@ public class RobotBossAI : EnemyBase
 
         maxHp = hp;
 
+        StartCoroutine(IStartMissileDelay());
+
         AudioManager.Instance.RegisterSFX(laserAudioSource);
+        AudioManager.Instance.RegisterSFX(missileAudioSource);
     }
 
     // Update is called once per frame
@@ -94,7 +102,15 @@ public class RobotBossAI : EnemyBase
             {
                 OnTakeDamage(10);
             }
-            //----
+
+            if (Missile.count > 0 && !missileAudioSource.isPlaying)
+            {
+                missileAudioSource.Play();
+            }
+            else if (Missile.count == 0 && missileAudioSource.isPlaying)
+            {
+                missileAudioSource.Stop();
+            }
         }
     }
 
@@ -119,6 +135,7 @@ public class RobotBossAI : EnemyBase
                     hp = maxHp * 0.829f;
                     phase++;
                     BossScene.Instance.OpenSecurity(1);
+                    audioSource.PlayOneShot(alarm, .4f);
                 }
 
                 if (tempHp >= maxHp * 0.67 && hp < maxHp * 0.67)
@@ -128,6 +145,7 @@ public class RobotBossAI : EnemyBase
                     hp = maxHp * 0.669f;
                     phase++;
                     BossScene.Instance.OpenSecurity(2);
+                    audioSource.PlayOneShot(alarm, .4f);
                 }
 
                 if (tempHp >= maxHp * 0.5 && hp < maxHp * 0.5)
@@ -141,6 +159,7 @@ public class RobotBossAI : EnemyBase
                     loc = true;
                     hp = maxHp * 0.499f;
                     phase++;
+                    audioSource.PlayOneShot(alarm, .4f);
                 }
 
                 bossHealthBar.FillHealthBar(hp / maxHp);
@@ -469,12 +488,20 @@ public class RobotBossAI : EnemyBase
                     Instantiate(missile, missileLeftPos.position, missileLeftPos.rotation);
                     missileLeftFX.Play();
                 }
+                audioSource.PlayOneShot(missileLaunching);
                 yield return new WaitForSeconds(missileLaunchRate);
             }
             yield return new WaitForSeconds(missileLaunchCD);
             isMissile = false;
         }
         
+    }
+
+    IEnumerator IStartMissileDelay()
+    {
+        float timer = UnityEngine.Random.Range(3f, 5f);
+        yield return new WaitForSeconds(timer);
+        isMissile = false;
     }
 
     public void LockHealthBar(bool shouldLock)
@@ -489,6 +516,7 @@ public class RobotBossAI : EnemyBase
         {
             base.OnDestroy();
             AudioManager.Instance.UnregisterSFX(laserAudioSource);
+            AudioManager.Instance.UnregisterSFX(missileAudioSource);
         }
     }
 }
