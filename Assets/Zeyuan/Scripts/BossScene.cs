@@ -74,7 +74,7 @@ public class BossScene : MonoBehaviour
 
         if (!platform.transform.position.Equals(platformLastPos) && !platformAudioSource2.isPlaying)
         {
-            platformAudioSource2.Play();
+            platformAudioSource2.PlayDelayed(.2f);
         }
         else if (platform.transform.position.Equals(platformLastPos) && platformAudioSource2.isPlaying)
         {

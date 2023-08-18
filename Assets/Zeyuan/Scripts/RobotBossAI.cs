@@ -48,6 +48,9 @@ public class RobotBossAI : EnemyBase
     [SerializeField] AudioClip alarmSound;
     [SerializeField] AudioClip hit1Sound;
     [SerializeField] AudioClip hit2Sound;
+    [SerializeField] AudioClip prepCannonSound;
+    [SerializeField] AudioClip getDownSound;
+    [SerializeField] AudioClip bossRecover;
 
     int phase = 0;
 
@@ -214,6 +217,7 @@ public class RobotBossAI : EnemyBase
         if (CanPrepCannon())
         {
             animator.SetBool(prepCannonStr, true);
+            audioSource.PlayOneShot(prepCannonSound, .8f);
 
             yield return new WaitForSeconds(3f);
             laserAudioSource.Play();
@@ -277,6 +281,7 @@ public class RobotBossAI : EnemyBase
         StartCoroutine(BossScene.Instance.IPutDownPlatform());
         isDown = true;
         animator.SetBool(afterCannonStr, true);
+        audioSource.PlayOneShot(getDownSound, .8f);
 
         foreach (Renderer renderer in boostArm)
         {
@@ -293,6 +298,7 @@ public class RobotBossAI : EnemyBase
     {
         animator.SetBool(afterCannonStr, false);
         animator.SetBool(recoverStr, true);
+        audioSource.PlayOneShot(bossRecover, .8f);
         if (phase == 2)
         {
             shield.SetActive(true);
@@ -494,7 +500,7 @@ public class RobotBossAI : EnemyBase
                     Instantiate(missile, missileLeftPos.position, missileLeftPos.rotation);
                     missileLeftFX.Play();
                 }
-                audioSource.PlayOneShot(missileLaunchingSound);
+                audioSource.PlayOneShot(missileLaunchingSound, .7f);
                 yield return new WaitForSeconds(missileLaunchRate);
             }
             yield return new WaitForSeconds(missileLaunchCD);
