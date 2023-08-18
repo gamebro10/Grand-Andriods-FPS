@@ -22,14 +22,15 @@ public class shootgunbehavior : MonoBehaviour
     [SerializeField] Gunholstering hand;
     [SerializeField] float KnockBackForce;
     public swingsword sword;
-
-    //[SerializeField] List<Gunstats> gunList = new List<Gunstats>();
-    // int selectedGun;
     public bool isShooting;
     public static bool enablePickup = true;
 
+    [Header("---- Weapon Audio -----")]
+    [SerializeField] AudioClip shootSound;
+    [Range(0, 5)] public float Volume = 2f;
+    public AudioSource shootSoundSource;
 
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +47,8 @@ public class shootgunbehavior : MonoBehaviour
                 StartCoroutine(shoot());
             }
         }
+
+        AudioManager.Instance.RegisterSFX(shootSoundSource);
 
         //if (Input.GetKeyDown(KeyCode.F) && !isShooting)
         //{
@@ -71,9 +74,7 @@ public class shootgunbehavior : MonoBehaviour
         WeaponBehavior.enablePickup = false;
         isShooting = true;
 
-        //RaycastHit hit;
-
-        //Physics.Raycast(, out hit)
+        ShotAudio(shootSoundSource);
 
         GameManager.Instance.playerMovement.GetRb().AddForce(-UnityEngine.Camera.main.transform.forward * KnockBackForce, ForceMode.Impulse);
 
@@ -96,5 +97,18 @@ public class shootgunbehavior : MonoBehaviour
         isShooting = false;
         hand.canSwitchWeapons = true;
         WeaponBehavior.enablePickup = true;
+    }
+
+    public void ShotAudio(AudioSource clip)
+    {
+        clip.PlayOneShot(shootSound, Volume);
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(shootSoundSource);
+        }
     }
 }

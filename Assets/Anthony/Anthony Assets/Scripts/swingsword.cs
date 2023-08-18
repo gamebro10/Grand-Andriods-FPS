@@ -18,6 +18,11 @@ public class swingsword : MonoBehaviour
     [SerializeField] Gunholstering scripts;
     public bool canSlash = true;
     public bool allowSlash = true;
+
+    [Header("---- Weapon Audio -----")]
+    [SerializeField] AudioClip shootSound;
+    [Range(0, 5)] public float Volume = 2f;
+    public AudioSource shootSoundSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +59,7 @@ public class swingsword : MonoBehaviour
             string[] animations = { "attacking", "quickslash", "forwardslash"};
             hitbox.SetActive(true);
             trail.SetActive(true);
+            ShotAudio(shootSoundSource);
             effects.SetTrigger(animations[Random.Range(0, 3)]);
             yield return new WaitForSeconds(.5f);
             trail.SetActive(false);
@@ -123,6 +129,7 @@ public class swingsword : MonoBehaviour
     {
 
         yield return new WaitForSeconds(.2f);
+        ShotAudio(shootSoundSource);
         Instantiate(Perjectile, shootPos.position, shootPos.rotation);
 
     }
@@ -185,4 +192,17 @@ public class swingsword : MonoBehaviour
      
          // hitparticle.Stop();
      }
+
+    public void ShotAudio(AudioSource clip)
+    {
+        clip.PlayOneShot(shootSound, Volume);
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(shootSoundSource);
+        }
+    }
 }

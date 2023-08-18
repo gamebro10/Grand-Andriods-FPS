@@ -16,10 +16,15 @@ public class WeaponBehavior : MonoBehaviour
     [SerializeField] ParticleSystem shootparticle;
     [SerializeField] Gunholstering hand;
     [SerializeField] LayerMask Mask;
-    //[SerializeField] List<Gunstats> gunList = new List<Gunstats>();
-   // int selectedGun;
     public bool isShooting;
     public static bool enablePickup = true;
+
+    [Header("---- Weapon Audio -----")]
+    [SerializeField] AudioClip shootSound;
+    [Range(0, 5)]public float Volume = 2f;
+    public AudioSource shootSoundSource;
+   
+    
 
     private void Awake()
     {
@@ -32,6 +37,7 @@ public class WeaponBehavior : MonoBehaviour
         {
             hand = FindObjectOfType<Gunholstering>();
         }
+        AudioManager.Instance.RegisterSFX(shootSoundSource);
     }
 
     // Update is called once per frame
@@ -59,7 +65,9 @@ public class WeaponBehavior : MonoBehaviour
         enablePickup = false;
         RaycastHit hit;
 
-        if(Physics.Raycast(UnityEngine.Camera.main.transform.position, UnityEngine.Camera.main.transform.forward, out hit, 1000f, Mask))
+        ShotAudio(shootSoundSource);
+
+        if (Physics.Raycast(UnityEngine.Camera.main.transform.position, UnityEngine.Camera.main.transform.forward, out hit, 1000f, Mask))
         {
             GameObject Bullet = Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
             Bullet.transform.LookAt(hit.point);
@@ -82,6 +90,19 @@ public class WeaponBehavior : MonoBehaviour
         isShooting = false;
         hand.canSwitchWeapons = true;
         WeaponBehavior.enablePickup = true;
+    }
+
+    public void ShotAudio(AudioSource clip)
+    {
+        clip.PlayOneShot(shootSound, Volume);
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(shootSoundSource);
+        }
     }
 
     //public void GunPickup(Gunstats weaponstats)
