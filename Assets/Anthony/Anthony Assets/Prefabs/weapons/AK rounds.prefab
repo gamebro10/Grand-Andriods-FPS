@@ -212,7 +212,7 @@ MonoBehaviour:
   rb: {fileID: 1090194894675097780}
   particle: {fileID: 8712120484021724220, guid: 340830dd289aab441b8bfe11048ed665, type: 3}
   destroytime: 2
-  speed: 85
+  speed: 100
   ShootDmg: 7
 --- !u!1 &2441025597305505700
 GameObject:

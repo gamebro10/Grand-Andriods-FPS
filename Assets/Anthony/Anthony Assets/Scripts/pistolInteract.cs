@@ -36,6 +36,11 @@ public class pistolInteract : MonoBehaviour
     public static bool enablePickup = true;
     pistolInteract pistol;
 
+    [Header("---- Weapon Audio -----")]
+    [SerializeField] AudioClip shootSound;
+    [Range(0, 5)] public float Volume = 2f;
+    public AudioSource shootSoundSource;
+
 
     // [SerializeField] GameObject Currgun;
 
@@ -187,7 +192,7 @@ public class pistolInteract : MonoBehaviour
         if (!shootparticle.isPlaying)
         { shootparticle.Play(); }
 
-
+        ShotAudio(shootSoundSource);
         //Debug.Log("Shoot");
         Instantiate(Amo, shotposLeft.position, shotposLeft.transform.rotation);
         Instantiate(Amo, shotposRight.position, shotposRight.transform.rotation);
@@ -200,6 +205,19 @@ public class pistolInteract : MonoBehaviour
         isShooting = false;
         hand.canSwitchWeapons = true;
         WeaponBehavior.enablePickup = true;
+    }
+
+    public void ShotAudio(AudioSource clip)
+    {
+        clip.PlayOneShot(shootSound, Volume);
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(shootSoundSource);
+        }
     }
 
     //IEnumerator Melee()

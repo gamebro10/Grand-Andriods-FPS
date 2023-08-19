@@ -112,6 +112,7 @@ public class swingsword : MonoBehaviour
         scripts.canSwitchWeapons = false;
         canSlash = false;
         WeaponBehavior.enablePickup = false;
+        ShotAudio(shootSoundSource);
         effects.SetTrigger("launch");
         StartCoroutine(launchswing());
        // Instantiate(Perjectile, shootPos.position, shootPos.rotation);

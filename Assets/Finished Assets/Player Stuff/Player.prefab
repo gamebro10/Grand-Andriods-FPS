@@ -731,7 +731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6956685842465130014, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: Volume
-      value: 0.14
+      value: 2.06
       objectReference: {fileID: 0}
     - target: {fileID: 6956685842465130014, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: shootPos

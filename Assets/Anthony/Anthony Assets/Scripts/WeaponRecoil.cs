@@ -17,18 +17,11 @@ public class WeaponRecoil : MonoBehaviour
     [SerializeField] float flickspeed;
     [SerializeField] float resetposSpeed;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         endPoS = Vector3.Lerp(endPoS, Vector3.zero, resetposSpeed * Time.deltaTime);
-        startingPoS = Vector3.Lerp(startingPoS, endPoS, flickspeed * Time.deltaTime);
+        startingPoS = Vector3.Slerp(startingPoS, endPoS, flickspeed * Time.deltaTime);
         transform.localRotation = Quaternion.Euler(startingPoS);
     }
 

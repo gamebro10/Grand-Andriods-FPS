@@ -169,7 +169,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042462984293426491}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.013036126, y: 0.034769367, z: 0.0012556518, w: 0.9993096}
   m_LocalPosition: {x: -0, y: 0.0067, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -179,7 +179,7 @@ Transform:
   - {fileID: 909159885580814589}
   m_Father: {fileID: 7076966541227434265}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.488, y: 3.988, z: 0.196}
 --- !u!1 &2411768468696773581
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +309,9 @@ MonoBehaviour:
   hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
   AltFireKick: {fileID: 9190352388257268195}
   isShooting: 0
+  shootSound: {fileID: 8300000, guid: 97f533c5132db4f4a92f818bdedec865, type: 3}
+  Volume: 4.33
+  shootSoundSource: {fileID: 7642410848909213495}
 --- !u!65 &3461922851506771372
 BoxCollider:
   m_ObjectHideFlags: 0
