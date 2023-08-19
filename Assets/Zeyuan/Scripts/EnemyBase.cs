@@ -79,6 +79,11 @@ public class EnemyBase : MonoBehaviour, IDamage
             }
         }
 
+        if (agent != null)
+        {
+            agent.speed += Random.Range(-0.5f, 0.5f);
+        }
+
         AudioManager.Instance.RegisterSFX(audioSource);
     }
 

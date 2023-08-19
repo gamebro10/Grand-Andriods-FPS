@@ -69,8 +69,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8443054466382900749}
   - {fileID: 503461661010627861}
+  - {fileID: 8443054466382900749}
   - {fileID: 2484570535134954466}
   - {fileID: 8277165398953621921}
   m_Father: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0189a3abca581db4c9de6ce0c66fa58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listScrollingSpeed: 120
+  listScrollingSpeed: 80
   memberList: {fileID: 6310097255932423879}
   panel: {fileID: 7047823231377153418}
   skip: {fileID: 4648049652120534312}
@@ -224,17 +224,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492785807068120260}
-  m_LocalRotation: {x: -0, y: -0, z: -0.24261378, w: 0.97012293}
-  m_LocalPosition: {x: 0, y: 0, z: 2.7000058}
+  m_LocalRotation: {x: -0, y: -0, z: -0.12795824, w: 0.9917796}
+  m_LocalPosition: {x: 0, y: 0, z: 2.7000117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 757161939788320308}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -28.082}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -14.703}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.9700003, y: 13.7}
+  m_AnchoredPosition: {x: 2.98, y: 14.18}
   m_SizeDelta: {x: 20, y: 35.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &865849666124010639
@@ -6030,17 +6030,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4928323093062376850}
-  m_LocalRotation: {x: -0, y: -0, z: -0.20864585, w: 0.9779913}
-  m_LocalPosition: {x: 0, y: 0, z: 2.7000058}
+  m_LocalRotation: {x: -0, y: -0, z: -0.09330506, w: 0.99563766}
+  m_LocalPosition: {x: 0, y: 0, z: 2.7000117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 757161939788320308}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -24.086}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.708}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.09, y: 17.45}
+  m_AnchoredPosition: {x: 4.18, y: 18.31}
   m_SizeDelta: {x: 10, y: 35.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3680500970363528476
@@ -6793,17 +6793,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7509429392098385444}
-  m_LocalRotation: {x: -0, y: -0, z: -0.20514658, w: 0.9787313}
-  m_LocalPosition: {x: 0, y: 0, z: 2.7000058}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0897434, w: 0.99596494}
+  m_LocalPosition: {x: 0, y: 0, z: 2.7000117}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 757161939788320308}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -23.676}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.298}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.95, y: 6.97}
+  m_AnchoredPosition: {x: 1.6, y: 6.93}
   m_SizeDelta: {x: 20, y: 35.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5173363195405900617
@@ -7099,7 +7099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 246, y: -504}
+  m_AnchoredPosition: {x: 203, y: -526}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8264870549426317116
@@ -7307,6 +7307,55 @@ PrefabInstance:
     - target: {fileID: 4437094027376394727, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
       propertyPath: m_Name
       value: MemberList
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522975506292672651, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
+      propertyPath: m_text
+      value: "<size=80px>Team Members</size>\n\nJai Bhatia\nMarie Halper\nMason Miller\nGilbert
+        Pemberton Jr\nAnthony Perez\nZeyuan Song\n\n\n\n<size=80px>SFXs And Musics</size>\n<size=25px><align=\"flush\">\nhttps://pixabay.com/sound-effects/heavy-beam-weapon-7052/
+        \r\nhttps://pixabay.com/sound-effects/plasmacannon-94545/ \r\nhttps://pixabay.com/sound-effects/bestlaserselection-100373/
+        \r\nhttps://pixabay.com/sound-effects/laser-cannon-science-fiction-sound-9831/
+        \r\nhttps://pixabay.com/sound-effects/power-off-96139/ \r\nhttps://pixabay.com/sound-effects/cas-missile-launching-with-some-reverb-66630/
+        \r\nhttps://pixabay.com/sound-effects/machine-hum-74742/ \r\nhttps://pixabay.com/sound-effects/mega-horn-gloomiest-signer-cinematic-trailer-sound-effects-124762/
+        \r\nhttps://pixabay.com/sound-effects/rocket-launch-76003/ \r\nhttps://pixabay.com/sound-effects/radio-illuminati-nuclear-alarm-124010/
+        \r\nhttps://pixabay.com/sound-effects/stingers-001-6294/ \r\nhttps://pixabay.com/sound-effects/metal-hit-84608/
+        \r\nhttps://pixabay.com/sound-effects/ani-big-pipe-hit-6814/\r\nhttps://pixabay.com/sound-effects/clank-car-crash-collision-6206/
+        \r\nhttps://pixabay.com/sound-effects/sword-clash-1-6917/ \r\nhttps://pixabay.com/sound-effects/light-sabre-77103/
+        \r\nhttps://pixabay.com/sound-effects/lightsaber3-87667/ \r\nhttps://pixabay.com/sound-effects/rock-destroy-6409/
+        \r\nhttps://pixabay.com/sound-effects/5-meters-dive-6070/ \r\nhttps://pixabay.com/sound-effects/air-or-steam-pressure-release-29600/
+        \r\nhttps://pixabay.com/sound-effects/saber-hummingwav-14651/ \r\nhttps://pixabay.com/sound-effects/beam-8-43831/
+        \r\nhttps://pixabay.com/sound-effects/mecha-sound-effects-designed-mecha-impact-01-120594/
+        \r\nhttps://pixabay.com/sound-effects/robot-noises-70217/ \r\nhttps://pixabay.com/sound-effects/mechanical1-107614/
+        \r\nhttps://pixabay.com/sound-effects/metal-hit-cartoon-7118/ \r\nhttps://pixabay.com/sound-effects/anvil-hit-2-14845/
+        \r\nhttps://pixabay.com/sound-effects/robot-6282/ \r\nhttps://pixabay.com/sound-effects/072807-heavy-machine-gun-50-caliber-39765/
+        \r\nhttps://pixabay.com/sound-effects/designed-mecha-elements-mechanism-01-118167/
+        \r\nhttps://pixabay.com/sound-effects/search/electric%20shock/ \r\nhttps://pixabay.com/sound-effects/metal-steps-75081/
+        \r\nhttps://pixabay.com/sound-effects/sniper-rifle-5989/ \r\nhttps://pixabay.com/sound-effects/mechanicalclamp-6217/
+        \r\nhttps://pixabay.com/sound-effects/big-impact-7054/ \r\nhttps://pixabay.com/sound-effects/taking-battery-out-of-drilling-machine-and-then-putting-it-back-in-64626/
+        \r\nhttps://pixabay.com/sound-effects/success2-57646/ \r\nhttps://pixabay.com/sound-effects/tv-glitch-6245/
+        \r\nhttps://pixabay.com/sound-effects/turning-down-power-48657/ \r\nhttps://pixabay.com/sound-effects/flourescent-light-29596/
+        \r\nhttps://soundideas.sourceaudio.com/tracks?s=sword%20swoosh \r\n</size></align>\n\n\n<size=80px>Textures
+        And Sprites</size>\n<size=25px><align=\"flush\">\nhttps://opengameart.org/content/50-free-textures-4-normalmaps
+        \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/tangytextures-material-pack-19225#content
+        \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/concrete/yughues-free-concrete-materials-12951
+        \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/nature/stylized-textures-mini-set-215522
+        \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014
+        \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/concrete/yughues-free-concrete-materials-12951
+        \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/nature/stylized-textures-mini-set-215522
+        \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/tangytextures-material-pack-19225
+        \r\n\r</size></align>\n\r\n\r\n\r\n<size=80px>3D Contents</size>\n<size=25px><align=\"flush\">\nhttps://sketchfab.com/3d-models/free-asset-pack-robots-4eaae17baf874f2d9266fb120005aea2
+        \r\nhttps://sketchfab.com/3d-models/power-cell-76c8d5a567544d3a95f60ad2a45fcbec
+        \r\nhttps://sketchfab.com/3d-models/prototype-energy-shotgun-a556c647ecb74f2787007593cc9955f7
+        \r\nhttps://sketchfab.com/3d-models/lowpoly-3d-cybersword-2f50f887deef4eb09e70175b7d235b1c
+        \r\nhttps://sketchfab.com/3d-models/remade-karlsons-at-48-free-3d-download-52a932dfd5b94f389f5e886d7f312f16
+        \r\n\r</size></align>\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522975506292672651, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522975506292672651, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8663934893784680513, guid: caf20d21ad36a3c469afeb45eb5e0c48, type: 3}
       propertyPath: m_Pivot.x
