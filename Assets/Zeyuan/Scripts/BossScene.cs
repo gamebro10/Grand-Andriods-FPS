@@ -41,6 +41,11 @@ public class BossScene : MonoBehaviour
     [SerializeField] AudioSource platformStartAudioSource;
     [SerializeField] AudioSource platformStopAudioSource;
     [SerializeField] AudioSource platformAudioSource2;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip laserSound;
+    [SerializeField] AudioClip alarmSound;
+    [SerializeField] AudioClip lavaSound;
+    [SerializeField] AudioClip shuttingOffSound;
 
     RobotBossAI robotBossAI;
     Vector3 platformLastPos;
@@ -65,6 +70,7 @@ public class BossScene : MonoBehaviour
         AudioManager.Instance.RegisterSFX(platformStartAudioSource);
         AudioManager.Instance.RegisterSFX(platformStopAudioSource);
         AudioManager.Instance.RegisterSFX(platformAudioSource2);
+        AudioManager.Instance.RegisterSFX(audioSource);
 
         SpawnWave();
     }
@@ -302,6 +308,11 @@ public class BossScene : MonoBehaviour
 
     IEnumerator IEnableLaser()
     {
+        platformAudioSource2.volume = 0;
+        platformStartAudioSource.volume = 0;
+        platformStopAudioSource.volume = 0;
+        robotBossAI.DisableAudio();
+
         foreach (Transform tran in enemyParent)
         {
             foreach (Transform enemy in tran)
@@ -311,10 +322,15 @@ public class BossScene : MonoBehaviour
         }
         laserEffect.SetActive(true);
         StartCoroutine(DoCameraAnimation());
-        yield return new WaitForSeconds(4f);
+        //yield return new WaitForSeconds(4f);
+        audioSource.PlayOneShot(alarmSound);
+        yield return new WaitForSeconds(2f);
+        audioSource.PlayOneShot(laserSound);
+        yield return new WaitForSeconds(2f);
         laserEffect.SetActive(false);
         laser.SetActive(true);
         thumbsUp.SetActive(true);
+        audioSource.PlayOneShot(lavaSound, .8f);
         StartCoroutine(IKillBossWithLaser());
         Material mt = laser.GetComponent<Renderer>().material;
         float timer = 5f;
@@ -338,6 +354,7 @@ public class BossScene : MonoBehaviour
         Transform down = go.transform.GetChild(1);
         timer = 1.5f;
         float timer2 = 2f;
+        bool played = false;
         while (timer2 >= 0)
         {
             thumbsUp.transform.position -= new Vector3(0, Time.deltaTime, 0) * 10;
@@ -347,6 +364,15 @@ public class BossScene : MonoBehaviour
             {
                 up.localScale += new Vector3(0, Time.deltaTime, 0) * 15;
                 down.localScale += new Vector3(0, Time.deltaTime, 0) * 15;
+                if (!played)
+                {
+                    played = true;
+                    audioSource.PlayOneShot(shuttingOffSound, 2f);
+                }
+                else
+                {
+                    audioSource.volume -= Time.deltaTime;
+                }
             }
             yield return new WaitForEndOfFrame();
         }
@@ -425,6 +451,7 @@ public class BossScene : MonoBehaviour
             AudioManager.Instance.UnregisterSFX(platformStartAudioSource);
             AudioManager.Instance.UnregisterSFX(platformStopAudioSource);
             AudioManager.Instance.UnregisterSFX(platformAudioSource2);
+            AudioManager.Instance.UnregisterSFX(audioSource);
         }
     }
 }

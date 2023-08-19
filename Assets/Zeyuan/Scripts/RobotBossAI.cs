@@ -50,7 +50,10 @@ public class RobotBossAI : EnemyBase
     [SerializeField] AudioClip hit2Sound;
     [SerializeField] AudioClip prepCannonSound;
     [SerializeField] AudioClip getDownSound;
-    [SerializeField] AudioClip bossRecover;
+    [SerializeField] AudioClip bossRecoverSound;
+    [SerializeField] AudioClip bossShieldBreakSound;
+    [SerializeField] AudioClip bossSlamSound;
+    [SerializeField] AudioClip bossBostArmSound;
 
     int phase = 0;
 
@@ -159,6 +162,7 @@ public class RobotBossAI : EnemyBase
                     {
                         shield.GetComponent<BossShield>().OnDisabled();
                         shield.SetActive(false);
+                        audioSource.PlayOneShot(bossShieldBreakSound);
                     }
                     shouldCannon = true;
                     loc = true;
@@ -204,7 +208,10 @@ public class RobotBossAI : EnemyBase
                 }
                 
             }
-            audioSource.PlayOneShot(hit1Sound, .7f);
+            if (audioSource.enabled == true)
+            {
+                audioSource.PlayOneShot(hit1Sound, .7f);
+            }
         }
         else
         {
@@ -298,7 +305,7 @@ public class RobotBossAI : EnemyBase
     {
         animator.SetBool(afterCannonStr, false);
         animator.SetBool(recoverStr, true);
-        audioSource.PlayOneShot(bossRecover, .8f);
+        audioSource.PlayOneShot(bossRecoverSound, .8f);
         if (phase == 2)
         {
             shield.SetActive(true);
@@ -307,6 +314,7 @@ public class RobotBossAI : EnemyBase
         if (phase == 2)
         {
             animator.Play("RobotBoss_BoostArm");
+            audioSource.PlayOneShot(bossBostArmSound, .8f);
             yield return new WaitForSeconds(6f);
             isDown = false;
             shouldCannon = false;
@@ -322,6 +330,7 @@ public class RobotBossAI : EnemyBase
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("RobotBoss_Slam"))
         {
+            audioSource.PlayOneShot(bossSlamSound);
             shouldSlam = false;
             isSlamFinished = false;
             animator.Play("RobotBoss_Slam");
@@ -500,7 +509,7 @@ public class RobotBossAI : EnemyBase
                     Instantiate(missile, missileLeftPos.position, missileLeftPos.rotation);
                     missileLeftFX.Play();
                 }
-                audioSource.PlayOneShot(missileLaunchingSound, .7f);
+                audioSource.PlayOneShot(missileLaunchingSound, .5f);
                 yield return new WaitForSeconds(missileLaunchRate);
             }
             yield return new WaitForSeconds(missileLaunchCD);
@@ -520,6 +529,11 @@ public class RobotBossAI : EnemyBase
     {
         canTakeDamage = !shouldLock;
         GameManager.Instance.bossHealthBar.LockHealthBar(shouldLock);
+    }
+
+    public void DisableAudio()
+    {
+        audioSource.volume = 0;
     }
 
     protected override void OnDestroy()
