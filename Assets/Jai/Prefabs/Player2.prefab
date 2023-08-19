@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092320055826737203}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 19.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -83,19 +83,22 @@ MonoBehaviour:
   sprintKey: 304
   crouching: 99
   moveSpeed: 15
-  airMultiplier: 1
+  airMultiplier: 5
   cam: {fileID: 0}
   walkFov: 80
   sprintFov: 100
   sprintFovTime: 20
-  jumpForce: 20
+  jumpForce: 22
   groundCheck: {fileID: 1940481399391696211}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   groundDistance: 0.1
   isGrounded: 0
+  isCrouching: 0
+  isSliding: 0
   groundDrag: 6
+  crouchDrag: 0.8
   airDrag: 0
 --- !u!114 &8970543890108640963
 MonoBehaviour:
@@ -130,7 +133,7 @@ MonoBehaviour:
   wallDistance: 0.6
   minimumJumpHeight: 1.5
   wallRunGravity: 1
-  wallRunJumpForce: 9
+  wallRunJumpForce: 8
   cam: {fileID: 0}
   fov: 80
   wallRunfov: 105
