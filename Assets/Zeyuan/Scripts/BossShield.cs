@@ -11,6 +11,9 @@ public class BossShield : MonoBehaviour
     [SerializeField] Transform endPoint;
     [SerializeField] Transform midPoint;
     [SerializeField] Renderer render;
+    [SerializeField] AudioSource energyChargeAudioSource;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip shieldHitSound;
 
     bool canShootCharge;
     bool isOnPosition;
@@ -19,6 +22,9 @@ public class BossShield : MonoBehaviour
     void Start()
     {
         StartCoroutine(ILiftUp());
+
+        AudioManager.Instance.RegisterSFX(energyChargeAudioSource);
+        AudioManager.Instance.RegisterSFX(audioSource); ;
     }
 
     // Update is called once per frame
@@ -105,4 +111,20 @@ public class BossShield : MonoBehaviour
         shockWave.transform.SetParent(null);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            audioSource.PlayOneShot(shieldHitSound, .5f);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(audioSource);
+            AudioManager.Instance.UnregisterSFX(energyChargeAudioSource);
+        }
+    }
 }
