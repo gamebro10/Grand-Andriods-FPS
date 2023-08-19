@@ -114,4 +114,9 @@ public class Credits : MonoBehaviour
         Cursor.visible = true;
         SceneManager.LoadScene(0);
     }
+
+    private void OnDestroy()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
 }
