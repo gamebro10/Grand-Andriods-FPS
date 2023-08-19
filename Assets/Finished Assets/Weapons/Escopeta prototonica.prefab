@@ -10497,7 +10497,7 @@ MonoBehaviour:
   KnockBackForce: 20
   sword: {fileID: 0}
   isShooting: 0
-  shootSound: {fileID: 8300000, guid: dd558d0206003ab4184932618ebe80e5, type: 3}
+  shootSound: {fileID: 8300000, guid: 5276b8faaab686842a0b2cfaa64f5f5d, type: 3}
   Volume: 0.38
   shootSoundSource: {fileID: 1001265075936933353}
 --- !u!114 &5382873726111014585
@@ -10580,7 +10580,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dd558d0206003ab4184932618ebe80e5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5276b8faaab686842a0b2cfaa64f5f5d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.67
   m_Pitch: 1

@@ -6828,9 +6828,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 576
   isShooting: 0
-  shootSound: {fileID: 8300000, guid: ec5e6914e3a67124ab036ff38750891b, type: 3}
+  shootSound: {fileID: 8300000, guid: 27e13049825018041b94037e1457dc1c, type: 3}
   Volume: 0.94
   shootSoundSource: {fileID: 8592710906017060776}
+  Recoil: {fileID: 0}
 --- !u!65 &7394468400428858375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6911,7 +6912,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ec5e6914e3a67124ab036ff38750891b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 27e13049825018041b94037e1457dc1c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

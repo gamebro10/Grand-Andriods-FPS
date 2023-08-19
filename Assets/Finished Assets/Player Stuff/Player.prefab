@@ -725,6 +725,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 6145464392119898964, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 658ea66539d5d10409c4a0cdfcf6f859, type: 3}
     - target: {fileID: 6346285205830693246, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -737,6 +741,10 @@ PrefabInstance:
       propertyPath: shootPos
       value: 
       objectReference: {fileID: 2871652142570541417}
+    - target: {fileID: 6956685842465130014, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 658ea66539d5d10409c4a0cdfcf6f859, type: 3}
     - target: {fileID: 7705488897315942749, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_IsActive
       value: 1

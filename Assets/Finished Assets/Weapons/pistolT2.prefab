@@ -271,7 +271,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 576
   isShooting: 0
-  shootSound: {fileID: 8300000, guid: 97f533c5132db4f4a92f818bdedec865, type: 3}
+  shootSound: {fileID: 8300000, guid: 6570949ff0f398440802dc4e8e794315, type: 3}
   Volume: 0.91
   shootSoundSource: {fileID: 7642410848909213495}
   Recoil: {fileID: 0}
@@ -309,7 +309,7 @@ MonoBehaviour:
   hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
   AltFireKick: {fileID: 9190352388257268195}
   isShooting: 0
-  shootSound: {fileID: 8300000, guid: 97f533c5132db4f4a92f818bdedec865, type: 3}
+  shootSound: {fileID: 8300000, guid: 6570949ff0f398440802dc4e8e794315, type: 3}
   Volume: 4.33
   shootSoundSource: {fileID: 7642410848909213495}
 --- !u!65 &3461922851506771372
@@ -370,7 +370,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 97f533c5132db4f4a92f818bdedec865, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6570949ff0f398440802dc4e8e794315, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
