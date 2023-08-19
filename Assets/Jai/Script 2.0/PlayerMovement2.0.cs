@@ -38,9 +38,14 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     [SerializeField] float groundDistance = 0.1f;
     public bool isGrounded;
+    public bool isCrouching;
+    public bool isSliding;
+
 
     [Header("Drag")]
     [SerializeField] float groundDrag = 6f;
+    [SerializeField] float crouchDrag =1f;
+
     [SerializeField] float airDrag = 2f;
 
     float horizontalMovement;
@@ -78,6 +83,14 @@ public class PlayerMovement2 : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if(isCrouching && isGrounded && rb.velocity.magnitude > 0.5f)
+        {
+            isSliding = true;
+        }
+        else
+        {
+            isSliding = false;
+        }
 
         MyInput();
         ControlDrag();
@@ -100,8 +113,17 @@ public class PlayerMovement2 : MonoBehaviour
 
     void MyInput()
     {
-        horizontalMovement = Input.GetAxisRaw("Horizontal");
-        verticalMovement = Input.GetAxisRaw("Vertical");
+        if(!isCrouching) {
+            horizontalMovement = Input.GetAxisRaw("Horizontal");
+            verticalMovement = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+
+            horizontalMovement = 0;
+            verticalMovement = 0;
+        }
+        
 
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement; //moving in the direction relative to where player is looking
 
@@ -117,17 +139,19 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void StartCrouch() //Scaling player down
     {
-
+        isCrouching = true;
         base.transform.localScale = new Vector3(1f, 0.5f, 1f);
         base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y - 0.5f, base.transform.position.z);
         if (rb.velocity.magnitude > 0.1f && isGrounded)
         {
             rb.AddForce(orientation.transform.forward * 400f);
+            Debug.Log("Siu");
         }
     }
 
     private void StopCrouch() //Scale player to original size
     {
+        isCrouching = false;
         base.transform.localScale = new Vector3(1f, 1f, 1f);
         base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.5f, base.transform.position.z);
     }
@@ -169,7 +193,13 @@ public class PlayerMovement2 : MonoBehaviour
 
     void ControlDrag() // to make the rb not slippery
     {
-        if (isGrounded)
+        if (isCrouching)
+        {
+            Debug.Log("crouch dragging");
+            rb.drag = crouchDrag;
+
+        }
+        else if (isGrounded)
         {
             rb.drag = groundDrag;
         }
@@ -211,11 +241,19 @@ public class PlayerMovement2 : MonoBehaviour
         }
         if (isGrounded && !OnSlope())
         {
+
             rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
+
         }
         else if (isGrounded && OnSlope())
         {
             rb.AddForce(slopeMoveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
+
+            if (isSliding)
+            {
+                rb.AddForce(rb.velocity * 1.1f, ForceMode.Acceleration);
+
+            }
         }
         else if (!isGrounded)
         {
