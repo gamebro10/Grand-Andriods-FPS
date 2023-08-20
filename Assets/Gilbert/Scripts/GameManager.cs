@@ -48,6 +48,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Slider MusicSlider;
     [SerializeField] public TextMeshProUGUI MusicText;
 
+    [Header("-----Button Stuff-----")]
+    //ForwardButton 
+    //BackwardButton
+    //LeftButton
+    //RightButton
+    //DashButton
+    //CrouchButton
+    //NormalAButton
+    //SpecialAButton
+
 
     //public int CameraFOV;
     int enemiesRemaining;

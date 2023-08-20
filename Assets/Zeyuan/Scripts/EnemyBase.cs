@@ -141,7 +141,6 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         StopAllCoroutines();
         ChangeRendererColor(Color.white, renderers, colors);
-        GameManager.Instance.updateEnemy(-1);
         agent.enabled = false;
         if (GetComponent<CapsuleCollider>() != null)
         {
