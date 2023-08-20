@@ -14,6 +14,7 @@ public class Credits : MonoBehaviour
     [SerializeField] Image panel;
     [SerializeField] Image skip;
     [SerializeField] Texture2D cursorSprite;
+    [SerializeField] AudioSource musicAudioSource;
 
     float pressTimer;
     float originalSpeed;
@@ -24,6 +25,7 @@ public class Credits : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         skip.fillAmount = 0;
         originalSpeed = listScrollingSpeed;
+        AudioManager.Instance.RegisterMusic(musicAudioSource);
 
         memberList.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -540);
         panel.color = new Color(0, 0, 0, 1);
@@ -120,5 +122,9 @@ public class Credits : MonoBehaviour
     private void OnDestroy()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterMusic(musicAudioSource);
+        }
     }
 }

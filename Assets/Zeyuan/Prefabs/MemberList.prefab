@@ -67,8 +67,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=80px>Team Members</size>\nJai Bhatia\nMarie Halper\nMason Miller\nGilbert
-    Pemberton Jr\nAnthony Perez\nZeyuan Song\n\n\n\n<size=80px>SFXs And Musics</size>\n<size=30px>https://pixabay.com/sound-effects/heavy-beam-weapon-7052/
+  m_text: "<size=80px>Team Members</size>\n\nJai Bhatia\nMarie Halper\nMason Miller\nGilbert
+    Pemberton Jr\nAnthony Perez\nZeyuan Song\n\n\n\n<size=80px>SFXs And Musics</size>\n<size=25px><align=\"flush\">\nhttps://pixabay.com/sound-effects/heavy-beam-weapon-7052/
     \r\nhttps://pixabay.com/sound-effects/plasmacannon-94545/ \r\nhttps://pixabay.com/sound-effects/bestlaserselection-100373/
     \r\nhttps://pixabay.com/sound-effects/laser-cannon-science-fiction-sound-9831/
     \r\nhttps://pixabay.com/sound-effects/power-off-96139/ \r\nhttps://pixabay.com/sound-effects/cas-missile-launching-with-some-reverb-66630/
@@ -90,8 +90,8 @@ MonoBehaviour:
     \r\nhttps://pixabay.com/sound-effects/big-impact-7054/ \r\nhttps://pixabay.com/sound-effects/taking-battery-out-of-drilling-machine-and-then-putting-it-back-in-64626/
     \r\nhttps://pixabay.com/sound-effects/success2-57646/ \r\nhttps://pixabay.com/sound-effects/tv-glitch-6245/
     \r\nhttps://pixabay.com/sound-effects/turning-down-power-48657/ \r\nhttps://pixabay.com/sound-effects/flourescent-light-29596/
-    \r\nhttps://soundideas.sourceaudio.com/tracks?s=sword%20swoosh \r\n\n\n\n<size=80px>Textures
-    And Sprites</size>\nhttps://opengameart.org/content/50-free-textures-4-normalmaps
+    \r\nhttps://soundideas.sourceaudio.com/tracks?s=sword%20swoosh \r\nhttps://pixabay.com/music/rock-stomping-rock-four-shots-111444/\n</size></align>\n\n\n<size=80px>Textures
+    And Sprites</size>\n<size=25px><align=\"flush\">\nhttps://opengameart.org/content/50-free-textures-4-normalmaps
     \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/tangytextures-material-pack-19225#content
     \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/concrete/yughues-free-concrete-materials-12951
     \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/nature/stylized-textures-mini-set-215522
@@ -99,12 +99,12 @@ MonoBehaviour:
     \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/concrete/yughues-free-concrete-materials-12951
     \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/nature/stylized-textures-mini-set-215522
     \r\nhttps://assetstore.unity.com/packages/2d/textures-materials/tangytextures-material-pack-19225
-    \r\n\r\n\r\n\r\n\r\n<size=80px>3D Contents</size>\nhttps://sketchfab.com/3d-models/free-asset-pack-robots-4eaae17baf874f2d9266fb120005aea2
+    \r\n\r</size></align>\n\r\n\r\n\r\n<size=80px>3D Contents</size>\n<size=25px><align=\"flush\">\nhttps://sketchfab.com/3d-models/free-asset-pack-robots-4eaae17baf874f2d9266fb120005aea2
     \r\nhttps://sketchfab.com/3d-models/power-cell-76c8d5a567544d3a95f60ad2a45fcbec
     \r\nhttps://sketchfab.com/3d-models/prototype-energy-shotgun-a556c647ecb74f2787007593cc9955f7
     \r\nhttps://sketchfab.com/3d-models/lowpoly-3d-cybersword-2f50f887deef4eb09e70175b7d235b1c
     \r\nhttps://sketchfab.com/3d-models/remade-karlsons-at-48-free-3d-download-52a932dfd5b94f389f5e886d7f312f16
-    \r\n\n"
+    \r\n\r</size></align>\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: -7
   m_wordSpacing: 2
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
