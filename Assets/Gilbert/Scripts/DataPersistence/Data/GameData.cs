@@ -14,7 +14,7 @@ public class GameData
     public int SFXValue;
     public int MusicValue;
 
-    public SerializableDictionary<string, string> ButtonBinds;
+    public SerializableDictionary<KeyCode, KeyCode> ButtonBinds;
 
     //These values must equal default values
     public GameData() 

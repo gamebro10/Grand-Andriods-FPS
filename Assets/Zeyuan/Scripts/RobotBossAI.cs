@@ -89,6 +89,14 @@ public class RobotBossAI : EnemyBase
 
         StartCoroutine(IStartMissileDelay());
 
+        foreach (Renderer renderer in boostArm)
+        {
+            if (renderer.material.IsKeywordEnabled("_EMISSION"))
+            {
+                renderer.material.DisableKeyword("_EMISSION");
+            }
+        }
+
         AudioManager.Instance.RegisterSFX(laserAudioSource);
         AudioManager.Instance.RegisterSFX(missileAudioSource);
     }
@@ -353,7 +361,10 @@ public class RobotBossAI : EnemyBase
         foreach (Renderer renderer in boostArm)
         {
             //renderer.material.color = Color.red;
-            renderer.material.EnableKeyword("_EMISSION");
+            if (!renderer.material.IsKeywordEnabled("_EMISSION"))
+            {
+                renderer.material.EnableKeyword("_EMISSION");
+            }
             boostEffects.SetActive(true);
         }
     }

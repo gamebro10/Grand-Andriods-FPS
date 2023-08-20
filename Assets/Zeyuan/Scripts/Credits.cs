@@ -13,12 +13,19 @@ public class Credits : MonoBehaviour
     [SerializeField] TextMeshProUGUI memberList;
     [SerializeField] Image panel;
     [SerializeField] Image skip;
+    [SerializeField] Texture2D cursorSprite;
+    [SerializeField] AudioSource musicAudioSource;
 
     float pressTimer;
+    float originalSpeed;
 
     private void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         skip.fillAmount = 0;
+        originalSpeed = listScrollingSpeed;
+        AudioManager.Instance.RegisterMusic(musicAudioSource);
 
         memberList.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -540);
         panel.color = new Color(0, 0, 0, 1);
@@ -36,6 +43,18 @@ public class Credits : MonoBehaviour
         {
         pressTimer = pressTimer - Time.deltaTime * 2 < 0 ? 0 : pressTimer - Time.deltaTime;
         }
+
+        if (Input.GetButton("Shoot"))
+        {
+            listScrollingSpeed = originalSpeed * 3f;
+            Cursor.SetCursor(cursorSprite, Vector2.zero, CursorMode.Auto);
+        }
+        else if (Input.GetButtonUp("Shoot"))
+        {
+            listScrollingSpeed = originalSpeed;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+
         skip.fillAmount = pressTimer / 2f;
         if (pressTimer >= 2f)
         {
@@ -98,5 +117,14 @@ public class Credits : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         SceneManager.LoadScene(0);
+    }
+
+    private void OnDestroy()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterMusic(musicAudioSource);
+        }
     }
 }

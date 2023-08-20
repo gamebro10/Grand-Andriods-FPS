@@ -45,14 +45,14 @@ public class AudioManager : MonoBehaviour
 
     public void RegisterSFX(AudioSource audio)
     {
-        if (SFXAudios.TryAdd(audio, audio.volume))
+        if (SFXAudios.TryAdd(audio, audio.volume) && GameManager.Instance != null)
         {
             audio.volume *= (float)GameManager.Instance.optionsvalues.SFXValue / 100;
         }
     }
     public void RegisterMusic(AudioSource audio)
     {
-        if (MusicAudios.TryAdd(audio, audio.volume))
+        if (MusicAudios.TryAdd(audio, audio.volume) && GameManager.Instance != null)
         {
             audio.volume *= (float)GameManager.Instance.optionsvalues.MusicValue / 100;
         }
@@ -88,7 +88,7 @@ public class AudioManager : MonoBehaviour
     {
         foreach (KeyValuePair<AudioSource, float> audio in SFXAudios)
         {
-            if (audio.Key != null)
+            if (audio.Key != null && GameManager.Instance != null)
             {
                 audio.Key.volume = audio.Value * (float)GameManager.Instance.optionsvalues.SFXValue / 100;
             }
@@ -103,7 +103,7 @@ public class AudioManager : MonoBehaviour
     {
         foreach (KeyValuePair<AudioSource, float> audio in MusicAudios)
         {
-            if (audio.Key != null)
+            if (audio.Key != null && GameManager.Instance != null)
             {
                 audio.Key.volume = audio.Value * (float)GameManager.Instance.optionsvalues.MusicValue / 100;
             }
@@ -116,8 +116,11 @@ public class AudioManager : MonoBehaviour
 
     void InitVars()
     {
-        GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnSFXChanged(); });
-        GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnMusicChanged(); });
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnSFXChanged(); });
+            GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnMusicChanged(); });
+        }
         SFXAudios = new Dictionary<AudioSource, float>();
         MusicAudios = new Dictionary<AudioSource, float>();
         isQuitting = false;

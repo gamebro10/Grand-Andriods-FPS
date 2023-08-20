@@ -52,6 +52,13 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     Color[,] colors;
 
+    public static bool isOneShot;
+
+    private void Awake()
+    {
+        isOneShot = false;
+    }
+
     protected virtual void Start()
     {
         flashColor = flashColor * Mathf.LinearToGammaSpace(50f);
@@ -77,6 +84,11 @@ public class EnemyBase : MonoBehaviour, IDamage
 
                 }
             }
+        }
+
+        if (agent != null)
+        {
+            agent.speed += Random.Range(-0.5f, 0.5f);
         }
 
         AudioManager.Instance.RegisterSFX(audioSource);
@@ -108,7 +120,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         hp -= amount;
         TargetToPlayer();
         
-        if (hp <= 0)
+        if (hp <= 0 || isOneShot)
         {
             OnDeath();
             return;
@@ -129,7 +141,6 @@ public class EnemyBase : MonoBehaviour, IDamage
     {
         StopAllCoroutines();
         ChangeRendererColor(Color.white, renderers, colors);
-        GameManager.Instance.updateEnemy(-1);
         agent.enabled = false;
         if (GetComponent<CapsuleCollider>() != null)
         {
