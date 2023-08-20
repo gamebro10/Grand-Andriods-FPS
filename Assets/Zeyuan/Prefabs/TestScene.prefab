@@ -5481,6 +5481,7 @@ MonoBehaviour:
   platformStopAudioSource: {fileID: 1087022516415391019}
   platformAudioSource2: {fileID: 8379541694357200999}
   audioSource: {fileID: 520428087325068662}
+  damageAreaAudioSource: {fileID: 3987598394805083279}
   laserSound: {fileID: 8300000, guid: 391b3cfb59077dd4b878138234ecb01b, type: 3}
   alarmSound: {fileID: 8300000, guid: 8f325ff1009ddc043bf81bf6ff026c3a, type: 3}
   lavaSound: {fileID: 8300000, guid: befa77d0087c5ae4d9b70985eec49fec, type: 3}

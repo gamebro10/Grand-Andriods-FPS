@@ -23296,7 +23296,7 @@ MonoBehaviour:
   hit2Sound: {fileID: 8300000, guid: ec786b510603be14eb7d92aa23d974b4, type: 3}
   prepCannonSound: {fileID: 8300000, guid: 6fb57b0255ee7854182cdef52a652aca, type: 3}
   getDownSound: {fileID: 8300000, guid: dc363ef31810f0144a24d46406d3cd49, type: 3}
-  bossRecoverSound: {fileID: 0}
+  bossRecoverSound: {fileID: 8300000, guid: 543460f9cb68ac64eba68367760b6ebd, type: 3}
   bossShieldBreakSound: {fileID: 8300000, guid: ac6b31d72cd20184c8121c87048699c3, type: 3}
   bossSlamSound: {fileID: 8300000, guid: 36fb1d74e2b67804882abf871b5e5c8b, type: 3}
   bossBostArmSound: {fileID: 8300000, guid: 6153faa1da2a2e14f9ff042e1d021aad, type: 3}

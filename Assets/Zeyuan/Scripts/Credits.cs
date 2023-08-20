@@ -20,6 +20,8 @@ public class Credits : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         skip.fillAmount = 0;
         originalSpeed = listScrollingSpeed;
 

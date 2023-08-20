@@ -42,6 +42,7 @@ public class BossScene : MonoBehaviour
     [SerializeField] AudioSource platformStopAudioSource;
     [SerializeField] AudioSource platformAudioSource2;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource damageAreaAudioSource;
     [SerializeField] AudioClip laserSound;
     [SerializeField] AudioClip alarmSound;
     [SerializeField] AudioClip lavaSound;
@@ -71,6 +72,7 @@ public class BossScene : MonoBehaviour
         AudioManager.Instance.RegisterSFX(platformStopAudioSource);
         AudioManager.Instance.RegisterSFX(platformAudioSource2);
         AudioManager.Instance.RegisterSFX(audioSource);
+        AudioManager.Instance.RegisterSFX(damageAreaAudioSource);
 
         SpawnWave();
     }
@@ -452,6 +454,7 @@ public class BossScene : MonoBehaviour
             AudioManager.Instance.UnregisterSFX(platformStopAudioSource);
             AudioManager.Instance.UnregisterSFX(platformAudioSource2);
             AudioManager.Instance.UnregisterSFX(audioSource);
+            AudioManager.Instance.UnregisterSFX(damageAreaAudioSource);
         }
     }
 }

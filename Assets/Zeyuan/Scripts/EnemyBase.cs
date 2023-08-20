@@ -52,6 +52,13 @@ public class EnemyBase : MonoBehaviour, IDamage
 
     Color[,] colors;
 
+    public static bool isOneShot;
+
+    private void Awake()
+    {
+        isOneShot = false;
+    }
+
     protected virtual void Start()
     {
         flashColor = flashColor * Mathf.LinearToGammaSpace(50f);
@@ -113,7 +120,7 @@ public class EnemyBase : MonoBehaviour, IDamage
         hp -= amount;
         TargetToPlayer();
         
-        if (hp <= 0)
+        if (hp <= 0 || isOneShot)
         {
             OnDeath();
             return;

@@ -26,6 +26,8 @@ public class DeveloperCheat : MonoBehaviour
         "-----------------Command List------------------\n" +
         "? (Show command lists)\n" + 
         "clear (Clear the console window)\n" +
+        "oneshot [true / false]\n" +
+        "easyboss [true / false]\n" +
         "superspeed [speed multiplier] (Modify the run speed of player)\n" +
         "fly [true / false] (Enable fly mode)\n" + 
         "------------------------------------------------------\n" + 
@@ -116,6 +118,43 @@ public class DeveloperCheat : MonoBehaviour
         
     }
 
+    public void OneShoot(bool bVal)
+    {
+        if (bVal)
+        {
+            AddContent("One shot enemies on\n", textColorNotification);
+            EnemyBase.isOneShot = true;
+        }
+        else
+        {
+            AddContent("One shot enemies off\n", textColorNotification);
+            EnemyBase.isOneShot = false;
+        }
+    }
+
+    public void EasyBoss(bool bVal)
+    {
+        RobotBossAI boss = FindObjectOfType<RobotBossAI>();
+        if (boss == null)
+        {
+            AddContent("Not in boss scene", textColorWarning);
+        }
+        else
+        {
+            if (bVal)
+            {
+                AddContent("Easy boss on\n", textColorNotification);
+                boss.isEasyBoss = true;
+            }
+            else
+            {
+                AddContent("Easy boss off\n", textColorNotification);
+                boss.isEasyBoss = false;
+            }
+        }
+        
+    }
+
     public void ComputeInput()
     {
         string str = input.text;
@@ -156,6 +195,34 @@ public class DeveloperCheat : MonoBehaviour
                             if (bool.TryParse(tokens[1], out bVal))
                             {
                                 Fly(bVal);
+                            }
+                            else
+                            {
+                                AddContent(paramErrorString, textColorWarning);
+                            }
+                        }
+                        break;
+                    case "oneshot":
+                        if (tokens.Length >= 1)
+                        {
+                            bool bVal;
+                            if (bool.TryParse(tokens[1], out bVal))
+                            {
+                                OneShoot(bVal);
+                            }
+                            else
+                            {
+                                AddContent(paramErrorString, textColorWarning);
+                            }
+                        }
+                        break;
+                    case "easyboss":
+                        if (tokens.Length >= 1)
+                        {
+                            bool bVal;
+                            if (bool.TryParse(tokens[1], out bVal))
+                            {
+                                EasyBoss(bVal);
                             }
                             else
                             {
