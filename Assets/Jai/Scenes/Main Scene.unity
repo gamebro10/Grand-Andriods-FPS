@@ -1411,6 +1411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 1092320055826737203, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1389931128233690161, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
       propertyPath: cam
       value: 
@@ -1467,6 +1471,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1666906742784480989, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757720925126085880, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
       propertyPath: cam
       value: 
@@ -1502,6 +1514,14 @@ PrefabInstance:
     - target: {fileID: 3700822875008914016, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
       propertyPath: sprintFovTime
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4020887413860866027, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8873939137287572901, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8970543890108640963, guid: d32501ad1e1b6514c93ddb5580e8b915, type: 3}
       propertyPath: cam
