@@ -12,9 +12,9 @@ public class enemySpawner : MonoBehaviour
         {
             for (int i = 0; i < enemies.Length; i++)
             {
-
+                enemies[i].enabled = true;
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
