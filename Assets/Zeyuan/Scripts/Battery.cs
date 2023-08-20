@@ -5,6 +5,9 @@ using UnityEngine;
 public class Battery : MonoBehaviour
 {
     float floatAmount;
+
+    [SerializeField] AudioSource batteryPickup;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,7 @@ public class Battery : MonoBehaviour
         GameManager.Instance.activeMenu = GameManager.Instance.winMenu;
         GameManager.Instance.activeMenu.SetActive(true);
         GameManager.Instance.updateEnemy(-1);
-        Destroy(gameObject);
+        
+        batteryPickup.Play();
     }
 }

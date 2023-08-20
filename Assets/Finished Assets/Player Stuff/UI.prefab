@@ -93,7 +93,7 @@ MonoBehaviour:
   levelSelect: {fileID: 0}
   enemyHeader: {fileID: 7340336057955127807}
   controlsMenu: {fileID: 6679928947298138517, guid: e0fbabbb0ea5b6044b50a0b792c14d0a, type: 3}
-  cheatMenu: {fileID: 0}
+  cheatMenu: {fileID: 6313081003100403068, guid: a435174fddad830448cbb68442149556, type: 3}
   enemiesRemainingText: {fileID: 2049766542120525885}
   speedometerText: {fileID: 0}
   speedometerBar: {fileID: 541069617436894022}
