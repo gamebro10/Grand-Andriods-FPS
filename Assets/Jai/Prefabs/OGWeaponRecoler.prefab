@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 348951468036489150}
   - component: {fileID: 2441094914072206960}
   m_Layer: 0
-  m_Name: WeaponRecoler
+  m_Name: OGWeaponRecoler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,6 +16,7 @@ public class shootgunbehavior : MonoBehaviour
     [SerializeField] Transform shotposright;
     [SerializeField] Transform shotposup;
     [SerializeField] Transform shotposdown;
+    Transform cam;
     [SerializeField] GameObject Amo;
     [SerializeField] ParticleSystem shootparticle;
     [SerializeField] Animator kickbackania;
@@ -24,6 +25,7 @@ public class shootgunbehavior : MonoBehaviour
     public swingsword sword;
     public bool isShooting;
     public static bool enablePickup = true;
+    //PlayerMovement2 playerMovementdos;
 
     [Header("---- Weapon Audio -----")]
     [SerializeField] AudioClip shootSound;
@@ -35,6 +37,8 @@ public class shootgunbehavior : MonoBehaviour
     void Start()
     {
         enablePickup = true;
+        cam = UnityEngine.Camera.main.transform;
+        AudioManager.Instance.RegisterSFX(shootSoundSource);
     }
 
     // Update is called once per frame
@@ -48,7 +52,6 @@ public class shootgunbehavior : MonoBehaviour
             }
         }
 
-        AudioManager.Instance.RegisterSFX(shootSoundSource);
 
         //if (Input.GetKeyDown(KeyCode.F) && !isShooting)
         //{
@@ -76,7 +79,8 @@ public class shootgunbehavior : MonoBehaviour
 
         ShotAudio(shootSoundSource);
 
-        GameManager.Instance.playerMovement.GetRb().AddForce(-UnityEngine.Camera.main.transform.forward * KnockBackForce, ForceMode.Impulse);
+        //playerMovementdos.GetRb().AddForce(-cam.transform.forward * KnockBackForce, ForceMode.Impulse);
+        // GameManager.Instance.playerMovement.GetRb().AddForce(-cam.transform.forward * KnockBackForce, ForceMode.Impulse);
 
         if (!shootparticle.isPlaying)
         { shootparticle.Play(); }

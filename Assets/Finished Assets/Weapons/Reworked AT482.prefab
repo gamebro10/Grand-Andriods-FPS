@@ -6821,9 +6821,10 @@ MonoBehaviour:
   ShootDmg: 7
   ShootDistance: 15
   shotpos: {fileID: 4081902094162106016}
+  cam: {fileID: 0}
   Amo: {fileID: 33029834446647523, guid: d92d82fff4f88534196da0d089325387, type: 3}
   shootparticle: {fileID: 896380932622591203}
-  hand: {fileID: 0}
+  hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
   Mask:
     serializedVersion: 2
     m_Bits: 576
@@ -6896,11 +6897,12 @@ MonoBehaviour:
   body: {fileID: 7072091526581012110}
   coll: {fileID: 7394468400428858375}
   player: {fileID: 0}
-  holder: {fileID: 0}
+  holder: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  cam: {fileID: 0}
   pickupdistance: 5
   dropforceforward: 15
   dropforcebackward: 15
-  Sword: {fileID: 9191674335004531126, guid: ed2c9288cefc9994bbb8d8fb9dce07da, type: 3}
+  Sword: {fileID: 0}
   equiped: 0
 --- !u!82 &8592710906017060776
 AudioSource:

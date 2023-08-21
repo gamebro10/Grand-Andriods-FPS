@@ -264,6 +264,7 @@ MonoBehaviour:
   ShootDmg: 5
   ShootDistance: 10
   shotpos: {fileID: 7076966541227434265}
+  cam: {fileID: 0}
   Amo: {fileID: 3913078690282433628, guid: 07540b5a70a6497458cab2be4301d645, type: 3}
   shootparticle: {fileID: 794095315279316131}
   hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
@@ -291,7 +292,8 @@ MonoBehaviour:
   body: {fileID: 5917234259099613084}
   coll: {fileID: 3461922851506771372}
   player: {fileID: 0}
-  holder: {fileID: 0}
+  holder: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  cam: {fileID: 0}
   pickupdistance: 5
   dropforceforward: 10
   dropforcebackward: 10
