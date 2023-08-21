@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     int batteriesRemaining;
     public bool isPaused;
     float timescaleOrig;
+   // public UnityEngine.Camera Lens;
 
     void Awake()
     {
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
         }
         timescaleOrig = Time.timeScale;
         playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
+        //Lens = playerMovement.GetComponent<Camera>().GetComponentInChildren<UnityEngine.Camera>();
 #if true
         if (cheatMenu != null)
         {
@@ -125,10 +127,18 @@ public class GameManager : MonoBehaviour
         activeMenu.SetActive(true);
     }
 
+    public void loadControlsMenu()
+    {
+        prevMenu = activeMenu;
+        activeMenu.SetActive(false);
+        activeMenu = controlsMenu;
+        activeMenu.SetActive(true) ;
+    }
+
     public void setOptionsDefault()
     {
         FOVSlider.value = optionsvalues.FOVValue = 60;
-        //playerScript.playerCam.fieldOfView = FOVValue;
+        //Lens.fieldOfView = optionsvalues.FOVValue;
         FOVText.text = optionsvalues.FOVValue.ToString();
         MouseSensSlider.value = optionsvalues.MouseSensValue = 50;
         MouseSensText.text = optionsvalues.MouseSensValue.ToString();
@@ -141,7 +151,7 @@ public class GameManager : MonoBehaviour
     public void setOptionsSliders()
     {
         FOVSlider.onValueChanged.AddListener((v) => { optionsvalues.FOVValue = (int)v; });
-        //playerScript.playerCam.fieldOfView = FOVValue;
+        //Lens.fieldOfView = optionsvalues.FOVValue;
         MouseSensSlider.onValueChanged.AddListener((v) => { optionsvalues.MouseSensValue = (int)v; });
         SFXSlider.onValueChanged.AddListener((v) => { optionsvalues.SFXValue = (int)v; });
         MusicSlider.onValueChanged.AddListener((v) => { optionsvalues.MusicValue = (int)v; });
