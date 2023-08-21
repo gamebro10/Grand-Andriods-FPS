@@ -10,4 +10,21 @@ public class MainMenuMusic : MonoBehaviour
     {
         AudioManager.Instance.RegisterMusic(backgroundMusic);
     }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterMusic(backgroundMusic);
+        }
+    }
+
+
+
 }
+
