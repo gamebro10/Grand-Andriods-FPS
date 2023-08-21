@@ -15,7 +15,7 @@ public class NewStomp : MonoBehaviour
     public bool isStunned;
     float stunTimer = 2f;
     public PlayerMovement2 grounded;
-    
+    Rigidbody rb;
 
     void Update()
     {
@@ -27,7 +27,10 @@ public class NewStomp : MonoBehaviour
 
     void StartStomp()
     {
+        
         isStomping = true;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
         // Apply downward force to the player
         Rigidbody playerRigidbody = GetComponent<Rigidbody>();

@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
     private Collider playerCollider;
     public Rigidbody rb;
+    public AudioSource audioWalk;
+    public AudioSource audioJump;
+    public AudioSource audioLand;
     [Space(10)]
     public LayerMask whatIsGround;
     public LayerMask whatIsWallrunnable;
@@ -20,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     //Movement Settings 
     [SerializeField] public float moveSpeed; // character walkspeed
     [SerializeField] public float runSpeed; //walkspeed multiplier
-   // [SerializeField] public int playerHP;
+                                            // [SerializeField] public int playerHP;
     public bool grounded;
     public bool onWall;
     public bool crouching;
@@ -108,6 +111,16 @@ public class PlayerMovement : MonoBehaviour
         Look();
         //To Show speedlines
         ShowAirlines();
+
+        if (grounded && rb.velocity.magnitude > .01)
+        {
+            if (!audioWalk.isPlaying)
+            {
+                audioWalk.Play();
+            }
+        }
+        else
+            audioWalk.Pause(); 
 
     }
 
@@ -217,6 +230,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((grounded || wallRunning || surfing) && readyToJump)
         {
+            audioJump.Play();
+
             MonoBehaviour.print("jumping");
             Vector3 velocity = rb.velocity;
             readyToJump = false;

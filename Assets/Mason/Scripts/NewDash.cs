@@ -4,52 +4,51 @@ using UnityEngine;
 
 public class NewDash : MonoBehaviour
 {
-    public float dashForce = 10f;
-    public float dashDuration = 0.2f;
-    public Transform cameraTransform; 
+    [SerializeField] float force;
+    [SerializeField] float cd;
 
-    private Rigidbody rb;
-    private bool isDashing = false;
+    bool canDash = true;
+    Rigidbody rb;
+    Transform orientation;
+    private PlayerMovement2 boost;
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
+        orientation = rb.transform.Find("Orientation");
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
-            Dash();
+            StartCoroutine(IDash());
         }
     }
 
-    private void Dash()
+    IEnumerator IDash()
     {
-        Vector3 horizontalVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        Vector3 cameraForward = cameraTransform.forward;
+        Vector3 originalVelocity = rb.velocity;
+        StartCoroutine(ICD());
+        float timer = .3f;
+        while (timer > 0)
+        {
+            rb.velocity = orientation.transform.forward.normalized * force;
 
-       
-        Vector3 dashDirection = (horizontalVelocity + cameraForward).normalized;
-
-        rb.AddForce(dashDirection * dashForce, ForceMode.VelocityChange);
-
-      
-        float rotationAngle = Mathf.Atan2(dashDirection.x, dashDirection.z) * Mathf.Rad2Deg;
-
-      
-        Quaternion targetRotation = Quaternion.Euler(0f, rotationAngle, 0f);
-
-     
-        rb.MoveRotation(targetRotation);
-
-        isDashing = true;
-        Invoke(nameof(EndDash), dashDuration);
+            timer -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        rb.velocity = orientation.transform.forward.normalized * originalVelocity.magnitude;
     }
 
-    private void EndDash()
+    IEnumerator ICD()
     {
-        isDashing = false;
+        canDash = false;
+        yield return new WaitForSeconds(cd);
+        canDash = true;
     }
 }
 

@@ -32,6 +32,7 @@ public class EnemyBase : MonoBehaviour, IDamage
     protected bool destinationChosen;
     protected bool isShooting;
     protected bool canChangeColor = true;
+    public bool Stunned = false;
 
     protected Vector3 playerDir;
     protected Vector3 startingPosition;
