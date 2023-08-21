@@ -14,9 +14,9 @@ public class SoundEffectBounce : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") )
-        {
+         if (collision.gameObject.CompareTag("Player") )
+         {
             bounceEffect.PlayOneShot(bounceClip);
-        }
+         }
     }
 }
