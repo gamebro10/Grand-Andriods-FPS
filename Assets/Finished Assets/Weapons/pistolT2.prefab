@@ -169,8 +169,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042462984293426491}
-  m_LocalRotation: {x: 0.013036126, y: 0.034769367, z: 0.0012556518, w: 0.9993096}
-  m_LocalPosition: {x: -0, y: 0.0067, z: 0}
+  m_LocalRotation: {x: 0.013076299, y: -0.005664702, z: 0.0007275062, w: 0.99989825}
+  m_LocalPosition: {x: -0.00000016309787, y: 0.0066982317, z: -0.000009899348}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -179,7 +179,7 @@ Transform:
   - {fileID: 909159885580814589}
   m_Father: {fileID: 7076966541227434265}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 1.488, y: 3.988, z: 0.196}
+  m_LocalEulerAnglesHint: {x: 1.499, y: -0.648, z: 0.075}
 --- !u!1 &2411768468696773581
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,10 +264,9 @@ MonoBehaviour:
   ShootDmg: 5
   ShootDistance: 10
   shotpos: {fileID: 7076966541227434265}
-  cam: {fileID: 0}
   Amo: {fileID: 3913078690282433628, guid: 07540b5a70a6497458cab2be4301d645, type: 3}
   shootparticle: {fileID: 794095315279316131}
-  hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  hand: {fileID: 0}
   Mask:
     serializedVersion: 2
     m_Bits: 576
@@ -292,12 +291,11 @@ MonoBehaviour:
   body: {fileID: 5917234259099613084}
   coll: {fileID: 3461922851506771372}
   player: {fileID: 0}
-  holder: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
-  cam: {fileID: 0}
+  holder: {fileID: 0}
   pickupdistance: 5
   dropforceforward: 10
   dropforcebackward: 10
-  Sword: {fileID: 9191674335004531126, guid: ed2c9288cefc9994bbb8d8fb9dce07da, type: 3}
+  Sword: {fileID: 0}
   equiped: 0
   inter: 0
   BulletDelay: 2
@@ -308,7 +306,7 @@ MonoBehaviour:
   shotposUPMid: {fileID: 909159885580814589}
   Amo: {fileID: 3913078690282433628, guid: 07540b5a70a6497458cab2be4301d645, type: 3}
   shootparticle: {fileID: 794095315279316131}
-  hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  hand: {fileID: 0}
   AltFireKick: {fileID: 9190352388257268195}
   isShooting: 0
   shootSound: {fileID: 8300000, guid: 6570949ff0f398440802dc4e8e794315, type: 3}
@@ -679,15 +677,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6884646710916636930}
-  m_LocalRotation: {x: 0.019700823, y: -0.9991035, z: 0.022938756, w: -0.029632326}
-  m_LocalPosition: {x: -0.006599928, y: 0.000099951685, z: -0.0015999107}
+  m_LocalRotation: {x: 0.01880759, y: -0.9995053, z: 0.02367656, w: 0.008662447}
+  m_LocalPosition: {x: -0.0065995576, y: 0.00009844691, z: -0.0015973578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8041029355569421904}
   m_Father: {fileID: 2958740775844581122}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 2.56, y: -183.45, z: -2.336}
+  m_LocalEulerAnglesHint: {x: 2.731, y: -179.058, z: -2.134}
 --- !u!1 &7829392850461051979
 GameObject:
   m_ObjectHideFlags: 0
