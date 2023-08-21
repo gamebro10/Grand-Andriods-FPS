@@ -7,6 +7,7 @@ public class healthPickup : MonoBehaviour
     [Header("-----Player Values-----")]
     [SerializeField] int healedHP;
     float floatAmount;
+    [SerializeField] AudioSource healthPickupSound;
 
     private void Update()
     {
@@ -24,6 +25,9 @@ public class healthPickup : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             GameManager.Instance.playerScript.OnTakeDamage(healedHP);
+            healthPickupSound.Play();
+            healthPickupSound.transform.SetParent(null);
+            Destroy(healthPickupSound.gameObject, 3);
             Destroy(gameObject);
         }
     }
