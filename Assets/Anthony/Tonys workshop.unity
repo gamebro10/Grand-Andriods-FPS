@@ -3147,6 +3147,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.475
       objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.3820006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.10499981
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.019000769
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6930201
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.020324692
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.72021455
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.02451726
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 360.409
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 92.192
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081902094162106016, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 356.373
+      objectReference: {fileID: 0}
     - target: {fileID: 4335756064899011572, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
       propertyPath: cam
       value: 
