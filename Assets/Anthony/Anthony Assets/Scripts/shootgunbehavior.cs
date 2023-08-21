@@ -80,7 +80,7 @@ public class shootgunbehavior : MonoBehaviour
         ShotAudio(shootSoundSource);
 
         //playerMovementdos.GetRb().AddForce(-cam.transform.forward * KnockBackForce, ForceMode.Impulse);
-        // GameManager.Instance.playerMovement.GetRb().AddForce(-cam.transform.forward * KnockBackForce, ForceMode.Impulse);
+        GameManager.Instance.playerMovement.GetRb().AddForce(-cam.transform.forward * KnockBackForce, ForceMode.Impulse);
 
         if (!shootparticle.isPlaying)
         { shootparticle.Play(); }
