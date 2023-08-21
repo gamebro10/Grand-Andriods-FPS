@@ -39,6 +39,11 @@ public class buttonfunctions : MonoBehaviour
         GameManager.Instance.loadOptionsMenu();
     }
 
+    public void controls()
+    {
+        GameManager.Instance.loadControlsMenu();
+    }
+
     public void closeOptions()
     {
         GameManager.Instance.closeOptions();
