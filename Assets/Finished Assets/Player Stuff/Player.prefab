@@ -135,7 +135,7 @@ Transform:
   - {fileID: 5809251733646675319}
   - {fileID: 7694377403718228749}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1793250254134868698
 MeshFilter:
@@ -228,7 +228,7 @@ MonoBehaviour:
   moveSpeed: 5500
   runSpeed: 20
   HPOrig: 0
-  InvinMax: 200
+  InvinMax: 60
   InvinTimer: 0
 --- !u!23 &4187868438727022326
 MeshRenderer:

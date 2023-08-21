@@ -11,7 +11,7 @@ public class Battery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.updateEnemy(1);
+        //GameManager.Instance.updateEnemy(1);
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class Battery : MonoBehaviour
         GameManager.Instance.statePaused();
         GameManager.Instance.activeMenu = GameManager.Instance.winMenu;
         GameManager.Instance.activeMenu.SetActive(true);
-        GameManager.Instance.updateEnemy(-1);
+        //GameManager.Instance.updateEnemy(-1);
         
         batteryPickup.Play();
     }

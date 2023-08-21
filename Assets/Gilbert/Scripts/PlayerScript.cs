@@ -42,7 +42,6 @@ public class PlayerScript : MonoBehaviour, IDamage
 
     void Update()
     {
-        GameManager.Instance.speedometerBar.fillAmount = playerSpeed / (runSpeed * moveSpeed);
         if (GameManager.Instance.isPaused == false)
         {
             if (InvinTimer < InvinMax)
@@ -50,7 +49,6 @@ public class PlayerScript : MonoBehaviour, IDamage
                 InvinTimer += 1;
             }
         }
-        //GameManager.Instance.speedometerText.text = playerSpeed.ToString();
     }
 
     public void OnTakeDamage(int amount)
