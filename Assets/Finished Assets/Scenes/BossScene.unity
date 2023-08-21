@@ -287,9 +287,13 @@ PrefabInstance:
       value: pistolT2
       objectReference: {fileID: 0}
     - target: {fileID: 3931239613618400679, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 1918539326}
+    - target: {fileID: 3931239613618400679, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: Recoil
       value: 
-      objectReference: {fileID: 1693960269}
+      objectReference: {fileID: 1299453510}
     - target: {fileID: 4055502170837937264, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -335,6 +339,10 @@ PrefabInstance:
       value: -3.223
       objectReference: {fileID: 0}
     - target: {fileID: 5015055113718920621, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
+      propertyPath: Sword
+      value: 
+      objectReference: {fileID: 1701148877}
+    - target: {fileID: 5015055113718920621, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: holder
       value: 
       objectReference: {fileID: 1720651346}
@@ -379,6 +387,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1299453510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6947735452612109481, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
+  m_PrefabInstance: {fileID: 1756955271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da70f49a7721e18469f54c8670697939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1314586812 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7233992920923836, guid: 8d647d75e9fcf644c8e213cfdea5abcb, type: 3}
@@ -461,17 +480,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682932185}
   m_CullTransparentMesh: 1
---- !u!114 &1693960269 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 141967933346207300, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
+--- !u!1 &1701148877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6737445938028360707, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
   m_PrefabInstance: {fileID: 1756955271}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da70f49a7721e18469f54c8670697939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1720651346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5631726274056913611, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
@@ -610,6 +623,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
+--- !u!114 &1918539326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8362044786933206772, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
+  m_PrefabInstance: {fileID: 1756955271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3939e6c3b27d0840805244cace6881f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1924650560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 64921602017777685, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
@@ -677,6 +701,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1924650560}
     - target: {fileID: 4335756064899011572, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: Sword
+      value: 
+      objectReference: {fileID: 1701148877}
+    - target: {fileID: 4335756064899011572, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
       propertyPath: holder
       value: 
       objectReference: {fileID: 1720651346}
@@ -689,9 +717,13 @@ PrefabInstance:
       value: Reworked AT482
       objectReference: {fileID: 0}
     - target: {fileID: 9205554496011867855, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 1918539326}
+    - target: {fileID: 9205554496011867855, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
       propertyPath: Recoil
       value: 
-      objectReference: {fileID: 1693960269}
+      objectReference: {fileID: 1299453510}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

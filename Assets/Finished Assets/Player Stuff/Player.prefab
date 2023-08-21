@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5699837058423979760}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5809251733646675319}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2871652142570541417}
-  m_Layer: 13
+  m_Layer: 7
   m_Name: perjectilepos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4187868438727022326}
   - component: {fileID: 2225171869924090}
   - component: {fileID: 5601960846640330458}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   dashUpForce: 12
   durationD: 0.4
   isDashing: 0
-  dashCd: 5
+  dashCd: 1
 --- !u!114 &4532950308527608665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 6084365514118173154}
   - component: {fileID: 8024001525318056687}
   - component: {fileID: 7744224235838344629}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 7162057847942655181}
   - component: {fileID: 3283259559801412709}
   - component: {fileID: 1752416124503086553}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 7530044106242312275}
   - component: {fileID: 834775481555903801}
   - component: {fileID: 9139736073029919380}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,6 +677,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hand
       objectReference: {fileID: 0}
+    - target: {fileID: 2282496305129171150, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3643450786647195346, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.27
@@ -714,6 +718,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5899649100453686875, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899649100453686875, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -730,6 +738,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 658ea66539d5d10409c4a0cdfcf6f859, type: 3}
     - target: {fileID: 6346285205830693246, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346285205830693246, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -745,6 +757,10 @@ PrefabInstance:
       propertyPath: shootSound
       value: 
       objectReference: {fileID: 8300000, guid: 658ea66539d5d10409c4a0cdfcf6f859, type: 3}
+    - target: {fileID: 7705488897315942749, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7705488897315942749, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -898,6 +914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_SpeedLine
       objectReference: {fileID: 0}
+    - target: {fileID: 6958539945697128493, guid: b766e9bc012a9b44f84c338c23f47791, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -973,6 +993,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponRecoiler
       objectReference: {fileID: 0}
+    - target: {fileID: 1749897523145472286, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2593703552042377071, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
       propertyPath: x_WeaponRecoil
       value: 4
@@ -985,9 +1009,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 5809251733646675319}
+    - target: {fileID: 5152402730045222234, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7334010934901554477, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334010934901554477, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875840686686795802, guid: f54a4bc6c278a5a46916ba2a26d8bdd3, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
