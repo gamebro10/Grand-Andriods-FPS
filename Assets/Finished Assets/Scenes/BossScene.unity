@@ -289,7 +289,7 @@ PrefabInstance:
     - target: {fileID: 3931239613618400679, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: Recoil
       value: 
-      objectReference: {fileID: 1693960269}
+      objectReference: {fileID: 0}
     - target: {fileID: 4055502170837937264, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -461,17 +461,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682932185}
   m_CullTransparentMesh: 1
---- !u!114 &1693960269 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 141967933346207300, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
-  m_PrefabInstance: {fileID: 1756955271}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da70f49a7721e18469f54c8670697939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1720651346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5631726274056913611, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
@@ -691,7 +680,7 @@ PrefabInstance:
     - target: {fileID: 9205554496011867855, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
       propertyPath: Recoil
       value: 
-      objectReference: {fileID: 1693960269}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -707,6 +696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2000636682}
   - component: {fileID: 2000636681}
+  - component: {fileID: 2000636683}
   m_Layer: 0
   m_Name: BossLevel Music
   m_TagString: Untagged
@@ -825,6 +815,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2000636683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000636680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c90c41233ccb14f99bee86759fd11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 2000636681}
 --- !u!1001 &2040767723
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -24,12 +24,8 @@ public class GameManager : MonoBehaviour
     public GameObject titleMenu;
     public GameObject optionsMenu;
     public GameObject levelSelect;
-    public GameObject enemyHeader;
     public GameObject controlsMenu;
     public GameObject cheatMenu;
-    public TextMeshProUGUI enemiesRemainingText;
-    public TextMeshProUGUI speedometerText;
-    public Image speedometerBar;
     public Image playerHPBar;
     public GameObject playerFlashDamageScreen;
     public GameObject playerFlashHealScreen;
@@ -182,7 +178,6 @@ public class GameManager : MonoBehaviour
     public void updateEnemy(int amount)
     {
         batteriesRemaining += amount;
-        enemiesRemainingText.text = batteriesRemaining.ToString();
         //if (enemiesRemaining <= 0) 
         //{
         //    statePaused();
