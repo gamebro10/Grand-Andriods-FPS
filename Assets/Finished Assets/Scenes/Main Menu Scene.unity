@@ -1343,18 +1343,18 @@ PrefabInstance:
     - target: {fileID: 4795283344335922204, guid: 00c69eb97edcfe149bb60773ab44efe5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1591876534}
     - target: {fileID: 4795283344335922204, guid: 00c69eb97edcfe149bb60773ab44efe5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4795283344335922204, guid: 00c69eb97edcfe149bb60773ab44efe5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: loadOptionsMenu
+      value: options
       objectReference: {fileID: 0}
     - target: {fileID: 4795283344335922204, guid: 00c69eb97edcfe149bb60773ab44efe5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
+      value: buttonfunctions, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4795283344335922204, guid: 00c69eb97edcfe149bb60773ab44efe5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

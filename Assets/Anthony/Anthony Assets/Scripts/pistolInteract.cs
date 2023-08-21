@@ -92,12 +92,12 @@ public class pistolInteract : MonoBehaviour
         //    // Sword.SetActive(false);
         //}
 
-        if (GameManager.Instance.activeMenu == null)
-        {
+        //if (GameManager.Instance.activeMenu == null)
+        //{
             //isshooting is after cuz order of op and it will almost always be false 
             if (Input.GetButtonDown("Alt Fire") && !isShooting && equiped == true)
                 StartCoroutine(ALTshoot());
-        }
+       // }
 
     }
 
@@ -186,8 +186,6 @@ public class pistolInteract : MonoBehaviour
         isShooting = true;
         hand.canSwitchWeapons = false;
         enablePickup = false;
-        //RaycastHit hit;
-        //Ray ray = (Physics.Raycast(Camera, out hit, ShootDistance));
 
         if (!shootparticle.isPlaying)
         { shootparticle.Play(); }
@@ -220,10 +218,4 @@ public class pistolInteract : MonoBehaviour
         }
     }
 
-    //IEnumerator Melee()
-    //{
-    //    gameObject.SetActive(false);
-    //    yield return new WaitForSeconds(1f);
-    //    gameObject.SetActive(true);
-    //}
 }

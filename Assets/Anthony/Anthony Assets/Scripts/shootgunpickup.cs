@@ -101,8 +101,8 @@ public class shootgunpickup : MonoBehaviour
         coll.isTrigger = true;
 
         transform.SetParent(holder);
-        transform.localPosition = new Vector3((float)0.6, (float)-0.6, (float)1.9);
-        transform.localRotation = Quaternion.Euler((float)-.02, -95, (float)3.3);
+        transform.localPosition = new Vector3((float)0.62, (float)-.4, (float)1.54);
+        transform.localRotation = Quaternion.Euler((float).262, -92, (float)11.76);
         transform.localScale = Vector3.one;
 
         shootbehavior.enabled = true;

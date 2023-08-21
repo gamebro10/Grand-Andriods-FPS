@@ -119,7 +119,7 @@ public class AudioManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnSFXChanged(); });
-            GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnMusicChanged(); });
+            GameManager.Instance.MusicSlider.onValueChanged.AddListener(delegate { OnMusicChanged(); });
         }
         SFXAudios = new Dictionary<AudioSource, float>();
         MusicAudios = new Dictionary<AudioSource, float>();

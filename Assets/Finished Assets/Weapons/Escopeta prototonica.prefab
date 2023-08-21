@@ -10490,10 +10490,11 @@ MonoBehaviour:
   shotposright: {fileID: 7098241982407411463}
   shotposup: {fileID: 5238736235078877157}
   shotposdown: {fileID: 8451751981461191794}
+  cam: {fileID: 0}
   Amo: {fileID: 7215821151833684259, guid: 8884b3cf430ceef4a9b5b5b5d269ba6e, type: 3}
   shootparticle: {fileID: 8070139415178908676}
   kickbackania: {fileID: 8683362375458742654}
-  hand: {fileID: 0}
+  hand: {fileID: 4856183731727109034, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
   KnockBackForce: 20
   sword: {fileID: 0}
   isShooting: 0
@@ -10516,11 +10517,12 @@ MonoBehaviour:
   body: {fileID: 8398410628034734308}
   coll: {fileID: 1851095812926811622}
   player: {fileID: 0}
-  holder: {fileID: 0}
+  holder: {fileID: 8739440705749518229, guid: fe677b95bde351d4bbe66ed06ebe37df, type: 3}
+  cam: {fileID: 0}
   pickupdistance: 5
   dropforceforward: 15
   dropforcebackward: 15
-  Sword: {fileID: 9191674335004531126, guid: ed2c9288cefc9994bbb8d8fb9dce07da, type: 3}
+  Sword: {fileID: 0}
   equiped: 0
 --- !u!54 &8398410628034734308
 Rigidbody:

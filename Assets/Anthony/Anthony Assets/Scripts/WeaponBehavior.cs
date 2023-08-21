@@ -45,8 +45,8 @@ public class WeaponBehavior : MonoBehaviour
     {
         if (GameManager.Instance.activeMenu == null)
         {
-                //isshooting is after cuz order of op and it will almost always be false 
-                if (Input.GetButton("Shoot") && !isShooting)
+            //isshooting is after cuz order of op and it will almost always be false 
+            if (Input.GetButton("Shoot") && !isShooting)
                     StartCoroutine(shoot());
 
             if (hand.canSwitchWeapons == true && isShooting == true)
@@ -69,6 +69,16 @@ public class WeaponBehavior : MonoBehaviour
 
         Recoil.playRecoil();
 
+        //if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 1000f, Mask))
+        //{
+        //    GameObject Bullet = Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
+        //    Bullet.transform.LookAt(hit.point);
+        //}
+        //else
+        //{
+        //    Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
+        //}
+
         if (Physics.Raycast(UnityEngine.Camera.main.transform.position, UnityEngine.Camera.main.transform.forward, out hit, 1000f, Mask))
         {
             GameObject Bullet = Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
@@ -78,15 +88,15 @@ public class WeaponBehavior : MonoBehaviour
         {
             Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
         }
-        
-            if (!shootparticle.isPlaying)
+
+        if (!shootparticle.isPlaying)
         { shootparticle.Play(); }
 
 
         //Debug.Log("Shoot");
-      //  Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
-      
-        
+        //  Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
+
+
 
         yield return new WaitForSeconds(BulletDelay);
         isShooting = false;

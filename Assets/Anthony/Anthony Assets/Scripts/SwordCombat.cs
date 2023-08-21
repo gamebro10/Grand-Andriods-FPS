@@ -28,14 +28,14 @@ public class SwordCombat : MonoBehaviour
             //{
             //    scrollGun();
 
-            //isshooting is after cuz order of op and it will almost always be false 
+            //isshooting is after cuz order of op and it will almost always be false
 
             if (Input.GetButton("Shoot") && !Attacking)
                 StartCoroutine(shoot());
-            //}
         }
-
     }
+
+
 
     IEnumerator shoot()
     {
@@ -53,4 +53,5 @@ public class SwordCombat : MonoBehaviour
         yield return new WaitForSeconds(slashdelay);
         Attacking = false;
     }
+
 }
