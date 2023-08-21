@@ -43,7 +43,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
     [Header("Drag")]
-    [SerializeField] float groundDrag = 6f;
+    [SerializeField] public float groundDrag = 6f;
     [SerializeField] float crouchDrag =1f;
 
     [SerializeField] float airDrag = 2f;
