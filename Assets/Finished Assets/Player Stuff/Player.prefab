@@ -164,7 +164,7 @@ MonoBehaviour:
   dashUpForce: 12
   durationD: 0.4
   isDashing: 0
-  dashCd: 1
+  dashCd: 3
 --- !u!114 &4532950308527608665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +195,9 @@ MonoBehaviour:
   playerCam: {fileID: 5253825805834562885}
   orientation: {fileID: 5699837058423979760}
   rb: {fileID: 5601960846640330458}
+  audioWalk: {fileID: 0}
+  audioJump: {fileID: 0}
+  audioLand: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
