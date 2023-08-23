@@ -112,18 +112,15 @@ public class PlayerMovement : MonoBehaviour
         //To Show speedlines
         ShowAirlines();
 
-        if (grounded && rb.velocity.magnitude > .01)
-        {
-            if (!audioWalk.isPlaying)
-            {
-                audioWalk.Play();
-            }
-        } 
-        else
-        {
-            audioWalk.Pause();
-
-        }
+        //if (grounded && rb.velocity.magnitude > .01)
+        //{
+        //    if (!audioWalk.isPlaying)
+        //    {
+        //        audioWalk.Play();
+        //    }
+        //}
+        //else
+        //    audioWalk.Pause(); 
 
     }
 
@@ -233,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((grounded || wallRunning || surfing) && readyToJump)
         {
-            audioJump.Play();
+            //audioJump.Play();
 
             MonoBehaviour.print("jumping");
             Vector3 velocity = rb.velocity;

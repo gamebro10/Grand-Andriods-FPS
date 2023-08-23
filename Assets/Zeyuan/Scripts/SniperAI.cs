@@ -15,6 +15,7 @@ public class SniperAI : NormalEnemyBase
 
     bool showLaser;
     bool canFootStep = true;
+    bool isShooted;
 
     // Update is called once per frame
     protected override void Update()
@@ -41,6 +42,17 @@ public class SniperAI : NormalEnemyBase
         {
             OutCombat();
         }
+
+        if (isShooting)
+        {
+            if (!CanSeePlayer() && !isShooted)
+            {
+                isShooting = false;
+                showLaser = false;
+                laser.gameObject.SetActive(false);
+                StopCoroutine("IAttack");
+            }
+        }
     }
 
     IEnumerator IFootStep()
@@ -61,7 +73,7 @@ public class SniperAI : NormalEnemyBase
 
     void Attack()
     {
-        Debug.DrawRay(firePos.position, Player.transform.position - firePos.position);
+        //Debug.DrawRay(firePos.position, Player.transform.position - firePos.position);
         if (!isShooting)
         {
             RaycastHit hit;
@@ -69,7 +81,7 @@ public class SniperAI : NormalEnemyBase
             {
                 if (hit.collider.CompareTag("Player"))
                 {
-                    StartCoroutine(IAttack());
+                    StartCoroutine("IAttack");
                 }
             }
         }
@@ -84,9 +96,11 @@ public class SniperAI : NormalEnemyBase
         Instantiate(bullet, firePos.transform.position, Quaternion.LookRotation(Player.transform.position - firePos.position));
         audioSource.PlayOneShot(shootSound, 3f);
         showLaser = false;
+        isShooted = true;
         laser.gameObject.SetActive(false);
         yield return new WaitForSeconds(attackCD);
         isShooting = false;
+        isShooted = false;
     }
 
     void ShowLaser()
