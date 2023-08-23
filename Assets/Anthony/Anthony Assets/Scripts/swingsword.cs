@@ -61,7 +61,7 @@ public class swingsword : MonoBehaviour
             trail.SetActive(true);
             ShotAudio(shootSoundSource);
             effects.SetTrigger(animations[Random.Range(0, 3)]);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(1f);
             trail.SetActive(false);
             hitbox.SetActive(false);
             scripts.canSwitchWeapons = true;

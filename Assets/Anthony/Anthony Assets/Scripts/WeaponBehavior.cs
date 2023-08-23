@@ -79,7 +79,7 @@ public class WeaponBehavior : MonoBehaviour
         //    Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
         //}
 
-        if (Physics.Raycast(UnityEngine.Camera.main.transform.position, UnityEngine.Camera.main.transform.forward, out hit, 1000f, Mask))
+        if (Physics.Raycast(UnityEngine.Camera.main.transform.position, UnityEngine.Camera.main.transform.forward, out hit, 10000000f, Mask))
         {
             GameObject Bullet = Instantiate(Amo, shotpos.position, shotpos.transform.rotation);
             Bullet.transform.LookAt(hit.point);
