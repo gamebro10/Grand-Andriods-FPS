@@ -10842,6 +10842,10 @@ PrefabInstance:
       value: pistolT2
       objectReference: {fileID: 0}
     - target: {fileID: 3931239613618400679, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 449455365}
+    - target: {fileID: 3931239613618400679, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: Recoil
       value: 
       objectReference: {fileID: 449455362}

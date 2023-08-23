@@ -92,12 +92,12 @@ public class pistolInteract : MonoBehaviour
         //    // Sword.SetActive(false);
         //}
 
-        //if (GameManager.Instance.activeMenu == null)
-        //{
-            //isshooting is after cuz order of op and it will almost always be false 
+        if (GameManager.Instance.activeMenu == null)
+        {
+            //isshooting is after cuz order of op and it will almost always be false
             if (Input.GetButtonDown("Alt Fire") && !isShooting && equiped == true)
                 StartCoroutine(ALTshoot());
-       // }
+        }
 
     }
 
