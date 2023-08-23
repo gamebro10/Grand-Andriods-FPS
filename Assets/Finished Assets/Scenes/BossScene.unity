@@ -449,6 +449,10 @@ PrefabInstance:
       value: -3.223
       objectReference: {fileID: 0}
     - target: {fileID: 5015055113718920621, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 1918539326}
+    - target: {fileID: 5015055113718920621, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: Sword
       value: 
       objectReference: {fileID: 1701148877}

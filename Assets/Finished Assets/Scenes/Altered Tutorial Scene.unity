@@ -4350,6 +4350,10 @@ PrefabInstance:
       value: Reworked AT482
       objectReference: {fileID: 0}
     - target: {fileID: 9205554496011867855, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 814224583}
+    - target: {fileID: 9205554496011867855, guid: 1b47257c140ce9c408a2c23c6b71faff, type: 3}
       propertyPath: Recoil
       value: 
       objectReference: {fileID: 962203442}
@@ -6251,6 +6255,10 @@ PrefabInstance:
       value: pistolT2
       objectReference: {fileID: 0}
     - target: {fileID: 3931239613618400679, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 814224583}
+    - target: {fileID: 3931239613618400679, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: Recoil
       value: 
       objectReference: {fileID: 962203442}
@@ -6298,6 +6306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -3.223
       objectReference: {fileID: 0}
+    - target: {fileID: 5015055113718920621, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 814224583}
     - target: {fileID: 5015055113718920621, guid: 11e8dd50492b1da4da89cd1d8ce978f9, type: 3}
       propertyPath: Sword
       value: 
@@ -6547,6 +6559,17 @@ MonoBehaviour:
   - {fileID: 1938982708}
   - {fileID: 1528981927}
   - {fileID: 952454981}
+--- !u!114 &814224583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8362044786933206772, guid: ce2bfcde385521847b19cc801fce06d3, type: 3}
+  m_PrefabInstance: {fileID: 962203438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3939e6c3b27d0840805244cace6881f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &826041994
 PrefabInstance:
   m_ObjectHideFlags: 0
