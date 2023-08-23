@@ -441,7 +441,7 @@ public class RobotBossAI : EnemyBase
 
     void InCombat()
     {
-        if (GetAngleToPlayer() <= 20 && shouldCannon && !shouldSlam && isSlamFinished)
+        if (shouldCannon && !shouldSlam && isSlamFinished)
         {
             StartCoroutine(DoPrepCannon());
         }
