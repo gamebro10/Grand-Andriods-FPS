@@ -52,13 +52,13 @@ public class DroneAI : NormalEnemyBase
         float y = Mathf.Sin(floatParam) * Mathf.PI / 180 / floatDivisor;
         floatParam += Time.deltaTime * floatingSpeed;
         Body.transform.position = new Vector3(Body.transform.position.x, Body.transform.position.y + y, Body.transform.position.z);
-        coll.center = new Vector3(0, Body.transform.position.y - .2f, 0);
+        coll.center = new Vector3(0, Body.transform.localPosition.y - 0.2f, 0);
     }
 
     void Attack()
     {
-        Debug.DrawRay(firePosLeft.position, Player.transform.position - firePosLeft.position);
-        Debug.DrawRay(firePosRight.position, Player.transform.position - firePosRight.position);
+        //Debug.DrawRay(firePosLeft.position, Player.transform.position - firePosLeft.position);
+        //Debug.DrawRay(firePosRight.position, Player.transform.position - firePosRight.position);
         if (!isShooting)
         {
             RaycastHit hit;
