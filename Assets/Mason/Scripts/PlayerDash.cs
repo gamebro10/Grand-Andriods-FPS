@@ -10,15 +10,14 @@ public class PlayerDash : MonoBehaviour
     public Transform orientation;
     public Transform playerCam;
 
-
     public float dashSpeed;
     public float dashDuration;
     public float dashUpForce;
     public float durationD;
     public bool isDashing;
-    //private Vector3 PlayerY;
 
-    private PlayerMovement Movement;
+    public int CanDash = 1;
+    //private Vector3 PlayerY;
 
     //public int dashNum;
 
@@ -27,7 +26,7 @@ public class PlayerDash : MonoBehaviour
 
     private KeyCode dashKey = KeyCode.LeftShift;
 
-    Vector3 move;
+    //Vector3 move;
 
     //private GameObject dashEffect;
 
@@ -44,20 +43,24 @@ public class PlayerDash : MonoBehaviour
     private void Update()
     {
         //move = (orientation.right * Input.GetAxis("Horizontal")) +
-         // (orientation.forward * Input.GetAxis("Vertical"));
+        // (orientation.forward * Input.GetAxis("Vertical"));
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(dashKey) && GetComponent<PlayerMovement>().grounded == false && GetComponent<PlayerMovement>().onWall == false && CanDash == 1)
         {
+            CanDash = 0;
             float h = horizontalSpeed * Input.GetAxis("Mouse X");
             float v = verticalSpeed * Input.GetAxis("Mouse Y");
             transform.rotation = Quaternion.Euler(h, v, 0);
-        }
-
-        if (Input.GetKey(dashKey))
             Dash();
+        }
 
         if(dashTimer > 0)
             dashTimer -= Time.deltaTime;
+
+        if(CanDash == 0 && GetComponent<PlayerMovement>().grounded == true | GetComponent<PlayerMovement>().onWall == true)
+        {
+            CanDash = 1;
+        }
     }
 
 
