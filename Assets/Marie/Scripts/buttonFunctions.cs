@@ -49,6 +49,11 @@ public class buttonfunctions : MonoBehaviour
         GameManager.Instance.closeOptions();
     }
 
+    public void closeControls()
+    {
+        GameManager.Instance.closeControls();
+    }
+
     public void levelSelect(int levelNumber)
     {
         SceneManager.LoadScene(levelNumber);

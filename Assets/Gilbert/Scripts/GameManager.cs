@@ -34,9 +34,7 @@ public class GameManager : MonoBehaviour
 
     [Header("-----Options Stuff-----")]
     [SerializeField] public SettingsStuff optionsvalues;
-    [SerializeField] public SettingsStuff optionsspare;
-    [SerializeField] public Slider FOVSlider;
-    [SerializeField] public TextMeshProUGUI FOVText;
+    [SerializeField] public SettingsStuff optionsspare; 
     [SerializeField] public Slider MouseSensSlider;
     [SerializeField] public TextMeshProUGUI MouseSensText;
     [SerializeField] public Slider SFXSlider;
@@ -60,6 +58,7 @@ public class GameManager : MonoBehaviour
     int batteriesRemaining;
     public bool isPaused;
     float timescaleOrig;
+    public GameObject OptionsTemp;
    // public UnityEngine.Camera Lens;
 
     void Awake()
@@ -122,6 +121,7 @@ public class GameManager : MonoBehaviour
     {
         loadOptions();
         prevMenu = activeMenu;
+        OptionsTemp = prevMenu;
         activeMenu.SetActive(false);
         activeMenu = optionsMenu;
         activeMenu.SetActive(true);
@@ -137,9 +137,6 @@ public class GameManager : MonoBehaviour
 
     public void setOptionsDefault()
     {
-        FOVSlider.value = optionsvalues.FOVValue = 60;
-        //Lens.fieldOfView = optionsvalues.FOVValue;
-        FOVText.text = optionsvalues.FOVValue.ToString();
         MouseSensSlider.value = optionsvalues.MouseSensValue = 50;
         MouseSensText.text = optionsvalues.MouseSensValue.ToString();
         SFXSlider.value = optionsvalues.SFXValue = 100;
@@ -150,8 +147,6 @@ public class GameManager : MonoBehaviour
 
     public void setOptionsSliders()
     {
-        FOVSlider.onValueChanged.AddListener((v) => { optionsvalues.FOVValue = (int)v; });
-        //Lens.fieldOfView = optionsvalues.FOVValue;
         MouseSensSlider.onValueChanged.AddListener((v) => { optionsvalues.MouseSensValue = (int)v; });
         SFXSlider.onValueChanged.AddListener((v) => { optionsvalues.SFXValue = (int)v; });
         MusicSlider.onValueChanged.AddListener((v) => { optionsvalues.MusicValue = (int)v; });
@@ -161,15 +156,21 @@ public class GameManager : MonoBehaviour
     {
         saveOptions();
         activeMenu.SetActive(false);
-        activeMenu = prevMenu;
+        activeMenu = OptionsTemp;
         activeMenu.SetActive(true);
         prevMenu = null;
         loadOptions();
     }
 
+    public void closeControls()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = prevMenu;
+        activeMenu.SetActive(true);
+    }
+
     public void saveOptions()
     {
-        optionsspare.FOVValue = optionsvalues.FOVValue;
         optionsspare.MouseSensValue = optionsvalues.MouseSensValue;
         optionsspare.SFXValue = optionsvalues.SFXValue;
         optionsspare.MusicValue = optionsvalues.MusicValue;
@@ -178,7 +179,6 @@ public class GameManager : MonoBehaviour
     public void loadOptions()
     {
         setOptionsSliders();
-        optionsvalues.FOVValue = optionsspare.FOVValue;
         optionsvalues.MouseSensValue = optionsspare.MouseSensValue;
         optionsvalues.SFXValue = optionsspare.SFXValue;
         optionsvalues.MusicValue = optionsspare.MusicValue;
