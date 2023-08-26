@@ -46,6 +46,10 @@ public class MainMenuMusic : MonoBehaviour
                 backgroundMusic.Play();
             }
         }
+        else if (SceneManager.GetActiveScene().buildIndex == 8)
+        {
+            backgroundMusic.clip = null;
+        }
         else
         {
             if (backgroundMusic.clip != levelClip)
