@@ -13,7 +13,7 @@ public class MainMenuMusic : MonoBehaviour
 
     public static MainMenuMusic Instance;
 
-    private void Awake()
+    private void Start()
     {
         if (Instance == null)
         {

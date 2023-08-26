@@ -182,7 +182,12 @@ public class GameManager : MonoBehaviour
         optionsvalues.MouseSensValue = optionsspare.MouseSensValue;
         optionsvalues.SFXValue = optionsspare.SFXValue;
         optionsvalues.MusicValue = optionsspare.MusicValue;
-
+        MouseSensSlider.value = optionsvalues.MouseSensValue;
+        MouseSensText.text = optionsvalues.MouseSensValue.ToString();
+        SFXSlider.value = optionsvalues.SFXValue;
+        SFXText.text = optionsvalues.SFXValue.ToString();
+        MusicSlider.value = optionsvalues.MusicValue;
+        MusicText.text = optionsvalues.MusicValue.ToString();
     }
 
     public void updateEnemy(int amount)
