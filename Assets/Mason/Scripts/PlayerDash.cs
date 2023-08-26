@@ -11,17 +11,18 @@ public class PlayerDash : MonoBehaviour
     public Transform playerCam;
 
     public float dashSpeed;
-    public float dashDuration;
+    //public float dashDuration;
     public float dashUpForce;
-    public float durationD;
-    public bool isDashing;
+   // public float durationD;
+    //public bool isDashing;
 
-    public int CanDash = 1;
+    public bool CanDash;
     //private Vector3 PlayerY;
 
     //public int dashNum;
 
     public float dashCd;
+    public int dashWallCheck;
     private float dashTimer;
 
     private KeyCode dashKey = KeyCode.LeftShift;
@@ -42,24 +43,32 @@ public class PlayerDash : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //move = (orientation.right * Input.GetAxis("Horizontal")) +
-        // (orientation.forward * Input.GetAxis("Vertical"));
 
-        if (Input.GetKeyDown(dashKey) && GetComponent<PlayerMovement>().grounded == false && GetComponent<PlayerMovement>().onWall == false && CanDash == 1)
+        if (dashTimer > 0)
+            dashTimer -= Time.deltaTime;
+
+        if (GetComponent<PlayerMovement>().onWall == true && dashTimer < dashCd && dashWallCheck != 1)
         {
-            CanDash = 0;
+            dashWallCheck = 1;
+        }
+
+        if (dashWallCheck == 1 && dashTimer < 0)
+        {
+            dashWallCheck = 0;
+        }
+
+        if (Input.GetKeyDown(dashKey) && GetComponent<PlayerMovement>().grounded == false && GetComponent<PlayerMovement>().onWall == false && CanDash == true && dashWallCheck == 0)
+        {
+            CanDash = false;
             float h = horizontalSpeed * Input.GetAxis("Mouse X");
             float v = verticalSpeed * Input.GetAxis("Mouse Y");
             transform.rotation = Quaternion.Euler(h, v, 0);
             Dash();
         }
 
-        if(dashTimer > 0)
-            dashTimer -= Time.deltaTime;
-
-        if(CanDash == 0 && GetComponent<PlayerMovement>().grounded == true | GetComponent<PlayerMovement>().onWall == true)
+        if (GetComponent<PlayerMovement>().grounded == true || GetComponent<PlayerMovement>().onWall == true)
         {
-            CanDash = 1;
+            CanDash = true;
         }
     }
 
@@ -72,7 +81,7 @@ public class PlayerDash : MonoBehaviour
         if (dashTimer > 0) return;
         else dashTimer = dashCd;
 
-        isDashing = true;
+        //isDashing = true;
 
         //rb.AddForce(move * dashSpeed,ForceMode.Impulse);
 
@@ -80,11 +89,12 @@ public class PlayerDash : MonoBehaviour
         //float v = verticalSpeed * Input.GetAxis("Mouse Y");
         //transform.rotation = Quaternion.Euler(h, v, 0);
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(dashKey) && CanDash == true)
         {
             float h = horizontalSpeed * Input.GetAxis("Mouse X");
             float v = verticalSpeed * Input.GetAxis("Mouse Y");
             transform.rotation = Quaternion.Euler(h, v, 0);
+
         }
 
         rb.velocity = Vector3.zero;
@@ -102,7 +112,7 @@ public class PlayerDash : MonoBehaviour
         rb.AddForce(orientation.forward * dashSpeed, ForceMode.Impulse);
 
         
-           isDashing = false;
+           //isDashing = false;
 
     }
 
