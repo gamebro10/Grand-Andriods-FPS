@@ -1855,10 +1855,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1934,12 +1934,8 @@ MonoBehaviour:
   titleMenu: {fileID: 0}
   optionsMenu: {fileID: 0}
   levelSelect: {fileID: 0}
-  enemyHeader: {fileID: 0}
   controlsMenu: {fileID: 0}
   cheatMenu: {fileID: 0}
-  enemiesRemainingText: {fileID: 0}
-  speedometerText: {fileID: 0}
-  speedometerBar: {fileID: 0}
   playerHPBar: {fileID: 0}
   playerFlashDamageScreen: {fileID: 0}
   playerFlashHealScreen: {fileID: 0}
@@ -1947,8 +1943,6 @@ MonoBehaviour:
   bossHealthBar: {fileID: 0}
   optionsvalues: {fileID: 0}
   optionsspare: {fileID: 0}
-  FOVSlider: {fileID: 0}
-  FOVText: {fileID: 0}
   MouseSensSlider: {fileID: 0}
   MouseSensText: {fileID: 0}
   SFXSlider: {fileID: 0}
@@ -1956,6 +1950,7 @@ MonoBehaviour:
   MusicSlider: {fileID: 0}
   MusicText: {fileID: 0}
   isPaused: 0
+  OptionsTemp: {fileID: 0}
 --- !u!114 &1556741705
 MonoBehaviour:
   m_ObjectHideFlags: 0
