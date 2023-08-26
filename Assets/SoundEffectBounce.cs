@@ -9,7 +9,7 @@ public class SoundEffectBounce : MonoBehaviour
 
     void Start()
     {
-
+        AudioManager.Instance.RegisterSFX(bounceEffect);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -18,5 +18,13 @@ public class SoundEffectBounce : MonoBehaviour
          {
             bounceEffect.PlayOneShot(bounceClip);
          }
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(bounceEffect);
+        }
     }
 }
