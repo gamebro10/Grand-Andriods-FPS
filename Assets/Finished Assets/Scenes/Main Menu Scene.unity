@@ -383,6 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 933962603}
+  mainMenuClip: {fileID: 8300000, guid: 59c20c6f942622a4ba6729dd3f5a219e, type: 3}
+  levelClip: {fileID: 8300000, guid: 0430f176a2804734bbfa591c25b8b107, type: 3}
+  bossClip: {fileID: 8300000, guid: 6076f5b71262b2a41b222b913dbddc48, type: 3}
 --- !u!1001 &935159822
 PrefabInstance:
   m_ObjectHideFlags: 0

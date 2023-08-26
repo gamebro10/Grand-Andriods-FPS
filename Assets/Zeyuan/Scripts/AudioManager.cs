@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         InitVars();
-        SceneManager.sceneLoaded += delegate { InitVars(); };
+        SceneManager.sceneLoaded += delegate { BindEvents(); };
 
         InvokeRepeating("CheckNullAudios", checkNullTime, checkNullTime);
     }
@@ -116,15 +116,20 @@ public class AudioManager : MonoBehaviour
 
     void InitVars()
     {
+        BindEvents();
+        SFXAudios = new Dictionary<AudioSource, float>();
+        MusicAudios = new Dictionary<AudioSource, float>();
+        level = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    void BindEvents()
+    {
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SFXSlider.onValueChanged.AddListener(delegate { OnSFXChanged(); });
             GameManager.Instance.MusicSlider.onValueChanged.AddListener(delegate { OnMusicChanged(); });
         }
-        SFXAudios = new Dictionary<AudioSource, float>();
-        MusicAudios = new Dictionary<AudioSource, float>();
         isQuitting = false;
-        level = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void OnDestroy()
