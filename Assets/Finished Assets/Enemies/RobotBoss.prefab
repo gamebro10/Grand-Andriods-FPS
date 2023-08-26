@@ -23256,6 +23256,7 @@ MonoBehaviour:
   anime: {fileID: 0}
   audioSource: {fileID: 8320702304784977974}
   deathParticle: {fileID: 0}
+  Stunned: 0
   currentTarget: {fileID: 0}
   cannonRotateSpeed: 1.2
   cannonRotateRange: 35
@@ -23909,7 +23910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: -1
   destroyTimer: -1
-  damage: 1
+  damage: 5
   mask:
     serializedVersion: 2
     m_Bits: 0
