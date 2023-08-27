@@ -26,7 +26,7 @@ public class swingsword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioManager.Instance.RegisterSFX(shootSoundSource);
     }
 
     // Update is called once per frame
