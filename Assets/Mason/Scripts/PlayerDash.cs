@@ -9,6 +9,7 @@ public class PlayerDash : MonoBehaviour
     private Rigidbody rb;
     public Transform orientation;
     public Transform playerCam;
+    public AudioSource dashSound;
 
     public float dashSpeed;
     //public float dashDuration;
@@ -111,8 +112,8 @@ public class PlayerDash : MonoBehaviour
         rb.transform.rotation = Quaternion.identity;
         rb.AddForce(orientation.forward * dashSpeed, ForceMode.Impulse);
 
-        
-           //isDashing = false;
+        dashSound.Play();
+        //isDashing = false;
 
     }
 
