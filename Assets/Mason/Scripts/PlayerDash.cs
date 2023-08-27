@@ -36,6 +36,7 @@ public class PlayerDash : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        AudioManager.Instance.RegisterSFX(dashSound);
     }
 
     private float horizontalSpeed = 2.0F;
@@ -119,8 +120,16 @@ public class PlayerDash : MonoBehaviour
 
     //private Vector3 additionalForce;
 
-  //  private void delayedDash()
-   // {
-  //      rb.AddForce(additionalForce, ForceMode.Impulse);
-  //  }
+    //  private void delayedDash()
+    // {
+    //      rb.AddForce(additionalForce, ForceMode.Impulse);
+    //  }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.UnregisterSFX(dashSound);
+        }
+    }
 }
